@@ -441,6 +441,194 @@ FLASH(
   'Quando o enunciado avisa "sobre o novo valor", cada percentual seguinte usa o resultado anterior como base, não o valor inicial. Ex.: 300 com alta de 10% e, sobre o novo valor, alta de 5%: 300 x 1,10 x 1,05 = 346,50. Cuidado: aplicar as duas taxas direto sobre o valor original (300 x 1,15) dá resposta errada. Macete: "sobre o novo valor" avisa que a base mudou — sempre multiplique em cadeia.'
 );
 
+/* 8. RAZÃO E PROPORÇÃO */
+
+FLASH(
+  'Razão e Proporção',
+  'REGRA PRÁTICA',
+  'Razão entre Grandezas',
+  'Razão é a comparação entre duas grandezas feita por divisão. Ex.: 30 alunos em 6 salas = 30 ÷ 6 = 5 alunos por sala. Cuidado: a ordem importa: razão de a para b é a ÷ b, e não o inverso. Macete: razão sempre responde "quantos de um para cada um do outro".'
+);
+
+FLASH(
+  'Razão e Proporção',
+  'REGRA PRÁTICA',
+  'Proporção',
+  'Proporção é a igualdade entre duas razões que representam a mesma relação. Ex.: 3/5 = 6/10, porque as duas razões valem o mesmo. Cuidado: duas razões só formam proporção se descreverem exatamente a mesma relação entre as grandezas. Macete: proporção é uma fração igual à outra — duas razões, um só valor.'
+);
+
+FLASH(
+  'Razão e Proporção',
+  'FÓRMULA',
+  'Produto Cruzado',
+  'Numa proporção a/b = c/d, o produto dos extremos é igual ao produto dos meios: a x d = b x c. Ex.: 4/6 = 10/15 porque 4 x 15 = 6 x 10 = 60. Cuidado: o produto cruzado só vale quando os dois lados já formam de fato uma proporção. Macete: multiplica em X, cruzando de cima com baixo.'
+);
+
+FLASH(
+  'Razão e Proporção',
+  'CONVERSÃO',
+  'Escala',
+  'Escala compara a medida do desenho com a medida real, na forma desenho:real. Ex.: escala 1:200 significa que 1 cm no desenho vale 200 cm na realidade. Cuidado: converta as unidades antes de dar a resposta final. Macete: o número depois dos dois-pontos mostra quantas vezes a medida real é maior.'
+);
+
+FLASH(
+  'Razão e Proporção',
+  'ATALHO DE CÁLCULO',
+  'Preço por Unidade',
+  'Preço por unidade é o preço total dividido pela quantidade — ótimo para comparar ofertas. Ex.: R$ 18 por 3 unidades = 18 ÷ 3 = R$ 6 por unidade. Cuidado: o pacote com mais itens nem sempre é o mais barato por unidade. Macete: para comparar preços, reduza sempre ao valor de "1 unidade".'
+);
+
+FLASH(
+  'Razão e Proporção',
+  'FÓRMULA',
+  'Velocidade Média',
+  'Velocidade média é a distância percorrida dividida pelo tempo gasto. Ex.: 240 km em 4 h = 240 ÷ 4 = 60 km/h. Cuidado: as unidades de distância e tempo precisam ser compatíveis entre si. Macete: velocidade é sempre "distância em cima, tempo embaixo".'
+);
+
+FLASH(
+  'Razão e Proporção',
+  'FÓRMULA',
+  'Rendimento',
+  'Rendimento é o resultado obtido dividido pelo recurso gasto para obtê-lo, como km por litro de combustível. Ex.: 210 km com 14 L = 210 ÷ 14 = 15 km/L. Cuidado: confira se a pergunta pede km/L ou L/km — são inversos um do outro. Macete: rendimento é sempre "o que você ganhou dividido pelo que você gastou".'
+);
+
+FLASH(
+  'Razão e Proporção',
+  'COMPARAÇÃO',
+  'Comparação Proporcional',
+  'Para comparar grandezas de forma justa, reduza tudo à mesma base: por 1 pessoa, 1 hora, 1 litro etc. Ex.: 40 páginas em 5 h = 40 ÷ 5 = 8 páginas por hora. Cuidado: comparar totais brutos sem igualar a base antes engana quem está lendo rápido. Macete: só compare depois de igualar as unidades — nunca antes.'
+);
+
+/* 9. REGRA DE TRÊS */
+
+FLASH(
+  'Regra de Três',
+  'REGRA PRÁTICA',
+  'Regra de Três Direta',
+  'Quando as duas grandezas crescem juntas, monte a proporção e resolva pelo produto cruzado. Ex.: 3 cadernos custam R$ 24. Quanto custam 5? 3/5 = 24/x → x = 5 x 24 ÷ 3 = R$ 40. Cuidado: antes de multiplicar cruzado, confirme que as duas grandezas realmente sobem juntas. Macete: se uma dobra e a outra também dobra, a regra é direta.'
+);
+
+FLASH(
+  'Regra de Três',
+  'REGRA PRÁTICA',
+  'Regra de Três Inversa',
+  'Quando uma grandeza aumenta e a outra diminui, multiplique na horizontal, sem cruzar. Ex.: 5 máquinas fazem um trabalho em 8 dias. Com 10 máquinas: 5 x 8 = 10 x x → x = 40 ÷ 10 = 4 dias. Cuidado: montar como direta quando o tempo cai ao aumentar a outra grandeza dá resposta errada. Macete: uma sobe, a outra desce: multiplique reto, nunca em cruz.'
+);
+
+FLASH(
+  'Regra de Três',
+  'REGRA PRÁTICA',
+  'Como Montar a Tabela',
+  'Coloque cada grandeza em uma coluna e cada situação em uma linha, identificando onde está o x. Ex.: Lápis | Preço: linha 1 = 4 | 32; linha 2 = 7 | x. Resolve-se 4/7 = 32/x. Cuidado: nunca misture unidades diferentes na mesma coluna. Macete: cada coluna fala de uma única grandeza — sem trocar de assunto no meio.'
+);
+
+FLASH(
+  'Regra de Três',
+  'COMPARAÇÃO',
+  'Grandezas Diretamente Proporcionais',
+  'Duas grandezas são diretamente proporcionais quando sobem ou descem juntas, mantendo a mesma razão entre elas. Ex.: se 3 m de fio custam R$ 15, 9 m custam R$ 45 (a razão preço/metro é sempre 5). Cuidado: "mais de uma, mais de outra" sugere direta, mas é preciso confirmar que a razão se mantém. Macete: sobem de mãos dadas — se uma triplica, a outra também triplica.'
+);
+
+FLASH(
+  'Regra de Três',
+  'COMPARAÇÃO',
+  'Grandezas Inversamente Proporcionais',
+  'São inversamente proporcionais quando uma sobe e a outra desce, mantendo constante o produto entre elas. Ex.: 3 torneiras enchem um tanque em 8 h; 6 torneiras enchem em 4 h (3 x 8 = 6 x 4 = 24). Cuidado: a tarefa total precisa continuar sendo a mesma para essa relação valer. Macete: uma sobe, a outra desce, mas o produto das duas nunca muda.'
+);
+
+FLASH(
+  'Regra de Três',
+  'ERRO COMUM',
+  'Inverter Coluna',
+  'Cada coluna representa uma grandeza fixa; trocar a posição dos valores faz a conta perder o sentido. Ex.: trabalhadores embaixo de trabalhadores, horas embaixo de horas — nunca misturados na mesma coluna. Cuidado: colocar uma grandeza numa linha e outra diferente na mesma coluna gera número sem significado. Macete: grandeza com grandeza, situação com situação — colunas nunca se misturam.'
+);
+
+FLASH(
+  'Regra de Três',
+  'REGRA PRÁTICA',
+  'Produtividade',
+  'Produtividade relaciona quantidade produzida, número de pessoas e tempo — mais pessoas no mesmo tempo produzem mais. Ex.: 3 pessoas produzem 60 peças em 1 dia; 6 pessoas produzem 120 peças no mesmo dia. Cuidado: se o tempo também mudar junto, a situação vira uma regra de três composta. Macete: dobrou a equipe com o mesmo prazo? A produção também dobra.'
+);
+
+FLASH(
+  'Regra de Três',
+  'REGRA PRÁTICA',
+  'Tempo e Quantidade',
+  'Mantido o mesmo ritmo de trabalho, mais tempo disponível gera mais produção, de forma diretamente proporcional. Ex.: em 2 h produzem-se 50 peças; em 4 h produzem-se 100 peças. Cuidado: se o número de trabalhadores mudar junto, é preciso refazer toda a relação. Macete: mesmo ritmo: a produção segue o relógio na mesma proporção.'
+);
+
+FLASH(
+  'Regra de Três',
+  'REGRA PRÁTICA',
+  'Consumo Proporcional',
+  'O consumo costuma variar de forma direta com o tempo, a distância ou a quantidade de pessoas envolvidas. Ex.: um carro consome 10 L em 150 km; em 75 km, consome 10 ÷ 2 = 5 L. Cuidado: padronize as unidades de distância antes de montar a proporção. Macete: metade do percurso, metade do consumo — a lógica é sempre direta.'
+);
+
+FLASH(
+  'Regra de Três',
+  'CONVERSÃO',
+  'Converter Antes de Montar a Regra de Três',
+  'Deixe todas as grandezas na mesma unidade antes de montar a proporção. Ex.: 2,5 h viram 150 min antes de comparar com um valor já dado em minutos. Cuidado: unidades misturadas numa regra de três quase sempre levam à resposta errada. Macete: primeiro padroniza a unidade, só depois monta a proporção.'
+);
+
+/* 10. EQUAÇÕES SIMPLES */
+
+FLASH(
+  'Equações Simples',
+  'REGRA PRÁTICA',
+  'O que é a Incógnita',
+  'A incógnita é o valor desconhecido da equação, geralmente representado por x; resolver é descobrir quanto ele vale. Ex.: em x + 6 = 15, o x é o número que somado a 6 dá 15, ou seja, 9. Cuidado: o x sozinho ao lado de um número não indica multiplicação — ele é só o valor que falta descobrir. Macete: x é a pergunta escondida da equação: "que número faz essa conta fechar?"'
+);
+
+FLASH(
+  'Equações Simples',
+  'REGRA PRÁTICA',
+  'Isolar o x',
+  'Para isolar o x, aplique a operação inversa do que está ao lado dele, repetindo a ação nos dois lados da igualdade. Ex.: x + 9 = 22. Tirando 9 dos dois lados: x = 22 - 9 = 13. Cuidado: o que se faz de um lado da igualdade tem que se repetir do outro, sem exceção. Macete: para libertar o x, jogue o número do outro lado trocando o sinal.'
+);
+
+FLASH(
+  'Equações Simples',
+  'REGRA PRÁTICA',
+  'Operação Inversa na Equação',
+  'Cada operação se desfaz pela sua contrária: soma desfaz com subtração, multiplicação desfaz com divisão. Ex.: 7x = 56. Como o 7 multiplica, divida: x = 56 ÷ 7 = 8. Cuidado: não confunda a inversa da soma (subtração) com a da multiplicação (divisão). Macete: atravessou a igualdade, vira o oposto: soma vira subtração, multiplicação vira divisão.'
+);
+
+FLASH(
+  'Equações Simples',
+  'FÓRMULA',
+  'Equação x + a = b',
+  'Em x + a = b, o valor de x é sempre b menos a. Ex.: x + 18 = 45, então x = 45 - 18 = 27. Cuidado: não some o valor de "a" de novo — ele precisa ser subtraído, nunca somado outra vez. Macete: o que estava somado de um lado, sai subtraindo do outro: x = b - a.'
+);
+
+FLASH(
+  'Equações Simples',
+  'FÓRMULA',
+  'Equação a · x = b',
+  'Em a · x = b, o valor de x é sempre b dividido por a. Ex.: 6x = 54, então x = 54 ÷ 6 = 9. Cuidado: divida pelo número que multiplica o x, nunca pelo próprio x. Macete: número colado no x se resolve sempre dividindo: x = b ÷ a.'
+);
+
+FLASH(
+  'Equações Simples',
+  'FÓRMULA',
+  'Equação ax + b = c',
+  'Primeiro elimine o termo somado (b), depois divida pelo número que multiplica o x. Ex.: 4x + 7 = 31. Tirando o 7: 4x = 24. Dividindo por 4: x = 6. Cuidado: nunca divida c pelo coeficiente a antes de eliminar o termo somado. Macete: primeiro resolve o que está "mais longe" do x (a soma), depois o que está "colado" nele.'
+);
+
+FLASH(
+  'Equações Simples',
+  'INTERPRETAÇÃO DE PROVA',
+  'Montar Equação a Partir do Texto',
+  'Traduza o enunciado em símbolos matemáticos, palavra por palavra, na ordem em que aparecem. Ex.: "O triplo de um número menos 4 é igual a 20" vira 3x - 4 = 20 (logo x = 8). Cuidado: a ordem das palavras muda o significado: "triplo de x menos 4" não é "triplo de (x - 4)". Macete: leia devagar e substitua cada expressão por um símbolo, sem pular etapas.'
+);
+
+FLASH(
+  'Equações Simples',
+  'CONFERÊNCIA',
+  'Conferir Substituindo o Valor',
+  'Para conferir a resposta, coloque o valor encontrado no lugar do x e veja se os dois lados da igualdade ficam iguais. Ex.: x = 6 em 4x + 7 = 31: 4 x 6 + 7 = 24 + 7 = 31. Confere. Cuidado: se os dois lados não baterem, revise a montagem da equação, não só a conta final. Macete: achou o x? Devolva ele para a equação original — se os dois lados fecham, está certo.'
+);
+
 
 
 
