@@ -629,6 +629,252 @@ FLASH(
   'Para conferir a resposta, coloque o valor encontrado no lugar do x e veja se os dois lados da igualdade ficam iguais. Ex.: x = 6 em 4x + 7 = 31: 4 x 6 + 7 = 24 + 7 = 31. Confere. Cuidado: se os dois lados não baterem, revise a montagem da equação, não só a conta final. Macete: achou o x? Devolva ele para a equação original — se os dois lados fecham, está certo.'
 );
 
+/* 11. UNIDADES DE MEDIDA */
+
+FLASH(
+  'Unidades de Medida',
+  'CONVERSÃO',
+  'km, m, cm e mm',
+  'Cada degrau de comprimento tem seu fator: 1 km = 1000 m; 1 m = 100 cm; 1 cm = 10 mm. Ex.: 3 km = 3 x 1000 = 3000 m. Cuidado: nem toda conversão é por 100 — de m para cm é x 100, mas de km para m é x 1000. Macete: descendo a escada (unidade maior para menor) você multiplica; subindo, divide.'
+);
+
+FLASH(
+  'Unidades de Medida',
+  'CONVERSÃO',
+  'kg, g e mg',
+  'Na massa, cada degrau também vale 1000: 1 kg = 1000 g e 1 g = 1000 mg. Ex.: 1,8 kg = 1,8 x 1000 = 1800 g. Cuidado: 0,5 kg são 500 g, não 50 g — cuidado com a posição da vírgula. Macete: de kg para g, a vírgula pula 3 casas para a direita.'
+);
+
+FLASH(
+  'Unidades de Medida',
+  'CONVERSÃO',
+  'Litros e Mililitros',
+  '1 litro equivale a 1000 mililitros; para converter, multiplique ou divida por 1000. Ex.: 0,6 L = 0,6 x 1000 = 600 mL. Cuidado: meio litro é 500 mL, e não 50 mL. Macete: litro para mL: vírgula anda 3 casas para a direita.'
+);
+
+FLASH(
+  'Unidades de Medida',
+  'CONVERSÃO',
+  'Horas, Minutos e Segundos',
+  'O tempo funciona em base 60: 1 h = 60 min e 1 min = 60 s — nunca base 100. Ex.: 1 h 45 min = 60 + 45 = 105 minutos. Cuidado: 0,5 h equivale a 30 minutos, e não a 50. Macete: tempo não segue a vírgula decimal — sempre pense em blocos de 60.'
+);
+
+FLASH(
+  'Unidades de Medida',
+  'CONVERSÃO',
+  'm² e cm² (Área)',
+  'Em área, o fator de conversão vai ao quadrado: 1 m² = 100 cm x 100 cm = 10.000 cm². Ex.: 3 m² = 3 x 10.000 = 30.000 cm². Cuidado: não use apenas x 100 na área — como são duas dimensões, o fator correto é 100². Macete: unidade elevada ao quadrado pede fator de conversão elevado ao quadrado também.'
+);
+
+FLASH(
+  'Unidades de Medida',
+  'CONVERSÃO',
+  'm³ e Litros (Volume)',
+  '1 m³ equivale a 1000 litros; para converter, multiplique ou divida por 1000. Ex.: 1,2 m³ = 1,2 x 1000 = 1200 L. Cuidado: não confunda m³ (volume, três dimensões) com m² (área, duas dimensões). Macete: metro cúbico é uma caixa de 1000 litros — o expoente 3 pede o fator 1000.'
+);
+
+FLASH(
+  'Unidades de Medida',
+  'REGRA PRÁTICA',
+  'Conversões Mais Cobradas',
+  'Memorize os fatores clássicos: 1 km = 1000 m, 1 m = 100 cm, 1 kg = 1000 g, 1 L = 1000 mL, 1 m³ = 1000 L. Ex.: 4 L = 4 x 1000 = 4000 mL. Cuidado: antes de somar grandezas diferentes, deixe todas na mesma unidade. Macete: quase tudo é fator 1000; a exceção clássica é metro para centímetro, que é fator 100.'
+);
+
+FLASH(
+  'Unidades de Medida',
+  'ERRO COMUM',
+  'Somar Unidades Diferentes',
+  'Só é possível somar grandezas que já estão na mesma unidade — sempre converta antes. Ex.: 2 m + 30 cm = 200 cm + 30 cm = 230 cm (ou 2,3 m). Cuidado: 2 + 30 nunca resulta em "32 metros" — isso mistura metro com centímetro. Macete: antes de somar, coloque tudo na régua da mesma unidade.'
+);
+
+FLASH(
+  'Unidades de Medida',
+  'CONVERSÃO',
+  'cm para m e m para cm',
+  'De cm para m, divida por 100; de m para cm, multiplique por 100. Ex.: 480 cm = 480 ÷ 100 = 4,8 m; e 4,8 m = 4,8 x 100 = 480 cm. Cuidado: indo de unidade menor para maior, o número sempre diminui; o inverso, ele aumenta. Macete: a vírgula anda 2 casas para a esquerda subindo, para a direita descendo.'
+);
+
+FLASH(
+  'Unidades de Medida',
+  'CONVERSÃO',
+  'kg para g e g para kg',
+  'De kg para g, multiplique por 1000; de g para kg, divida por 1000. Ex.: 0,75 kg = 750 g; e 750 g = 0,75 kg. Cuidado: a vírgula sempre anda 3 casas nessa conversão, nunca 2. Macete: kg e g estão a "três degraus" de distância — sempre x 1000 ou ÷ 1000.'
+);
+
+FLASH(
+  'Unidades de Medida',
+  'CONVERSÃO',
+  'L para mL e mL para L',
+  'De litro para mililitro, multiplique por 1000; o caminho inverso é dividir por 1000. Ex.: 2,3 L = 2300 mL; e 2300 mL = 2,3 L. Cuidado: mL é sempre um número "maior" que a mesma quantidade em litros. Macete: litro e mililitro são vizinhos de três casas decimais.'
+);
+
+FLASH(
+  'Unidades de Medida',
+  'CONFERÊNCIA',
+  'Conferir a Unidade da Resposta',
+  'Antes de marcar a alternativa, confirme se sua resposta está na mesma unidade que a pergunta pediu. Ex.: se o cálculo deu 3500 g mas a pergunta quer em kg, a resposta certa é 3,5 kg, não 3500. Cuidado: muitas questões têm alternativas erradas propositalmente na unidade trocada. Macete: termine toda questão de conversão perguntando: "isso está na unidade pedida?"'
+);
+
+/* 12. ÁREA E PERÍMETRO */
+
+FLASH(
+  'Área e Perímetro',
+  'FÓRMULA',
+  'Perímetro',
+  'Perímetro é a soma de todos os lados de uma figura — use quando o enunciado falar em contorno, cerca ou borda. Ex.: retângulo de 6 m por 4 m: P = 6 + 4 + 6 + 4 = 20 m. Cuidado: perímetro é medida de comprimento; a resposta nunca sai em unidade ao quadrado. Macete: imagine uma formiga andando pela borda da figura — a distância que ela percorre é o perímetro.'
+);
+
+FLASH(
+  'Área e Perímetro',
+  'FÓRMULA',
+  'Área',
+  'Área mede a superfície interna de uma figura; em retângulos, multiplique base por altura. Ex.: retângulo de 6 m por 4 m: A = 6 x 4 = 24 m². Cuidado: área sempre sai em unidade ao quadrado — se não veio com o "2", provavelmente é perímetro. Macete: área preenche o interior da figura, então ganha o expoente "2".'
+);
+
+FLASH(
+  'Área e Perímetro',
+  'FÓRMULA',
+  'Área do Quadrado',
+  'Como todos os lados do quadrado são iguais, sua área é o lado multiplicado por ele mesmo. Ex.: quadrado de lado 7 cm: A = 7 x 7 = 49 cm². Cuidado: 4 x lado calcula o perímetro, não a área. Macete: quadrado tem lado ao quadrado — o próprio nome já entrega a fórmula.'
+);
+
+FLASH(
+  'Área e Perímetro',
+  'FÓRMULA',
+  'Área do Retângulo',
+  'Multiplique base por altura, os dois lados que formam o ângulo reto entre si. Ex.: retângulo de base 9 m e altura 3 m: A = 9 x 3 = 27 m². Cuidado: use sempre os dois lados perpendiculares, não dois lados paralelos e iguais. Macete: conte quantos quadradinhos de lado 1 cabem dentro da figura — isso é base vezes altura.'
+);
+
+FLASH(
+  'Área e Perímetro',
+  'FÓRMULA',
+  'Área do Triângulo',
+  'Multiplique base por altura e divida o resultado por 2, já que o triângulo é metade de um retângulo. Ex.: base 12 e altura 5: A = 12 x 5 ÷ 2 = 30. Cuidado: esquecer de dividir por 2 dobra a área calculada e erra a questão. Macete: triângulo é sempre "meio retângulo" — base vezes altura, cortado ao meio.'
+);
+
+FLASH(
+  'Área e Perímetro',
+  'FÓRMULA',
+  'Área do Paralelogramo',
+  'Área = base x altura, usando a altura perpendicular à base, e não o lado inclinado. Ex.: base 10 e altura 6: A = 10 x 6 = 60. Cuidado: a altura é a distância reta entre as duas bases, nunca o comprimento do lado tombado. Macete: empurre mentalmente o "triângulo sobrando" para o outro lado e a figura vira um retângulo.'
+);
+
+FLASH(
+  'Área e Perímetro',
+  'FÓRMULA',
+  'Área do Trapézio',
+  'Some as duas bases, multiplique pela altura e divida o resultado por 2. Ex.: bases 8 e 12, altura 5: A = (8 + 12) x 5 ÷ 2 = 50. Cuidado: as duas bases precisam ser somadas antes de multiplicar pela altura, nunca separadamente. Macete: o trapézio vira um "retângulo médio" quando você usa a média das duas bases.'
+);
+
+FLASH(
+  'Área e Perímetro',
+  'FÓRMULA',
+  'Circunferência e Círculo',
+  'O contorno do círculo é C = 2πr; a área é A = πr² — as duas fórmulas usam sempre o raio. Ex.: círculo de raio 4: A = π x 4² = 16π ≈ 50,24. Cuidado: se o enunciado der o diâmetro, divida por 2 antes de usar qualquer fórmula. Macete: contorno usa o raio "puro"; área usa o raio elevado ao quadrado.'
+);
+
+FLASH(
+  'Área e Perímetro',
+  'COMPARAÇÃO',
+  'Área x Perímetro',
+  'Perímetro é o contorno da figura; área é o espaço que ela ocupa por dentro — grandezas diferentes. Ex.: cercar um terreno pede perímetro; forrar o chão desse mesmo terreno pede área. Cuidado: perímetro sai em unidade linear (m); área sai em unidade quadrada (m²) — confira a unidade pedida. Macete: contorno é perímetro; miolo é área.'
+);
+
+FLASH(
+  'Área e Perímetro',
+  'INTERPRETAÇÃO DE PROVA',
+  'Cerca, Piso, Parede e Pintura',
+  'Palavras como "cerca" e "moldura" pedem perímetro; "piso", "parede" e "pintura" pedem área. Ex.: pintar uma parede de 5 m x 3 m: área = 5 x 3 = 15 m². Cuidado: só desconte portas e janelas da área se o próprio enunciado mandar fazer isso. Macete: se a palavra descreve "contornar", é perímetro; se descreve "cobrir", é área.'
+);
+
+/* 13. VOLUME */
+
+FLASH(
+  'Volume',
+  'FÓRMULA',
+  'Volume do Bloco Retangular',
+  'Multiplique as três dimensões: comprimento, largura e altura. Ex.: bloco de 5 m x 3 m x 2 m: V = 30 m³. Cuidado: volume sempre usa três medidas; com apenas duas, o que se calcula é área. Macete: três dimensões dão três fatores e o expoente "3" na unidade final.'
+);
+
+FLASH(
+  'Volume',
+  'FÓRMULA',
+  'Volume do Cubo',
+  'Como as arestas do cubo são todas iguais, o volume é o lado multiplicado por ele mesmo três vezes. Ex.: cubo de lado 4 cm: V = 4 x 4 x 4 = 64 cm³. Cuidado: lado x lado calcula apenas a área de uma face; falta multiplicar pelo terceiro lado. Macete: cubo tem lado ao cubo — o nome já entrega o expoente correto.'
+);
+
+FLASH(
+  'Volume',
+  'REGRA PRÁTICA',
+  'Capacidade',
+  'Capacidade é quanto um recipiente comporta, geralmente expressa em litros, mL ou m³. Ex.: uma caixa d\'água de 2 m³ comporta 2 x 1000 = 2000 litros. Cuidado: volume e capacidade descrevem o mesmo espaço; só a unidade de medida muda. Macete: capacidade é o volume visto pelo lado do líquido que cabe dentro do objeto.'
+);
+
+FLASH(
+  'Volume',
+  'CONVERSÃO',
+  'Litro e m³',
+  'Cada metro cúbico equivale a 1000 litros; multiplique por 1000 para ir de m³ para litros. Ex.: 0,9 m³ = 0,9 x 1000 = 900 L. Cuidado: não confunda m³ (volume) com m² (área) — são grandezas diferentes. Macete: 1 m³ = 1000 L é o mesmo "mil" de quase toda conversão métrica.'
+);
+
+FLASH(
+  'Volume',
+  'COMPARAÇÃO',
+  'Área x Volume',
+  'Área mede uma superfície (duas dimensões); volume mede um espaço interno (três dimensões). Ex.: o tampo de uma mesa usa área; uma caixa que se enche de água usa volume. Cuidado: unidade ao quadrado (cm²) nunca serve para volume, que exige unidade ao cubo (cm³). Macete: "2" mede o chão; "3" mede tudo o que cabe dentro.'
+);
+
+/* 14. GRÁFICOS E TABELAS */
+
+FLASH(
+  'Gráficos e Tabelas',
+  'INTERPRETAÇÃO DE PROVA',
+  'Leitura de Eixo',
+  'Antes de responder, observe o que cada eixo representa e em qual unidade os valores estão marcados. Ex.: se o eixo vertical está em centenas, a marca "4" representa 4 x 100 = 400. Cuidado: ler o número da marca sem checar a unidade do eixo é o erro mais comum em gráficos. Macete: primeiro entenda a unidade do eixo, só depois leia o número.'
+);
+
+FLASH(
+  'Gráficos e Tabelas',
+  'REGRA PRÁTICA',
+  'Escala do Gráfico',
+  'Cada intervalo entre marcas do gráfico pode valer 1, 10, 100 ou outro número — sempre confira antes de ler. Ex.: se cada marca vale 25, a 3ª marca representa 3 x 25 = 75. Cuidado: ignorar a escala do gráfico muda completamente a resposta. Macete: descubra quanto vale um "passo" da escala e multiplique pelo número de passos.'
+);
+
+FLASH(
+  'Gráficos e Tabelas',
+  'INTERPRETAÇÃO DE PROVA',
+  'Legenda',
+  'A legenda explica o que cada cor, símbolo ou padrão representa dentro do gráfico. Ex.: barras escuras podem indicar o ano de 2024 e barras claras o ano de 2025. Cuidado: sem checar a legenda, é fácil comparar categorias erradas e errar a questão. Macete: legenda é o "dicionário" do gráfico — sempre leia antes de comparar valores.'
+);
+
+FLASH(
+  'Gráficos e Tabelas',
+  'COMPARAÇÃO',
+  'Barras, Linhas e Setores',
+  'Gráficos de barras comparam categorias; gráficos de linha mostram evolução no tempo; setores mostram partes de um todo. Ex.: vendas mês a mês combinam com linha; participação de cada produto no total combina com setores. Cuidado: não procure "tendência ao longo do tempo" num gráfico de barras que só compara categorias. Macete: barra compara, linha conta uma história ao longo do tempo, e o setor reparte um total.'
+);
+
+FLASH(
+  'Gráficos e Tabelas',
+  'FÓRMULA',
+  'Variação entre Valores',
+  'A variação é sempre o valor final menos o valor inicial; o sinal do resultado mostra se houve aumento ou queda. Ex.: de 140 para 165: variação = 165 - 140 = 25. Cuidado: respeite sempre a ordem "final menos inicial", nunca o contrário. Macete: onde chegou menos de onde partiu: resultado positivo é alta, negativo é queda.'
+);
+
+FLASH(
+  'Gráficos e Tabelas',
+  'REGRA PRÁTICA',
+  'Total em Tabela',
+  'Some apenas as categorias ou períodos que a pergunta realmente pede, nem mais nem menos. Ex.: se a pergunta pede o total do fim de semana, some só sábado e domingo. Cuidado: incluir dados fora do que foi pedido é um erro clássico de leitura apressada. Macete: antes de somar, releia exatamente quais linhas ou colunas a pergunta está citando.'
+);
+
+FLASH(
+  'Gráficos e Tabelas',
+  'COMPARAÇÃO',
+  'Comparar Categorias em Tabela',
+  'Localize os valores certos na tabela e subtraia um do outro quando a pergunta pedir a diferença entre categorias. Ex.: categoria A com 52 e categoria B com 37: diferença = 52 - 37 = 15. Cuidado: se a pergunta pede a diferença, apenas apontar o maior valor não responde à questão. Macete: "diferença entre categorias" é sempre convite para uma subtração, nunca para uma escolha simples.'
+);
+
 
 
 
