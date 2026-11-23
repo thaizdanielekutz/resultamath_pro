@@ -47,9 +47,9 @@ FLASH('x% de N','N · x / 100');
 const SITE={
   professora:'Dani Resulta',
   sobre:'Sou professora de Matemática licenciada, diagramadora e criadora do projeto ResultaMath. Acredito que a matemática não precisa ser complicada, por isso ensino de forma clara, visual e objetiva, transformando conceitos difíceis em ideias simples e acessíveis. Meu objetivo não é apenas ensinar a resolver questões, mas ajudar cada aluno a compreender a matemática e ganhar confiança para utilizá-la.',
-  whatsapp:'5543999999999',   /* só números, com 55 + DDD. Deixe '' para esconder o botão */
-  instagram:'',               /* ex.: https://instagram.com/seuperfil */
-  youtube:'',                 /* ex.: https://youtube.com/@seucanal */
+  whatsapp:'5542991367740',   /* só números, com 55 + DDD. Deixe '' para esconder o botão */
+  instagram:'https://www.youtube.com/redirect?event=channel_description&redir_token=QUlxb01IYlNHY1JMaHUxc1ljZjlJMjNFUWlNcHxBQnJ0NjlsR1NGTW04OEZwaXU4MGlWcWJBYWd2eXljX0RpQ1I5X25xTnJ0VlFvaTZTWHR3cm5qSk51YTlabU82LUNoNGowbDgwdXJ2TjRBSDVuWG41allvNGZsVmZ4UnR6cm52&q=https%3A%2F%2Fwww.instagram.com%2Fprofessora_thaiz%3Figsh%3Dd2M0aHJ5dDFlMXcy',               /* ex.: https://instagram.com/seuperfil */
+  youtube:'https://www.youtube.com/@resultamath',                 /* ex.: https://youtube.com/@seucanal */
   email:''                    /* ex.: contato@seusite.com */
 };
 
