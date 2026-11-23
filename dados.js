@@ -34,14 +34,69 @@ QUESTAO('4. Frações e números decimais','Qual é a fração irredutível de 0
 QUESTAO('5. Razão, proporção e porcentagem','Quanto é 20% de 350?',['60','70','75','17,5'],1,'350 · 20/100 = 70.');
 QUESTAO('5. Razão, proporção e porcentagem','3 cadernos custam R$ 24. Quanto custam 5 cadernos?',['R$ 36','R$ 40','R$ 45','R$ 30'],1,'Cada caderno custa 24 ÷ 3 = 8. Então 5 cadernos custam R$ 40.');
 
-/* FLASH(frente, verso) */
-function FLASH(frente,verso){FLASHCARDS.push({frente,verso})}
-FLASH('O que é um número irracional?','Número real que não pode ser escrito como fração (ex.: √2, π).');
-FLASH('Critério de divisibilidade por 3','A soma dos algarismos é divisível por 3.');
-FLASH('MMC','Menor número positivo que é múltiplo de todos os números dados.');
-FLASH('MDC','Maior número que divide todos os números dados.');
-FLASH('aᵐ · aⁿ','aᵐ⁺ⁿ (soma os expoentes).');
-FLASH('x% de N','N · x / 100');
+
+/* ===== FLASHCARDS ORGANIZADOS POR ÁREA E SEÇÃO ===== */
+
+function FLASH(area, secao, frente, verso) {
+  FLASHCARDS.push({
+    id: slug(frente),
+    area,
+    secao,
+    frente,
+    verso
+  });
+}
+
+/* 1. FUNDAMENTOS DA MATEMÁTICA */
+
+FLASH(
+  'Fundamentos da matemática',
+  'Conjuntos numéricos',
+  'O que é um número irracional?',
+  'Número real que não pode ser escrito como fração (ex.: √2, π).'
+);
+
+/* 2. OPERAÇÕES FUNDAMENTAIS */
+
+FLASH(
+  'Operações fundamentais',
+  'Potenciação',
+  'aᵐ · aⁿ',
+  'aᵐ⁺ⁿ. Na multiplicação de potências de mesma base, somamos os expoentes.'
+);
+
+/* 3. DIVISIBILIDADE */
+
+FLASH(
+  'Divisibilidade',
+  'Critérios de divisibilidade',
+  'Critério de divisibilidade por 3',
+  'A soma dos algarismos é divisível por 3.'
+);
+
+FLASH(
+  'Divisibilidade',
+  'MMC e MDC',
+  'MMC',
+  'Menor número positivo que é múltiplo de todos os números dados.'
+);
+
+FLASH(
+  'Divisibilidade',
+  'MMC e MDC',
+  'MDC',
+  'Maior número que divide todos os números dados.'
+);
+
+/* 4. RAZÃO, PROPORÇÃO E PORCENTAGEM */
+
+FLASH(
+  'Razão, proporção e porcentagem',
+  'Porcentagem',
+  'x% de N',
+  'N · x / 100.'
+);
+
 
 /* ===== DADOS DA PÁGINA INICIAL (index.html) — troque pelos seus ===== */
 const SITE={
