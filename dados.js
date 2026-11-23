@@ -122,7 +122,7 @@ RESOLUCAO({
     enunciado: 'Questão 02 - CESGRANRIO 2024',
     alternativas: [],
     gabarito: '',
-    video: 'b8kFDd0fct3oVTU4'
+    video: 'jxbpUJl1es0'
 });
 
 /* IBFC */
