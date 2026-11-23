@@ -19,29 +19,25 @@ const m = pagina('resolucoes');
 
 function render() {
 
-    const cadastradas = QUESTOES.filter(q =>
-        q.videoResolucao || q.video || S.videosQuestoes[q.id]
-    );
+    const cadastradas = RESOLUCOES.filter(q => q.video);
 
     m.innerHTML = `
 
         <div class="section-head">
             <div>
-                <span class="tag">APRENDA COM A RESOLUÇÃO</span>
+                <span class="tag">QUESTÕES COMENTADAS</span>
                 <h1 style="margin-top:8px">Resoluções em vídeo</h1>
-                <p>Entenda cada questão com explicações passo a passo.</p>
+                <p>Questões de concursos públicos resolvidas passo a passo.</p>
             </div>
         </div>
 
-        <div class="cartao" style="margin-bottom:20px">
-            <input
-                id="busca-res"
-                class="search-input"
-                type="search"
-                placeholder="Buscar questão ou módulo..."
-                aria-label="Buscar questão ou módulo"
-            >
-        </div>
+        <input
+            id="busca-res"
+            class="search-input"
+            type="search"
+            placeholder="Buscar questão, banca, concurso ou assunto..."
+            aria-label="Buscar resolução"
+        >
 
         <p class="suave" id="contador-res"></p>
 
@@ -62,8 +58,12 @@ function render() {
         const lista = cadastradas.filter(q => {
 
             const texto = `
+                ${q.banca}
+                ${q.concurso}
+                ${q.ano}
+                ${q.cargo}
+                ${q.assunto}
                 ${q.enunciado}
-                ${q.modulo}
             `.toLocaleLowerCase('pt-BR');
 
             return texto.includes(term);
@@ -73,48 +73,53 @@ function render() {
         contador.textContent =
             `${lista.length} resolução(ões) encontrada(s).`;
 
-        box.innerHTML = lista.map(q => {
+        box.innerHTML = lista.map(q => `
 
-            const url =
-                q.videoResolucao ||
-                q.video ||
-                S.videosQuestoes[q.id];
+            <article class="cartao" style="margin-bottom:20px">
 
-            return `
+                <div class="video-row">
 
-                <article class="cartao" style="margin-bottom:20px">
+                    <div>
 
-                    <div class="video-row">
+                        <span class="tag">${q.banca}</span>
+
+                        <h2 style="margin-top:10px">
+                            ${q.concurso}
+                        </h2>
+
+                        <p class="suave">
+                            ${q.cargo} | ${q.ano}
+                        </p>
+
+                        <p>
+                            <strong>Assunto:</strong> ${q.assunto}
+                        </p>
+
+                        <p>
+                            ${q.enunciado}
+                        </p>
+
+                        <p class="suave">
+                            Gabarito: ${q.gabarito}
+                        </p>
 
                         <div>
-
-                            <span class="tag">${q.modulo}</span>
-
-                            <h2 style="margin-top:10px">
-                                ${q.enunciado}
-                            </h2>
-
-                            <p class="suave">
-                                Gabarito: ${q.alts[q.certa]}
-                            </p>
-
-                            <p>
-                                ${q.resolucao || 'Resolução comentada em vídeo.'}
-                            </p>
-
-                        </div>
-
-                        <div>
-                            ${player(url, 'Resolução: ' + q.enunciado)}
+                            ${q.alternativas.map((alt, i) => `
+                                <p>${String.fromCharCode(65+i)}) ${alt}</p>
+                            `).join('')}
                         </div>
 
                     </div>
 
-                </article>
+                    <div>
+                        ${player(q.video, 'Resolução: ' + q.concurso)}
+                    </div>
 
-            `;
+                </div>
 
-        }).join('') || `
+            </article>
+
+        `).join('') || `
 
             <div class="empty-state">
                 Nenhuma resolução encontrada.
