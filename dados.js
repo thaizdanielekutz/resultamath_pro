@@ -1508,7 +1508,7 @@ const SITE={
 const MINUTADA = [
     {
         titulo: 'Raiz quadrada',
-        video: 'ID_DO_VIDEO',
+        video: 'LGTiGfulDwU',
         descricao: 'Aprenda o conceito de raiz quadrada.',
         categoria: 'Aritmética'
     },
