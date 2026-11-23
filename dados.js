@@ -969,9 +969,6 @@ FLASH(
   'Preço Final de uma Oferta',
   'Para achar o preço final, some tudo que aumenta o valor e subtraia tudo que reduz, numa única conta completa. Ex.: R$ 250 com desconto de R$ 20 e taxa de entrega de R$ 15: 250 - 20 + 15 = R$ 245. Cuidado: parar apenas no desconto e esquecer taxas extras dá um preço final incorreto. Macete: desconto empurra o preço para baixo, taxa empurra para cima — feche a conta antes de decidir.'
 );
-```[cite: 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42]
-
-
 
 
 /* ===== DADOS DA PÁGINA INICIAL (index.html) — troque pelos seus ===== */
