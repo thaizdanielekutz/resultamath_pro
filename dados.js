@@ -72,6 +72,26 @@ QUESTAO('5. Razão, proporção e porcentagem','3 cadernos custam R$ 24. Quanto 
 
 /* ===== RESOLUÇÕES ===== */
 
+
+/* ===== RESOLUÇÕES ===== */
+
+const RESOLUCOES = [];
+
+function RESOLUCAO({
+    banca,
+    concurso,
+    ano,
+    cargo,
+    assunto,
+    enunciado,
+    alternativas,
+    gabarito,
+    video
+}) 
+
+
+/* ===== RESOLUÇÕES ===== */
+
 const RESOLUCOES = [];
 
 function RESOLUCAO({
@@ -99,17 +119,47 @@ function RESOLUCAO({
     });
 }
 
+/* CESGRANRIO */
+
 RESOLUCAO({
     banca: 'CESGRANRIO',
     concurso: 'Concurso CESGRANRIO 2024',
     ano: 2024,
     cargo: '',
-    assunto: '',
-    enunciado: 'Resolução em vídeo - CESGRANRIO 2024',
+    assunto: 'Matemática',
+    enunciado: 'Questão 01 - CESGRANRIO 2024',
     alternativas: [],
     gabarito: '',
-    video: 'https://www.youtube.com/embed/LGTiGfulDwU'
+    video: 'https://www.youtube.com/watch?v=LGTiGfulDwU'
 });
+
+RESOLUCAO({
+    banca: 'CESGRANRIO',
+    concurso: 'Concurso CESGRANRIO 2024',
+    ano: 2024,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 02 - CESGRANRIO 2024',
+    alternativas: [],
+    gabarito: '',
+    video: ''
+});
+
+/* IBFC */
+
+RESOLUCAO({
+    banca: 'IBFC',
+    concurso: 'Concurso IBFC 2025',
+    ano: 2025,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 01 - IBFC 2025',
+    alternativas: [],
+    gabarito: '',
+    video: ''
+});
+
+
 
 
 
