@@ -1,18 +1,106 @@
-<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Configurações | Resultamath</title><link rel="stylesheet" href="estilo.css"></head><body><script src="dados.js"></script><script src="app.js"></script><script>
-const m=pagina('configuracoes');m.innerHTML=`<span class="tag">PERSONALIZAÇÃO</span><h1 style="margin-top:8px">Configurações</h1><p>Atualize seu perfil, gerencie os links dos vídeos e cuide dos seus dados de estudo.</p>
-<section class="cartao"><h2>Seu perfil</h2><label for="n">Nome de exibição</label><input id="n" maxlength="60" placeholder="Como podemos chamar você?" value="${String(S.nome||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;')}"><p><button class="btn" id="salvaNome">Salvar perfil</button></p></section>
-<section class="cartao"><span class="tag">ÁREA DO PROFESSOR</span><h2 style="margin-top:10px">Gerenciar vídeos do YouTube</h2><p class="suave">Cole o link de um vídeo. A Resultamath converte o endereço automaticamente e incorpora o player na página do conteúdo.</p><label for="tipo">Tipo de conteúdo</label><select id="tipo"><option value="aula">Vídeo de uma aula</option><option value="questao">Resolução de uma questão</option><option value="minutada">Episódio da Matemática Minutada</option></select><label for="item">Selecione o conteúdo</label><select id="item"></select><label for="url">Link do YouTube</label><input id="url" type="url" placeholder="https://www.youtube.com/watch?v=..." autocomplete="url"><p class="suave">Aceita youtube.com/watch, youtu.be, Shorts e links /embed.</p><div class="linha" style="justify-content:flex-start"><button class="btn" id="salvarVideo">Salvar vídeo</button><button class="btn sec" id="removerVideo">Remover vídeo</button></div><p id="status" class="suave" aria-live="polite"></p></section>
-<section class="cartao"><h2>Dados e progresso</h2><p class="suave">O progresso e os links personalizados ficam salvos neste navegador. Exporte uma cópia de segurança para não perder seus cadastros.</p><div class="linha" style="justify-content:flex-start"><button class="btn sec" id="exportar">Exportar backup</button><button class="btn sec" id="zerar">Zerar progresso</button></div></section>`;
-const tipo=document.getElementById('tipo'),item=document.getElementById('item'),url=document.getElementById('url'),status=document.getElementById('status');
-function mapa(){return tipo.value==='aula'?S.videosAulas:tipo.value==='questao'?S.videosQuestoes:S.videosMinutados}
-function listaAtual(){return tipo.value==='aula'?AULAS:tipo.value==='questao'?QUESTOES:MINUTADA}
-function rotulo(x){return tipo.value==='aula'?`${x.modulo} — ${x.titulo}`:tipo.value==='questao'?`${x.modulo} — ${x.enunciado}`:`EP. ${String(x.indice).padStart(2,'0')} — ${x.titulo}`}
-function atualizar(){url.value=mapa()[item.value]||'';status.textContent=url.value?'Vídeo cadastrado para este conteúdo.':'Nenhum vídeo personalizado cadastrado.'}
-function preencher(){const lista=listaAtual();item.innerHTML=lista.map(x=>`<option value="${x.id}">${rotulo(x)}</option>`).join('');atualizar()}
-tipo.onchange=preencher;item.onchange=atualizar;preencher();
-document.getElementById('salvaNome').onclick=()=>{S.nome=document.getElementById('n').value.trim();salvar();status.textContent='Perfil atualizado.'};
-document.getElementById('salvarVideo').onclick=()=>{if(!item.value){status.textContent='Selecione um conteúdo.';return}if(!videoUrl(url.value)){status.textContent='Link inválido. Cole um endereço válido do YouTube.';return}mapa()[item.value]=url.value.trim();salvar();status.textContent='Vídeo salvo! Ele será exibido na página do conteúdo selecionado.'};
-document.getElementById('removerVideo').onclick=()=>{delete mapa()[item.value];url.value='';salvar();status.textContent='Vídeo personalizado removido.'};
-document.getElementById('exportar').onclick=()=>{const blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'}),a=document.createElement('a'),u=URL.createObjectURL(blob);a.href=u;a.download='backup-resultamath.json';a.click();URL.revokeObjectURL(u)};
-document.getElementById('zerar').onclick=()=>{if(confirm('Apagar todo o progresso e os vídeos personalizados deste navegador?')){S={nome:S.nome,feitas:{},resp:{},erros:[],simulados:[],videosAulas:{},videosQuestoes:{},videosMinutados:{}};salvar();location.href='inicio.html'}};
-</script></body></html>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Configurações | Resultamath</title>
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+<script src="dados.js"></script>
+<script src="app.js"></script>
+
+<script>
+const m = pagina('configuracoes');
+
+m.innerHTML = `
+<span class="tag">PERSONALIZAÇÃO</span>
+
+<h1 style="margin-top:8px">Configurações</h1>
+
+<p>Gerencie seu perfil e acompanhe seus dados de estudo.</p>
+
+<section class="cartao">
+    <h2>Seu perfil</h2>
+
+    <label for="n">Nome de exibição</label>
+
+    <input
+        id="n"
+        maxlength="60"
+        placeholder="Como podemos chamar você?"
+        value="${String(S.nome||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;')}"
+    >
+
+    <p>
+        <button class="btn" id="salvaNome">
+            Salvar perfil
+        </button>
+    </p>
+</section>
+
+<section class="cartao">
+    <h2>Dados e progresso</h2>
+
+    <p class="suave">
+        Seu progresso de estudos fica salvo neste navegador.
+        Exporte uma cópia de segurança para preservar seus dados.
+    </p>
+
+    <div class="linha" style="justify-content:flex-start">
+        <button class="btn sec" id="exportar">
+            Exportar backup
+        </button>
+
+        <button class="btn sec" id="zerar">
+            Zerar progresso
+        </button>
+    </div>
+</section>
+`;
+
+document.getElementById('salvaNome').onclick = () => {
+    S.nome = document.getElementById('n').value.trim();
+    salvar();
+    alert('Perfil atualizado com sucesso!');
+};
+
+document.getElementById('exportar').onclick = () => {
+    const blob = new Blob(
+        [JSON.stringify(S, null, 2)],
+        {type:'application/json'}
+    );
+
+    const a = document.createElement('a');
+    const u = URL.createObjectURL(blob);
+
+    a.href = u;
+    a.download = 'backup-resultamath.json';
+    a.click();
+
+    URL.revokeObjectURL(u);
+};
+
+document.getElementById('zerar').onclick = () => {
+    if(confirm('Apagar todo o progresso deste navegador?')) {
+        S = {
+            nome:S.nome,
+            feitas:{},
+            resp:{},
+            erros:[],
+            simulados:[],
+            videosAulas:S.videosAulas || {},
+            videosQuestoes:S.videosQuestoes || {},
+            videosMinutados:S.videosMinutados || {}
+        };
+
+        salvar();
+        location.href = 'inicio.html';
+    }
+};
+</script>
+
+</body>
+</html>
