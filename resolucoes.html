@@ -348,7 +348,6 @@ function abrirPlaylist(indice) {
 }
 
 function assistir(indice) {
-
     questaoAtual = playlistAtual.questoes[indice];
 
     document.querySelectorAll('.questao-item')
@@ -358,18 +357,26 @@ function assistir(indice) {
         .classList.add('selecionada');
 
     const linkSalvo = (S.videosResolucoes && S.videosResolucoes[questaoAtual.id]) || questaoAtual.video;
-const url = videoUrl(linkSalvo);
+    const baseSrc = videoUrl(linkSalvo);
+    let finalSrc = '';
+
+    if (baseSrc) {
+        if (baseSrc.includes('youtube.com/embed/') || baseSrc.includes('youtube-nocookie.com/embed/')) {
+            const sep = baseSrc.includes('?') ? '&' : '?';
+            finalSrc = `${baseSrc}${sep}rel=0`;
+        } else {
+            finalSrc = baseSrc;
+        }
+    }
 
     const area = document.getElementById('playerArea');
 
     area.innerHTML = `
-
         <h3>${esc(questaoAtual.enunciado)}</h3>
-
-        ${url ? `
+        ${finalSrc ? `
             <div class="video">
                 <iframe
-                    src="${url}?rel=0"
+                    src="${esc(finalSrc)}"
                     title="${esc(questaoAtual.enunciado)}"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerpolicy="strict-origin-when-cross-origin"
@@ -382,10 +389,9 @@ const url = videoUrl(linkSalvo);
                 <p>Esta questão ainda não possui uma resolução em vídeo.</p>
             </div>
         `}
-
     `;
-
 }
+
 
 function voltar() {
 
