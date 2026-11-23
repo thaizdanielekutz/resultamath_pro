@@ -520,6 +520,104 @@ RESOLUCAO({
     video: 'EWyHeeiNOwY'
 });
 
+/* IBFC 2023 */
+
+RESOLUCAO({
+    banca: 'IBFC 2023',
+    concurso: 'Concurso IBGE [Supervisor de Coleta e Qualidade]',
+    ano: 2023,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 01 - IBGE 2023',
+    alternativas: [],
+    gabarito: '',
+    video: '1QiTozYVyZs'
+});
+
+RESOLUCAO({
+    banca: 'IBFC 2023',
+    concurso: 'Concurso IBGE [Supervisor de Coleta e Qualidade]',
+    ano: 2023,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 02 - IBGE 2023',
+    alternativas: [],
+    gabarito: '',
+    video: 'GBsxUjAbQCE'
+});
+
+RESOLUCAO({
+    banca: 'IBFC 2023',
+    concurso: 'Concurso IBGE [Supervisor de Coleta e Qualidade]',
+    ano: 2023,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 03 - IBGE 2023',
+    alternativas: [],
+    gabarito: '',
+    video: 'SePFDdQv5w8'
+});
+
+RESOLUCAO({
+    banca: 'IBFC 2023',
+    concurso: 'Concurso IBGE [Supervisor de Coleta e Qualidade]',
+    ano: 2023,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 04 - IBGE 2023',
+    alternativas: [],
+    gabarito: '',
+    video: 'Sccu6dko_Ik'
+});
+
+RESOLUCAO({
+    banca: 'IBFC 2023',
+    concurso: 'Concurso IBGE [Supervisor de Coleta e Qualidade]',
+    ano: 2023,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 05 - IBGE 2023',
+    alternativas: [],
+    gabarito: '',
+    video: '8XaX9mjlIxA'
+});
+
+RESOLUCAO({
+    banca: 'IBFC 2023',
+    concurso: 'Concurso IBGE [Supervisor de Coleta e Qualidade]',
+    ano: 2023,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 06 - IBGE 2023',
+    alternativas: [],
+    gabarito: '',
+    video: 'd122fjFGEGc'
+});
+
+RESOLUCAO({
+    banca: 'IBFC 2023',
+    concurso: 'Concurso IBGE [Supervisor de Coleta e Qualidade]',
+    ano: 2023,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 07 - IBGE 2023',
+    alternativas: [],
+    gabarito: '',
+    video: 'UrDc2KoYM9Y'
+});
+
+RESOLUCAO({
+    banca: 'IBFC 2023',
+    concurso: 'Concurso IBGE [Supervisor de Coleta e Qualidade]',
+    ano: 2023,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 08 - IBGE 2023',
+    alternativas: [],
+    gabarito: '',
+    video: 'H6RuGuzPQ8g'
+});
+
 
 
 /* ===== FLASHCARDS ORGANIZADOS POR ÁREA E SEÇÃO ===== */
