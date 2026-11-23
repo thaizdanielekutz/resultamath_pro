@@ -145,7 +145,7 @@ RESOLUCAO({
     ano: 2025,
     cargo: '',
     assunto: 'Matemática',
-    enunciado: 'Questão 01 - IBFC 2025',
+    enunciado: 'Questão 02 - IBFC 2025',
     alternativas: [],
     gabarito: '',
     video: 'AVC_vrnd2qE'
@@ -157,13 +157,47 @@ RESOLUCAO({
     ano: 2025,
     cargo: '',
     assunto: 'Matemática',
-    enunciado: 'Questão 01 - IBFC 2025',
+    enunciado: 'Questão 03 - IBFC 2025',
     alternativas: [],
     gabarito: '',
     video: 'AVC_vrnd2qE'
 });
 
+RESOLUCAO({
+    banca: 'IBFC 2025',
+    concurso: 'Concurso PM-PR',
+    ano: 2025,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 04 - IBFC 2025',
+    alternativas: [],
+    gabarito: '',
+    video: 'v9AX1ebQ55k'
+});
 
+RESOLUCAO({
+    banca: 'IBFC 2025',
+    concurso: 'Concurso PM-PR',
+    ano: 2025,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 05 - IBFC 2025',
+    alternativas: [],
+    gabarito: '',
+    video: '6CHPbNxE-2Q'
+});
+
+RESOLUCAO({
+    banca: 'IBFC 2025',
+    concurso: 'Concurso PM-PR',
+    ano: 2025,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 06 - IBFC 2025',
+    alternativas: [],
+    gabarito: '',
+    video: 'bjP_Elow5Yg'
+});
 
 
 
