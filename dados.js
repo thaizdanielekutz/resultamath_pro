@@ -211,6 +211,19 @@ RESOLUCAO({
     video: 'uxs-aQ8UtgY'
 });
 
+RESOLUCAO({
+    banca: 'VUNESP 2022',
+    concurso: 'Concurso TJ-SP',
+    ano: 2025,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 01 - VUNESP 2022',
+    alternativas: [],
+    gabarito: '',
+    video: '_YLGMeUaEwQ'
+});
+
+
 
 /* ===== FLASHCARDS ORGANIZADOS POR ÁREA E SEÇÃO ===== */
 
