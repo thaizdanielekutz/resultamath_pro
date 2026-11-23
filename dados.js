@@ -69,6 +69,8 @@ QUESTAO('5. Razão, proporção e porcentagem','Quanto é 20% de 350?',['60','70
 QUESTAO('5. Razão, proporção e porcentagem','3 cadernos custam R$ 24. Quanto custam 5 cadernos?',['R$ 36','R$ 40','R$ 45','R$ 30'],1,'Cada caderno custa 24 ÷ 3 = 8. Então 5 cadernos custam R$ 40.');
 
 
+/* ===== RESOLUÇÕES ===== */
+
 const RESOLUCOES = [];
 
 function RESOLUCAO({
@@ -81,19 +83,19 @@ function RESOLUCAO({
     alternativas,
     gabarito,
     video
-}) {
-    RESOLUCOES.push({
-        banca,
-        concurso,
-        ano,
-        cargo,
-        assunto,
-        enunciado,
-        alternativas,
-        gabarito,
-        video
-    });
-}
+}) 
+
+RESOLUCAO({
+    banca: 'CESGRANRIO',
+    concurso: 'Concurso CESGRANRIO 2024',
+    ano: 2024,
+    cargo: '',
+    assunto: '',
+    enunciado: 'Resolução em vídeo - CESGRANRIO 2024',
+    alternativas: [],
+    gabarito: '',
+    video: 'https://www.youtube.com/embed/LGTiGfulDwU'
+});
 
 
 /* ===== FLASHCARDS ORGANIZADOS POR ÁREA E SEÇÃO ===== */
