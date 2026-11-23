@@ -45,8 +45,8 @@ FLASH('x% de N','N · x / 100');
 
 /* ===== DADOS DA PÁGINA INICIAL (index.html) — troque pelos seus ===== */
 const SITE={
-  professora:'Seu nome',
-  sobre:'Escreva aqui, em 2 ou 3 frases, quem você é, sua formação e por que ensina matemática do jeito que ensina.',
+  professora:'Dani Resulta',
+  sobre:'Sou professora de Matemática licenciada, diagramadora e criadora do projeto ResultaMath. Acredito que a matemática não precisa ser complicada, por isso ensino de forma clara, visual e objetiva, transformando conceitos difíceis em ideias simples e acessíveis. Meu objetivo não é apenas ensinar a resolver questões, mas ajudar cada aluno a compreender a matemática e ganhar confiança para utilizá-la.',
   whatsapp:'5543999999999',   /* só números, com 55 + DDD. Deixe '' para esconder o botão */
   instagram:'',               /* ex.: https://instagram.com/seuperfil */
   youtube:'',                 /* ex.: https://youtube.com/@seucanal */
