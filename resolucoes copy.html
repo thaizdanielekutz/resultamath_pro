@@ -1,0 +1,468 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
+<title>Resoluções em vídeo | ResultaMath</title>
+
+<link rel="stylesheet" href="estilo.css">
+
+<style>
+.res-topo {
+    margin-bottom: 28px;
+}
+
+.res-topo h1 {
+    margin-bottom: 8px;
+}
+
+.res-busca {
+    width: 100%;
+    max-width: 500px;
+    padding: 13px 16px;
+    border: 1px solid var(--borda, #ddd);
+    border-radius: 10px;
+    font-size: 15px;
+    margin: 20px 0;
+}
+
+.playlists {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 18px;
+}
+
+.playlist-card {
+    background: var(--card, #fff);
+    border: 1px solid var(--borda, #e5e5e5);
+    border-radius: 14px;
+    padding: 20px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.playlist-card:hover {
+    transform: translateY(-3px);
+    border-color: #069eda;
+}
+
+.playlist-icone {
+    font-size: 27px;
+    margin-bottom: 15px;
+}
+
+.playlist-card h3 {
+    margin: 0 0 8px;
+}
+
+.playlist-info {
+    color: var(--texto-secundario, #777);
+    font-size: 13px;
+}
+
+.playlist-detalhes {
+    display: none;
+    margin-top: 25px;
+}
+
+.playlist-detalhes.aberta {
+    display: block;
+}
+
+.btn-voltar {
+    border: 0;
+    background: transparent;
+    color: #069eda;
+    cursor: pointer;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.lista-questoes {
+    display: grid;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.questao-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px;
+    border: 1px solid var(--borda, #ddd);
+    border-radius: 10px;
+    cursor: pointer;
+    background: var(--card, #fff);
+}
+
+.questao-item:hover,
+.questao-item.selecionada {
+    border-color: #069eda;
+    background: rgba(6,158,218,.06);
+}
+
+.questao-numero {
+    background: #069eda;
+    color: white;
+    width: 35px;
+    height: 35px;
+    display: grid;
+    place-items: center;
+    border-radius: 9px;
+    flex-shrink: 0;
+}
+
+.questao-texto {
+    flex: 1;
+}
+
+.questao-texto strong {
+    display: block;
+}
+
+.questao-texto small {
+    color: var(--texto-secundario, #777);
+}
+
+.player-area {
+    margin-top: 25px;
+}
+
+.player-area .video {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #111;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.player-area iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.sem-video {
+    padding: 35px;
+    text-align: center;
+    background: var(--card, #fff);
+    border: 1px dashed var(--borda, #ccc);
+    border-radius: 12px;
+}
+
+@media(max-width:600px) {
+    .playlists {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+<script src="dados.js"></script>
+<script src="app.js"></script>
+
+<script>
+
+const main = pagina('resolucoes');
+
+let playlistAtual = null;
+let questaoAtual = null;
+
+function agrupar() {
+
+    const grupos = {};
+
+    RESOLUCOES.forEach(r => {
+
+        const chave = [
+            r.banca,
+            r.concurso,
+            r.ano
+        ].join('|');
+
+        if (!grupos[chave]) {
+            grupos[chave] = {
+                banca: r.banca,
+                concurso: r.concurso,
+                ano: r.ano,
+                questoes: []
+            };
+        }
+
+        grupos[chave].questoes.push(r);
+
+    });
+
+    return Object.values(grupos);
+}
+
+function renderizar() {
+
+    const grupos = agrupar();
+
+    main.innerHTML = `
+        <section class="res-topo">
+
+            <h1>Resoluções em vídeo</h1>
+
+            <p>
+                Assista às resoluções comentadas
+                e aprenda a resolver questões de concursos.
+            </p>
+
+            <input
+                class="res-busca"
+                id="busca"
+                placeholder="Buscar banca ou concurso..."
+                oninput="filtrar(this.value)"
+            >
+
+        </section>
+
+        <section class="playlists" id="playlists">
+
+            ${grupos.map((g, i) => `
+
+                <article
+                    class="playlist-card"
+                    onclick="abrirPlaylist(${i})"
+                    data-busca="${(g.banca+' '+g.concurso+' '+g.ano).toLowerCase()}"
+                >
+
+                    <div class="playlist-icone">▶</div>
+
+                    <h3>${esc(g.banca)}</h3>
+
+                    <p>${esc(g.concurso)}</p>
+
+                    <div class="playlist-info">
+                        ${g.questoes.length}
+                        ${g.questoes.length === 1 ? 'questão' : 'questões'}
+                        disponíveis
+                    </div>
+
+                </article>
+
+            `).join('')}
+
+        </section>
+
+        <section class="playlist-detalhes" id="detalhes"></section>
+    `;
+
+    window.gruposResolucoes = grupos;
+}
+
+function esc(texto) {
+    return String(texto || '').replace(/[&<>"']/g, c => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+    })[c]);
+}
+
+function filtrar(valor) {
+
+    document.querySelectorAll('.playlist-card')
+        .forEach(card => {
+
+            card.style.display =
+                card.dataset.busca.includes(
+                    valor.toLowerCase()
+                ) ? '' : 'none';
+
+        });
+
+}
+
+function abrirPlaylist(indice) {
+
+    playlistAtual = gruposResolucoes[indice];
+
+    const detalhes = document.getElementById('detalhes');
+
+    document.getElementById('playlists').style.display = 'none';
+
+    detalhes.classList.add('aberta');
+
+    detalhes.innerHTML = `
+
+        <button class="btn-voltar" onclick="voltar()">
+            ← Voltar às playlists
+        </button>
+
+        <h2>${esc(playlistAtual.banca)}</h2>
+
+        <p>${esc(playlistAtual.concurso)}</p>
+
+        <div class="lista-questoes">
+
+            ${playlistAtual.questoes.map((q, i) => `
+
+                <article
+                    class="questao-item"
+                    id="questao-${i}"
+                    onclick="assistir(${i})"
+                >
+
+                    <div class="questao-numero">
+                        ${String(i+1).padStart(2,'0')}
+                    </div>
+
+                    <div class="questao-texto">
+
+                        <strong>${esc(q.enunciado)}</strong>
+
+                        <small>
+                            ${esc(q.assunto || 'Matemática')}
+                        </small>
+
+                    </div>
+
+                    ▶
+
+                </article>
+
+            `).join('')}
+
+        </div>
+
+        <div class="player-area" id="playerArea">
+            <div class="sem-video">
+                <h3>Escolha uma questão</h3>
+                <p>Selecione uma questão acima para assistir à resolução.</p>
+            </div>
+        </div>
+
+    `;
+
+}
+
+
+
+function extrairIdYoutube(valor) {
+    if (!valor) return '';
+
+    const texto = String(valor).trim();
+
+    // ID direto
+    if (/^[a-zA-Z0-9_-]{11}$/.test(texto)) {
+        return texto;
+    }
+
+    // Extrai URL de um iframe completo
+    const iframe = texto.match(/src=["']([^"']+)["']/i);
+    const urlTexto = iframe ? iframe[1] : texto;
+
+    try {
+        const url = new URL(urlTexto);
+
+        if (
+            url.hostname === 'www.youtube.com' ||
+            url.hostname === 'youtube.com' ||
+            url.hostname === 'www.youtube-nocookie.com' ||
+            url.hostname === 'youtube-nocookie.com'
+        ) {
+            const encontrado = url.pathname.match(
+                /\/(?:embed|shorts)\/([^/?]+)/
+            );
+
+            return encontrado
+                ? encontrado[1]
+                : url.searchParams.get('v') || '';
+        }
+
+        if (url.hostname === 'youtu.be') {
+            return url.pathname.slice(1).split('/')[0];
+        }
+
+    } catch (erro) {
+        console.error('Erro ao identificar vídeo:', erro);
+    }
+
+    return '';
+}
+
+
+
+function assistir(indice) {
+    questaoAtual = playlistAtual.questoes[indice];
+
+    document.querySelectorAll('.questao-item')
+        .forEach(el => el.classList.remove('selecionada'));
+
+    document.getElementById('questao-' + indice)
+        .classList.add('selecionada');
+
+    const linkSalvo =
+        (S.videosResolucoes && S.videosResolucoes[questaoAtual.id])
+        || questaoAtual.video;
+
+    const videoId = extrairIdYoutube(linkSalvo);
+
+    const area = document.getElementById('playerArea');
+
+    if (!videoId) {
+        area.innerHTML = `
+            <div class="sem-video">
+                <h3>Vídeo ainda não cadastrado</h3>
+                <p>Esta questão ainda não possui uma resolução em vídeo.</p>
+            </div>
+        `;
+        return;
+    }
+
+    const origem = window.location.origin;
+
+    const parametros = new URLSearchParams({
+        rel: '0',
+        origin: origem
+    });
+
+    const finalSrc =
+        `https://www.youtube.com/embed/${videoId}?${parametros.toString()}`;
+
+    area.innerHTML = `
+        <h3>${esc(questaoAtual.enunciado)}</h3>
+
+        <div class="video">
+            <iframe
+                src="${finalSrc}"
+                title="${esc(questaoAtual.enunciado)}"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+            </iframe>
+        </div>
+    `;
+}
+
+
+
+
+function voltar() {
+
+    document.getElementById('detalhes')
+        .classList.remove('aberta');
+
+    document.getElementById('playlists')
+        .style.display = 'grid';
+
+}
+
+renderizar();
+
+</script>
+
+</body>
+</html>
