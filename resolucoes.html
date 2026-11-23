@@ -349,17 +349,18 @@ function abrirPlaylist(indice) {
 }
 
 
+
 function extrairIdYoutube(valor) {
     if (!valor) return '';
 
     const texto = String(valor).trim();
 
-    // ID direto do YouTube
+    // ID direto
     if (/^[a-zA-Z0-9_-]{11}$/.test(texto)) {
         return texto;
     }
 
-    // Caso tenha sido cadastrado um iframe completo
+    // Extrai URL de um iframe completo
     const iframe = texto.match(/src=["']([^"']+)["']/i);
     const urlTexto = iframe ? iframe[1] : texto;
 
@@ -372,9 +373,13 @@ function extrairIdYoutube(valor) {
             url.hostname === 'www.youtube-nocookie.com' ||
             url.hostname === 'youtube-nocookie.com'
         ) {
-            return url.pathname.match(/\/(?:embed|shorts)\/([^/?]+)/)?.[1]
-                || url.searchParams.get('v')
-                || '';
+            const encontrado = url.pathname.match(
+                /\/(?:embed|shorts)\/([^/?]+)/
+            );
+
+            return encontrado
+                ? encontrado[1]
+                : url.searchParams.get('v') || '';
         }
 
         if (url.hostname === 'youtu.be') {
@@ -382,11 +387,12 @@ function extrairIdYoutube(valor) {
         }
 
     } catch (erro) {
-        return '';
+        console.error('Erro ao identificar vídeo:', erro);
     }
 
     return '';
 }
+
 
 
 function assistir(indice) {
@@ -406,44 +412,41 @@ function assistir(indice) {
 
     const area = document.getElementById('playerArea');
 
-    let finalSrc = '';
-
-    if (videoId) {
-        const origem = window.location.origin;
-
-        const parametros = new URLSearchParams({
-            rel: '0'
-        });
-
-        if (origem && origem !== 'null') {
-            parametros.set('origin', origem);
-        }
-
-        finalSrc =
-            `https://www.youtube.com/embed/${videoId}?${parametros}`;
-    }
-
-    area.innerHTML = `
-        <h3>${esc(questaoAtual.enunciado)}</h3>
-
-        ${finalSrc ? `
-            <div class="video">
-                <iframe
-                    src="${finalSrc}"
-                    title="${esc(questaoAtual.enunciado)}"
-                    referrerpolicy="strict-origin-when-cross-origin"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen>
-                </iframe>
-            </div>
-        ` : `
+    if (!videoId) {
+        area.innerHTML = `
             <div class="sem-video">
                 <h3>Vídeo ainda não cadastrado</h3>
                 <p>Esta questão ainda não possui uma resolução em vídeo.</p>
             </div>
-        `}
+        `;
+        return;
+    }
+
+    const origem = window.location.origin;
+
+    const parametros = new URLSearchParams({
+        rel: '0',
+        origin: origem
+    });
+
+    const finalSrc =
+        `https://www.youtube.com/embed/${videoId}?${parametros.toString()}`;
+
+    area.innerHTML = `
+        <h3>${esc(questaoAtual.enunciado)}</h3>
+
+        <div class="video">
+            <iframe
+                src="${finalSrc}"
+                title="${esc(questaoAtual.enunciado)}"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+            </iframe>
+        </div>
     `;
 }
+
 
 
 
