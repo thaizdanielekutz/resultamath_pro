@@ -101,6 +101,88 @@ FLASH(
   'aᵐ · aⁿ',
   'aᵐ⁺ⁿ. Na multiplicação de potências de mesma base, somamos os expoentes.'
 );
+/* 3. DIVISIBILIDADE */
+
+FLASH(
+  'Divisibilidade',
+  'Critérios de divisibilidade',
+  'Critério de divisibilidade por 3',
+  'A soma dos algarismos é divisível por 3.'
+);
+
+FLASH(
+  'Divisibilidade',
+  'MMC e MDC',
+  'MMC',
+  'Menor número positivo que é múltiplo de todos os números dados.'
+);
+
+FLASH(
+  'Divisibilidade',
+  'MMC e MDC',
+  'MDC',
+  'Maior número que divide todos os números dados.'
+);
+
+/* 4. OPERAÇÕES BÁSICAS */
+
+FLASH(
+  'Operações Básicas',
+  'REGRA PRÁTICA',
+  'Ordem das Operações',
+  'Resolva primeiro o que está entre parênteses, depois potências, em seguida multiplicação e divisão, e por último soma e subtração. Ex.: 10 - 3 x 2 = 10 - 6 = 4. Cuidado: não subtraia 10 - 3 antes de multiplicar; a multiplicação vem primeiro. Macete: decore PEMDAS na ordem: Parênteses, Expoentes, Multiplicação/Divisão, Adição/Subtração.'
+);
+
+FLASH(
+  'Operações Básicas',
+  'ATALHO DE CÁLCULO',
+  'Dobro, Triplo e Metade',
+  'Dobro multiplica por 2, triplo multiplica por 3, metade divide por 2. Ex.: dobro de 45 = 90; metade de 45 = 22,5. Cuidado: metade não é subtrair um número fixo, é sempre dividir por 2. Macete: "Do-" de dobro lembra "dois": multiplica por dois.'
+);
+
+FLASH(
+  'Operações Básicas',
+  'REGRA PRÁTICA',
+  'Terça e Quarta Parte',
+  'A terça parte divide por 3 e a quarta parte divide por 4 — o número no nome é o divisor. Ex.: a quarta parte de 60 é 60 ÷ 4 = 15. Cuidado: "terça parte" não significa "3 vezes"; a palavra "parte" já avisa que é divisão. Macete: o número escondido no nome (terça = 3, quarta = 4) vai direto para baixo da divisão.'
+);
+
+FLASH(
+  'Operações Básicas',
+  'REGRA PRÁTICA',
+  'Múltiplos de um Número',
+  'Um número é múltiplo de outro quando é o resultado de multiplicá-lo por um número inteiro. Ex.: 36 é múltiplo de 9 porque 9 x 4 = 36. Cuidado: múltiplos de um número são sempre maiores ou iguais a ele, nunca menores. Macete: múltiplo é filho da tabuada — se aparece na tabuada do número, é múltiplo dele.'
+);
+
+FLASH(
+  'Operações Básicas',
+  'REGRA PRÁTICA',
+  'Divisores de um Número',
+  'Um número é divisor de outro quando a divisão entre eles é exata, sem deixar resto. Ex.: 7 é divisor de 56 porque 56 ÷ 7 = 8 exatamente. Cuidado: se sobrar resto na divisão, o número não é divisor. Macete: divisor certo é divisão redonda: resto zero é sinal verde.'
+);
+
+FLASH(
+  'Operações Básicas',
+  'COMPARAÇÃO',
+  'Diferença entre Dois Valores',
+  'A diferença é sempre o valor maior menos o valor menor. Ex.: a diferença entre 94 e 71 é 94 - 71 = 23. Cuidado: quando o enunciado pedir "diferença", nunca some os dois valores. Macete: diferença é sempre conta de menos: o grande em cima, o pequeno embaixo.'
+);
+
+FLASH(
+  'Operações Básicas',
+  'ATALHO DE CÁLCULO',
+  'Estimativa Rápida',
+  'Arredonde os números para os valores redondos mais próximos antes de calcular, só para ter uma ideia do resultado. Ex.: 297 + 512 fica perto de 300 + 500 = 800 (o valor exato é 809). Cuidado: estimativa serve para eliminar alternativas absurdas, não para ser a resposta quando o exato é pedido. Macete: arredondar para "dezena ou centena redonda" facilita a conta de cabeça.'
+);
+
+FLASH(
+  'Operações Básicas',
+  'ATALHO DE CÁLCULO',
+  'Conferência pela Operação Inversa',
+  'Toda operação tem uma inversa que serve para conferir o resultado: soma confere com subtração, multiplicação confere com divisão. Ex.: 63 ÷ 9 = 7; conferindo: 7 x 9 = 63. Cuidado: se a operação inversa não devolve o número original, algo na conta está errado. Macete: toda conta tem um "botão de desfazer" — use-o para checar antes de marcar a resposta.'
+);
+
+
 
 /* ===== DADOS DA PÁGINA INICIAL (index.html) — troque pelos seus ===== */
 const SITE={
