@@ -1070,6 +1070,148 @@ FLASH(
   'Calcule primeiro os juros (J = C · i · t) e, se a questão pedir o total final, some ao capital (M = C + J).'
 );
 
+/* ===== FLASHCARDS COMPLETOS — ESTRATÉGIA, LEITURA E TÓPICOS EXTRAS ===== */
+
+FLASH(
+  'Fundamentos da matemática',
+  'Conjuntos numéricos',
+  'Zero é par ou ímpar? E positivo ou negativo?',
+  'Zero é um número par (pois é divisível por 2, deixando resto 0) e neutro em relação ao sinal (não é nem positivo nem negativo).'
+);
+
+FLASH(
+  'Fundamentos da matemática',
+  'Conjuntos numéricos',
+  'Números primos: o que são e quais são os primeiros?',
+  'Primos são números naturais maiores que 1 que têm apenas dois divisores: 1 e ele mesmo. Primeiros primos: 2, 3, 5, 7, 11, 13, 17, 19... (2 é o único primo par).'
+);
+
+FLASH(
+  'Operações fundamentais',
+  'Potenciação e radiciação',
+  'Expoente negativo e expoente fracionário',
+  'Expoente negativo inverte a base: a⁻ⁿ = 1 / aⁿ (com a ≠ 0). Expoente fracionário vira raiz: a^(1/n) = ⁿ√a.'
+);
+
+FLASH(
+  'Operações fundamentais',
+  'Potenciação e radiciação',
+  'Raiz quadrada de número ao quadrado: √(x²)',
+  '√(x²) = |x| (módulo de x), pois o resultado de raiz quadrada principal não é negativo. Ex.: √((-5)²) = √25 = 5.'
+);
+
+FLASH(
+  'Divisibilidade',
+  'Critérios de divisibilidade',
+  'Critérios rápidos por 2, 5, 10 e 9',
+  'Por 2: termina em algarismo par. Por 5: termina em 0 ou 5. Por 10: termina em 0. Por 9: soma dos algarismos é divisível por 9.'
+);
+
+FLASH(
+  'Divisibilidade',
+  'MMC e MDC',
+  'Relação entre MMC e MDC de dois números',
+  'Para dois números a e b: MMC(a, b) · MDC(a, b) = a · b. Quando não têm fatores primos comuns além de 1, o MDC é 1 e o MMC é o produto deles.'
+);
+
+FLASH(
+  'Frações',
+  'CONVERSÃO',
+  'Dízima periódica simples x composta',
+  'Na dízima simples, a repetição começa logo após a vírgula (ex.: 0,272727...). Na composta, há algarismos não periódicos entre a vírgula e o período (ex.: 0,1444...).'
+);
+
+FLASH(
+  'Decimais',
+  'ERRO COMUM',
+  'Multiplicar ou dividir decimais sem perder a vírgula',
+  'Na multiplicação de decimais, some o total de casas decimais dos fatores e coloque esse total no resultado. Na divisão, iguale as casas decimais com zeros antes de eliminar a vírgula.'
+);
+
+FLASH(
+  'Porcentagem',
+  'INTERPRETAÇÃO DE PROVA',
+  'Fator de atualização (multiplicador)',
+  'Aumentar em i% equivale a multiplicar por (1 + i/100); reduzir em i% equivale a multiplicar por (1 - i/100). Facilita cálculos em cadeia e juros.'
+);
+
+FLASH(
+  'Porcentagem',
+  'INTERPRETAÇÃO DE PROVA',
+  'Como descobrir quantos por cento A é de B?',
+  'Divida A por B e multiplique por 100: (A ÷ B) · 100%. Ex.: 18 de 72 → (18 ÷ 72) · 100 = 0,25 · 100 = 25%.'
+);
+
+FLASH(
+  'Razão e Proporção',
+  'REGRA PRÁTICA',
+  'Divisão diretamente proporcional em partes',
+  'Para dividir um total T em partes proporcionais a a, b e c: calcule a constante k = T ÷ (a + b + c) e multiplique k por cada parte (ka, kb, kc).'
+);
+
+FLASH(
+  'Regra de Três',
+  'REGRA PRÁTICA',
+  'Como resolver regra de três composta com segurança?',
+  'Isole a coluna do x e compare cada outra grandeza isoladamente com a coluna do x: se for diretamente proporcional, mantém a razão; se for inversamente proporcional, inverte a fração antes de multiplicar.'
+);
+
+FLASH(
+  'Equações Simples',
+  'INTERPRETAÇÃO DE PROVA',
+  'Quando um problema não tem solução ou tem infinitas soluções?',
+  'Após simplificar, se sobrar uma igualdade falsa (ex.: 0 = 5), não há solução (impossível). Se sobrar uma identidade verdadeira (ex.: 0 = 0), qualquer valor serve (infinitas soluções).'
+);
+
+FLASH(
+  'Unidades de Medida',
+  'CONVERSÃO',
+  'Escala de comprimento completa (do km ao mm)',
+  'km → hm → dam → m → dm → cm → mm. Cada passo para a direita multiplica por 10; cada passo para a esquerda divide por 10.'
+);
+
+FLASH(
+  'Área e Perímetro',
+  'FÓRMULA',
+  'Área do losango e setor circular',
+  'Losango: A = (D · d) ÷ 2 (diagonal maior vezes diagonal menor, dividido por 2). Setor de ângulo α em graus: A = (α ÷ 360°) · πr².'
+);
+
+FLASH(
+  'Volume',
+  'FÓRMULA',
+  'Volume do cilindro e do prisma reto',
+  'Em prismas retos e cilindros, o volume é sempre Área da base × altura (V = Ab · h). No cilindro circular: V = πr²h.'
+);
+
+FLASH(
+  'Gráficos e Tabelas',
+  'INTERPRETAÇÃO DE PROVA',
+  'Percentual em gráfico de setores (pizza)',
+  'O círculo inteiro corresponde a 100% e a 360°. Para converter ângulo em porcentagem: (ângulo ÷ 360°) · 100%. Para achar o ângulo: (% ÷ 100) · 360°.'
+);
+
+FLASH(
+  'Média, Moda e Mediana',
+  'FÓRMULA',
+  'Média ponderada',
+  'Quando os valores têm pesos diferentes, multiplique cada valor pelo seu peso, some esses produtos e divida pela soma dos pesos: Mp = Σ(vᵢ · pᵢ) ÷ Σpᵢ.'
+);
+
+FLASH(
+  'Matemática Financeira',
+  'FÓRMULA',
+  'Juros simples: isolando Capital, Taxa ou Tempo',
+  'A partir de J = C · i · t: C = J ÷ (i · t); i = J ÷ (C · t); t = J ÷ (C · i) — mantendo i e t na mesma unidade de tempo (ex.: ambos ao mês).'
+);
+
+FLASH(
+  'Matemática Financeira',
+  'INTERPRETAÇÃO DE PROVA',
+  'Aumento percentual real x inflação',
+  'Quando há ganho nominal e inflação, o ganho real não é a simples subtração das taxas: fator real = (1 + i_nominal) ÷ (1 + i_inflação) - 1.'
+);
+
 
 
 /* ===== DADOS DA PÁGINA INICIAL (index.html) — troque pelos seus ===== */
