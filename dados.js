@@ -102,8 +102,8 @@ function RESOLUCAO({
 /* CESGRANRIO */
 
 RESOLUCAO({
-    banca: 'CESGRANRIO',
-    concurso: 'Concurso CESGRANRIO 2024',
+    banca: 'CESGRANRIO 2024',
+    concurso: 'Banco da Amazônia',
     ano: 2024,
     cargo: '',
     assunto: 'Matemática',
@@ -114,8 +114,8 @@ RESOLUCAO({
 });
 
 RESOLUCAO({
-    banca: 'CESGRANRIO',
-    concurso: 'Concurso CESGRANRIO 2024',
+    banca: 'CESGRANRIO 2024',
+    concurso: 'Banco da Amazônia',
     ano: 2024,
     cargo: '',
     assunto: 'Matemática',
@@ -128,17 +128,40 @@ RESOLUCAO({
 /* IBFC */
 
 RESOLUCAO({
-    banca: 'IBFC',
-    concurso: 'Concurso IBFC 2025',
+    banca: 'IBFC 2025',
+    concurso: 'Concurso PM-PR',
     ano: 2025,
     cargo: '',
     assunto: 'Matemática',
     enunciado: 'Questão 01 - IBFC 2025',
     alternativas: [],
     gabarito: '',
-    video: ''
+    video: 'mlYl5dcjiVY'
 });
 
+RESOLUCAO({
+    banca: 'IBFC 2025',
+    concurso: 'Concurso PM-PR',
+    ano: 2025,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 01 - IBFC 2025',
+    alternativas: [],
+    gabarito: '',
+    video: 'AVC_vrnd2qE'
+});
+
+RESOLUCAO({
+    banca: 'IBFC 20225',
+    concurso: 'Concurso PM-PR',
+    ano: 2025,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 01 - IBFC 2025',
+    alternativas: [],
+    gabarito: '',
+    video: 'AVC_vrnd2qE'
+});
 
 
 
