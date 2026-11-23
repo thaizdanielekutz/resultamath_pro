@@ -1,14 +1,11 @@
-/* Código comum a todas as páginas: progresso salvo, menu e funções úteis */
-const ITENS=[['inicio','Início'],['biblioteca','Biblioteca de aulas'],['exercicios','Exercícios'],['simulados','Simulados'],['flashcards','Flashcards'],['erros','Caderno de erros'],['plano','Plano de estudos'],['desempenho','Meu desempenho'],['comunidade','Comunidade'],['configuracoes','Configurações']];
-let S={nome:'',feitas:{},resp:{},erros:[],simulados:[]};
-try{Object.assign(S,JSON.parse(localStorage.getItem('resultamath')||'{}'))}catch(e){}
-function salvar(){try{localStorage.setItem('resultamath',JSON.stringify(S))}catch(e){}}
+const ITENS=[['inicio','⌂','Visão geral'],['biblioteca','▤','Biblioteca de aulas'],['exercicios','✓','Exercícios'],['simulados','▣','Simulados'],['flashcards','▧','Flashcards'],['erros','↺','Caderno de erros'],['plano','◷','Plano de estudos'],['desempenho','▥','Meu desempenho'],['comunidade','◎','Comunidade'],['configuracoes','⚙','Configurações']];
+let S={nome:'',feitas:{},resp:{},erros:[],simulados:[],videosAulas:{},videosQuestoes:{}};
+try{Object.assign(S,JSON.parse(localStorage.getItem('resultamath')||'{}'))}catch(e){} S.videosAulas=S.videosAulas||{};S.videosQuestoes=S.videosQuestoes||{};
+function salvar(){try{localStorage.setItem('resultamath',JSON.stringify(S))}catch(e){alert('Não foi possível salvar neste navegador.')}}
 function pct(n,d){return d?Math.round(100*n/d):0}
-function barra(p){return `<div class="barra" role="img" aria-label="${p}%"><i style="width:${p}%"></i></div>`}
+function barra(p){return `<div class="barra" role="img" aria-label="${p}%"><i style="width:${Math.max(0,Math.min(100,p))}%"></i></div>`}
 function proxima(){return AULAS.find(a=>!S.feitas[a.id])}
 function modulos(){const g={};AULAS.forEach(a=>(g[a.modulo]=g[a.modulo]||[]).push(a));return Object.keys(g).map(n=>({nome:n,aulas:g[n]}))}
-/* Monta o menu e devolve o elemento <main>. Se não houver login, volta para index.html */
-function pagina(ativo){
-  document.body.innerHTML=`<div class="layout"><nav class="menu" id="menu" aria-label="Menu principal"><div class="logo">Resultamath</div>${ITENS.map(i=>`<a href="${i[0]}.html"${i[0]==ativo?' class="ativo" aria-current="page"':''}>${i[1]}</a>`).join('')}<a href="index.html" class="voltar">Página inicial do site</a></nav><div><div class="topo"><b class="logo" style="padding:0">Resultamath</b><button class="btn sec" onclick="document.getElementById('menu').classList.toggle('aberto')">Menu</button></div><main id="main"></main></div></div>`;
-  return document.getElementById('main');
-}
+function videoUrl(url){try{const u=new URL(url.trim());let id='';if(u.hostname.includes('youtu.be'))id=u.pathname.slice(1);else if(u.hostname.includes('youtube.com'))id=u.searchParams.get('v')||u.pathname.split('/').filter(Boolean).pop();if(id&&/^[\w-]{6,}$/.test(id))return 'https://www.youtube-nocookie.com/embed/'+id;if(u.hostname==='player.vimeo.com'&&u.pathname.startsWith('/video/'))return u.href;if(u.hostname==='www.youtube-nocookie.com'&&u.pathname.startsWith('/embed/'))return u.href}catch(e){}return ''}
+function player(url,title){const src=videoUrl(url);return src?`<div class="video"><iframe src="${src}" title="${title||'Vídeo'}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>`:`<div class="video-placeholder"><div><b>Vídeo ainda não disponível</b><p>Adicione o link em Configurações → Gerenciar vídeos.</p></div></div>`}
+function pagina(ativo){document.body.innerHTML=`<div class="layout"><nav class="menu" id="menu"><a class="logo" href="inicio.html">Resultamath</a><div class="nav-label">Sua plataforma</div>${ITENS.map(i=>`<a href="${i[0]}.html"${i[0]===ativo?' class="ativo" aria-current="page"':''}><span>${i[1]}</span>${i[2]}</a>`).join('')}<a href="index.html" class="voltar">← Página institucional</a></nav><div><header class="topo"><b class="logo" style="padding:0;color:#102c40">Resultamath</b><button class="btn sec" onclick="document.getElementById('menu').classList.toggle('aberto')">☰ Menu</button></header><main id="main"></main></div></div>`;return document.getElementById('main')}

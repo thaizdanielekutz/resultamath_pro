@@ -1,18 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Início – Resultamath</title>
-<link rel="stylesheet" href="estilo.css">
-</head>
-<body>
-<script src="dados.js"></script>
-<script src="app.js"></script>
-<script>
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Painel | Resultamath</title><link rel="stylesheet" href="estilo.css"></head><body><script src="dados.js"></script><script src="app.js"></script><script>
 const m=pagina('inicio'),p=proxima(),f=AULAS.filter(a=>S.feitas[a.id]).length,r=Object.keys(S.resp),ok=r.filter(k=>S.resp[k]).length;
-m.innerHTML=`<h1>Olá${S.nome?', '+S.nome:''}! Vamos estudar?</h1>`+(p?`<div class="cartao destaque"><h2>Hoje estude aqui</h2><p>${p.titulo}<br><span class="suave">${p.modulo}</span></p><a class="btn" href="aula.html?id=${p.id}">Continuar aula</a></div>`:`<div class="cartao destaque"><h2>Trilha concluída</h2><a class="btn" href="flashcards.html">Revisar flashcards</a></div>`)+
-`<div class="grade"><div class="cartao"><span class="num">${f}/${AULAS.length}</span>aulas concluídas</div><div class="cartao"><span class="num">${r.length?pct(ok,r.length)+'%':'–'}</span>de acertos</div><div class="cartao"><span class="num">${S.erros.length}</span>no caderno de erros</div></div>`+barra(pct(f,AULAS.length));
-</script>
-</body>
-</html>
+m.innerHTML=`<div class="section-head"><div><span class="tag">PAINEL DO ALUNO</span><h1 style="margin-top:8px">Olá${S.nome?', '+S.nome:''}. Vamos avançar?</h1><p>Seu espaço de aprendizagem, organizado para acompanhar cada conquista.</p></div></div>${p?`<section class="cartao destaque"><span class="tag">CONTINUE DE ONDE PAROU</span><h2 style="font-size:1.45rem;margin-top:12px">${p.titulo}</h2><p class="muted">${p.modulo}</p><a class="btn" href="aula.html?id=${p.id}">Continuar estudando →</a></section>`:`<section class="cartao destaque"><h2>Parabéns! Sua trilha está concluída.</h2><a class="btn" href="flashcards.html">Revisar conteúdos</a></section>`}<div class="grade"><div class="stat-card"><span class="muted">Aulas concluídas</span><span class="num">${f}/${AULAS.length}</span><span class="muted">Da trilha completa</span></div><div class="stat-card"><span class="muted">Taxa de acertos</span><span class="num">${r.length?pct(ok,r.length)+'%':'—'}</span><span class="muted">${r.length} questões respondidas</span></div><div class="stat-card"><span class="muted">Para revisar</span><span class="num">${S.erros.length}</span><span class="muted">No caderno de erros</span></div></div><section class="cartao"><div class="linha"><h2>Progresso da trilha</h2><b>${pct(f,AULAS.length)}%</b></div>${barra(pct(f,AULAS.length))}<p class="suave">${f} de ${AULAS.length} aulas concluídas</p></section><div class="grade"><a class="cartao" href="biblioteca.html"><h2>▤ Biblioteca</h2><p class="suave">Acesse suas aulas e módulos.</p></a><a class="cartao" href="exercicios.html"><h2>✓ Exercícios</h2><p class="suave">Pratique e veja resoluções.</p></a><a class="cartao" href="simulados.html"><h2>▣ Simulados</h2><p class="suave">Teste seus conhecimentos.</p></a></div>`;
+</script></body></html>

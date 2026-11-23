@@ -1,0 +1,28 @@
+# Resultamath — versão profissional
+
+## Como abrir
+1. Extraia todos os arquivos do ZIP para uma mesma pasta.
+2. Abra `index.html` em um navegador ou publique a pasta em uma hospedagem estática.
+3. Clique em **Estudar agora** para entrar no painel.
+
+## Como cadastrar vídeos
+1. Entre em `configuracoes.html` pelo menu da plataforma.
+2. Em **Gerenciar vídeos**, escolha se o vídeo pertence a uma aula ou a uma questão.
+3. Selecione o conteúdo, cole o link do YouTube/Vimeo e clique em **Salvar vídeo**.
+4. Para vídeos de questões, responda à questão para que a área de resolução em vídeo seja exibida.
+
+Os links são guardados no armazenamento local do navegador junto com o progresso. O arquivo `dados.js` continua sendo a fonte de cadastro das aulas, questões e flashcards.
+
+## Importante sobre publicação
+Esta versão continua sendo uma aplicação front-end estática. O progresso e os vídeos cadastrados ficam no navegador/dispositivo em que foram salvos. Não há autenticação, banco de dados central ou painel administrativo protegido. Para uma plataforma comercial com contas de alunos, sincronização entre dispositivos, uploads de arquivos e gestão segura de conteúdo, será necessário conectar um backend e armazenamento de vídeos. A área de gerenciamento desta versão não é protegida por senha.
+
+## Arquivos
+- `index.html`: página institucional
+- `inicio.html`: painel do aluno
+- `biblioteca.html` / `aula.html`: biblioteca e visualização das aulas
+- `exercicios.html`: prática e resoluções
+- `simulados.html`: simulados e histórico
+- `configuracoes.html`: perfil, vídeos e backup
+- `dados.js`: cadastro de aulas, questões e flashcards
+- `app.js` e `estilo.css`: funções e identidade visual compartilhadas
+- `landing.css`: estilos da página institucional

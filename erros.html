@@ -1,17 +1,3 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Caderno de erros – Resultamath</title>
-<link rel="stylesheet" href="estilo.css">
-</head>
-<body>
-<script src="dados.js"></script>
-<script src="app.js"></script>
-<script>
-const m=pagina('erros'),L=S.erros.map(id=>QUESTOES.find(q=>q.id==id)).filter(Boolean);
-m.innerHTML='<h1>Caderno de erros</h1>'+(L.length?'<p>Acerte a questão de novo para ela sair da lista.</p>'+L.map(q=>`<div class="cartao"><h2>${q.enunciado}</h2><p><b class="ok">Correta: ${q.alts[q.certa]}</b></p><p>${q.resolucao}</p><a class="btn sec" href="exercicios.html?q=${q.id}">Refazer</a></div>`).join(''):'<div class="cartao destaque"><h2>Nenhum erro por aqui</h2><p>Questões erradas nos exercícios e simulados aparecem sozinhas.</p><a class="btn" href="exercicios.html">Fazer exercícios</a></div>');
-</script>
-</body>
-</html>
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Caderno de erros | Resultamath</title><link rel="stylesheet" href="estilo.css"></head><body><script src="dados.js"></script><script src="app.js"></script><script>
+const m=pagina('erros'),L=S.erros.map(id=>QUESTOES.find(q=>q.id===id)).filter(Boolean);m.innerHTML=`<span class="tag">REVISÃO INTELIGENTE</span><h1 style="margin-top:8px">Caderno de erros</h1><p>Use seus erros como guia para aprender e consolidar o conteúdo.</p>`+(L.length?L.map(q=>`<div class="cartao"><h2>${q.enunciado}</h2><p><b class="ok">Resposta correta: ${q.alts[q.certa]}</b></p><p>${q.resolucao||''}</p>${(S.videosQuestoes[q.id]||q.videoResolucao||q.video)?'<h3>Resolução em vídeo</h3>'+player(S.videosQuestoes[q.id]||q.videoResolucao||q.video,'Resolução da questão'):''}<a class="btn sec" href="exercicios.html?q=${q.id}">Refazer questão</a></div>`).join(''):'<div class="cartao destaque"><h2>Nenhum erro por aqui</h2><p>Questões respondidas incorretamente aparecerão nesta área.</p><a class="btn" href="exercicios.html">Fazer exercícios</a></div>');
+</script></body></html>
