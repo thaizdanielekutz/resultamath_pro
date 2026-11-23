@@ -1,4 +1,140 @@
-<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Resoluções em vídeo | Resultamath</title><link rel="stylesheet" href="estilo.css"></head><body><script src="dados.js"></script><script src="app.js"></script><script>
-const m=pagina('resolucoes');function render(){const cadastradas=QUESTOES.filter(q=>S.videosQuestoes[q.id]||q.videoResolucao||q.video);m.innerHTML=`<div class="section-head"><div><span class="tag">APRENDA COM A RESOLUÇÃO</span><h1 style="margin-top:8px">Resoluções em vídeo</h1><p>Assista às explicações das questões sem sair da Resultamath.</p></div><a class="btn" href="configuracoes.html">＋ Cadastrar link do YouTube</a></div><input id="busca-res" class="search-input" type="search" placeholder="Buscar questão ou módulo..." aria-label="Buscar questão">${cadastradas.length?`<p class="suave">${cadastradas.length} resolução(ões) com vídeo cadastrado.</p>`:'<div class="cartao destaque"><h2>Adicione suas primeiras resoluções</h2><p>Na área de Configurações, escolha “Resolução de uma questão” e cole o link do vídeo do YouTube correspondente.</p><a class="btn" href="configuracoes.html">Gerenciar vídeos</a></div>'}<div id="lista-res"></div>`;const box=document.getElementById('lista-res');function filtra(){const term=document.getElementById('busca-res').value.toLocaleLowerCase('pt-BR');const lista=QUESTOES.filter(q=>(S.videosQuestoes[q.id]||q.videoResolucao||q.video)&&(`${q.enunciado} ${q.modulo}`).toLocaleLowerCase('pt-BR').includes(term));box.innerHTML=lista.map(q=>`<article class="cartao"><div class="video-row"><div><span class="tag">${q.modulo}</span><h2 style="margin-top:10px">${q.enunciado}</h2><p class="suave">Gabarito: ${q.alts[q.certa]}</p><p>${q.resolucao||'Resolução comentada em vídeo.'}</p><a class="btn sec" href="exercicios.html?q=${encodeURIComponent(q.id)}">Praticar questão</a></div><div>${player(S.videosQuestoes[q.id]||q.videoResolucao||q.video,'Resolução: '+q.enunciado)}</div></div></article>`).join('')||'<div class="empty-state">Nenhum vídeo encontrado. Cadastre um link em Configurações.</div>'}document.getElementById('busca-res').addEventListener('input',filtra);filtra()}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Resoluções em vídeo | Resultamath</title>
+<link rel="stylesheet" href="estilo.css">
+</head>
+
+<body>
+
+<script src="dados.js"></script>
+<script src="app.js"></script>
+
+<script>
+
+const m = pagina('resolucoes');
+
+function render() {
+
+    const cadastradas = QUESTOES.filter(q =>
+        q.videoResolucao || q.video || S.videosQuestoes[q.id]
+    );
+
+    m.innerHTML = `
+
+        <div class="section-head">
+            <div>
+                <span class="tag">APRENDA COM A RESOLUÇÃO</span>
+                <h1 style="margin-top:8px">Resoluções em vídeo</h1>
+                <p>Entenda cada questão com explicações passo a passo.</p>
+            </div>
+        </div>
+
+        <div class="cartao" style="margin-bottom:20px">
+            <input
+                id="busca-res"
+                class="search-input"
+                type="search"
+                placeholder="Buscar questão ou módulo..."
+                aria-label="Buscar questão ou módulo"
+            >
+        </div>
+
+        <p class="suave" id="contador-res"></p>
+
+        <div id="lista-res"></div>
+
+    `;
+
+    const box = document.getElementById('lista-res');
+    const contador = document.getElementById('contador-res');
+
+    function filtra() {
+
+        const term = document
+            .getElementById('busca-res')
+            .value
+            .toLocaleLowerCase('pt-BR');
+
+        const lista = cadastradas.filter(q => {
+
+            const texto = `
+                ${q.enunciado}
+                ${q.modulo}
+            `.toLocaleLowerCase('pt-BR');
+
+            return texto.includes(term);
+
+        });
+
+        contador.textContent =
+            `${lista.length} resolução(ões) encontrada(s).`;
+
+        box.innerHTML = lista.map(q => {
+
+            const url =
+                q.videoResolucao ||
+                q.video ||
+                S.videosQuestoes[q.id];
+
+            return `
+
+                <article class="cartao" style="margin-bottom:20px">
+
+                    <div class="video-row">
+
+                        <div>
+
+                            <span class="tag">${q.modulo}</span>
+
+                            <h2 style="margin-top:10px">
+                                ${q.enunciado}
+                            </h2>
+
+                            <p class="suave">
+                                Gabarito: ${q.alts[q.certa]}
+                            </p>
+
+                            <p>
+                                ${q.resolucao || 'Resolução comentada em vídeo.'}
+                            </p>
+
+                        </div>
+
+                        <div>
+                            ${player(url, 'Resolução: ' + q.enunciado)}
+                        </div>
+
+                    </div>
+
+                </article>
+
+            `;
+
+        }).join('') || `
+
+            <div class="empty-state">
+                Nenhuma resolução encontrada.
+            </div>
+
+        `;
+
+    }
+
+    document
+        .getElementById('busca-res')
+        .addEventListener('input', filtra);
+
+    filtra();
+
+}
+
 render();
-</script></body></html>
+
+</script>
+
+</body>
+</html>
