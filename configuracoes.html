@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Configurações – Resultamath</title>
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<script src="dados.js"></script>
+<script src="app.js"></script>
+<script>
+const m=pagina('configuracoes');
+m.innerHTML=`<h1>Configurações</h1><div class="cartao"><label for="n">Seu nome (opcional)</label><br><input id="n" value="${S.nome}"><p><button class="btn" onclick="S.nome=document.getElementById('n').value.trim();salvar();location.reload()">Salvar</button></p></div><div class="cartao"><button class="btn sec" onclick="if(confirm('Apagar todo o seu progresso?')){S.feitas={};S.resp={};S.erros=[];S.simulados=[];salvar();location.href='inicio.html'}">Zerar progresso</button></div>`;
+</script>
+</body>
+</html>

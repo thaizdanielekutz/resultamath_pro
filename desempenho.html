@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meu desempenho – Resultamath</title>
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<script src="dados.js"></script>
+<script src="app.js"></script>
+<script>
+const m=pagina('desempenho');
+m.innerHTML='<h1>Meu desempenho</h1>'+modulos().map(mod=>{
+ const d=mod.aulas.filter(a=>S.feitas[a.id]).length,qs=QUESTOES.filter(q=>q.modulo==mod.nome&&q.id in S.resp),ok=qs.filter(q=>S.resp[q.id]).length;
+ return `<div class="cartao"><h2>${mod.nome}</h2><p class="suave">Aulas: ${d}/${mod.aulas.length}</p>${barra(pct(d,mod.aulas.length))}<p class="suave">Acertos: ${qs.length?ok+' de '+qs.length:'nenhum exercício feito'}</p>${qs.length?barra(pct(ok,qs.length)):''}</div>`}).join('');
+</script>
+</body>
+</html>

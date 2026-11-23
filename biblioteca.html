@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Biblioteca de aulas – Resultamath</title>
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<script src="dados.js"></script>
+<script src="app.js"></script>
+<script>
+const m=pagina('biblioteca');
+m.innerHTML='<h1>Biblioteca de aulas</h1><p>Aritmética · cada aula tem vídeo, resumo e exercícios.</p>'+modulos().map(mod=>{const d=mod.aulas.filter(a=>S.feitas[a.id]).length;
+return `<div class="cartao"><h2>${mod.nome}</h2><p class="suave">${d} de ${mod.aulas.length} aulas</p>${barra(pct(d,mod.aulas.length))}${mod.aulas.map(a=>`<div class="aula"><span>${a.titulo}${S.feitas[a.id]?' <span class="ok">✓ concluída</span>':''}</span><a class="btn sec" href="aula.html?id=${a.id}">${S.feitas[a.id]?'Rever':'Abrir'}</a></div>`).join('')}</div>`}).join('');
+</script>
+</body>
+</html>

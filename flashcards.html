@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flashcards – Resultamath</title>
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<script src="dados.js"></script>
+<script src="app.js"></script>
+<script>
+const m=pagina('flashcards');let fila=FLASHCARDS.map((_,i)=>i),vira=false;
+function mostra(){
+ if(!fila.length){m.innerHTML='<h1>Flashcards</h1><div class="cartao destaque"><h2>Revisão concluída</h2><button class="btn" onclick="location.reload()">Revisar de novo</button></div>';return}
+ const c=FLASHCARDS[fila[0]];
+ m.innerHTML=`<h1>Flashcards</h1><p>${fila.length} cartões na fila. Toque no cartão para virar.</p><button class="carta" onclick="vira=!vira;mostra()">${vira?c.verso:c.frente}</button>`+(vira?'<p><button class="btn" onclick="fila.shift();vira=false;mostra()">Lembrei</button> <button class="btn sec" onclick="fila.push(fila.shift());vira=false;mostra()">Revisar de novo</button></p>':'');
+}
+mostra();
+</script>
+</body>
+</html>

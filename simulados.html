@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulados – Resultamath</title>
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<script src="dados.js"></script>
+<script src="app.js"></script>
+<script>
+const m=pagina('simulados');
+function inicio(){m.innerHTML='<h1>Simulados</h1><div class="cartao destaque"><h2>Simulado com até 10 questões</h2><p>Questões sorteadas de todos os módulos. O gabarito aparece só no final.</p><button class="btn" onclick="comeca()">Começar simulado</button></div>'+(S.simulados.length?'<h2>Seus simulados</h2>'+S.simulados.slice().reverse().map(s=>`<div class="aula"><span>${s.d}</span><b>${s.ac} de ${s.n} (${pct(s.ac,s.n)}%)</b></div>`).join(''):'')}
+window.comeca=()=>{
+ const L=QUESTOES.slice().sort(()=>Math.random()-.5).slice(0,10);
+ m.innerHTML='<h1>Simulado</h1><form id="f">'+L.map((q,i)=>`<div class="cartao"><h2>${i+1}. ${q.enunciado}</h2>${q.alts.map((a,j)=>`<label class="opcao-r"><input type="radio" name="q${i}" value="${j}" style="width:auto"> ${a}</label>`).join('')}</div>`).join('')+'<button class="btn">Finalizar simulado</button></form>';
+ document.getElementById('f').onsubmit=e=>{e.preventDefault();let ac=0;const d=new FormData(e.target);
+  L.forEach((q,i)=>{const v=d.get('q'+i),ok=v!==null&&+v==q.certa;if(ok)ac++;S.resp[q.id]=ok;if(!ok&&!S.erros.includes(q.id))S.erros.push(q.id)});
+  S.simulados.push({d:new Date().toLocaleDateString('pt-BR'),ac,n:L.length});salvar();
+  m.innerHTML=`<h1>Resultado</h1><div class="cartao destaque"><h2>${ac} de ${L.length} (${pct(ac,L.length)}%)</h2><p>As questões erradas foram para o caderno de erros.</p></div><a class="btn" href="erros.html">Ver caderno de erros</a> <a class="btn sec" href="simulados.html">Voltar</a>`};
+};
+inicio();
+</script>
+</body>
+</html>

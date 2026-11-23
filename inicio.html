@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Início – Resultamath</title>
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<script src="dados.js"></script>
+<script src="app.js"></script>
+<script>
+const m=pagina('inicio'),p=proxima(),f=AULAS.filter(a=>S.feitas[a.id]).length,r=Object.keys(S.resp),ok=r.filter(k=>S.resp[k]).length;
+m.innerHTML=`<h1>Olá${S.nome?', '+S.nome:''}! Vamos estudar?</h1>`+(p?`<div class="cartao destaque"><h2>Hoje estude aqui</h2><p>${p.titulo}<br><span class="suave">${p.modulo}</span></p><a class="btn" href="aula.html?id=${p.id}">Continuar aula</a></div>`:`<div class="cartao destaque"><h2>Trilha concluída</h2><a class="btn" href="flashcards.html">Revisar flashcards</a></div>`)+
+`<div class="grade"><div class="cartao"><span class="num">${f}/${AULAS.length}</span>aulas concluídas</div><div class="cartao"><span class="num">${r.length?pct(ok,r.length)+'%':'–'}</span>de acertos</div><div class="cartao"><span class="num">${S.erros.length}</span>no caderno de erros</div></div>`+barra(pct(f,AULAS.length));
+</script>
+</body>
+</html>

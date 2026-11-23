@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Resultamath – Matemática passo a passo</title>
+<meta name="description" content="Aulas em vídeo, exercícios com resolução comentada e revisão para estudar matemática no seu ritmo.">
+<link rel="stylesheet" href="estilo.css">
+<link rel="stylesheet" href="landing.css">
+</head>
+<body>
+<header class="nav"><div class="cont">
+  <a class="logo" href="index.html">Resultamath</a>
+  <nav class="links" aria-label="Seções"><a href="#aulas">Aulas</a><a href="#como">Como funciona</a><a href="#sobre">Sobre</a><a href="#contato">Contato</a></nav>
+  <a class="btn" href="inicio.html">Estudar agora</a>
+</div></header>
+
+<main class="cont" style="padding:0 20px;max-width:1040px">
+  <section class="hero">
+    <div>
+      <h1>Matemática que faz sentido, passo a passo.</h1>
+      <p>Aulas em vídeo, exercícios com resolução comentada e revisão dos seus erros. Tudo em um só lugar, no seu ritmo, sem cadastro.</p>
+      <div class="acoes">
+        <a class="btn" href="inicio.html">Começar a estudar</a>
+        <a class="btn sec" href="#aulas">Ver as aulas</a>
+      </div>
+    </div>
+    <div class="exemplo" aria-label="Exemplo de resolução">
+      <b>Exemplo de resolução</b>
+      <p>Quanto é 20% de 350?</p>
+      <div class="passo">350 · 20/100</div>
+      <div class="passo">350 · 0,2</div>
+      <div class="passo"><b>= 70</b></div>
+    </div>
+  </section>
+
+  <section class="secao">
+    <h2>O que você encontra</h2>
+    <p class="sub">Cada aula tem vídeo, resumo e exercícios para praticar logo depois.</p>
+    <div class="grade" style="margin-top:20px">
+      <div class="cartao"><h3>Aulas em vídeo</h3><p>Conteúdo explicado do básico ao avançado, em ordem.</p></div>
+      <div class="cartao"><h3>Exercícios</h3><p>Correção automática e resolução comentada.</p></div>
+      <div class="cartao"><h3>Caderno de erros</h3><p>As questões que você errou voltam para revisar.</p></div>
+      <div class="cartao"><h3>Flashcards</h3><p>Fórmulas e conceitos para fixar de vez.</p></div>
+      <div class="cartao"><h3>Simulados</h3><p>Teste o que aprendeu e veja sua nota.</p></div>
+    </div>
+  </section>
+
+  <section class="secao" id="aulas">
+    <h2>Trilha de Aritmética</h2>
+    <p class="sub">Comece pelo primeiro módulo ou vá direto ao assunto que precisa.</p>
+    <div id="trilha" style="margin-top:16px"></div>
+    <p><a class="btn" href="biblioteca.html">Abrir biblioteca de aulas</a></p>
+  </section>
+
+  <section class="secao" id="como">
+    <h2>Como funciona</h2>
+    <ol class="passos">
+      <li><div><b>Escolha uma aula</b><br>Entre na biblioteca e abra o assunto que quer estudar.</div></li>
+      <li><div><b>Assista e leia o resumo</b><br>Marque a aula como concluída para acompanhar seu progresso.</div></li>
+      <li><div><b>Pratique</b><br>Resolva os exercícios e revise o que errou no caderno de erros.</div></li>
+    </ol>
+    <p class="suave">Não precisa de cadastro. Seu progresso fica salvo neste aparelho.</p>
+  </section>
+
+  <section class="secao" id="sobre">
+    <h2>Quem ensina</h2>
+    <h3 id="prof" style="margin:8px 0"></h3>
+    <p class="sub" id="sobre-txt"></p>
+  </section>
+
+  <section class="secao" id="contato">
+    <h2>Fale comigo</h2>
+    <p class="sub">Tem dúvida ou quer sugerir um assunto?</p>
+    <div class="acoes" id="contatos"></div>
+  </section>
+</main>
+
+<footer><div class="cont">© <span id="ano"></span> Resultamath</div></footer>
+
+<script src="dados.js"></script>
+<script src="app.js"></script>
+<script>
+document.getElementById('trilha').innerHTML=modulos().map(m=>`<details><summary>${m.nome} · ${m.aulas.length} aulas</summary><ul>${m.aulas.map(a=>`<li><a href="aula.html?id=${a.id}">${a.titulo}</a></li>`).join('')}</ul></details>`).join('');
+document.getElementById('prof').textContent=SITE.professora;
+document.getElementById('sobre-txt').textContent=SITE.sobre;
+document.getElementById('ano').textContent=new Date().getFullYear();
+const c=[];
+if(SITE.whatsapp)c.push(`<a class="btn" href="https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent('Olá! Vim pelo site da Resultamath.')}">WhatsApp</a>`);
+if(SITE.instagram)c.push(`<a class="btn sec" href="${SITE.instagram}">Instagram</a>`);
+if(SITE.youtube)c.push(`<a class="btn sec" href="${SITE.youtube}">YouTube</a>`);
+if(SITE.email)c.push(`<a class="btn sec" href="mailto:${SITE.email}">E-mail</a>`);
+document.getElementById('contatos').innerHTML=c.join('')||'<p class="suave">Adicione seus contatos em dados.js.</p>';
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exercícios – Resultamath</title>
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<script src="dados.js"></script>
+<script src="app.js"></script>
+<script>
+const m=pagina('exercicios'),P=new URLSearchParams(location.search),mod=P.get('modulo'),qid=P.get('q');
+const L=QUESTOES.filter(q=>qid?q.id==qid:(!mod||q.modulo==mod)),mods=[...new Set(QUESTOES.map(q=>q.modulo))];let i=0;
+const filtro=`<label for="mf">Módulo</label><br><select id="mf" onchange="location.search=this.value?'?modulo='+encodeURIComponent(this.value):''"><option value="">Todos</option>${mods.map(x=>`<option${x==mod?' selected':''}>${x}</option>`).join('')}</select>`;
+function mostra(){
+ if(!L.length){m.innerHTML='<h1>Exercícios</h1>'+filtro+'<p>Ainda não há exercícios aqui.</p>';return}
+ const q=L[i];
+ m.innerHTML=`<h1>Exercícios</h1>${filtro}<p>Questão ${i+1} de ${L.length}</p><div class="cartao"><h2>${q.enunciado}</h2>${q.alts.map((a,j)=>`<button class="btn sec opcao" onclick="responde(${j})">${a}</button>`).join('')}<div id="fb"></div></div>`;
+}
+window.responde=j=>{
+ const q=L[i],ok=j==q.certa,p=S.erros.indexOf(q.id);
+ S.resp[q.id]=ok;if(ok&&p>-1)S.erros.splice(p,1);if(!ok&&p<0)S.erros.push(q.id);salvar();
+ document.querySelectorAll('.opcao').forEach((b,k)=>{b.disabled=true;if(k==q.certa)b.classList.add('certa');else if(k==j)b.classList.add('errada')});
+ document.getElementById('fb').innerHTML=`<p><b>${ok?'Correto.':'Resposta correta: '+q.alts[q.certa]+'.'}</b></p><p>${q.resolucao}</p>`+(i<L.length-1?'<button class="btn" onclick="i++;mostra()">Próxima questão</button>':'<p>Fim das questões.</p><a class="btn" href="exercicios.html">Recomeçar</a>');
+};
+mostra();
+</script>
+</body>
+</html>
