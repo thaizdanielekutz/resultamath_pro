@@ -357,7 +357,8 @@ function assistir(indice) {
     document.getElementById('questao-' + indice)
         .classList.add('selecionada');
 
-    const url = videoUrl(questaoAtual.video);
+    const linkSalvo = (S.videosResolucoes && S.videosResolucoes[questaoAtual.id]) || questaoAtual.video;
+const url = videoUrl(linkSalvo);
 
     const area = document.getElementById('playerArea');
 
