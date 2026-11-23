@@ -199,10 +199,12 @@ RESOLUCAO({
     video: 'bjP_Elow5Yg'
 });
 
+/* FUNDATEC 2022 */
+
 RESOLUCAO({
     banca: 'FUNDATEC 2022',
     concurso: 'Concurso Administrativo',
-    ano: 2025,
+    ano: 2022,
     cargo: '',
     assunto: 'Matemática',
     enunciado: 'Questão 01 - FUNDATEC 2022',
@@ -211,10 +213,13 @@ RESOLUCAO({
     video: 'uxs-aQ8UtgY'
 });
 
+/* VUNESP 2022 */
+
+
 RESOLUCAO({
     banca: 'VUNESP 2022',
     concurso: 'Concurso TJ-SP',
-    ano: 2025,
+    ano: 2022,
     cargo: '',
     assunto: 'Matemática',
     enunciado: 'Questão 01 - VUNESP 2022',
@@ -222,6 +227,8 @@ RESOLUCAO({
     gabarito: '',
     video: '_YLGMeUaEwQ'
 });
+
+/* FGV 2025 */
 
 RESOLUCAO({
     banca: 'FGV 2025',
@@ -401,6 +408,116 @@ RESOLUCAO({
     alternativas: [],
     gabarito: '',
     video: 'by_PhWIQmnI'
+});
+
+/* IBAM 2025 */
+
+RESOLUCAO({
+    banca: 'IBAM 2025',
+    concurso: 'Concurso Prefeitura de Bebedouro',
+    ano: 2025,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 01 - IBAM 2025',
+    alternativas: [],
+    gabarito: '',
+    video: 'hlaJuUiXHqA'
+});
+
+RESOLUCAO({
+    banca: 'IBAM 2025',
+    concurso: 'Concurso Prefeitura de Bebedouro',
+    ano: 2025,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 02 - IBAM 2025',
+    alternativas: [],
+    gabarito: '',
+    video: 'm0YdQcbrS_8'
+});
+
+RESOLUCAO({
+    banca: 'IBAM 2025',
+    concurso: 'Concurso Prefeitura de Bebedouro',
+    ano: 2025,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 03 - IBAM 2025',
+    alternativas: [],
+    gabarito: '',
+    video: 'nHEHoj0qFEk'
+});
+
+RESOLUCAO({
+    banca: 'IBAM 2025',
+    concurso: 'Concurso Prefeitura de Bebedouro',
+    ano: 2025,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 04 - IBAM 2025',
+    alternativas: [],
+    gabarito: '',
+    video: 'j_7ksK_JQn0'
+});
+
+RESOLUCAO({
+    banca: 'IBAM 2025',
+    concurso: 'Concurso Prefeitura de Bebedouro',
+    ano: 2025,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 05 - IBAM 2025',
+    alternativas: [],
+    gabarito: '',
+    video: 'ZprGHodGQKw'
+});
+
+RESOLUCAO({
+    banca: 'IBAM 2025',
+    concurso: 'Concurso Prefeitura de Bebedouro',
+    ano: 2025,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 06 - IBAM 2025',
+    alternativas: [],
+    gabarito: '',
+    video: '9EM4F7YiJyY'
+});
+
+RESOLUCAO({
+    banca: 'IBAM 2025',
+    concurso: 'Concurso Prefeitura de Bebedouro',
+    ano: 2025,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 07 - IBAM 2025',
+    alternativas: [],
+    gabarito: '',
+    video: 'pkbzceeqIEA'
+});
+
+RESOLUCAO({
+    banca: 'IBAM 2025',
+    concurso: 'Concurso Prefeitura de Bebedouro',
+    ano: 2025,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 08 - IBAM 2025',
+    alternativas: [],
+    gabarito: '',
+    video: 'y4rfpUXMjfY'
+});
+
+RESOLUCAO({
+    banca: 'IBAM 2025',
+    concurso: 'Concurso Prefeitura de Bebedouro',
+    ano: 2025,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 09 - IBAM 2025',
+    alternativas: [],
+    gabarito: '',
+    video: 'EWyHeeiNOwY'
 });
 
 
