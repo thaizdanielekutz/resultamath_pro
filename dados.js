@@ -101,6 +101,7 @@ FLASH(
   'aᵐ · aⁿ',
   'aᵐ⁺ⁿ. Na multiplicação de potências de mesma base, somamos os expoentes.'
 );
+
 /* 3. DIVISIBILIDADE */
 
 FLASH(
@@ -181,6 +182,265 @@ FLASH(
   'Conferência pela Operação Inversa',
   'Toda operação tem uma inversa que serve para conferir o resultado: soma confere com subtração, multiplicação confere com divisão. Ex.: 63 ÷ 9 = 7; conferindo: 7 x 9 = 63. Cuidado: se a operação inversa não devolve o número original, algo na conta está errado. Macete: toda conta tem um "botão de desfazer" — use-o para checar antes de marcar a resposta.'
 );
+
+/* 5. FRAÇÕES */
+
+FLASH(
+  'Frações',
+  'FÓRMULA',
+  'Fração de uma Quantidade',
+  'Multiplique a quantidade pelo numerador e divida pelo denominador (ou divida primeiro, se ficar mais simples). Ex.: 2/7 de 140 = 140 ÷ 7 x 2 = 40. Cuidado: o denominador reparte o todo; nunca divida pelo numerador. Macete: de baixo pra cima: primeiro divide pelo de baixo, depois multiplica pelo de cima.'
+);
+
+FLASH(
+  'Frações',
+  'FÓRMULA',
+  'Soma com Mesmo Denominador',
+  'Quando os denominadores já são iguais, some apenas os numeradores e mantenha o denominador. Ex.: 3/9 + 4/9 = 7/9. Cuidado: o denominador nunca entra na soma; ele fica exatamente como estava. Macete: só o número de cima muda de casa; o de baixo é fixo.'
+);
+
+FLASH(
+  'Frações',
+  'FÓRMULA',
+  'Soma com Denominadores Diferentes',
+  'Transforme as frações para um denominador comum antes de somar os numeradores. Ex.: 1/4 + 1/6 = 3/12 + 2/12 = 5/12. Cuidado: somar numeradores e denominadores separadamente sem igualar antes dá resultado errado. Macete: sem denominador igual não existe soma direta — ache o mínimo múltiplo comum primeiro.'
+);
+
+FLASH(
+  'Frações',
+  'FÓRMULA',
+  'Subtração de Frações',
+  'Iguale os denominadores e depois subtraia apenas os numeradores. Ex.: 5/6 - 1/3 = 5/6 - 2/6 = 3/6 = 1/2. Cuidado: denominadores diferentes nunca se subtraem direto. Macete: mesma regra da soma: iguala embaixo, resolve em cima.'
+);
+
+FLASH(
+  'Frações',
+  'FÓRMULA',
+  'Multiplicação de Frações',
+  'Multiplique numerador por numerador e denominador por denominador. Ex.: 3/4 x 2/5 = 6/20 = 3/10. Cuidado: multiplicar frações não exige denominador comum, diferente da soma. Macete: multiplicação anda reto: cima vezes cima, baixo vezes baixo.'
+);
+
+FLASH(
+  'Frações',
+  'FÓRMULA',
+  'Divisão de Frações',
+  'Mantenha a primeira fração e multiplique pelo inverso da segunda. Ex.: 3/5 ÷ 2/7 = 3/5 x 7/2 = 21/10. Cuidado: é a segunda fração que se inverte, nunca a primeira. Macete: copia, inverte e multiplica — a divisão vira multiplicação na hora.'
+);
+
+FLASH(
+  'Frações',
+  'REGRA PRÁTICA',
+  'Frações Equivalentes',
+  'Multiplicar ou dividir numerador e denominador pelo mesmo número mantém o valor da fração. Ex.: 2/3 = 4/6 = 10/15. Cuidado: alterar só o numerador ou só o denominador muda o valor da fração. Macete: fazer a mesma coisa em cima e embaixo é multiplicar por 1 — nada muda de verdade.'
+);
+
+FLASH(
+  'Frações',
+  'REGRA PRÁTICA',
+  'Simplificação de Frações',
+  'Divida numerador e denominador pelo mesmo divisor comum até não haver mais divisor além do 1. Ex.: 18/24 ÷ 6 = 3/4. Cuidado: simplificar é diferente de arredondar; o valor da fração precisa continuar o mesmo. Macete: ache o maior divisor comum de uma vez e corte os dois números juntos.'
+);
+
+FLASH(
+  'Frações',
+  'COMPARAÇÃO',
+  'Comparar Frações - Mesmo Denominador',
+  'Com denominadores iguais, é maior a fração com o maior numerador. Ex.: 7/10 é maior que 4/10, pois 7 > 4. Cuidado: denominador igual dispensa conta longa — basta olhar o número de cima. Macete: mesma base embaixo: quem tem mais em cima, vence.'
+);
+
+FLASH(
+  'Frações',
+  'COMPARAÇÃO',
+  'Comparar Frações - Mesmo Numerador',
+  'Com numeradores iguais, é maior a fração com o menor denominador. Ex.: 1/4 é maior que 1/8. Cuidado: denominador maior significa pedaços menores, não maiores. Macete: quanto mais fatias você corta um bolo, menor fica cada pedaço.'
+);
+
+FLASH(
+  'Frações',
+  'REGRA PRÁTICA',
+  'Número Misto e Fração Imprópria',
+  'Número misto junta um inteiro com uma fração; fração imprópria tem numerador maior que o denominador — os dois representam o mesmo valor. Ex.: 3 1/2 = (3 x 2 + 1)/2 = 7/2. Cuidado: uma fração com numerador maior que o denominador não está "errada", só indica mais de um inteiro. Macete: multiplica o inteiro pelo de baixo, soma o de cima, e mantém o mesmo denominador.'
+);
+
+FLASH(
+  'Frações',
+  'CONVERSÃO',
+  'Fração para Decimal',
+  'Divida o numerador pelo denominador para obter a forma decimal. Ex.: 5/8 = 5 ÷ 8 = 0,625. Cuidado: algumas frações geram dízimas periódicas em vez de decimais exatos. Macete: a barra de fração é uma divisão disfarçada — sempre que travar, divida.'
+);
+
+/* 6. DECIMAIS */
+
+FLASH(
+  'Decimais',
+  'COMPARAÇÃO',
+  'Comparar Decimais',
+  'Complete com zeros à direita para igualar as casas decimais e compare como se fossem inteiros. Ex.: 0,7 = 0,70; e 0,70 > 0,65. Cuidado: mais casas decimais não significa número maior. Macete: zero à direita não muda o valor, só ajuda a comparar de igual para igual.'
+);
+
+FLASH(
+  'Decimais',
+  'REGRA PRÁTICA',
+  'Soma e Subtração com Vírgula',
+  'Alinhe as vírgulas uma embaixo da outra e complete com zeros as casas que faltarem antes de operar. Ex.: 8,3 + 1,75 = 8,30 + 1,75 = 10,05. Cuidado: alinhar pelo último algarismo, e não pela vírgula, é o erro mais comum aqui. Macete: vírgula sob vírgula, sempre — o resto se ajeita sozinho.'
+);
+
+FLASH(
+  'Decimais',
+  'ATALHO DE CÁLCULO',
+  'Multiplicar por 10, 100 e 1000',
+  'Desloque a vírgula para a direita: uma casa para 10, duas para 100, três para 1000. Ex.: 2,84 x 100 = 284. Cuidado: o número de casas que a vírgula anda é sempre igual ao número de zeros. Macete: conte os zeros do multiplicador e pule essa quantidade de casas para a direita.'
+);
+
+FLASH(
+  'Decimais',
+  'ATALHO DE CÁLCULO',
+  'Dividir por 10, 100 e 1000',
+  'Desloque a vírgula para a esquerda: uma casa para 10, duas para 100, três para 1000. Ex.: 74 ÷ 100 = 0,74. Cuidado: se faltar casa, complete com zero à esquerda antes da vírgula. Macete: dividir empurra a vírgula para trás, na mesma quantidade de zeros do divisor.'
+);
+
+FLASH(
+  'Decimais',
+  'CONVERSÃO',
+  'Decimal para Fração',
+  'Escreva o número sobre 10, 100 ou 1000 (conforme as casas decimais) e depois simplifique. Ex.: 0,35 = 35/100 = 7/20. Cuidado: cada casa decimal corresponde a um zero no denominador — não erre a contagem. Macete: uma casa vai para /10, duas para /100, três para /1000.'
+);
+
+FLASH(
+  'Decimais',
+  'REGRA PRÁTICA',
+  'Dízimas Periódicas',
+  'Quando a divisão de uma fração nunca termina e repete um bloco de algarismos, o resultado é uma dízima periódica. Ex.: 1/3 = 0,333... (o algarismo 3 se repete para sempre). Cuidado: em prova, dízimas costumam ser arredondadas — confira quantas casas o enunciado pede. Macete: se a divisão não fecha e o padrão se repete, é dízima, não erro de conta.'
+);
+
+FLASH(
+  'Decimais',
+  'REGRA PRÁTICA',
+  'Arredondamento Decimal',
+  'Observe a casa seguinte à que você quer manter: 5 ou mais, arredonda para cima; menos que 5, mantém. Ex.: 6,28 arredondado para uma casa decimal fica 6,3. Cuidado: não arredonde etapas intermediárias de um cálculo, só o resultado final. Macete: o vizinho da direita decide: 5 pra cima empurra, 4 pra baixo mantém.'
+);
+
+FLASH(
+  'Decimais',
+  'REGRA PRÁTICA',
+  'Dinheiro e Casas Decimais',
+  'Valores em reais sempre usam duas casas decimais, representando os centavos. Ex.: R$ 12,4 deve ser escrito como R$ 12,40. Cuidado: R$ 3,08 é diferente de R$ 3,80 — a posição do zero muda o valor. Macete: reais antes da vírgula, centavos depois, sempre em dupla.'
+);
+
+/* 7. PORCENTAGEM */
+
+FLASH(
+  'Porcentagem',
+  'ATALHO DE CÁLCULO',
+  'Como Calcular 1%',
+  '1% de um valor é esse valor dividido por 100. Ex.: 1% de 3.500 = 3.500 ÷ 100 = 35. Cuidado: não confunda dividir por 100 com dividir por 10. Macete: 1% corta dois zeros do número (ou anda duas casas com a vírgula).'
+);
+
+FLASH(
+  'Porcentagem',
+  'ATALHO DE CÁLCULO',
+  'Como Calcular 10%',
+  '10% de um valor é esse valor dividido por 10. Ex.: 10% de 620 = 620 ÷ 10 = 62. Cuidado: depois de achar o percentual, confira se a pergunta quer só esse valor ou o preço já com desconto. Macete: 10% corta um zero (ou anda uma casa com a vírgula).'
+);
+
+FLASH(
+  'Porcentagem',
+  'ATALHO DE CÁLCULO',
+  'Como Calcular 20% e 5%',
+  '20% é o dobro de 10%; 5% é a metade de 10%. Ex.: de 400: 10% = 40; então 20% = 80 e 5% = 20. Cuidado: esses atalhos só funcionam bem se você já souber calcular 10% de cabeça. Macete: ache os 10% primeiro — o resto é só dobrar ou cortar ao meio.'
+);
+
+FLASH(
+  'Porcentagem',
+  'ATALHO DE CÁLCULO',
+  'Como Calcular 25%, 50% e 75%',
+  '25% é um quarto (÷4), 50% é metade (÷2) e 75% é três quartos (25% + 50%). Ex.: de 800: 25% = 200, 50% = 400, 75% = 600. Cuidado: esses valores são frações do total, não números fixos para somar. Macete: 25, 50 e 75 são sempre quartos do valor — pense em fatiar em 4 pedaços.'
+);
+
+FLASH(
+  'Porcentagem',
+  'CONVERSÃO',
+  'Porcentagem como Fração',
+  'Toda porcentagem já é um número sobre 100; basta simplificar a fração resultante. Ex.: 40% = 40/100 = 2/5. Cuidado: o símbolo % é justamente o denominador 100 escondido. Macete: tira o % e bota /100 no lugar — depois é só simplificar.'
+);
+
+FLASH(
+  'Porcentagem',
+  'CONVERSÃO',
+  'Porcentagem como Decimal',
+  'Para virar decimal, divida a porcentagem por 100, andando duas casas com a vírgula para a esquerda. Ex.: 6% = 0,06 e 32% = 0,32. Cuidado: 6% não é 0,6 — é fácil esquecer o segundo zero. Macete: duas casas para a esquerda, sempre — nem uma a mais, nem a menos.'
+);
+
+FLASH(
+  'Porcentagem',
+  'FÓRMULA',
+  'Percentual de um Total',
+  'A parte é o total multiplicado pela taxa em forma decimal. Ex.: 15% de 900 = 900 x 0,15 = 135. Cuidado: use sempre a taxa decimal (0,15), nunca o número inteiro (15). Macete: a palavra "de" em porcentagem quase sempre pede multiplicação.'
+);
+
+FLASH(
+  'Porcentagem',
+  'FÓRMULA',
+  'Encontrar o Total pela Parte',
+  'Quando você sabe a parte e a taxa, o total é a parte dividida pela taxa decimal. Ex.: se 30% de um valor valem 90, o total é 90 ÷ 0,30 = 300. Cuidado: aqui a conta é divisão, não multiplicação — o total está escondido, não a parte. Macete: parte pequena, total escondido: sempre divide pela taxa.'
+);
+
+FLASH(
+  'Porcentagem',
+  'FÓRMULA',
+  'Preço Final com Desconto',
+  'Multiplique o preço original por (1 menos a taxa decimal) para chegar direto ao valor final. Ex.: 100 com 15% de desconto: 100 x 0,85 = R$ 85. Cuidado: o resultado é o preço a pagar, não o valor do desconto em si. Macete: desconto de x% = pagar (100 - x)% do preço original.'
+);
+
+FLASH(
+  'Porcentagem',
+  'FÓRMULA',
+  'Preço Final com Aumento',
+  'Multiplique o preço original por (1 mais a taxa decimal) para obter o valor reajustado. Ex.: 250 com aumento de 12%: 250 x 1,12 = R$ 280. Cuidado: o resultado final precisa ser sempre maior que o valor original. Macete: aumento de x% = multiplicar por 1 seguido da taxa em decimal.'
+);
+
+FLASH(
+  'Porcentagem',
+  'FÓRMULA',
+  'Variação Percentual',
+  'A variação percentual é a diferença dividida pelo valor inicial, multiplicada por 100. Ex.: de 60 para 75: diferença = 15; 15 ÷ 60 x 100 = 25%. Cuidado: a base da divisão é sempre o valor inicial, nunca o final. Macete: quanto mudou dividido por de onde partiu, vezes 100.'
+);
+
+FLASH(
+  'Porcentagem',
+  'REGRA PRÁTICA',
+  'Porcentagens Sucessivas',
+  'Cada porcentagem aplicada em sequência incide sobre o valor que restou da anterior, não sobre o valor original. Ex.: 200 com dois descontos de 10%: 200 x 0,9 x 0,9 = 162. Cuidado: dois descontos de 10% não equivalem a um único desconto de 20%. Macete: desconto sobre desconto sempre se multiplica, nunca se soma.'
+);
+
+FLASH(
+  'Porcentagem',
+  'ERRO COMUM',
+  'Desconto x Preço Final',
+  'O desconto é o valor que sai do preço; o preço final é o que realmente sobra para o cliente pagar. Ex.: 30% de 200 = R$ 60 de desconto; preço final = 200 - 60 = R$ 140. Cuidado: releia a pergunta: ela quer o desconto (60) ou o valor final (140)? Macete: desconto é o que some; preço final é o que resta na etiqueta.'
+);
+
+FLASH(
+  'Porcentagem',
+  'ERRO COMUM',
+  'Aumento Seguido de Desconto Igual',
+  'Um aumento de x% seguido de um desconto de x% não devolve o valor original, porque incidem sobre bases diferentes. Ex.: 120 com aumento de 25% e depois desconto de 25%: 120 x 1,25 x 0,75 = 112,50 (menor que 120). Cuidado: a tentação de achar que os dois se cancelam é a armadilha mais comum de porcentagem. Macete: sempre que um % sobe e o mesmo % desce depois, o resultado final fica menor que o original.'
+);
+
+FLASH(
+  'Porcentagem',
+  'FÓRMULA',
+  'Lucro e Margem sobre Custo',
+  'Para achar o preço de venda com uma margem sobre o custo, multiplique o custo por (1 + margem decimal). Ex.: custo de R$ 40 com margem de 35%: 40 x 1,35 = R$ 54. Cuidado: margem sobre o custo é diferente de margem sobre o preço de venda — confira a base usada. Macete: margem "sobre o custo" sempre parte do valor que se pagou, não do preço final.'
+);
+
+FLASH(
+  'Porcentagem',
+  'REGRA PRÁTICA',
+  'Reajuste em Cascata com Bases Diferentes',
+  'Quando o enunciado avisa "sobre o novo valor", cada percentual seguinte usa o resultado anterior como base, não o valor inicial. Ex.: 300 com alta de 10% e, sobre o novo valor, alta de 5%: 300 x 1,10 x 1,05 = 346,50. Cuidado: aplicar as duas taxas direto sobre o valor original (300 x 1,15) dá resposta errada. Macete: "sobre o novo valor" avisa que a base mudou — sempre multiplique em cadeia.'
+);
+
 
 
 
