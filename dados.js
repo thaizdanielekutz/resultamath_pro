@@ -110,16 +110,7 @@ RESOLUCAO({
     enunciado: 'Questão 01 - CESGRANRIO 2024',
     alternativas: [],
     gabarito: '',
-    video: `<iframe
-  width="560"
-  height="315"
-  src="https://www.youtube.com/embed/LGTiGfulDwU?controls=0&origin=https://SEU-DOMINIO.com"
-  title="Vídeo aula ResultaMath"
-  frameborder="0"
-  referrerpolicy="strict-origin-when-cross-origin"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-  allowfullscreen>
-</iframe>`
+    video: 'LGTiGfulDwU'
 });
 
 RESOLUCAO({

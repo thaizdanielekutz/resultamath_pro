@@ -347,6 +347,47 @@ function abrirPlaylist(indice) {
 
 }
 
+
+function extrairIdYoutube(valor) {
+    if (!valor) return '';
+
+    const texto = String(valor).trim();
+
+    // ID direto do YouTube
+    if (/^[a-zA-Z0-9_-]{11}$/.test(texto)) {
+        return texto;
+    }
+
+    // Caso tenha sido cadastrado um iframe completo
+    const iframe = texto.match(/src=["']([^"']+)["']/i);
+    const urlTexto = iframe ? iframe[1] : texto;
+
+    try {
+        const url = new URL(urlTexto);
+
+        if (
+            url.hostname === 'www.youtube.com' ||
+            url.hostname === 'youtube.com' ||
+            url.hostname === 'www.youtube-nocookie.com' ||
+            url.hostname === 'youtube-nocookie.com'
+        ) {
+            return url.pathname.match(/\/(?:embed|shorts)\/([^/?]+)/)?.[1]
+                || url.searchParams.get('v')
+                || '';
+        }
+
+        if (url.hostname === 'youtu.be') {
+            return url.pathname.slice(1).split('/')[0];
+        }
+
+    } catch (erro) {
+        return '';
+    }
+
+    return '';
+}
+
+
 function assistir(indice) {
     questaoAtual = playlistAtual.questoes[indice];
 
@@ -356,30 +397,41 @@ function assistir(indice) {
     document.getElementById('questao-' + indice)
         .classList.add('selecionada');
 
-    const linkSalvo = (S.videosResolucoes && S.videosResolucoes[questaoAtual.id]) || questaoAtual.video;
-    const baseSrc = videoUrl(linkSalvo);
-    let finalSrc = '';
+    const linkSalvo =
+        (S.videosResolucoes && S.videosResolucoes[questaoAtual.id])
+        || questaoAtual.video;
 
-    if (baseSrc) {
-        if (baseSrc.includes('youtube.com/embed/') || baseSrc.includes('youtube-nocookie.com/embed/')) {
-            const sep = baseSrc.includes('?') ? '&' : '?';
-            finalSrc = `${baseSrc}${sep}rel=0`;
-        } else {
-            finalSrc = baseSrc;
-        }
-    }
+    const videoId = extrairIdYoutube(linkSalvo);
 
     const area = document.getElementById('playerArea');
 
+    let finalSrc = '';
+
+    if (videoId) {
+        const origem = window.location.origin;
+
+        const parametros = new URLSearchParams({
+            rel: '0'
+        });
+
+        if (origem && origem !== 'null') {
+            parametros.set('origin', origem);
+        }
+
+        finalSrc =
+            `https://www.youtube.com/embed/${videoId}?${parametros}`;
+    }
+
     area.innerHTML = `
         <h3>${esc(questaoAtual.enunciado)}</h3>
+
         ${finalSrc ? `
             <div class="video">
                 <iframe
-                    src="${esc(finalSrc)}"
+                    src="${finalSrc}"
                     title="${esc(questaoAtual.enunciado)}"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerpolicy="strict-origin-when-cross-origin"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowfullscreen>
                 </iframe>
             </div>
@@ -391,6 +443,7 @@ function assistir(indice) {
         `}
     `;
 }
+
 
 
 function voltar() {
