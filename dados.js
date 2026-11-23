@@ -74,6 +74,33 @@ QUESTAO('5. Razão, proporção e porcentagem','3 cadernos custam R$ 24. Quanto 
 
 /* ===== FLASHCARDS ORGANIZADOS POR ÁREA E SEÇÃO ===== */
 
+function FLASH(area, secao, frente, verso) {
+  FLASHCARDS.push({
+    id: slug(area + '-' + frente),
+    area,
+    secao,
+    frente,
+    verso
+  });
+}
+
+/* 1. FUNDAMENTOS DA MATEMÁTICA */
+
+FLASH(
+  'Fundamentos da matemática',
+  'Conjuntos numéricos',
+  'O que é um número irracional?',
+  'Número real que não pode ser escrito como fração (ex.: √2, π).'
+);
+
+/* 2. OPERAÇÕES FUNDAMENTAIS */
+
+FLASH(
+  'Operações fundamentais',
+  'Potenciação',
+  'aᵐ · aⁿ',
+  'aᵐ⁺ⁿ. Na multiplicação de potências de mesma base, somamos os expoentes.'
+);
 
 /* ===== DADOS DA PÁGINA INICIAL (index.html) — troque pelos seus ===== */
 const SITE={
