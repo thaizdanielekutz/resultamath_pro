@@ -1,22 +1,267 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Flashcards – Resultamath</title>
-<link rel="stylesheet" href="estilo.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flashcards – ResultaMath</title>
+  <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
+
 <script src="dados.js"></script>
 <script src="app.js"></script>
+
 <script>
-const m=pagina('flashcards');let fila=FLASHCARDS.map((_,i)=>i),vira=false;
-function mostra(){
- if(!fila.length){m.innerHTML='<h1>Flashcards</h1><div class="cartao destaque"><h2>Revisão concluída</h2><button class="btn" onclick="location.reload()">Revisar de novo</button></div>';return}
- const c=FLASHCARDS[fila[0]];
- m.innerHTML=`<h1>Flashcards</h1><p>${fila.length} cartões na fila. Toque no cartão para virar.</p><button class="carta" onclick="vira=!vira;mostra()">${vira?c.verso:c.frente}</button>`+(vira?'<p><button class="btn" onclick="fila.shift();vira=false;mostra()">Lembrei</button> <button class="btn sec" onclick="fila.push(fila.shift());vira=false;mostra()">Revisar de novo</button></p>':'');
+const m = pagina('flashcards');
+
+let areaSelecionada = '';
+let secaoSelecionada = '';
+let fila = [];
+let indice = 0;
+let virou = false;
+let revisaoConcluida = 0;
+
+S.flashcardsConhecidos = S.flashcardsConhecidos || [];
+
+function areas() {
+  return [...new Set(FLASHCARDS.map(c => c.area))];
 }
-mostra();
+
+function secoes(area) {
+  return [...new Set(
+    FLASHCARDS
+      .filter(c => c.area === area)
+      .map(c => c.secao)
+  )];
+}
+
+function filtrarCartoes() {
+  return FLASHCARDS.filter(c =>
+    (!areaSelecionada || c.area === areaSelecionada) &&
+    (!secaoSelecionada || c.secao === secaoSelecionada)
+  );
+}
+
+function iniciarRevisao() {
+  fila = filtrarCartoes();
+  indice = 0;
+  virou = false;
+  revisaoConcluida = 0;
+  mostrarCartao();
+}
+
+function atualizarSelecao() {
+  const area = document.getElementById('area').value;
+
+  areaSelecionada = area;
+  secaoSelecionada = '';
+
+  mostrarTelaInicial();
+}
+
+function selecionarSecao() {
+  secaoSelecionada = document.getElementById('secao').value;
+  mostrarTelaInicial();
+}
+
+function mostrarTelaInicial() {
+  const listaAreas = areas();
+  const listaSecoes = areaSelecionada ? secoes(areaSelecionada) : [];
+  const total = filtrarCartoes().length;
+
+  m.innerHTML = `
+    <div class="section-head">
+      <div>
+        <h1>Flashcards</h1>
+        <p>Revise os principais conceitos da matemática.</p>
+      </div>
+      <span class="tag">${FLASHCARDS.length} cartões cadastrados</span>
+    </div>
+
+    <div class="cartao">
+      <label for="area">1. Escolha uma área</label>
+
+      <select id="area" onchange="atualizarSelecao()">
+        <option value="">Todas as áreas</option>
+        ${listaAreas.map(a => `
+          <option value="${a}" ${a === areaSelecionada ? 'selected' : ''}>
+            ${a}
+          </option>
+        `).join('')}
+      </select>
+
+      <label for="secao">2. Escolha uma seção</label>
+
+      <select id="secao" onchange="selecionarSecao()"
+        ${areaSelecionada ? '' : 'disabled'}>
+        <option value="">Todas as seções</option>
+        ${listaSecoes.map(s => `
+          <option value="${s}" ${s === secaoSelecionada ? 'selected' : ''}>
+            ${s}
+          </option>
+        `).join('')}
+      </select>
+
+      <div class="flash-info">
+        <strong>${total}</strong>
+        <span>cartões disponíveis nesta seleção</span>
+      </div>
+
+      <button class="btn" onclick="iniciarRevisao()" ${total ? '' : 'disabled'}>
+        Começar revisão
+      </button>
+    </div>
+
+    <h2>Áreas de estudo</h2>
+
+    <div class="grade">
+      ${listaAreas.map(a => {
+        const quantidade = FLASHCARDS.filter(c => c.area === a).length;
+
+        return `
+          <button class="flash-area"
+            onclick="areaSelecionada=${JSON.stringify(a)};secaoSelecionada='';mostrarTelaInicial()">
+
+            <strong>${a}</strong>
+            <span>${quantidade} ${quantidade === 1 ? 'cartão' : 'cartões'}</span>
+          </button>
+        `;
+      }).join('')}
+    </div>
+  `;
+}
+
+function mostrarCartao() {
+  if (!fila.length || indice >= fila.length) {
+    finalizarRevisao();
+    return;
+  }
+
+  const cartao = fila[indice];
+  const percentual = Math.round((revisaoConcluida / fila.length) * 100);
+
+  m.innerHTML = `
+    <div class="section-head">
+      <div>
+        <h1>Revisão de flashcards</h1>
+        <p>${cartao.area} → ${cartao.secao}</p>
+      </div>
+
+      <button class="btn sec" onclick="mostrarTelaInicial()">
+        Sair da revisão
+      </button>
+    </div>
+
+    <div class="flash-progresso">
+      <div class="linha">
+        <span>Cartão ${indice + 1} de ${fila.length}</span>
+        <strong>${percentual}%</strong>
+      </div>
+      <div class="barra">
+        <i style="width:${percentual}%"></i>
+      </div>
+    </div>
+
+    <div class="cartao flash-estudo">
+      <span class="tag">${cartao.secao}</span>
+
+      <button class="carta" onclick="virarCartao()">
+        ${virou ? cartao.verso : cartao.frente}
+      </button>
+
+      <p class="suave">
+        ${virou ? 'Resposta' : 'Toque no cartão para revelar a resposta.'}
+      </p>
+
+      ${virou ? `
+        <div class="flash-acoes">
+          <button class="btn" onclick="marcarLembrei()">
+            ✓ Lembrei
+          </button>
+
+          <button class="btn sec" onclick="revisarNovamente()">
+            ↻ Revisar de novo
+          </button>
+        </div>
+      ` : ''}
+    </div>
+  `;
+}
+
+function virarCartao() {
+  virou = !virou;
+  mostrarCartao();
+}
+
+function marcarLembrei() {
+  const cartao = fila[indice];
+
+  if (!S.flashcardsConhecidos.includes(cartao.id)) {
+    S.flashcardsConhecidos.push(cartao.id);
+  }
+
+  salvar();
+
+  revisaoConcluida++;
+  avancar();
+}
+
+function revisarNovamente() {
+  const cartao = fila[indice];
+
+  S.flashcardsConhecidos = S.flashcardsConhecidos.filter(
+    id => id !== cartao.id
+  );
+
+  salvar();
+
+  fila.push(cartao);
+  avancar();
+}
+
+function avancar() {
+  indice++;
+  virou = false;
+  mostrarCartao();
+}
+
+function finalizarRevisao() {
+  const total = fila.length;
+
+  m.innerHTML = `
+    <div class="cartao destaque flash-final">
+      <span class="tag">Revisão concluída</span>
+
+      <h1>Parabéns!</h1>
+
+      <p>Você terminou esta rodada de flashcards.</p>
+
+      <div class="grade">
+        <div class="stat-card">
+          <span class="num">${total}</span>
+          <span class="suave">Cartões na rodada</span>
+        </div>
+
+        <div class="stat-card">
+          <span class="num">${revisaoConcluida}</span>
+          <span class="suave">Cartões lembrados</span>
+        </div>
+      </div>
+
+      <button class="btn" onclick="iniciarRevisao()">
+        Revisar novamente
+      </button>
+
+      <button class="btn sec" onclick="mostrarTelaInicial()">
+        Voltar às áreas
+      </button>
+    </div>
+  `;
+}
+
+mostrarTelaInicial();
 </script>
+
 </body>
 </html>
