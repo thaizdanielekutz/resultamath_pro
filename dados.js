@@ -152,7 +152,7 @@ RESOLUCAO({
 });
 
 RESOLUCAO({
-    banca: 'IBFC 20225',
+    banca: 'IBFC 2025',
     concurso: 'Concurso PM-PR',
     ano: 2025,
     cargo: '',
