@@ -50,24 +50,38 @@ function modulos(){
  return Object.keys(g).map(n=>({nome:n,aulas:g[n]}))
 }
 
-function videoUrl(url){
- try{
-  const u=new URL(String(url||'').trim());
-  let id='';
-  if(u.hostname==='youtu.be'||u.hostname.endsWith('.youtu.be')){
-   id=u.pathname.split('/').filter(Boolean)[0]||'';
-  }else if(u.hostname.includes('youtube.com')||u.hostname.includes('youtube-nocookie.com')){
-   id=u.searchParams.get('v')||'';
-   if(!id){
-    const parts=u.pathname.split('/').filter(Boolean);
-    if(['embed','shorts','live'].includes(parts[0]))id=parts[1]||'';
-    else if(parts[0]==='watch')id=u.searchParams.get('v')||'';
-   }
-  }
-  if(id&&/^[\w-]{6,}$/.test(id))return 'https://www.youtube-nocookie.com/embed/'+id;
-  if(u.hostname==='player.vimeo.com'&&u.pathname.startsWith('/video/'))return u.href;
- }catch(e){}
- return ''
+function videoUrl(url) {
+  const raw = String(url || '').trim();
+  if (!raw) return '';
+
+  const matchIframe = raw.match(/<iframe[^>]*\ssrc=["']([^"']+)["']/i);
+  const candidato = matchIframe ? matchIframe[1] : raw;
+
+  try {
+    const u = new URL(candidato);
+    let id = '';
+
+    if (u.hostname === 'youtu.be' || u.hostname.endsWith('.youtu.be')) {
+      id = u.pathname.split('/').filter(Boolean)[0] || '';
+    } else if (u.hostname.includes('youtube.com') || u.hostname.includes('youtube-nocookie.com')) {
+      id = u.searchParams.get('v') || '';
+      if (!id) {
+        const parts = u.pathname.split('/').filter(Boolean);
+        if (['embed', 'shorts', 'live'].includes(parts[0])) id = parts[1] || '';
+        else if (parts[0] === 'watch') id = u.searchParams.get('v') || '';
+      }
+    }
+
+    if (id && /^[\w-]{6,}$/.test(id)) {
+      return 'https://www.youtube.com/embed/' + id;
+    }
+
+    if (u.hostname === 'player.vimeo.com' && u.pathname.startsWith('/video/')) {
+      return u.href;
+    }
+  } catch (e) {}
+
+  return '';
 }
 
 function player(url,title){
