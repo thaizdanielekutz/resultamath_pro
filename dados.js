@@ -970,6 +970,107 @@ FLASH(
   'Para achar o preço final, some tudo que aumenta o valor e subtraia tudo que reduz, numa única conta completa. Ex.: R$ 250 com desconto de R$ 20 e taxa de entrega de R$ 15: 250 - 20 + 15 = R$ 245. Cuidado: parar apenas no desconto e esquecer taxas extras dá um preço final incorreto. Macete: desconto empurra o preço para baixo, taxa empurra para cima — feche a conta antes de decidir.'
 );
 
+/* ===== FLASHCARDS COMPLEMENTARES ===== */
+
+FLASH(
+  'Fundamentos da matemática',
+  'Conjuntos numéricos',
+  'Diferença entre número racional e irracional',
+  'Racional pode ser escrito como fração (incluindo decimais exatos e dízimas periódicas); irracional não vira fração e tem casas decimais infinitas sem repetição periódica (ex.: √2, π).'
+);
+
+FLASH(
+  'Operações fundamentais',
+  'Potenciação e radiciação',
+  'Multiplicação e divisão de potências de mesma base',
+  'Mesma base na multiplicação: soma os expoentes (aᵐ · aⁿ = aᵐ⁺ⁿ). Mesma base na divisão: subtrai os expoentes (aᵐ ÷ aⁿ = aᵐ⁻ⁿ, com a ≠ 0).'
+);
+
+FLASH(
+  'Operações fundamentais',
+  'Potenciação e radiciação',
+  'Potência de potência e expoente zero',
+  'Potência de potência: multiplica os expoentes ((aᵐ)ⁿ = aᵐ·ⁿ). Qualquer base não nula elevada a 0 vale 1 (a⁰ = 1, para a ≠ 0).'
+);
+
+FLASH(
+  'Divisibilidade',
+  'MMC e MDC',
+  'Quando usar MMC e quando usar MDC?',
+  'MMC costuma aparecer em encontros, ciclos e tempos coincidentes; MDC aparece em divisões em partes iguais do maior tamanho possível, sem sobras.'
+);
+
+FLASH(
+  'Frações',
+  'CONVERSÃO',
+  'Como comparar frações com denominadores e numeradores diferentes?',
+  'Transforme para denominadores iguais (usando o MMC) ou converta para forma decimal dividindo numerador pelo denominador.'
+);
+
+FLASH(
+  'Porcentagem',
+  'INTERPRETAÇÃO DE PROVA',
+  'Pontos percentuais x variação percentual',
+  'Se algo passa de 10% para 15%, subiu 5 pontos percentuais, mas a variação percentual em relação ao valor inicial foi de (15 - 10) ÷ 10 = 50%.'
+);
+
+FLASH(
+  'Razão e Proporção',
+  'INTERPRETAÇÃO DE PROVA',
+  'Unidades compatíveis em velocidade e densidade',
+  'Antes de dividir, confira se as unidades batem com o que a questão pede (ex.: km e h para km/h; converter minutos para horas quando necessário).'
+);
+
+FLASH(
+  'Regra de Três',
+  'ERRO COMUM',
+  'Quando a regra de três simples não resolve direto?',
+  'Quando a relação não é proporcional (ex.: idade de duas pessoas ao longo dos anos) ou quando há três ou mais grandezas variando juntas (caso de regra de três composta).'
+);
+
+FLASH(
+  'Equações Simples',
+  'INTERPRETAÇÃO DE PROVA',
+  'Armadilha do sinal de menos antes de parênteses',
+  'O sinal de menos fora dos parênteses troca o sinal de todos os termos internos: -(x - 4) = -x + 4.'
+);
+
+FLASH(
+  'Unidades de Medida',
+  'CONVERSÃO',
+  'Por que 1 m² = 10.000 cm² e 1 m³ = 1.000.000 cm³?',
+  'Porque a conversão linear (1 m = 100 cm) é elevada ao quadrado na área (100² = 10.000) e ao cubo no volume (100³ = 1.000.000).'
+);
+
+FLASH(
+  'Área e Perímetro',
+  'FÓRMULA',
+  'Base e altura sempre formam 90°',
+  'Em triângulos, paralelogramos e trapézios, a altura é sempre o segmento perpendicular à base — nunca um lado inclinado.'
+);
+
+FLASH(
+  'Gráficos e Tabelas',
+  'INTERPRETAÇÃO DE PROVA',
+  'Eixo que não começa no zero',
+  'Quando o eixo começa acima de zero, as diferenças visuais entre barras ou pontos parecem maiores do que realmente são — confira sempre os valores exatos.'
+);
+
+FLASH(
+  'Média, Moda e Mediana',
+  'INTERPRETAÇÃO DE PROVA',
+  'Como escolher entre média e mediana?',
+  'A média considera todos os valores e sofre influência de extremos; a mediana representa a posição central após ordenar os dados e resiste melhor a valores fora do padrão.'
+);
+
+FLASH(
+  'Matemática Financeira',
+  'FÓRMULA',
+  'Juros simples x montante na mesma conta',
+  'Calcule primeiro os juros (J = C · i · t) e, se a questão pedir o total final, some ao capital (M = C + J).'
+);
+
+
 
 /* ===== DADOS DA PÁGINA INICIAL (index.html) — troque pelos seus ===== */
 const SITE={
