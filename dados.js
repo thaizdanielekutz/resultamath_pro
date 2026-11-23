@@ -72,26 +72,6 @@ QUESTAO('5. Razão, proporção e porcentagem','3 cadernos custam R$ 24. Quanto 
 
 /* ===== RESOLUÇÕES ===== */
 
-
-/* ===== RESOLUÇÕES ===== */
-
-const RESOLUCOES = [];
-
-function RESOLUCAO({
-    banca,
-    concurso,
-    ano,
-    cargo,
-    assunto,
-    enunciado,
-    alternativas,
-    gabarito,
-    video
-}) 
-
-
-/* ===== RESOLUÇÕES ===== */
-
 const RESOLUCOES = [];
 
 function RESOLUCAO({
