@@ -1212,6 +1212,210 @@ FLASH(
   'Quando há ganho nominal e inflação, o ganho real não é a simples subtração das taxas: fator real = (1 + i_nominal) ÷ (1 + i_inflação) - 1.'
 );
 
+/* 17. PROBABILIDADE E ANÁLISE COMBINATÓRIA */
+
+FLASH(
+  'Probabilidade e Análise Combinatória',
+  'FÓRMULA',
+  'Probabilidade Básica',
+  'Probabilidade é a razão entre o número de casos favoráveis e o número de casos possíveis: P = favoráveis ÷ possíveis. Ex.: tirar número par em um dado comum: P = 3/6 = 1/2 = 50%. Cuidado: o resultado da probabilidade está sempre entre 0 (impossível) e 1 (certo). Macete: o que você quer em cima, o total que pode acontecer embaixo.'
+);
+
+FLASH(
+  'Probabilidade e Análise Combinatória',
+  'REGRA PRÁTICA',
+  'Evento Complementar (Pelo Menos Um)',
+  'A probabilidade de algo NÃO acontecer é 1 menos a probabilidade de acontecer: P(não A) = 1 - P(A). Ex.: se a chance de chover é 30%, a chance de não chover é 100% - 30% = 70%. Cuidado: questões com "pelo menos um" ficam muito mais fáceis calculando "1 - nenhum". Macete: tudo junto soma 100% — tire o que não serve.'
+);
+
+FLASH(
+  'Probabilidade e Análise Combinatória',
+  'REGRA PRÁTICA',
+  'Regra do "E" x Regra do "OU"',
+  'Na probabilidade, "E" (eventos independentes simultâneos ou em sequência) multiplica as chances; "OU" (eventos mutuamente exclusivos) soma as chances. Ex.: cara E cara em duas moedas: 1/2 x 1/2 = 1/4. Cuidado: se dois eventos podem acontecer juntos no "OU", subtraia a interseção para não contar duas vezes. Macete: "E" multiplica (exige mais condições, diminui a chance); "OU" soma (abre opções, aumenta a chance).'
+);
+
+FLASH(
+  'Probabilidade e Análise Combinatória',
+  'REGRA PRÁTICA',
+  'Princípio Fundamental da Contagem (PFC)',
+  'Se uma decisão tem m opções e a seguinte tem n opções, o total de combinações é m x n. Ex.: 4 camisas e 3 calças geram 4 x 3 = 12 conjuntos diferentes. Cuidado: não some as opções das etapas — multiplique etapa por etapa. Macete: abra "tracinhos" para cada escolha e multiplique as possibilidades de cada um.'
+);
+
+FLASH(
+  'Probabilidade e Análise Combinatória',
+  'COMPARAÇÃO',
+  'Arranjo x Combinação (A Ordem Importa?)',
+  'Quando a ordem dos elementos muda o resultado (pódio, senha, fila), é Arranjo; quando a ordem não muda o grupo (comissão, dupla, salada de frutas), é Combinação. Ex.: escolher presidente e vice é Arranjo; escolher 2 representantes iguais é Combinação. Cuidado: esquecer de dividir pela permutação do grupo na Combinação multiplica demais a resposta. Macete: trocou dois escolhidos de lugar e mudou tudo? Arranjo. Continuou o mesmo grupo? Combinação.'
+);
+
+FLASH(
+  'Probabilidade e Análise Combinatória',
+  'FÓRMULA',
+  'Permutação Simples (Anagramas)',
+  'Permutar n elementos distintos é organizá-los em todas as ordens possíveis: Pn = n! (n fatorial). Ex.: anagramas da palavra SOL (3 letras distintas): 3! = 3 x 2 x 1 = 6. Cuidado: se houver letras repetidas, divida pelo fatorial de cada repetição (ex.: BANANA → 6! ÷ (3! · 2!)). Macete: permutação é só embaralhar todo mundo — conte o total e faça o fatorial.'
+);
+
+FLASH(
+  'Probabilidade e Análise Combinatória',
+  'ERRO COMUM',
+  'Probabilidade com Reposição x Sem Reposição',
+  'Com reposição, o total de itens no denominador permanece igual na segunda retirada; sem reposição, o total diminui em 1. Ex.: tirar 2 ases seguidos de 52 cartas sem devolver: (4/52) x (3/51). Cuidado: manter o mesmo denominador quando o enunciado diz "sem reposição" é um erro clássico. Macete: tirou e não devolveu? Diminua 1 do total de baixo (e de cima, se for do mesmo tipo).'
+);
+
+/* 18. FUNÇÕES */
+
+FLASH(
+  'Funções',
+  'REGRA PRÁTICA',
+  'O que é uma Função f(x)?',
+  'Função é uma regra que associa cada valor de entrada x (domínio) a um único valor de saída y = f(x) (imagem). Ex.: em f(x) = 2x + 3, para x = 4 temos f(4) = 2(4) + 3 = 11. Cuidado: um mesmo x nunca pode gerar dois valores diferentes de y. Macete: pense na função como uma máquina: entra x, aplica a regra e sai f(x).'
+);
+
+FLASH(
+  'Funções',
+  'FÓRMULA',
+  'Função do 1º Grau (Afim): f(x) = ax + b',
+  'Representa uma reta: "a" é a taxa de variação (inclinação) e "b" é o valor inicial (onde a reta corta o eixo y). Ex.: táxi com bandeirada de R$ 5 e R$ 2 por km: f(x) = 2x + 5. Cuidado: se a > 0, a reta sobe (crescente); se a < 0, a reta desce (decrescente). Macete: "b" é o ponto de partida fixo; "a" é quanto muda a cada 1 unidade de x.'
+);
+
+FLASH(
+  'Funções',
+  'FÓRMULA',
+  'Zero (Raiz) da Função do 1º Grau',
+  'A raiz da função é o valor de x que zera o y (onde o gráfico corta o eixo x): basta resolver ax + b = 0 → x = -b/a. Ex.: em f(x) = 3x - 12, fazendo 3x - 12 = 0 temos x = 4. Cuidado: não confunda raiz (corta eixo x, y = 0) com termo independente b (corta eixo y, x = 0). Macete: para achar onde corta o eixo x, iguale a função inteira a zero.'
+);
+
+FLASH(
+  'Funções',
+  'FÓRMULA',
+  'Função do 2º Grau (Quadrática): f(x) = ax² + bx + c',
+  'Seu gráfico é uma parábola: se a > 0, concavidade para cima (tem ponto mínimo); se a < 0, concavidade para baixo (tem ponto máximo). Ex.: f(x) = -x² + 4x tem a = -1 < 0, logo a boca da parábola aponta para baixo. Cuidado: o termo "c" indica exatamente onde a parábola corta o eixo vertical y. Macete: a > 0 faz carinha feliz (∪); a < 0 faz carinha triste (∩).'
+);
+
+FLASH(
+  'Funções',
+  'FÓRMULA',
+  'Bhaskara e Discriminante (Delta)',
+  'Para achar as raízes de ax² + bx + c = 0: Δ = b² - 4ac e x = (-b ± √Δ) ÷ (2a). Ex.: em x² - 5x + 6 = 0, Δ = 25 - 24 = 1, gerando x = 3 e x = 2. Cuidado: se Δ > 0 há 2 raízes reais; se Δ = 0 há 1 raiz real; se Δ < 0 não há raízes reais. Macete: calcule o Δ separado primeiro — ele avisa quantas vezes a parábola toca o eixo x.'
+);
+
+FLASH(
+  'Funções',
+  'FÓRMULA',
+  'Vértice da Parábola (Máximo e Mínimo)',
+  'O vértice V(xv, yv) marca o ponto de máximo ou mínimo da função quadrática: xv = -b ÷ (2a) e yv = -Δ ÷ (4a) (ou substitua xv na função). Ex.: em f(x) = x² - 6x + 5, xv = 6 ÷ 2 = 3 e yv = 3² - 18 + 5 = -4. Cuidado: leia bem se a questão pede o x que gera o máximo (xv) ou o valor máximo em si (yv). Macete: xv é o "quando" acontece o pico; yv é "quanto" vale o pico.'
+);
+
+FLASH(
+  'Funções',
+  'INTERPRETAÇÃO DE PROVA',
+  'Leitura de Gráfico de Função',
+  'Para achar f(k) no gráfico, localize k no eixo horizontal x, suba ou desça até a curva e leia o valor correspondente no eixo vertical y. Ex.: se o ponto (2, 7) está na curva, então f(2) = 7. Cuidado: inverter os eixos x e y na leitura troca a entrada pela saída. Macete: x fica deitado (entrada); y fica em pé (resultado).'
+);
+
+/* 19. SEQUÊNCIAS E PROGRESSÕES */
+
+FLASH(
+  'Sequências e Progressões',
+  'REGRA PRÁTICA',
+  'Progressão Aritmética (PA): O que é?',
+  'PA é uma sequência em que cada termo é obtido somando uma constante r (razão) ao termo anterior: r = a₂ - a₁. Ex.: 4, 7, 10, 13... é uma PA de razão r = +3. Cuidado: se r > 0 a PA é crescente; se r < 0 é decrescente; se r = 0 é constante. Macete: PA anda sempre em passos iguais de soma ou subtração.'
+);
+
+FLASH(
+  'Sequências e Progressões',
+  'FÓRMULA',
+  'Termo Geral da PA',
+  'Para achar qualquer termo an da PA sem escrever todos: an = a₁ + (n - 1) · r. Ex.: o 10º termo da PA (2, 6, 10...) é a₁₀ = 2 + 9 · 4 = 38. Cuidado: para ir do 1º ao 10º termo dá-se 9 passos (n - 1), e não 10. Macete: o número de razões somadas é sempre a diferença entre as posições dos termos.'
+);
+
+FLASH(
+  'Sequências e Progressões',
+  'FÓRMULA',
+  'Soma dos Termos de uma PA Finita',
+  'Some o primeiro termo com o último, multiplique pela quantidade de termos e divida por 2: Sn = (a₁ + an) · n ÷ 2. Ex.: soma de 1 a 10: (1 + 10) · 10 ÷ 2 = 55. Cuidado: é preciso saber ou calcular o último termo an antes de aplicar a fórmula. Macete: junte as pontas (primeiro + último), multiplique pelos termos e corte ao meio.'
+);
+
+FLASH(
+  'Sequências e Progressões',
+  'REGRA PRÁTICA',
+  'Progressão Geométrica (PG): O que é?',
+  'PG é uma sequência em que cada termo é obtido multiplicando o anterior por uma constante q (razão): q = a₂ ÷ a₁. Ex.: 3, 6, 12, 24... é uma PG de razão q = 2. Cuidado: se 0 < q < 1 (com termos positivos), a PG diminui (decrescente). Macete: PA soma a razão; PG multiplica pela razão.'
+);
+
+FLASH(
+  'Sequências e Progressões',
+  'FÓRMULA',
+  'Termo Geral da PG',
+  'Para achar qualquer termo an da PG: an = a₁ · q^(n - 1). Ex.: o 5º termo da PG (2, 6, 18...) é a₅ = 2 · 3⁴ = 2 · 81 = 162. Cuidado: resolva primeiro a potência q^(n - 1) antes de multiplicar por a₁. Macete: cada passo multiplica por q — do 1º ao nº termo são (n - 1) multiplicações.'
+);
+
+FLASH(
+  'Sequências e Progressões',
+  'FÓRMULA',
+  'Soma da PG Finita e PG Infinita',
+  'PG finita: Sn = a₁ · (qⁿ - 1) ÷ (q - 1). PG infinita convergente (|q| < 1): S∞ = a₁ ÷ (1 - q). Ex.: 1 + 1/2 + 1/4 + ... = 1 ÷ (1 - 1/2) = 2. Cuidado: a fórmula da PG infinita só vale quando a razão está entre -1 e 1. Macete: na PG infinita que vai diminuindo, divida o primeiro termo por (1 - razão).'
+);
+
+FLASH(
+  'Sequências e Progressões',
+  'ATALHO DE CÁLCULO',
+  'Propriedade do Termo Médio (PA e PG)',
+  'Em três termos consecutivos (a, b, c): na PA, o do meio é a média aritmética dos vizinhos (b = (a + c) ÷ 2); na PG, é a média geométrica (b² = a · c). Ex.: na PA (5, x, 17), x = (5 + 17) ÷ 2 = 11. Cuidado: não use média aritmética simples para achar o termo do meio de uma PG. Macete: termo central é sempre o equilíbrio exato entre o vizinho da esquerda e o da direita.'
+);
+
+/* 20. GEOMETRIA E TRIGONOMETRIA BÁSICA */
+
+FLASH(
+  'Geometria e Trigonometria Básica',
+  'FÓRMULA',
+  'Teorema de Pitágoras',
+  'Em todo triângulo retângulo, o quadrado da hipotenusa (lado oposto ao ângulo de 90°) é igual à soma dos quadrados dos catetos: a² = b² + c². Ex.: catetos 3 e 4 → a² = 9 + 16 = 25 → a = 5. Cuidado: Pitágoras só funciona em triângulos com ângulo reto (90°). Macete: decore o trio clássico 3, 4 e 5 (e seus múltiplos 6, 8, 10) para ganhar tempo.'
+);
+
+FLASH(
+  'Geometria e Trigonometria Básica',
+  'REGRA PRÁTICA',
+  'Soma dos Ângulos Internos do Triângulo e Quadrilátero',
+  'A soma dos ângulos internos de qualquer triângulo é sempre 180°; em qualquer quadrilátero convexo, é sempre 360°. Ex.: triângulo com ângulos de 50° e 70° tem o terceiro ângulo igual a 180° - 120° = 60°. Cuidado: não importa o formato ou tamanho do triângulo, dentro dele sempre fecha 180°. Macete: triângulo = meia volta (180°); quadrilátero = volta inteira (360°).'
+);
+
+FLASH(
+  'Geometria e Trigonometria Básica',
+  'REGRA PRÁTICA',
+  'Semelhança de Triângulos',
+  'Triângulos com os mesmos ângulos têm lados correspondentes proporcionais: a razão entre lados homólogos é constante (k). Ex.: se um triângulo tem lados dobrados em relação a outro, todos os seus lados seguem o fator 2. Cuidado: enquanto os lados multiplicam por k, as áreas multiplicam por k². Macete: mesma forma, tamanho diferente — monte a regra de três entre lados correspondentes.'
+);
+
+FLASH(
+  'Geometria e Trigonometria Básica',
+  'FÓRMULA',
+  'Seno, Cosseno e Tangente no Triângulo Retângulo',
+  'Para um ângulo agudo α: sen(α) = cateto oposto ÷ hipotenusa; cos(α) = cateto adjacente ÷ hipotenusa; tg(α) = cateto oposto ÷ cateto adjacente. Ex.: se oposto = 3, adjacente = 4 e hipotenusa = 5, então sen(α) = 3/5 e tg(α) = 3/4. Cuidado: a hipotenusa é sempre o maior lado e fica oposta ao ângulo de 90°. Macete: SOH-CAH-TOA: Seno = Oposto/Hipotenusa, Cosseno = Adjacente/Hipotenusa, Tangente = Oposto/Adjacente.'
+);
+
+FLASH(
+  'Geometria e Trigonometria Básica',
+  'REGRA PRÁTICA',
+  'Ângulos Notáveis (30°, 45° e 60°)',
+  'Seno: 30° = 1/2, 45° = √2/2, 60° = √3/2. Cosseno: 30° = √3/2, 45° = √2/2, 60° = 1/2. Tangente: 30° = √3/3, 45° = 1, 60° = √3. Ex.: sen(30°) = cos(60°) = 0,5. Cuidado: não troque seno de 30° (1/2) com cosseno de 30° (√3/2). Macete: cante "1, 2, 3 / 3, 2, 1, tudo sobre 2, raiz no 2 e no 3".'
+);
+
+FLASH(
+  'Geometria e Trigonometria Básica',
+  'COMPARAÇÃO',
+  'Ângulos Complementares e Suplementares',
+  'Ângulos complementares somam 90° (um completa o ângulo reto); ângulos suplementares somam 180° (formam uma linha reta). Ex.: o complemento de 35° é 55°; o suplemento de 35° é 145°. Cuidado: não confunda 90° com 180° na hora de montar a equação. Macete: C de Complementar vem antes no alfabeto → 90°; S de Suplementar vem depois → 180°.'
+);
+
+FLASH(
+  'Geometria e Trigonometria Básica',
+  'FÓRMULA',
+  'Diagonal do Quadrado e Altura do Triângulo Equilátero',
+  'Diagonal do quadrado de lado L: d = L√2. Altura do triângulo equilátero de lado L: h = (L√3) ÷ 2. Ex.: quadrado de lado 5 cm tem diagonal d = 5√2 cm. Cuidado: decorar esses dois atalhos evita ter que aplicar Pitágoras toda vez na prova. Macete: quadrado usa √2 (2 dimensões iguais); triângulo equilátero usa √3 (3 lados iguais).'
+);
+
 
 
 /* ===== DADOS DA PÁGINA INICIAL (index.html) — troque pelos seus ===== */
