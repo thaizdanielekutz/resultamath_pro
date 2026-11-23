@@ -618,6 +618,79 @@ RESOLUCAO({
     video: 'H6RuGuzPQ8g'
 });
 
+/* IDECAN 2025 */
+
+RESOLUCAO({
+    banca: 'IDECAN 2025',
+    concurso: 'Concurso Prefeitura de Patos',
+    ano: 2025,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 01 - IDECAN 2025',
+    alternativas: [],
+    gabarito: '',
+    video: 'Oc0CAzvyX1M'
+});
+
+RESOLUCAO({
+    banca: 'IDECAN 2025',
+    concurso: 'Concurso Prefeitura de Patos',
+    ano: 2025,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 02 - IDECAN 2025',
+    alternativas: [],
+    gabarito: '',
+    video: 'bvNNeQjmtIM'
+});
+
+RESOLUCAO({
+    banca: 'IDECAN 2025',
+    concurso: 'Concurso Prefeitura de Patos',
+    ano: 2025,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 03 - IDECAN 2025',
+    alternativas: [],
+    gabarito: '',
+    video: 'f2seLIVUhDM'
+});
+
+/* UFAM 2022 */
+
+RESOLUCAO({
+    banca: 'UFAM 2022',
+    concurso: 'Concurso Assistente em Administração',
+    ano: 2022,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 01 - UFAM 2022',
+    alternativas: [],
+    gabarito: '',
+    video: 'Gqtk4vXW274'
+});
+
+/* FGV 2026 */
+
+RESOLUCAO({
+    banca: 'FGV 2026',
+    concurso: 'Concurso IBGE [Agente de Pesquisas e Mapeamento (APM)]',
+    ano: 2026,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 01 - FGV 2026',
+    alternativas: [],
+    gabarito: '',
+    video: 'm45YxpD10jI'
+});
+
+
+
+
+
+
+
+
 
 
 /* ===== FLASHCARDS ORGANIZADOS POR ÁREA E SEÇÃO ===== */
