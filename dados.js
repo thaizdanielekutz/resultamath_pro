@@ -52,3 +52,8 @@ const SITE={
   youtube:'',                 /* ex.: https://youtube.com/@seucanal */
   email:''                    /* ex.: contato@seusite.com */
 };
+
+/* TRILHA MATEMÁTICA MINUTADA — cadastre os links em Configurações. */
+const MINUTADA = [
+  'Raiz quadrada','Potência','Porcentagem','PA','PG','Probabilidade','Mediana','Média','Moda','Regra de três','Logaritmo','Módulo de um número','Número oposto','Números pares e ímpares','Números primos','MMC','MDC','Frações','Frações equivalentes','Fração imprópria','Fatorial','Fração irredutível','Número decimal','Valor absoluto','Inverso de um número','Ângulos complementares','Ângulos suplementares','Perímetro','Área','Volume','Juros simples','Juros compostos'
+].map((titulo, indice) => ({ id: slug(titulo), titulo, indice: indice + 1 }));

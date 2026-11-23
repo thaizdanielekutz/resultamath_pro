@@ -1,89 +1,31 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Resultamath – Matemática passo a passo</title>
-<meta name="description" content="Aulas em vídeo, exercícios com resolução comentada e revisão para estudar matemática no seu ritmo.">
-<link rel="stylesheet" href="estilo.css">
-<link rel="stylesheet" href="landing.css">
-</head>
-<body>
-<header class="nav"><div class="cont">
-  <a class="logo" href="index.html">Resultamath</a>
-  <nav class="links" aria-label="Seções"><a href="#aulas">Aulas</a><a href="#como">Como funciona</a><a href="#sobre">Sobre</a><a href="#contato">Contato</a></nav>
-  <a class="btn" href="inicio.html">Estudar agora</a>
-</div></header>
-
-<main class="cont" style="padding:0 20px;max-width:1040px">
-  <section class="hero">
-    <div>
-      <h1>Matemática que faz sentido, passo a passo.</h1>
-      <p>Aulas em vídeo, exercícios com resolução comentada e revisão dos seus erros. Tudo em um só lugar, no seu ritmo, sem cadastro.</p>
-      <div class="acoes">
-        <a class="btn" href="inicio.html">Começar a estudar</a>
-        <a class="btn sec" href="#aulas">Ver as aulas</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="secao">
-    <h2>O que você encontra</h2>
-    <p class="sub">Cada aula tem vídeo, resumo e exercícios para praticar logo depois.</p>
-    <div class="grade" style="margin-top:20px">
-      <div class="cartao"><h3>Aulas em vídeo</h3><p>Conteúdo explicado do básico ao avançado, em ordem.</p></div>
-      <div class="cartao"><h3>Exercícios</h3><p>Correção automática e resolução comentada.</p></div>
-      <div class="cartao"><h3>Caderno de erros</h3><p>As questões que você errou voltam para revisar.</p></div>
-      <div class="cartao"><h3>Flashcards</h3><p>Fórmulas e conceitos para fixar de vez.</p></div>
-      <div class="cartao"><h3>Simulados</h3><p>Teste o que aprendeu e veja sua nota.</p></div>
-      <div class="cartao"><h3>Resoluções Passo a passo</h3><p>Para entender de fato como resolver uma questão.</p></div>
-    </div>
-  </section>
-
-  <section class="secao" id="aulas">
-    <h2>Trilha de Aritmética</h2>
-    <p class="sub">Comece pelo primeiro módulo ou vá direto ao assunto que precisa.</p>
-    <div id="trilha" style="margin-top:16px"></div>
-    <p><a class="btn" href="biblioteca.html">Abrir biblioteca de aulas</a></p>
-  </section>
-
-  <section class="secao" id="como">
-    <h2>Como funciona</h2>
-    <ol class="passos">
-      <li><div><b>Escolha uma aula</b><br>Entre na biblioteca e abra o assunto que quer estudar.</div></li>
-      <li><div><b>Assista e leia o resumo</b><br>Marque a aula como concluída para acompanhar seu progresso.</div></li>
-      <li><div><b>Pratique</b><br>Resolva os exercícios e revise o que errou no caderno de erros.</div></li>
-    </ol>
-    <p class="suave">Não precisa de cadastro. Seu progresso fica salvo neste aparelho.</p>
-  </section>
-
-  <section class="secao" id="sobre">
-    <h2>Quem ensina</h2>
-    <h3 id="prof" style="margin:8px 0"></h3>
-    <p class="sub" id="sobre-txt"></p>
-  </section>
-
-  <section class="secao" id="contato">
-    <h2>Fale comigo</h2>
-    <p class="sub">Tem dúvida ou quer sugerir um assunto?</p>
-    <div class="acoes" id="contatos"></div>
-  </section>
-</main>
-
-<footer><div class="cont">© <span id="ano"></span> Resultamath</div></footer>
-
-<script src="dados.js"></script>
-<script src="app.js"></script>
-<script>
-document.getElementById('trilha').innerHTML=modulos().map(m=>`<details><summary>${m.nome} · ${m.aulas.length} aulas</summary><ul>${m.aulas.map(a=>`<li><a href="aula.html?id=${a.id}">${a.titulo}</a></li>`).join('')}</ul></details>`).join('');
-document.getElementById('prof').textContent=SITE.professora;
-document.getElementById('sobre-txt').textContent=SITE.sobre;
-document.getElementById('ano').textContent=new Date().getFullYear();
-const c=[];
-if(SITE.whatsapp)c.push(`<a class="btn" href="https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent('Olá! Vim pelo site da Resultamath.')}">WhatsApp</a>`);
-if(SITE.instagram)c.push(`<a class="btn sec" href="${SITE.instagram}">Instagram</a>`);
-if(SITE.youtube)c.push(`<a class="btn sec" href="${SITE.youtube}">YouTube</a>`);
-if(SITE.email)c.push(`<a class="btn sec" href="mailto:${SITE.email}">E-mail</a>`);
-document.getElementById('contatos').innerHTML=c.join('')||'<p class="suave">Adicione seus contatos em dados.js.</p>';
-</script>
-</body>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Resultamath — Matemática para gabaritar</title>
+<meta name="description" content="Aulas, vídeos rápidos, exercícios e resoluções para dominar a matemática de qualquer prova.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilo.css"><link rel="stylesheet" href="landing.css">
+</head><body>
+<header class="nav"><div class="nav-cont"><a class="logo" href="index.html">Resultamath</a><nav class="links" aria-label="Navegação"><a href="#recursos">Plataforma</a><a href="#minutada">Matemática Minutada</a><a href="#como">Como funciona</a><a href="#sobre">Quem ensina</a></nav><a class="btn" href="inicio.html">Acessar plataforma</a></div></header>
+<main class="landing-main">
+<section class="hero"><div class="hero-copy"><span class="eyebrow">SUA JORNADA NA MATEMÁTICA COMEÇA AQUI</span><h1>Tudo que você precisa pra <em>GABARITAR</em> a matemática de qualquer prova.</h1><p>Aprenda com aulas objetivas, vídeos de um minuto, exercícios e resoluções comentadas. Tudo organizado para você estudar com clareza e evoluir de verdade.</p><div class="acoes"><a class="btn" href="inicio.html">Começar a estudar</a><a class="btn sec" href="#minutada">Explorar vídeos rápidos</a></div><div class="hero-note"><span class="note-dot">●</span> Conteúdo direto ao ponto. No seu ritmo.</div></div>
+<div class="hero-panel"><div class="panel-top"><span>RESULTAMATH</span><span>APRENDIZADO INTELIGENTE</span></div><div class="math-preview"><small>UM PASSO DE CADA VEZ</small><h2>Entenda.<br>Pratique.<br>Gabarite.</h2><div class="math-line">20% de 350 = ?</div><div class="math-result">70</div></div><div class="panel-bottom"><span>MATEMÁTICA COM MÉTODO</span><b>01 — 60 SEGUNDOS</b></div></div></section>
+<section class="section" id="recursos"><div class="section-heading"><span class="eyebrow">SEU AMBIENTE DE ESTUDOS</span><h2>Uma plataforma feita para sua evolução.</h2><p>Do primeiro contato com o conteúdo até a revisão dos seus erros, cada ferramenta tem um propósito.</p></div><div class="feature-grid">
+<article class="feature"><div class="feature-icon">▶</div><h3>Aulas em vídeo</h3><p>Conteúdo organizado por módulos, com explicações e materiais de apoio.</p></article>
+<article class="feature"><div class="feature-icon">✓</div><h3>Exercícios práticos</h3><p>Teste seu entendimento e receba feedback imediato.</p></article>
+<article class="feature"><div class="feature-icon">▣</div><h3>Resoluções em vídeo</h3><p>Assista à resolução comentada das questões com vídeos do YouTube incorporados.</p></article>
+<article class="feature"><div class="feature-icon">↺</div><h3>Caderno de erros</h3><p>Retome as questões que precisam de mais atenção.</p></article>
+<article class="feature"><div class="feature-icon">▤</div><h3>Flashcards</h3><p>Revise fórmulas, propriedades e conceitos essenciais.</p></article>
+<article class="feature"><div class="feature-icon">▥</div><h3>Simulados e desempenho</h3><p>Acompanhe seus resultados e identifique onde avançar.</p></article>
+</div></section>
+<section class="section minutada-section" id="minutada"><div class="section-heading"><span class="eyebrow">VÍDEOS CURTOS · 1 MINUTO</span><h2>Matemática Minutada</h2><p>Um conceito por vez, sem enrolação. Aprenda e revise com os vídeos rápidos do canal.</p></div><div class="minutada-grid" id="minutada-preview"></div><div class="center-action"><a class="btn" href="minutada.html">Ver os 32 episódios</a></div></section>
+<section class="section" id="como"><div class="section-heading"><span class="eyebrow">SIMPLES E ORGANIZADO</span><h2>Estude com direção.</h2></div><div class="steps-grid"><article><b>01</b><h3>Escolha o conteúdo</h3><p>Encontre uma aula na biblioteca ou um tema na Matemática Minutada.</p></article><article><b>02</b><h3>Aprenda e pratique</h3><p>Assista, revise o resumo e resolva questões para fixar.</p></article><article><b>03</b><h3>Acompanhe sua evolução</h3><p>Veja seu desempenho, revise os erros e avance com consistência.</p></article></div></section>
+<section class="section about-section" id="sobre"><div><span class="eyebrow">QUEM ENSINA</span><h2 id="prof">Resultamath</h2><p id="sobre-txt">Matemática explicada com clareza, estratégia e foco no que realmente importa.</p></div><a class="btn sec" href="inicio.html">Conhecer a plataforma</a></section>
+</main><footer class="landing-footer"><div class="footer-inner"><a class="logo" href="index.html">Resultamath</a><span>© <span id="ano"></span> Resultamath. Matemática passo a passo.</span><div id="contatos"></div></div></footer>
+<script src="dados.js"></script><script src="app.js"></script><script>
+document.getElementById('prof').textContent=SITE.professora||'Resultamath';document.getElementById('sobre-txt').textContent=SITE.sobre||'Matemática explicada com clareza, estratégia e foco no que realmente importa.';document.getElementById('ano').textContent=new Date().getFullYear();
+const preview=document.getElementById('minutada-preview');preview.innerHTML=MINUTADA.slice(0,12).map(x=>`<a class="minutada-card" href="minutada.html?id=${encodeURIComponent(x.id)}"><span class="play-mark">▶</span><span><b>${x.titulo}</b><small>EP. ${String(x.indice).padStart(2,'0')} · 1 MIN</small></span><span class="card-arrow">›</span></a>`).join('');
+const c=[];if(SITE.whatsapp)c.push(`<a href="https://wa.me/${SITE.whatsapp}" target="_blank" rel="noopener">WhatsApp</a>`);if(SITE.instagram)c.push(`<a href="${SITE.instagram}" target="_blank" rel="noopener">Instagram</a>`);if(SITE.youtube)c.push(`<a href="${SITE.youtube}" target="_blank" rel="noopener">YouTube</a>`);if(SITE.email)c.push(`<a href="mailto:${SITE.email}">E-mail</a>`);document.getElementById('contatos').innerHTML=c.join('');
+</script></body></html>

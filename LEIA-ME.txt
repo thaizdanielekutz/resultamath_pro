@@ -1,28 +1,30 @@
-# Resultamath — versão profissional
+RESULTAMATH — PACOTE DO SITE
 
-## Como abrir
-1. Extraia todos os arquivos do ZIP para uma mesma pasta.
-2. Abra `index.html` em um navegador ou publique a pasta em uma hospedagem estática.
-3. Clique em **Estudar agora** para entrar no painel.
+COMO ABRIR
+1. Extraia todos os arquivos do ZIP para a mesma pasta.
+2. Abra index.html no navegador para visualizar a página inicial.
+3. Clique em “Acessar plataforma” para entrar no painel de estudos.
 
-## Como cadastrar vídeos
-1. Entre em `configuracoes.html` pelo menu da plataforma.
-2. Em **Gerenciar vídeos**, escolha se o vídeo pertence a uma aula ou a uma questão.
-3. Selecione o conteúdo, cole o link do YouTube/Vimeo e clique em **Salvar vídeo**.
-4. Para vídeos de questões, responda à questão para que a área de resolução em vídeo seja exibida.
+COMO CADASTRAR VÍDEOS DO YOUTUBE
+1. Entre em Configurações, dentro da plataforma.
+2. Em “Gerenciar vídeos do YouTube”, escolha: aula, resolução de questão ou episódio da Matemática Minutada.
+3. Selecione o conteúdo e cole o link normal do YouTube (youtube.com/watch?v=..., youtu.be/... ou Shorts).
+4. Clique em “Salvar vídeo”. O vídeo será incorporado na página correspondente.
 
-Os links são guardados no armazenamento local do navegador junto com o progresso. O arquivo `dados.js` continua sendo a fonte de cadastro das aulas, questões e flashcards.
+ONDE OS LINKS SÃO USADOS
+- Aulas: na página da aula.
+- Resoluções de questões: na página “Resoluções em vídeo” e nas áreas de revisão relacionadas.
+- Matemática Minutada: no episódio selecionado da trilha de 32 assuntos.
 
-## Importante sobre publicação
-Esta versão continua sendo uma aplicação front-end estática. O progresso e os vídeos cadastrados ficam no navegador/dispositivo em que foram salvos. Não há autenticação, banco de dados central ou painel administrativo protegido. Para uma plataforma comercial com contas de alunos, sincronização entre dispositivos, uploads de arquivos e gestão segura de conteúdo, será necessário conectar um backend e armazenamento de vídeos. A área de gerenciamento desta versão não é protegida por senha.
+IMPORTANTE SOBRE ARMAZENAMENTO
+Esta versão salva progresso e links personalizados no armazenamento local do navegador (neste aparelho e navegador). Isso é adequado para testar e administrar localmente. Para que todos os alunos vejam os mesmos links depois de publicar o site, será necessário cadastrar os vídeos diretamente em dados.js ou integrar a plataforma a um banco de dados e uma área administrativa com servidor.
 
-## Arquivos
-- `index.html`: página institucional
-- `inicio.html`: painel do aluno
-- `biblioteca.html` / `aula.html`: biblioteca e visualização das aulas
-- `exercicios.html`: prática e resoluções
-- `simulados.html`: simulados e histórico
-- `configuracoes.html`: perfil, vídeos e backup
-- `dados.js`: cadastro de aulas, questões e flashcards
-- `app.js` e `estilo.css`: funções e identidade visual compartilhadas
-- `landing.css`: estilos da página institucional
+ARQUIVOS PRINCIPAIS
+index.html — página institucional
+inicio.html — painel do aluno
+dados.js — aulas, questões, flashcards e 32 tópicos da Matemática Minutada
+app.js — navegação, progresso e funções compartilhadas
+estilo.css / landing.css — identidade visual e responsividade
+configuracoes.html — cadastro de links do YouTube e backup
+resolucoes.html — biblioteca de resoluções em vídeo
+minutada.html — episódios curtos de matemática
