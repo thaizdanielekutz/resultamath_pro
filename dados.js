@@ -199,7 +199,17 @@ RESOLUCAO({
     video: 'bjP_Elow5Yg'
 });
 
-
+RESOLUCAO({
+    banca: 'FUNDATEC 2022',
+    concurso: 'Concurso Administrativo',
+    ano: 2025,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 01 - FUNDATEC 2022',
+    alternativas: [],
+    gabarito: '',
+    video: 'uxs-aQ8UtgY'
+});
 
 
 /* ===== FLASHCARDS ORGANIZADOS POR ÁREA E SEÇÃO ===== */
