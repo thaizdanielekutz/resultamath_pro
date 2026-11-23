@@ -875,6 +875,102 @@ FLASH(
   'Localize os valores certos na tabela e subtraia um do outro quando a pergunta pedir a diferença entre categorias. Ex.: categoria A com 52 e categoria B com 37: diferença = 52 - 37 = 15. Cuidado: se a pergunta pede a diferença, apenas apontar o maior valor não responde à questão. Macete: "diferença entre categorias" é sempre convite para uma subtração, nunca para uma escolha simples.'
 );
 
+/* 15. MÉDIA, MODA E MEDIANA */
+
+FLASH(
+  'Média, Moda e Mediana',
+  'FÓRMULA',
+  'Média Aritmética',
+  'A média é a soma de todos os valores dividida pela quantidade de valores. Ex.: para 5, 9 e 13: (5 + 9 + 13) ÷ 3 = 27 ÷ 3 = 9. Cuidado: somar os valores e esquecer de dividir pela quantidade é só metade do trabalho. Macete: soma tudo, depois reparte igual entre todos — é como nivelar um monte de blocos.'
+);
+
+FLASH(
+  'Média, Moda e Mediana',
+  'REGRA PRÁTICA',
+  'Moda',
+  'Moda é o valor que mais aparece em um conjunto de dados; pode não existir ou existir mais de uma. Ex.: em 4, 7, 7, 9, 12, o valor 7 se repete duas vezes, então a moda é 7. Cuidado: moda não é o maior valor nem o valor do meio — é apenas o mais frequente. Macete: moda é o "mais popular" da lista: quem se repete mais vezes.'
+);
+
+FLASH(
+  'Média, Moda e Mediana',
+  'REGRA PRÁTICA',
+  'Mediana com Quantidade Ímpar',
+  'Com quantidade ímpar de valores, ordene tudo do menor para o maior e a mediana é o valor exatamente do meio. Ex.: em 3, 6, 8 (já ordenados), o valor central é 6, então a mediana é 6. Cuidado: buscar o "meio" sem ordenar a lista primeiro dá mediana errada. Macete: enfileire os valores em ordem e olhe direto para o centro da fila.'
+);
+
+FLASH(
+  'Média, Moda e Mediana',
+  'FÓRMULA',
+  'Mediana com Quantidade Par',
+  'Com quantidade par de valores, ordene tudo e a mediana é a média dos dois valores centrais. Ex.: em 2, 5, 7, 10, os centrais são 5 e 7: mediana = (5 + 7) ÷ 2 = 6. Cuidado: escolher só um dos dois valores do meio não é mediana — é preciso fazer a média dos dois. Macete: sobraram dois no centro da fila? Some os dois e divida por 2.'
+);
+
+FLASH(
+  'Média, Moda e Mediana',
+  'FÓRMULA',
+  'Amplitude',
+  'A amplitude mostra o quanto os dados se espalham, sendo igual ao maior valor menos o menor valor do conjunto. Ex.: em 9, 14, 22: amplitude = 22 - 9 = 13. Cuidado: amplitude não é média nem mediana — é apenas a distância entre o topo e a base dos dados. Macete: amplitude é o "tamanho da régua": o valor mais alto menos o mais baixo.'
+);
+
+FLASH(
+  'Média, Moda e Mediana',
+  'COMPARAÇÃO',
+  'Valor Extremo e Média',
+  'Um valor muito diferente dos demais (extremo) distorce bastante a média, mas quase não afeta a mediana. Ex.: em 8, 9, 10, 11, 62, a média é 100 ÷ 5 = 20, mas a mediana continua sendo 10. Cuidado: confiar apenas na média quando existe um valor muito fora do padrão pode enganar a interpretação. Macete: um valor fora da curva "puxa" a média para longe, mas quase não move a mediana.'
+);
+
+/* 16. MATEMÁTICA FINANCEIRA */
+
+FLASH(
+  'Matemática Financeira',
+  'FÓRMULA',
+  'Juros Simples',
+  'Nos juros simples, o juro incide sempre sobre o capital inicial, seguindo a fórmula J = capital x taxa x tempo. Ex.: R$ 800 a 3% ao mês por 4 meses: J = 800 x 0,03 x 4 = R$ 96. Cuidado: usar a taxa como número inteiro (3) em vez de decimal (0,03) estoura o resultado. Macete: a taxa entra sempre em forma decimal na fórmula — nunca no formato "puro" de porcentagem.'
+);
+
+FLASH(
+  'Matemática Financeira',
+  'FÓRMULA',
+  'Montante',
+  'Montante é o valor total acumulado ao final, ou seja, o capital inicial somado aos juros gerados. Ex.: capital de R$ 500 com R$ 90 de juros: montante = 500 + 90 = R$ 590. Cuidado: responder apenas o valor dos juros não é o mesmo que responder o montante. Macete: montante é o pacote inteiro: capital que entrou mais o que ele rendeu.'
+);
+
+FLASH(
+  'Matemática Financeira',
+  'REGRA PRÁTICA',
+  'Capital, Taxa e Tempo',
+  'Capital é o valor inicial aplicado, taxa é o percentual de rendimento e tempo é o período considerado — os três precisam estar na mesma unidade. Ex.: R$ 1.000 a 2% ao mês por 5 meses: capital = 1.000, taxa = 2%, tempo = 5 meses. Cuidado: uma taxa mensal aplicada a um tempo em anos gera resultado incorreto. Macete: taxa "ao mês" pede tempo contado em meses — as duas unidades sempre andam juntas.'
+);
+
+FLASH(
+  'Matemática Financeira',
+  'FÓRMULA',
+  'Desconto Simples',
+  'O desconto é o valor abatido do preço original; o preço final é o que sobra depois desse abatimento. Ex.: R$ 180 com desconto de R$ 25: preço final = 180 - 25 = R$ 155. Cuidado: o valor do desconto é diferente do valor que efetivamente será pago. Macete: desconto é o pedaço que sai; preço final é o que fica na conta.'
+);
+
+FLASH(
+  'Matemática Financeira',
+  'COMPARAÇÃO',
+  'À Vista x Parcelado',
+  'Para decidir a melhor opção, compare o custo total das duas formas: o preço à vista contra a soma de todas as parcelas. Ex.: à vista R$ 420; parcelado em 5x de R$ 95 = R$ 475. À vista economiza R$ 55. Cuidado: comparar o preço à vista com apenas uma parcela, e não com a soma total, engana a decisão. Macete: some todas as parcelas primeiro — só então compare total contra total.'
+);
+
+FLASH(
+  'Matemática Financeira',
+  'ERRO COMUM',
+  'Taxas Escondidas',
+  'Frete, taxa de serviço e outras cobranças extras fazem parte do custo real e devem entrar na conta final. Ex.: produto de R$ 150 + taxa de entrega de R$ 20 = custo final de R$ 170. Cuidado: o preço anunciado nem sempre é o valor final que sai do bolso. Macete: antes de comparar preços, sempre pergunte: "e as taxas extras, entraram na conta?"'
+);
+
+FLASH(
+  'Matemática Financeira',
+  'REGRA PRÁTICA',
+  'Preço Final de uma Oferta',
+  'Para achar o preço final, some tudo que aumenta o valor e subtraia tudo que reduz, numa única conta completa. Ex.: R$ 250 com desconto de R$ 20 e taxa de entrega de R$ 15: 250 - 20 + 15 = R$ 245. Cuidado: parar apenas no desconto e esquecer taxas extras dá um preço final incorreto. Macete: desconto empurra o preço para baixo, taxa empurra para cima — feche a conta antes de decidir.'
+);
+```[cite: 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42]
+
 
 
 
