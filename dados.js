@@ -223,6 +223,186 @@ RESOLUCAO({
     video: '_YLGMeUaEwQ'
 });
 
+RESOLUCAO({
+    banca: 'FGV 2025',
+    concurso: 'Concurso Prefeitura de Canaã',
+    ano: 2025,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 01 - FGV 2025',
+    alternativas: [],
+    gabarito: '',
+    video: '5iMLUKfzhIs'
+});
+
+RESOLUCAO({
+    banca: 'FGV 2025',
+    concurso: 'Concurso Prefeitura de Canaã',
+    ano: 2025,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 02 - FGV 2025',
+    alternativas: [],
+    gabarito: '',
+    video: 'i2yBM2jM5dA'
+});
+
+RESOLUCAO({
+    banca: 'FGV 2025',
+    concurso: 'Concurso Prefeitura de Canaã',
+    ano: 2025,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 03 - FGV 2025',
+    alternativas: [],
+    gabarito: '',
+    video: 'MJThglOhwVc'
+});
+
+RESOLUCAO({
+    banca: 'FGV 2025',
+    concurso: 'Concurso Prefeitura de Canaã',
+    ano: 2025,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 04 - FGV 2025',
+    alternativas: [],
+    gabarito: '',
+    video: 'rt0pAva_oMM'
+});
+
+RESOLUCAO({
+    banca: 'FGV 2025',
+    concurso: 'Concurso Prefeitura de Canaã',
+    ano: 2025,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 05 - FGV 2025',
+    alternativas: [],
+    gabarito: '',
+    video: 'igicDXK7Eec'
+});
+
+RESOLUCAO({
+    banca: 'FGV 2025',
+    concurso: 'Concurso Prefeitura de Canaã',
+    ano: 2025,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 06 - FGV 2025',
+    alternativas: [],
+    gabarito: '',
+    video: 'wEmwLgpwzwg'
+});
+
+RESOLUCAO({
+    banca: 'FGV 2025',
+    concurso: 'Concurso Prefeitura de Canaã',
+    ano: 2025,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 07 - FGV 2025',
+    alternativas: [],
+    gabarito: '',
+    video: 'sdNNjnwG9ho'
+});
+
+RESOLUCAO({
+    banca: 'FGV 2025',
+    concurso: 'Concurso Prefeitura de Canaã',
+    ano: 2025,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 08 - FGV 2025',
+    alternativas: [],
+    gabarito: '',
+    video: '87Yqw4EyjEM'
+});
+
+RESOLUCAO({
+    banca: 'FGV 2025',
+    concurso: 'Concurso Prefeitura de Canaã',
+    ano: 2025,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 09 - FGV 2025',
+    alternativas: [],
+    gabarito: '',
+    video: 'kv9p2CvrEF8'
+});
+
+RESOLUCAO({
+    banca: 'FGV 2025',
+    concurso: 'Concurso Prefeitura de Canaã',
+    ano: 2025,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 10 - FGV 2025',
+    alternativas: [],
+    gabarito: '',
+    video: 'kvDSDMwQThs'
+});
+
+RESOLUCAO({
+    banca: 'FGV 2025',
+    concurso: 'Concurso Prefeitura de Canaã',
+    ano: 2025,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 11 - FGV 2025',
+    alternativas: [],
+    gabarito: '',
+    video: 'xuaBR6Pqueo'
+});
+
+RESOLUCAO({
+    banca: 'FGV 2025',
+    concurso: 'Concurso Prefeitura de Canaã',
+    ano: 2025,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 12 - FGV 2025',
+    alternativas: [],
+    gabarito: '',
+    video: 'T1KpigvO93A'
+});
+
+RESOLUCAO({
+    banca: 'FGV 2025',
+    concurso: 'Concurso Prefeitura de Canaã',
+    ano: 2025,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 13 - FGV 2025',
+    alternativas: [],
+    gabarito: '',
+    video: '-vC20_UEWd4'
+});
+
+RESOLUCAO({
+    banca: 'FGV 2025',
+    concurso: 'Concurso Prefeitura de Canaã',
+    ano: 2025,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 14 - FGV 2025',
+    alternativas: [],
+    gabarito: '',
+    video: 'ucZgeuSdt3A'
+});
+
+RESOLUCAO({
+    banca: 'FGV 2025',
+    concurso: 'Concurso Prefeitura de Canaã',
+    ano: 2025,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 15 - FGV 2025',
+    alternativas: [],
+    gabarito: '',
+    video: 'by_PhWIQmnI'
+});
+
 
 
 /* ===== FLASHCARDS ORGANIZADOS POR ÁREA E SEÇÃO ===== */
