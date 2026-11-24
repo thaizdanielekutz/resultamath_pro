@@ -2470,22 +2470,22 @@ const MINUTADA = [
     // ESTATÍSTICA E PROBABILIDADE
     {
         titulo: 'Probabilidade',
-        video: '',
+        video: 'YvthPMXTxFg',
         materia: 'Estatística e Probabilidade'
     },
     {
         titulo: 'Mediana',
-        video: '',
+        video: '9rdfv1we_JY',
         materia: 'Estatística e Probabilidade'
     },
     {
         titulo: 'Média',
-        video: '',
+        video: 'uSy-3sC9T78',
         materia: 'Estatística e Probabilidade'
     },
     {
         titulo: 'Moda',
-        video: '',
+        video: 'INP12SIgKTs',
         materia: 'Estatística e Probabilidade'
     },
 
