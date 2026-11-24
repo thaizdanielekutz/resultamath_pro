@@ -2403,6 +2403,11 @@ const MINUTADA = [
         materia: 'Aritmética'
     },
     {
+        titulo: 'Número decimal',
+        video: 'H3BeLbhJqr8',
+        materia: 'Aritmética'
+    },
+    {
         titulo: 'MMC',
         video: 'NpgZLCoe4dw',
         materia: 'Aritmética'
@@ -2453,12 +2458,12 @@ const MINUTADA = [
     // SEQUÊNCIAS
     {
         titulo: 'PA',
-        video: '',
+        video: 'HNu5I74tyZA',
         materia: 'Sequências'
     },
     {
         titulo: 'PG',
-        video: '',
+        video: 'ALy3xapHRlA',
         materia: 'Sequências'
     },
 
