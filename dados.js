@@ -942,7 +942,67 @@ RESOLUCAO({
     video: 'OZfSvd1zQ64'
 });
 
+/* IGECAP 2025 */
 
+RESOLUCAO({
+    banca: 'IGECAP 2025',
+    concurso: 'Concurso Caixa Econômica Federal',
+    ano: 2025,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 01 - IGECAP 2025',
+    alternativas: [],
+    gabarito: '',
+    video: 'ZiUi_1JFJrw'
+});
+
+RESOLUCAO({
+    banca: 'IGECAP 2025',
+    concurso: 'Concurso Caixa Econômica Federal',
+    ano: 2025,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 02 - IGECAP 2025',
+    alternativas: [],
+    gabarito: '',
+    video: 'QsDs0KUUp5s'
+});
+
+RESOLUCAO({
+    banca: 'IGECAP 2025',
+    concurso: 'Concurso Caixa Econômica Federal',
+    ano: 2025,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 03 - IGECAP 2025',
+    alternativas: [],
+    gabarito: '',
+    video: 'QwulciNLza4'
+});
+
+RESOLUCAO({
+    banca: 'IGECAP 2025',
+    concurso: 'Concurso Caixa Econômica Federal',
+    ano: 2025,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 04 - IGECAP 2025',
+    alternativas: [],
+    gabarito: '',
+    video: 'mv_2slpOXuM'
+});
+
+RESOLUCAO({
+    banca: 'IGECAP 2025',
+    concurso: 'Concurso Caixa Econômica Federal',
+    ano: 2025,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 05 - IGECAP 2025',
+    alternativas: [],
+    gabarito: '',
+    video: 'iOONEjdUNAo'
+});
 
 
 
