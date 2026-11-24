@@ -824,7 +824,109 @@ RESOLUCAO({
     video: 'ac6Sd68J2Y4'
 });
 
+/* UNESP 2020 */
 
+RESOLUCAO({
+    banca: 'UNESP 2020',
+    concurso: 'Concurso Vestibular UNESP 2020',
+    ano: 2020,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 01 - UNESP 2020',
+    alternativas: [],
+    gabarito: '',
+    video: 'bLzQUh6RKVg'
+});
+
+/* FAFIPA 2026 */
+
+RESOLUCAO({
+    banca: 'FAFIPA 2026',
+    concurso: 'Concurso Prefeitura de Rio Branco do Sul - PR',
+    ano: 2026,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 01 - FAFIPA 2026',
+    alternativas: [],
+    gabarito: '',
+    video: 's0hCZx1bZhg'
+});
+
+RESOLUCAO({
+    banca: 'FAFIPA 2026',
+    concurso: 'Concurso Prefeitura de Rio Branco do Sul - PR',
+    ano: 2026,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 02 - FAFIPA 2026',
+    alternativas: [],
+    gabarito: '',
+    video: 'eTgD_JSndpI'
+});
+
+RESOLUCAO({
+    banca: 'FAFIPA 2026',
+    concurso: 'Concurso Prefeitura de Rio Branco do Sul - PR',
+    ano: 2026,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 03 - FAFIPA 2026',
+    alternativas: [],
+    gabarito: '',
+    video: 'RswiDZUPrNc'
+});
+
+/* FCC 2026 */
+
+RESOLUCAO({
+    banca: 'FCC 2026',
+    concurso: 'Concurso MPE-AP 2026 para Analista Ministerial',
+    ano: 2026,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 01 - FCC 2026',
+    alternativas: [],
+    gabarito: '',
+    video: 'y8D32eXrVmI'
+});
+
+RESOLUCAO({
+    banca: 'FCC 2026',
+    concurso: 'Concurso MPE-AP 2026 para Analista Ministerial',
+    ano: 2026,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 02 - FCC 2026',
+    alternativas: [],
+    gabarito: '',
+    video: 'zYjO_vRORbc'
+});
+
+/* CONSULPLAN 2026 */
+
+RESOLUCAO({
+    banca: 'CONSULPLAN 2026',
+    concurso: 'Concurso SAAE de Indaiatuba [Técnico em Informática]',
+    ano: 2026,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 01 - CONSULPLAN 2026',
+    alternativas: [],
+    gabarito: '',
+    video: 'BH-uCmHlf4w'
+});
+
+RESOLUCAO({
+    banca: 'CONSULPLAN 2026',
+    concurso: 'Concurso SAAE de Indaiatuba [Técnico em Informática]',
+    ano: 2026,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 02 - CONSULPLAN 2026',
+    alternativas: [],
+    gabarito: '',
+    video: 'yHGOrWxz37A'
+});
 
 
 
