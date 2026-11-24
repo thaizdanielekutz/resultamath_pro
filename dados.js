@@ -928,6 +928,20 @@ RESOLUCAO({
     video: 'yHGOrWxz37A'
 });
 
+/* CESGRANRIO 2024 */
+
+RESOLUCAO({
+    banca: 'CESGRANRIO 2024',
+    concurso: 'Concurso Caixa Econômica Federal',
+    ano: 2024,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 01 - CESGRANRIO 2024',
+    alternativas: [],
+    gabarito: '',
+    video: 'OZfSvd1zQ64'
+});
+
 
 
 
