@@ -684,8 +684,145 @@ RESOLUCAO({
     video: 'm45YxpD10jI'
 });
 
+RESOLUCAO({
+    banca: 'FGV 2026',
+    concurso: 'Concurso IBGE [Agente de Pesquisas e Mapeamento (APM)]',
+    ano: 2026,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 02 - FGV 2026',
+    alternativas: [],
+    gabarito: '',
+    video: 'n5qKyAjPev8'
+});
 
+RESOLUCAO({
+    banca: 'FGV 2026',
+    concurso: 'Concurso IBGE [Agente de Pesquisas e Mapeamento (APM)]',
+    ano: 2026,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 03 - FGV 2026',
+    alternativas: [],
+    gabarito: '',
+    video: 'zyQVWGC7y4M'
+});
 
+RESOLUCAO({
+    banca: 'FGV 2026',
+    concurso: 'Concurso IBGE [Agente de Pesquisas e Mapeamento (APM)]',
+    ano: 2026,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 04 - FGV 2026',
+    alternativas: [],
+    gabarito: '',
+    video: 'fkKhaVGgcuU'
+});
+
+RESOLUCAO({
+    banca: 'FGV 2026',
+    concurso: 'Concurso IBGE [Agente de Pesquisas e Mapeamento (APM)]',
+    ano: 2026,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 05 - FGV 2026',
+    alternativas: [],
+    gabarito: '',
+    video: 's5LQOyuJeS4'
+});
+
+/* FUNDATEC 2026 */
+
+RESOLUCAO({
+    banca: 'FUNDATEC 2026',
+    concurso: 'Concurso Prefeitura Municipal de Coqueiral - MG',
+    ano: 2026,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 01 - FUNDATEC 2026',
+    alternativas: [],
+    gabarito: '',
+    video: 'yVPBbvyYok8'
+});
+
+/* FUNDATEC 2026 */
+
+RESOLUCAO({
+    banca: 'FEPESE 2026',
+    concurso: 'Concurso Prefeitura de Caxambu do Sul - SC',
+    ano: 2026,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 01 - FEPESE 2026',
+    alternativas: [],
+    gabarito: '',
+    video: 'QHrSGbbRBKQ'
+});
+
+RESOLUCAO({
+    banca: 'FEPESE 2026',
+    concurso: 'Concurso Prefeitura de Caxambu do Sul - SC',
+    ano: 2026,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 02 - FEPESE 2026',
+    alternativas: [],
+    gabarito: '',
+    video: 'kDnHZUwEELQ'
+});
+
+RESOLUCAO({
+    banca: 'FEPESE 2026',
+    concurso: 'Concurso Prefeitura de Caxambu do Sul - SC',
+    ano: 2026,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 03 - FEPESE 2026',
+    alternativas: [],
+    gabarito: '',
+    video: 'z37VrS4eV2g'
+});
+
+/* FCC 2026 */
+
+RESOLUCAO({
+    banca: 'FCC 2026',
+    concurso: 'Concurso Técnico Legislativo [AL - MS]',
+    ano: 2026,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 01 - FCC 2026',
+    alternativas: [],
+    gabarito: '',
+    video: '-4aSlr4561g'
+});
+
+/* UNIFIL 2023 */
+
+RESOLUCAO({
+    banca: 'UNIFIL 2023',
+    concurso: 'Concurso Prefeitura de Fazenda Rio Grande',
+    ano: 2023,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 01 - UNIFIL 2023',
+    alternativas: [],
+    gabarito: '',
+    video: 'jgH7TqLoGJg'
+});
+
+RESOLUCAO({
+    banca: 'UNIFIL 2023',
+    concurso: 'Concurso Prefeitura de Fazenda Rio Grande',
+    ano: 2023,
+    cargo: '',
+    assunto: 'Matemática',
+    enunciado: 'Questão 02 - UNIFIL 2023',
+    alternativas: [],
+    gabarito: '',
+    video: 'ac6Sd68J2Y4'
+});
 
 
 
