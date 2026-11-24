@@ -2399,64 +2399,54 @@ const MINUTADA = [
     },
     {
         titulo: 'Números primos',
-        video: '',
+        video: 'wLu1trfmX50',
         materia: 'Aritmética'
     },
     {
         titulo: 'MMC',
-        video: '',
+        video: 'NpgZLCoe4dw',
         materia: 'Aritmética'
     },
     {
         titulo: 'MDC',
-        video: '',
+        video: 'UgOT5F5nR1M',
         materia: 'Aritmética'
     },
     {
         titulo: 'Frações',
-        video: '',
+        video: 'hyXvm9Kv3Zc',
         materia: 'Aritmética'
     },
     {
         titulo: 'Frações equivalentes',
-        video: '',
+        video: '3nOHgtAPVHw',
         materia: 'Aritmética'
     },
     {
         titulo: 'Fração imprópria',
-        video: '',
+        video: 'x833b4Em6fE',
         materia: 'Aritmética'
     },
     {
         titulo: 'Fatorial',
-        video: '',
+        video: 'joG_V1lVx8s',
         materia: 'Aritmética'
     },
     {
         titulo: 'Fração irredutível',
-        video: '',
-        materia: 'Aritmética'
-    },
-    {
-        titulo: 'Número decimal',
-        video: '',
-        materia: 'Aritmética'
-    },
-    {
-        titulo: 'Valor absoluto',
-        video: '',
+        video: 'DlNoQjvYa6I',
         materia: 'Aritmética'
     },
     {
         titulo: 'Inverso de um número',
-        video: '',
+        video: '2bd6Qh_n414',
         materia: 'Aritmética'
     },
 
     // ÁLGEBRA
     {
         titulo: 'Logaritmo',
-        video: '',
+        video: 'glRbxM4bkeM',
         materia: 'Álgebra'
     },
 
