@@ -2372,29 +2372,29 @@ const MINUTADA = [
     // ARITMÉTICA
     {
         titulo: 'Raiz quadrada',
-        video: 'LGTiGfulDwU',
+        video: 'EzAEwgAsbSY',
         descricao: 'Aprenda o conceito de raiz quadrada.',
         materia: 'Aritmética'
     },
     {
         titulo: 'Potência',
-        video: 'ID_DO_VIDEO',
+        video: 'uUrMBk9luSo',
         descricao: 'Entenda a potenciação.',
         materia: 'Aritmética'
     },
     {
-        titulo: 'Módulo de um número',
-        video: '',
+        titulo: 'Valor absoluto',
+        video: 'IToMFKfmStI',
         materia: 'Aritmética'
     },
     {
         titulo: 'Número oposto',
-        video: '',
+        video: 'GBCnli8d9pE',
         materia: 'Aritmética'
     },
     {
         titulo: 'Números pares e ímpares',
-        video: '',
+        video: 'LW7qUP5v2bU',
         materia: 'Aritmética'
     },
     {
