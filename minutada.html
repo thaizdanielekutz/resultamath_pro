@@ -1,15 +1,296 @@
 
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Matemática Minutada | Resultamath</title>
 
     <link rel="stylesheet" href="estilo.css">
+
+    <style>
+        .minutada-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 35px 20px 70px;
+        }
+
+        .minutada-topo {
+            margin-bottom: 35px;
+        }
+
+        .minutada-topo h1 {
+            font-size: clamp(30px, 5vw, 44px);
+            margin-bottom: 10px;
+        }
+
+        .minutada-topo p {
+            color: #777;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .minutada-destaque {
+            background: linear-gradient(135deg, #069eda, #087bb4);
+            color: white;
+            padding: 28px;
+            border-radius: 18px;
+            margin-bottom: 30px;
+        }
+
+        .minutada-destaque h2 {
+            margin: 0 0 8px;
+            font-size: 24px;
+        }
+
+        .minutada-destaque p {
+            margin: 0;
+            opacity: .9;
+        }
+
+        .minutada-controles {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .minutada-busca {
+            flex: 1;
+            min-width: 230px;
+            padding: 14px 16px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .minutada-busca:focus {
+            border-color: #069eda;
+            box-shadow: 0 0 0 3px rgba(6,158,218,.12);
+        }
+
+        .minutada-filtros {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 35px;
+        }
+
+        .minutada-filtro {
+            border: 1px solid #ddd;
+            background: white;
+            color: #444;
+            padding: 9px 15px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: .2s;
+        }
+
+        .minutada-filtro:hover,
+        .minutada-filtro.ativo {
+            background: #069eda;
+            border-color: #069eda;
+            color: white;
+        }
+
+        .minutada-player-area {
+            margin-bottom: 45px;
+            padding: 22px;
+            background: #f7f9fb;
+            border: 1px solid #e8edf1;
+            border-radius: 16px;
+        }
+
+        .minutada-player-area h2 {
+            font-size: 22px;
+            margin: 0 0 8px;
+        }
+
+        .minutada-player-area > p {
+            color: #777;
+            margin: 0 0 18px;
+        }
+
+        .minutada-player {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #101820;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .minutada-player iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .minutada-player-vazio {
+            height: 100%;
+            min-height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        .minutada-player-vazio span {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .minutada-materias {
+            display: flex;
+            flex-direction: column;
+            gap: 38px;
+        }
+
+        .minutada-materia {
+            scroll-margin-top: 25px;
+        }
+
+        .minutada-materia-cabecalho {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            padding-bottom: 14px;
+            margin-bottom: 18px;
+            border-bottom: 2px solid #e9eef2;
+        }
+
+        .minutada-materia-cabecalho h2 {
+            margin: 0;
+            font-size: 23px;
+            color: #202b35;
+        }
+
+        .minutada-materia-cabecalho span {
+            background: #eaf7fc;
+            color: #0789bd;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .minutada-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 15px;
+        }
+
+        .minutada-card {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 17px;
+            border: 1px solid #e7ebef;
+            border-radius: 13px;
+            background: white;
+            text-decoration: none;
+            color: inherit;
+            transition: .2s;
+            min-width: 0;
+        }
+
+        .minutada-card:hover {
+            border-color: #069eda;
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px rgba(0,0,0,.06);
+        }
+
+        .minutada-card.ativo {
+            border-color: #069eda;
+            background: #f0faff;
+        }
+
+        .minutada-numero {
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 11px;
+            background: #eaf7fc;
+            color: #0789bd;
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .minutada-card-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .minutada-card-info h3 {
+            font-size: 15px;
+            margin: 0 0 5px;
+            color: #25313b;
+        }
+
+        .minutada-card-info p {
+            font-size: 12px;
+            color: #89939c;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .minutada-status {
+            font-size: 19px;
+            color: #069eda;
+        }
+
+        .minutada-sem-resultados {
+            padding: 35px 20px;
+            text-align: center;
+            color: #777;
+            background: #f7f9fb;
+            border-radius: 12px;
+        }
+
+        .minutada-descricao-player {
+            color: #737d86;
+            font-size: 14px;
+            margin-top: 12px;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 850px) {
+            .minutada-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 560px) {
+            .minutada-container {
+                padding: 25px 14px 50px;
+            }
+
+            .minutada-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .minutada-destaque {
+                padding: 22px;
+            }
+
+            .minutada-materia-cabecalho h2 {
+                font-size: 19px;
+            }
+
+            .minutada-player-area {
+                padding: 14px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -18,324 +299,407 @@
     <script src="app.js"></script>
 
     <script>
-        const m = pagina('minutada');
-        const params = new URLSearchParams(location.search);
-        const id = params.get('id');
+    const m = pagina('minutada');
 
-        function escaparHTML(valor) {
-            return String(valor ?? '').replace(/[&<>"']/g, caractere => ({
-                '&': '&amp;',
-                '<': '&lt;',
-                '>': '&gt;',
-                '"': '&quot;',
-                "'": '&#39;'
-            })[caractere]);
+    const parametros = new URLSearchParams(window.location.search);
+    const idInicial = parametros.get('id');
+    const materiaInicial = parametros.get('materia');
+
+    function escaparHTML(valor) {
+        return String(valor ?? '').replace(/[&<>"']/g, caractere => ({
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#039;'
+        })[caractere]);
+    }
+
+    function normalizar(texto) {
+        return String(texto || '')
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .toLowerCase()
+            .trim();
+    }
+
+    function extrairIdYoutube(valor) {
+        if (!valor) return '';
+
+        let texto = String(valor).trim();
+
+        // ID direto do YouTube
+        if (/^[a-zA-Z0-9_-]{11}$/.test(texto)) {
+            return texto;
         }
 
-        function extrairIdYoutube(valor) {
-            if (!valor) return '';
+        // Código dentro de iframe
+        const resultadoIframe = texto.match(/src=["']([^"']+)["']/i);
 
-            const texto = String(valor).trim();
+        if (resultadoIframe) {
+            texto = resultadoIframe[1];
+        }
 
-            // Aceita o próprio ID do vídeo
-            if (/^[a-zA-Z0-9_-]{11}$/.test(texto)) {
-                return texto;
+        try {
+            const url = new URL(texto);
+
+            const host = url.hostname.replace(/^www\./, '');
+
+            if (host === 'youtu.be') {
+                return url.pathname.split('/').filter(Boolean)[0] || '';
             }
 
-            // Aceita também iframe completo
-            const iframe = texto.match(/src=["']([^"']+)["']/i);
-            const urlTexto = iframe ? iframe[1] : texto;
+            if (
+                host === 'youtube.com' ||
+                host === 'm.youtube.com' ||
+                host === 'youtube-nocookie.com'
+            ) {
+                const videoDireto = url.searchParams.get('v');
 
-            try {
-                const url = new URL(urlTexto);
+                if (videoDireto) return videoDireto;
 
-                if (
-                    url.hostname === 'www.youtube.com' ||
-                    url.hostname === 'youtube.com' ||
-                    url.hostname === 'www.youtube-nocookie.com' ||
-                    url.hostname === 'youtube-nocookie.com'
-                ) {
-                    const encontrado = url.pathname.match(
-                        /\/(?:embed|shorts)\/([^/?]+)/
-                    );
+                const partes = url.pathname.match(
+                    /\/(?:embed|shorts|live)\/([^/?]+)/
+                );
 
-                    return encontrado
-                        ? encontrado[1]
-                        : url.searchParams.get('v') || '';
-                }
-
-                if (url.hostname === 'youtu.be') {
-                    return url.pathname.slice(1).split('/')[0];
-                }
-
-            } catch (erro) {
-                console.error('Erro ao identificar vídeo:', erro);
+                if (partes) return partes[1];
             }
-
+        } catch (erro) {
             return '';
         }
 
-        function obterVideo(episodio) {
-            const salvo =
-                typeof S !== 'undefined' &&
-                S.videosMinutados &&
-                S.videosMinutados[episodio.id];
+        return '';
+    }
 
-            // Prioriza o vídeo cadastrado diretamente no dados.js
-            return episodio.video || salvo || '';
+    function obterVideo(episodio) {
+        let video = episodio.video || '';
+
+        if (!video && typeof S !== 'undefined' && S.videosMinutados) {
+            video = S.videosMinutados[episodio.id] || '';
         }
 
-        function montarPlayer(video, titulo) {
-            const videoId = extrairIdYoutube(video);
+        return extrairIdYoutube(video);
+    }
 
-            if (!videoId) {
-                return `
-                    <div class="sem-video-minutada">
-                        <h3>Vídeo ainda não cadastrado</h3>
-                        <p>Este episódio ainda não possui uma resolução em vídeo.</p>
-                    </div>
-                `;
-            }
+    function obterMaterias() {
+        const materias = [...new Set(
+            MINUTADA.map(item => item.materia || 'Outros')
+        )];
 
-            const parametros = new URLSearchParams({
-                rel: '0'
-            });
+        return materias;
+    }
 
-            const endereco =
-                `https://www.youtube.com/embed/${encodeURIComponent(videoId)}?${parametros.toString()}`;
+    function contarVideos(materia) {
+        return MINUTADA.filter(item =>
+            (item.materia || 'Outros') === materia
+        ).length;
+    }
 
+    function montarPlayer(episodio) {
+        if (!episodio) {
             return `
-                <div class="video-minutada">
-                    <iframe
-                        src="${endereco}"
-                        title="${escaparHTML(titulo)}"
-                        referrerpolicy="strict-origin-when-cross-origin"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowfullscreen>
-                    </iframe>
+                <div class="minutada-player-vazio">
+                    <span>▶</span>
+                    <strong>Escolha uma aula para começar</strong>
+                    <p>Selecione um conteúdo na lista abaixo.</p>
                 </div>
             `;
         }
 
-        function render() {
+        const videoId = obterVideo(episodio);
 
-            if (!Array.isArray(MINUTADA)) {
-                m.innerHTML = `
-                    <div class="empty-state">
-                        Não foi possível carregar os episódios.
+        if (!videoId) {
+            return `
+                <div class="minutada-player-vazio">
+                    <span>▶</span>
+                    <strong>${escaparHTML(episodio.titulo)}</strong>
+                    <p>O vídeo desta aula ainda não foi cadastrado.</p>
+                </div>
+            `;
+        }
+
+        return `
+            <iframe
+                src="https://www.youtube.com/embed/${encodeURIComponent(videoId)}?rel=0"
+                title="${escaparHTML(episodio.titulo)}"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+            </iframe>
+        `;
+    }
+
+    function render() {
+        if (!Array.isArray(MINUTADA) || MINUTADA.length === 0) {
+            m.innerHTML = `
+                <div class="minutada-container">
+                    <h1>Matemática Minutada</h1>
+                    <p>Nenhum conteúdo cadastrado ainda.</p>
+                </div>
+            `;
+            return;
+        }
+
+        let materiaAtiva = materiaInicial || 'Todas';
+
+        const materiaExiste = obterMaterias().some(
+            materia => normalizar(materia) === normalizar(materiaAtiva)
+        );
+
+        if (materiaAtiva !== 'Todas' && !materiaExiste) {
+            materiaAtiva = 'Todas';
+        }
+
+        const episodioInicial = MINUTADA.find(
+            item => item.id === idInicial
+        );
+
+        const materias = obterMaterias();
+
+        m.innerHTML = `
+            <main class="minutada-container">
+
+                <header class="minutada-topo">
+                    <h1>Matemática Minutada</h1>
+                    <p>
+                        Aprenda matemática com aulas rápidas e objetivas.
+                        Escolha uma matéria e avance conteúdo por conteúdo.
+                    </p>
+                </header>
+
+                <section class="minutada-destaque">
+                    <h2>Aprenda em poucos minutos.</h2>
+                    <p>
+                        Uma biblioteca de aulas curtas, organizadas por matéria
+                        para facilitar seus estudos.
+                    </p>
+                </section>
+
+                <section class="minutada-player-area">
+                    <h2 id="titulo-player">Sua próxima aula</h2>
+                    <p id="materia-player">
+                        Selecione um conteúdo para assistir.
+                    </p>
+
+                    <div class="minutada-player" id="player-video">
+                        ${montarPlayer(episodioInicial)}
+                    </div>
+
+                    <div
+                        class="minutada-descricao-player"
+                        id="descricao-player">
+                        Escolha uma aula na lista de conteúdos.
+                    </div>
+                </section>
+
+                <section class="minutada-controles">
+                    <input
+                        type="search"
+                        class="minutada-busca"
+                        id="busca-minutada"
+                        placeholder="Pesquisar conteúdo..."
+                        aria-label="Pesquisar conteúdo">
+                </section>
+
+                <nav class="minutada-filtros" id="filtros-materias">
+                    <button
+                        class="minutada-filtro ${materiaAtiva === 'Todas' ? 'ativo' : ''}"
+                        data-materia="Todas">
+                        Todas as matérias
+                    </button>
+
+                    ${materias.map(materia => `
+                        <button
+                            class="minutada-filtro ${
+                                normalizar(materiaAtiva) === normalizar(materia)
+                                    ? 'ativo'
+                                    : ''
+                            }"
+                            data-materia="${escaparHTML(materia)}">
+                            ${escaparHTML(materia)}
+                        </button>
+                    `).join('')}
+                </nav>
+
+                <div class="minutada-materias" id="lista-materias"></div>
+
+            </main>
+        `;
+
+        let materiaSelecionada = materiaAtiva;
+
+        const busca = document.getElementById('busca-minutada');
+        const listaMaterias = document.getElementById('lista-materias');
+        const filtros = document.getElementById('filtros-materias');
+
+        function atualizarPlayer(episodio) {
+            document.getElementById('titulo-player').textContent =
+                episodio ? episodio.titulo : 'Sua próxima aula';
+
+            document.getElementById('materia-player').textContent =
+                episodio
+                    ? episodio.materia
+                    : 'Selecione um conteúdo para assistir.';
+
+            document.getElementById('descricao-player').textContent =
+                episodio
+                    ? episodio.descricao || 'Aula da Matemática Minutada.'
+                    : 'Escolha uma aula na lista de conteúdos.';
+
+            document.getElementById('player-video').innerHTML =
+                montarPlayer(episodio);
+
+            if (episodio) {
+                const novaUrl = new URL(window.location.href);
+                novaUrl.searchParams.set('id', episodio.id);
+                novaUrl.searchParams.set('materia', episodio.materia);
+                history.replaceState({}, '', novaUrl);
+            }
+        }
+
+        function desenharLista() {
+            const termo = normalizar(busca.value);
+
+            const episodiosFiltrados = MINUTADA.filter(item => {
+                const materia = item.materia || 'Outros';
+
+                const correspondeMateria =
+                    materiaSelecionada === 'Todas' ||
+                    materia === materiaSelecionada;
+
+                const textoBusca = normalizar([
+                    item.titulo,
+                    item.descricao,
+                    item.materia
+                ].join(' '));
+
+                const correspondeBusca = textoBusca.includes(termo);
+
+                return correspondeMateria && correspondeBusca;
+            });
+
+            if (episodiosFiltrados.length === 0) {
+                listaMaterias.innerHTML = `
+                    <div class="minutada-sem-resultados">
+                        Nenhum conteúdo encontrado.
+                        Tente pesquisar outro termo.
                     </div>
                 `;
                 return;
             }
 
-            const atual = MINUTADA.find(x => x.id === id);
+            const materiasVisiveis = materiaSelecionada === 'Todas'
+                ? obterMaterias()
+                : [materiaSelecionada];
 
-            m.innerHTML = `
-
-                <div class="section-head">
-
-                    <div>
-                        <span class="tag">VÍDEOS DE 1 MINUTO</span>
-
-                        <h1 style="margin-top:8px">
-                            Matemática Minutada
-                        </h1>
-
-                        <p>
-                            Conceitos rápidos para revisar e aprender todos os dias.
-                        </p>
-                    </div>
-
-                    <span class="tag">
-                        ${MINUTADA.length} episódios
-                    </span>
-
-                </div>
-
-                ${atual ? `
-
-                    <section class="cartao episodio-atual">
-
-                        <div class="linha">
-
-                            <div>
-                                <span class="tag">
-                                    EPISÓDIO ${String(atual.indice).padStart(2, '0')}
-                                </span>
-
-                                <h2 style="margin-top:10px">
-                                    ${escaparHTML(atual.titulo)}
-                                </h2>
-
-                                ${atual.descricao ? `
-                                    <p>${escaparHTML(atual.descricao)}</p>
-                                ` : ''}
-
-                            </div>
-
-                            <a class="btn sec" href="minutada.html">
-                                Todos os episódios
-                            </a>
-
-                        </div>
-
-                        ${montarPlayer(obterVideo(atual), atual.titulo)}
-
-                    </section>
-
-                ` : ''}
-
-                <input
-                    class="search-input"
-                    id="busca"
-                    type="search"
-                    placeholder="Buscar assunto..."
-                    aria-label="Buscar assunto"
-                >
-
-                <div
-                    class="minutada-grid app-minutada"
-                    id="lista">
-                </div>
-
-            `;
-
-            const lista = document.getElementById('lista');
-            const busca = document.getElementById('busca');
-
-            function filtra() {
-
-                const q = busca.value.toLocaleLowerCase('pt-BR');
-
-                const encontrados = MINUTADA.filter(x =>
-                    x.titulo.toLocaleLowerCase('pt-BR').includes(q)
+            listaMaterias.innerHTML = materiasVisiveis.map(materia => {
+                const episodios = episodiosFiltrados.filter(
+                    item => (item.materia || 'Outros') === materia
                 );
 
-                lista.innerHTML = encontrados.map(x => {
+                if (episodios.length === 0) return '';
 
-                    const temVideo = Boolean(obterVideo(x));
+                return `
+                    <section
+                        class="minutada-materia"
+                        id="materia-${escaparHTML(
+                            normalizar(materia).replace(/\s+/g, '-')
+                        )}">
 
-                    return `
-                        <a
-                            class="minutada-card"
-                            href="minutada.html?id=${encodeURIComponent(x.id)}"
-                        >
-
-                            <span class="play-mark">▶</span>
-
+                        <div class="minutada-materia-cabecalho">
+                            <h2>${escaparHTML(materia)}</h2>
                             <span>
-                                <b>${escaparHTML(x.titulo)}</b>
-
-                                <small>
-                                    EP. ${String(x.indice).padStart(2, '0')} · 1 MIN
-                                </small>
+                                ${episodios.length}
+                                ${episodios.length === 1 ? 'AULA' : 'AULAS'}
                             </span>
+                        </div>
 
-                            <span class="card-arrow">
-                                ${temVideo ? '▶' : '›'}
-                            </span>
+                        <div class="minutada-grid">
+                            ${episodios.map(item => {
+                                const temVideo = !!obterVideo(item);
+                                const selecionado =
+                                    episodioSelecionado &&
+                                    episodioSelecionado.id === item.id;
 
-                        </a>
-                    `;
+                                return `
+                                    <a
+                                        href="?id=${encodeURIComponent(item.id)}&materia=${encodeURIComponent(materia)}"
+                                        class="minutada-card ${selecionado ? 'ativo' : ''}"
+                                        data-id="${escaparHTML(item.id)}">
 
-                }).join('') || `
-                    <div class="empty-state">
-                        Nenhum assunto encontrado.
-                    </div>
+                                        <div class="minutada-numero">
+                                            ${String(item.indice).padStart(2, '0')}
+                                        </div>
+
+                                        <div class="minutada-card-info">
+                                            <h3>${escaparHTML(item.titulo)}</h3>
+                                            <p>
+                                                ${temVideo
+                                                    ? 'Vídeo disponível'
+                                                    : 'Conteúdo em breve'}
+                                            </p>
+                                        </div>
+
+                                        <div class="minutada-status">
+                                            ${temVideo ? '▶' : '›'}
+                                        </div>
+                                    </a>
+                                `;
+                            }).join('')}
+                        </div>
+                    </section>
                 `;
-            }
+            }).join('');
 
-            busca.addEventListener('input', filtra);
+            listaMaterias.querySelectorAll('.minutada-card').forEach(card => {
+                card.addEventListener('click', function(event) {
+                    event.preventDefault();
 
-            filtra();
+                    const episodio = MINUTADA.find(
+                        item => item.id === this.dataset.id
+                    );
+
+                    if (!episodio) return;
+
+                    episodioSelecionado = episodio;
+                    atualizarPlayer(episodio);
+                    desenharLista();
+
+                    document.querySelector('.minutada-player-area')
+                        .scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                });
+            });
         }
 
-        render();
+        let episodioSelecionado = episodioInicial || null;
 
+        filtros.querySelectorAll('.minutada-filtro').forEach(botao => {
+            botao.addEventListener('click', function() {
+                materiaSelecionada = this.dataset.materia;
+
+                filtros.querySelectorAll('.minutada-filtro')
+                    .forEach(item => item.classList.remove('ativo'));
+
+                this.classList.add('ativo');
+
+                desenharLista();
+            });
+        });
+
+        busca.addEventListener('input', desenharLista);
+
+        if (episodioInicial) {
+            atualizarPlayer(episodioInicial);
+        }
+
+        desenharLista();
+    }
+
+    render();
     </script>
-
-    <style>
-        .minutada-grid.app-minutada {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 12px;
-        }
-
-        .minutada-card {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 14px;
-            background: #fff;
-            border: 1px solid #e5edf2;
-            border-radius: 12px;
-            color: #172b3a;
-            text-decoration: none;
-        }
-
-        .minutada-card:hover {
-            border-color: #069eda;
-        }
-
-        .minutada-card > span:nth-child(2) {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .minutada-card small {
-            font-size: .68rem;
-            color: #069eda;
-            font-weight: 800;
-        }
-
-        .video-minutada {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            background: #111;
-            border-radius: 12px;
-            overflow: hidden;
-            margin-top: 18px;
-        }
-
-        .video-minutada iframe {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-
-        .sem-video-minutada {
-            margin-top: 18px;
-            padding: 30px 20px;
-            text-align: center;
-            background: #f8fafc;
-            border-radius: 12px;
-            color: #777;
-        }
-
-        .sem-video-minutada h3 {
-            color: #172b3a;
-        }
-
-        @media(max-width: 900px) {
-            .minutada-grid.app-minutada {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-        }
-
-        @media(max-width: 520px) {
-            .minutada-grid.app-minutada {
-                grid-template-columns: 1fr;
-            }
-
-            .episodio-atual .linha {
-                flex-wrap: wrap;
-                gap: 12px;
-            }
-        }
-    </style>
 
 </body>
 </html>

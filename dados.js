@@ -2365,9 +2365,11 @@ const SITE={
 
 
 
+
 /* ===== MATEMÁTICA MINUTADA ===== */
 
 const MINUTADA = [
+    // ARITMÉTICA
     {
         titulo: 'Raiz quadrada',
         video: 'LGTiGfulDwU',
@@ -2381,45 +2383,84 @@ const MINUTADA = [
         materia: 'Aritmética'
     },
     {
-        titulo: 'Frações',
+        titulo: 'Módulo de um número',
+        video: '',
+        materia: 'Aritmética'
+    },
+    {
+        titulo: 'Número oposto',
+        video: '',
+        materia: 'Aritmética'
+    },
+    {
+        titulo: 'Números pares e ímpares',
+        video: '',
+        materia: 'Aritmética'
+    },
+    {
+        titulo: 'Números primos',
         video: '',
         materia: 'Aritmética'
     },
     {
         titulo: 'MMC',
         video: '',
-        materia: 'Matemática básica'
+        materia: 'Aritmética'
     },
     {
         titulo: 'MDC',
         video: '',
-        materia: 'Matemática básica'
+        materia: 'Aritmética'
     },
     {
-        titulo: 'Regra de três',
+        titulo: 'Frações',
         video: '',
-        materia: 'Proporcionalidade'
+        materia: 'Aritmética'
     },
     {
-        titulo: 'Porcentagem',
+        titulo: 'Frações equivalentes',
         video: '',
-        materia: 'Matemática financeira'
+        materia: 'Aritmética'
     },
     {
-        titulo: 'Juros simples',
+        titulo: 'Fração imprópria',
         video: '',
-        materia: 'Matemática financeira'
+        materia: 'Aritmética'
     },
     {
-        titulo: 'Juros compostos',
+        titulo: 'Fatorial',
         video: '',
-        materia: 'Matemática financeira'
+        materia: 'Aritmética'
     },
+    {
+        titulo: 'Fração irredutível',
+        video: '',
+        materia: 'Aritmética'
+    },
+    {
+        titulo: 'Número decimal',
+        video: '',
+        materia: 'Aritmética'
+    },
+    {
+        titulo: 'Valor absoluto',
+        video: '',
+        materia: 'Aritmética'
+    },
+    {
+        titulo: 'Inverso de um número',
+        video: '',
+        materia: 'Aritmética'
+    },
+
+    // ÁLGEBRA
     {
         titulo: 'Logaritmo',
         video: '',
         materia: 'Álgebra'
     },
+
+    // SEQUÊNCIAS
     {
         titulo: 'PA',
         video: '',
@@ -2430,26 +2471,43 @@ const MINUTADA = [
         video: '',
         materia: 'Sequências'
     },
+
+    // ESTATÍSTICA E PROBABILIDADE
     {
-        titulo: 'Média',
+        titulo: 'Probabilidade',
         video: '',
-        materia: 'Estatística'
+        materia: 'Estatística e Probabilidade'
     },
     {
         titulo: 'Mediana',
         video: '',
-        materia: 'Estatística'
+        materia: 'Estatística e Probabilidade'
+    },
+    {
+        titulo: 'Média',
+        video: '',
+        materia: 'Estatística e Probabilidade'
     },
     {
         titulo: 'Moda',
         video: '',
-        materia: 'Estatística'
+        materia: 'Estatística e Probabilidade'
+    },
+
+    // PROPORCIONALIDADE
+    {
+        titulo: 'Regra de três',
+        video: '',
+        materia: 'Proporcionalidade'
     },
     {
-        titulo: 'Probabilidade',
-        video: '',
-        materia: 'Probabilidade'
+        titulo: 'Porcentagem',
+        video: 'ID_DO_VIDEO',
+        descricao: 'Aprenda os fundamentos da porcentagem.',
+        materia: 'Matemática Financeira'
     },
+
+    // GEOMETRIA
     {
         titulo: 'Ângulos complementares',
         video: '',
@@ -2474,11 +2532,24 @@ const MINUTADA = [
         titulo: 'Volume',
         video: '',
         materia: 'Geometria'
+    },
+
+    // MATEMÁTICA FINANCEIRA
+    {
+        titulo: 'Juros simples',
+        video: '',
+        materia: 'Matemática Financeira'
+    },
+    {
+        titulo: 'Juros compostos',
+        video: '',
+        materia: 'Matemática Financeira'
     }
 
 ].map((item, indice) => ({
     ...item,
     id: slug(item.titulo),
     indice: indice + 1,
-    descricao: item.descricao || ''
+    descricao: item.descricao || '',
+    categoria: item.materia
 }));
