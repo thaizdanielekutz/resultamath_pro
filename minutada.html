@@ -9,252 +9,109 @@
 
     <title>Matemática Minutada | Resultamath</title>
 
+    <meta name="description" content="Aprenda matemática em vídeos de um minuto, organizados por matéria.">
+
     <link rel="stylesheet" href="estilo.css">
-</head>
-
-<body>
-
-    <script src="dados.js"></script>
-    <script src="app.js"></script>
-
-    <script>
-        const m = pagina('minutada');
-        const params = new URLSearchParams(location.search);
-        const id = params.get('id');
-
-        function escaparHTML(valor) {
-            return String(valor ?? '').replace(/[&<>"']/g, caractere => ({
-                '&': '&amp;',
-                '<': '&lt;',
-                '>': '&gt;',
-                '"': '&quot;',
-                "'": '&#39;'
-            })[caractere]);
-        }
-
-        function extrairIdYoutube(valor) {
-            if (!valor) return '';
-
-            const texto = String(valor).trim();
-
-            // Aceita o próprio ID do vídeo
-            if (/^[a-zA-Z0-9_-]{11}$/.test(texto)) {
-                return texto;
-            }
-
-            // Aceita também iframe completo
-            const iframe = texto.match(/src=["']([^"']+)["']/i);
-            const urlTexto = iframe ? iframe[1] : texto;
-
-            try {
-                const url = new URL(urlTexto);
-
-                if (
-                    url.hostname === 'www.youtube.com' ||
-                    url.hostname === 'youtube.com' ||
-                    url.hostname === 'www.youtube-nocookie.com' ||
-                    url.hostname === 'youtube-nocookie.com'
-                ) {
-                    const encontrado = url.pathname.match(
-                        /\/(?:embed|shorts)\/([^/?]+)/
-                    );
-
-                    return encontrado
-                        ? encontrado[1]
-                        : url.searchParams.get('v') || '';
-                }
-
-                if (url.hostname === 'youtu.be') {
-                    return url.pathname.slice(1).split('/')[0];
-                }
-
-            } catch (erro) {
-                console.error('Erro ao identificar vídeo:', erro);
-            }
-
-            return '';
-        }
-
-        function obterVideo(episodio) {
-            const salvo =
-                typeof S !== 'undefined' &&
-                S.videosMinutados &&
-                S.videosMinutados[episodio.id];
-
-            // Prioriza o vídeo cadastrado diretamente no dados.js
-            return episodio.video || salvo || '';
-        }
-
-        function montarPlayer(video, titulo) {
-            const videoId = extrairIdYoutube(video);
-
-            if (!videoId) {
-                return `
-                    <div class="sem-video-minutada">
-                        <h3>Vídeo ainda não cadastrado</h3>
-                        <p>Este episódio ainda não possui uma resolução em vídeo.</p>
-                    </div>
-                `;
-            }
-
-            const parametros = new URLSearchParams({
-                rel: '0'
-            });
-
-            const endereco =
-                `https://www.youtube.com/embed/${encodeURIComponent(videoId)}?${parametros.toString()}`;
-
-            return `
-                <div class="video-minutada">
-                    <iframe
-                        src="${endereco}"
-                        title="${escaparHTML(titulo)}"
-                        referrerpolicy="strict-origin-when-cross-origin"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowfullscreen>
-                    </iframe>
-                </div>
-            `;
-        }
-
-        function render() {
-
-            if (!Array.isArray(MINUTADA)) {
-                m.innerHTML = `
-                    <div class="empty-state">
-                        Não foi possível carregar os episódios.
-                    </div>
-                `;
-                return;
-            }
-
-            const atual = MINUTADA.find(x => x.id === id);
-
-            m.innerHTML = `
-
-                <div class="section-head">
-
-                    <div>
-                        <span class="tag">VÍDEOS DE 1 MINUTO</span>
-
-                        <h1 style="margin-top:8px">
-                            Matemática Minutada
-                        </h1>
-
-                        <p>
-                            Conceitos rápidos para revisar e aprender todos os dias.
-                        </p>
-                    </div>
-
-                    <span class="tag">
-                        ${MINUTADA.length} episódios
-                    </span>
-
-                </div>
-
-                ${atual ? `
-
-                    <section class="cartao episodio-atual">
-
-                        <div class="linha">
-
-                            <div>
-                                <span class="tag">
-                                    EPISÓDIO ${String(atual.indice).padStart(2, '0')}
-                                </span>
-
-                                <h2 style="margin-top:10px">
-                                    ${escaparHTML(atual.titulo)}
-                                </h2>
-
-                                ${atual.descricao ? `
-                                    <p>${escaparHTML(atual.descricao)}</p>
-                                ` : ''}
-
-                            </div>
-
-                            <a class="btn sec" href="minutada.html">
-                                Todos os episódios
-                            </a>
-
-                        </div>
-
-                        ${montarPlayer(obterVideo(atual), atual.titulo)}
-
-                    </section>
-
-                ` : ''}
-
-                <input
-                    class="search-input"
-                    id="busca"
-                    type="search"
-                    placeholder="Buscar assunto..."
-                    aria-label="Buscar assunto"
-                >
-
-                <div
-                    class="minutada-grid app-minutada"
-                    id="lista">
-                </div>
-
-            `;
-
-            const lista = document.getElementById('lista');
-            const busca = document.getElementById('busca');
-
-            function filtra() {
-
-                const q = busca.value.toLocaleLowerCase('pt-BR');
-
-                const encontrados = MINUTADA.filter(x =>
-                    x.titulo.toLocaleLowerCase('pt-BR').includes(q)
-                );
-
-                lista.innerHTML = encontrados.map(x => {
-
-                    const temVideo = Boolean(obterVideo(x));
-
-                    return `
-                        <a
-                            class="minutada-card"
-                            href="minutada.html?id=${encodeURIComponent(x.id)}"
-                        >
-
-                            <span class="play-mark">▶</span>
-
-                            <span>
-                                <b>${escaparHTML(x.titulo)}</b>
-
-                                <small>
-                                    EP. ${String(x.indice).padStart(2, '0')} · 1 MIN
-                                </small>
-                            </span>
-
-                            <span class="card-arrow">
-                                ${temVideo ? '▶' : '›'}
-                            </span>
-
-                        </a>
-                    `;
-
-                }).join('') || `
-                    <div class="empty-state">
-                        Nenhum assunto encontrado.
-                    </div>
-                `;
-            }
-
-            busca.addEventListener('input', filtra);
-
-            filtra();
-        }
-
-        render();
-
-    </script>
 
     <style>
+        /* ===== CABEÇALHO DA PÁGINA ===== */
+
+        .minutada-intro {
+            margin-bottom: 28px;
+        }
+
+        .minutada-intro p {
+            color: #718096;
+            margin-top: 8px;
+        }
+
+        /* ===== CATEGORIAS ===== */
+
+        .minutada-categorias {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+            margin: 25px 0;
+        }
+
+        .minutada-categoria {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 10px 16px;
+            background: #fff;
+            border: 1px solid #e5edf2;
+            border-radius: 9px;
+            color: #34495e;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: .2s;
+        }
+
+        .minutada-categoria:hover {
+            border-color: #069eda;
+            color: #069eda;
+        }
+
+        .minutada-categoria.ativa {
+            background: #069eda;
+            border-color: #069eda;
+            color: #fff;
+        }
+
+        .categoria-contagem {
+            font-size: 11px;
+            opacity: .75;
+        }
+
+        /* ===== FILTRO E BUSCA ===== */
+
+        .minutada-filtros {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            margin: 25px 0 20px;
+            flex-wrap: wrap;
+        }
+
+        .minutada-filtros h2 {
+            font-size: 20px;
+            margin: 0;
+        }
+
+        .minutada-filtros .search-input {
+            max-width: 320px;
+            width: 100%;
+        }
+
+        /* ===== GRUPOS ===== */
+
+        .minutada-grupo {
+            margin-top: 30px;
+        }
+
+        .minutada-grupo-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .minutada-grupo-header h2 {
+            font-size: 18px;
+            margin: 0;
+        }
+
+        .minutada-grupo-header span {
+            font-size: 12px;
+            color: #8492a0;
+        }
+
+        /* ===== LISTA DE VÍDEOS ===== */
+
         .minutada-grid.app-minutada {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -265,27 +122,60 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            padding: 14px;
+            padding: 15px;
             background: #fff;
             border: 1px solid #e5edf2;
             border-radius: 12px;
             color: #172b3a;
             text-decoration: none;
+            transition: .2s;
+            min-width: 0;
         }
 
         .minutada-card:hover {
             border-color: #069eda;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 16px rgba(0, 0, 0, .04);
         }
 
         .minutada-card > span:nth-child(2) {
             display: flex;
             flex-direction: column;
+            gap: 5px;
+            min-width: 0;
+        }
+
+        .minutada-card b {
+            font-size: 13px;
         }
 
         .minutada-card small {
-            font-size: .68rem;
+            font-size: 10px;
             color: #069eda;
             font-weight: 800;
+        }
+
+        .play-mark {
+            color: #069eda;
+            font-size: 17px;
+        }
+
+        .card-arrow {
+            margin-left: auto;
+            color: #069eda;
+            font-size: 20px;
+        }
+
+        .categoria-mini {
+            font-size: 10px;
+            color: #8795a1;
+            font-weight: 600;
+        }
+
+        /* ===== PLAYER ===== */
+
+        .episodio-atual {
+            margin-bottom: 30px;
         }
 
         .video-minutada {
@@ -319,23 +209,619 @@
             color: #172b3a;
         }
 
+        .episodio-atual .linha {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .episodio-atual .linha > div {
+            min-width: 0;
+        }
+
+        .episodio-atual h2 {
+            margin-bottom: 8px;
+        }
+
+        .episodio-categoria {
+            display: inline-block;
+            color: #069eda;
+            font-size: 12px;
+            font-weight: 700;
+            margin-top: 8px;
+        }
+
+        /* ===== RESULTADOS ===== */
+
+        .empty-state {
+            padding: 35px 20px;
+            text-align: center;
+            color: #82909d;
+            background: #f8fafc;
+            border-radius: 12px;
+        }
+
+        .minutada-contador {
+            font-size: 12px;
+            color: #8492a0;
+            margin-top: 10px;
+        }
+
+        /* ===== RESPONSIVIDADE ===== */
+
         @media(max-width: 900px) {
             .minutada-grid.app-minutada {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
         }
 
-        @media(max-width: 520px) {
+        @media(max-width: 600px) {
             .minutada-grid.app-minutada {
                 grid-template-columns: 1fr;
             }
 
+            .minutada-filtros {
+                align-items: stretch;
+            }
+
+            .minutada-filtros .search-input {
+                max-width: 100%;
+            }
+
             .episodio-atual .linha {
                 flex-wrap: wrap;
-                gap: 12px;
+            }
+
+            .minutada-categoria {
+                padding: 9px 12px;
             }
         }
     </style>
+
+</head>
+
+<body>
+
+<script src="dados.js"></script>
+<script src="app.js"></script>
+
+<script>
+
+/* =================================================
+   MATEMÁTICA MINUTADA — RESULTAMATH
+================================================= */
+
+const m = pagina('minutada');
+
+const params = new URLSearchParams(location.search);
+
+const idInicial = params.get('id');
+const categoriaInicial = params.get('categoria');
+
+
+/* ===== FUNÇÕES AUXILIARES ===== */
+
+function escaparHTML(valor) {
+
+    return String(valor ?? '').replace(/[&<>"']/g, caractere => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+    })[caractere]);
+
+}
+
+
+function normalizar(texto) {
+
+    return String(texto || '')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLocaleLowerCase('pt-BR')
+        .trim();
+
+}
+
+
+/* ===== IDENTIFICAR VÍDEO DO YOUTUBE ===== */
+
+function extrairIdYoutube(valor) {
+
+    if (!valor) return '';
+
+    const texto = String(valor).trim();
+
+    // Aceita o próprio ID do vídeo
+
+    if (/^[a-zA-Z0-9_-]{11}$/.test(texto)) {
+        return texto;
+    }
+
+    // Aceita iframe completo
+
+    const iframe = texto.match(/src=["']([^"']+)["']/i);
+
+    const urlTexto = iframe ? iframe[1] : texto;
+
+    try {
+
+        const url = new URL(urlTexto);
+
+        const host = url.hostname.replace(/^www\./, '');
+
+        if (
+            host === 'youtube.com' ||
+            host === 'youtube-nocookie.com'
+        ) {
+
+            const encontrado = url.pathname.match(
+                /\/(?:embed|shorts)\/([^/?]+)/
+            );
+
+            return encontrado
+                ? encontrado[1]
+                : url.searchParams.get('v') || '';
+
+        }
+
+        if (host === 'youtu.be') {
+            return url.pathname.slice(1).split('/')[0];
+        }
+
+    } catch (erro) {
+
+        console.error('Erro ao identificar vídeo:', erro);
+
+    }
+
+    return '';
+
+}
+
+
+/* ===== OBTER VÍDEO CADASTRADO ===== */
+
+function obterVideo(episodio) {
+
+    const salvo =
+        typeof S !== 'undefined' &&
+        S.videosMinutados &&
+        S.videosMinutados[episodio.id];
+
+    return episodio.video || salvo || '';
+
+}
+
+
+/* ===== MONTAR PLAYER ===== */
+
+function montarPlayer(video, titulo) {
+
+    const videoId = extrairIdYoutube(video);
+
+    if (!videoId) {
+
+        return `
+            <div class="sem-video-minutada">
+
+                <h3>Vídeo ainda não cadastrado</h3>
+
+                <p>
+                    Este episódio ainda não possui
+                    uma aula em vídeo.
+                </p>
+
+            </div>
+        `;
+
+    }
+
+    const parametros = new URLSearchParams({
+        rel: '0'
+    });
+
+    const endereco =
+        `https://www.youtube.com/embed/${encodeURIComponent(videoId)}?${parametros.toString()}`;
+
+    return `
+
+        <div class="video-minutada">
+
+            <iframe
+                src="${endereco}"
+                title="${escaparHTML(titulo)}"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+            </iframe>
+
+        </div>
+
+    `;
+
+}
+
+
+/* ===== ORGANIZAR MATÉRIAS ===== */
+
+function obterCategorias() {
+
+    return [...new Set(
+
+        MINUTADA.map(item =>
+            item.categoria || 'Outros'
+        )
+
+    )];
+
+}
+
+
+/* ===== RENDERIZAÇÃO PRINCIPAL ===== */
+
+function render() {
+
+    if (!Array.isArray(MINUTADA)) {
+
+        m.innerHTML = `
+            <div class="empty-state">
+                Não foi possível carregar os episódios.
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    const categorias = obterCategorias();
+
+    const categoriaAtiva = categorias.find(
+        categoria => normalizar(categoria) === normalizar(categoriaInicial)
+    ) || 'Todas';
+
+
+    const atual = MINUTADA.find(
+        item => item.id === idInicial
+    );
+
+
+    /* ===== CABEÇALHO ===== */
+
+    m.innerHTML = `
+
+        <div class="section-head minutada-intro">
+
+            <div>
+
+                <span class="tag">
+                    VÍDEOS DE 1 MINUTO
+                </span>
+
+                <h1 style="margin-top:8px">
+                    Matemática Minutada
+                </h1>
+
+                <p>
+                    Conceitos rápidos para revisar,
+                    aprender e evoluir todos os dias.
+                </p>
+
+            </div>
+
+            <span class="tag">
+                ${MINUTADA.length} episódios
+            </span>
+
+        </div>
+
+
+        ${atual ? `
+
+            <section class="cartao episodio-atual">
+
+                <div class="linha">
+
+                    <div>
+
+                        <span class="tag">
+                            EPISÓDIO ${String(atual.indice).padStart(2, '0')}
+                        </span>
+
+                        <h2 style="margin-top:10px">
+                            ${escaparHTML(atual.titulo)}
+                        </h2>
+
+                        ${atual.descricao ? `
+                            <p>${escaparHTML(atual.descricao)}</p>
+                        ` : ''}
+
+                        <span class="episodio-categoria">
+                            ${escaparHTML(atual.categoria || 'Outros')}
+                        </span>
+
+                    </div>
+
+                    <a class="btn sec" href="minutada.html">
+                        Todos os episódios
+                    </a>
+
+                </div>
+
+                ${montarPlayer(
+                    obterVideo(atual),
+                    atual.titulo
+                )}
+
+            </section>
+
+        ` : ''}
+
+
+        <!-- ===== NAVEGAÇÃO POR MATÉRIA ===== -->
+
+        <div class="minutada-filtros">
+
+            <h2>Explore por matéria</h2>
+
+        </div>
+
+
+        <nav class="minutada-categorias">
+
+            <a
+                href="minutada.html"
+                class="minutada-categoria ${categoriaAtiva === 'Todas' ? 'ativa' : ''}"
+            >
+                Todas
+                <span class="categoria-contagem">
+                    ${MINUTADA.length}
+                </span>
+            </a>
+
+            ${categorias.map(categoria => {
+
+                const quantidade = MINUTADA.filter(
+                    item => (item.categoria || 'Outros') === categoria
+                ).length;
+
+                return `
+
+                    <a
+                        href="minutada.html?categoria=${encodeURIComponent(categoria)}"
+                        class="minutada-categoria ${
+                            categoriaAtiva === categoria ? 'ativa' : ''
+                        }"
+                    >
+
+                        ${escaparHTML(categoria)}
+
+                        <span class="categoria-contagem">
+                            ${quantidade}
+                        </span>
+
+                    </a>
+
+                `;
+
+            }).join('')}
+
+        </nav>
+
+
+        <!-- ===== BUSCA ===== -->
+
+        <div class="minutada-filtros">
+
+            <h2 id="titulo-lista">
+                ${categoriaAtiva === 'Todas'
+                    ? 'Todos os episódios'
+                    : escaparHTML(categoriaAtiva)}
+            </h2>
+
+            <input
+                class="search-input"
+                id="busca"
+                type="search"
+                placeholder="Buscar assunto..."
+                aria-label="Buscar assunto"
+            >
+
+        </div>
+
+
+        <p class="minutada-contador" id="contador"></p>
+
+
+        <!-- ===== LISTA DE EPISÓDIOS ===== -->
+
+        <div
+            class="minutada-grid app-minutada"
+            id="lista">
+        </div>
+
+    `;
+
+
+    const lista = document.getElementById('lista');
+
+    const busca = document.getElementById('busca');
+
+    const contador = document.getElementById('contador');
+
+
+    /* ===== FILTRAR EPISÓDIOS ===== */
+
+    function filtrar() {
+
+        const pesquisa = normalizar(busca.value);
+
+
+        const encontrados = MINUTADA.filter(item => {
+
+            const categoria = item.categoria || 'Outros';
+
+            const correspondeCategoria =
+                categoriaAtiva === 'Todas' ||
+                categoria === categoriaAtiva;
+
+            const textoBusca = normalizar(
+                item.titulo + ' ' +
+                (item.descricao || '') + ' ' +
+                categoria
+            );
+
+            const correspondeBusca =
+                textoBusca.includes(pesquisa);
+
+            return correspondeCategoria && correspondeBusca;
+
+        });
+
+
+        /* ===== AGRUPAR RESULTADOS ===== */
+
+        const grupos = {};
+
+        encontrados.forEach(item => {
+
+            const categoria = item.categoria || 'Outros';
+
+            if (!grupos[categoria]) {
+                grupos[categoria] = [];
+            }
+
+            grupos[categoria].push(item);
+
+        });
+
+
+        /* ===== EXIBIR RESULTADOS ===== */
+
+        lista.innerHTML = Object.entries(grupos).map(
+            ([categoria, videos]) => {
+
+                return `
+
+                    <section class="minutada-grupo">
+
+                        ${categoriaAtiva === 'Todas' ? `
+
+                            <div class="minutada-grupo-header">
+
+                                <h2>
+                                    ${escaparHTML(categoria)}
+                                </h2>
+
+                                <span>
+                                    ${videos.length}
+                                    ${videos.length === 1 ? 'episódio' : 'episódios'}
+                                </span>
+
+                            </div>
+
+                        ` : ''}
+
+
+                        <div class="minutada-grid app-minutada">
+
+                            ${videos.map(item => {
+
+                                const temVideo = Boolean(
+                                    extrairIdYoutube(obterVideo(item))
+                                );
+
+                                return `
+
+                                    <a
+                                        class="minutada-card"
+                                        href="minutada.html?id=${encodeURIComponent(item.id)}"
+                                    >
+
+                                        <span class="play-mark">
+                                            ${temVideo ? '▶' : '▷'}
+                                        </span>
+
+                                        <span>
+
+                                            <b>
+                                                ${escaparHTML(item.titulo)}
+                                            </b>
+
+                                            <small>
+                                                EP. ${String(item.indice).padStart(2, '0')}
+                                                · 1 MIN
+                                            </small>
+
+                                            ${categoriaAtiva !== 'Todas' ? '' : `
+                                                <span class="categoria-mini">
+                                                    ${escaparHTML(categoria)}
+                                                </span>
+                                            `}
+
+                                        </span>
+
+                                        <span class="card-arrow">
+                                            ›
+                                        </span>
+
+                                    </a>
+
+                                `;
+
+                            }).join('')}
+
+                        </div>
+
+                    </section>
+
+                `;
+
+            }
+        ).join('');
+
+
+        /* ===== ESTADO VAZIO ===== */
+
+        if (encontrados.length === 0) {
+
+            lista.innerHTML = `
+
+                <div class="empty-state">
+
+                    <h3>Nenhum assunto encontrado.</h3>
+
+                    <p>
+                        Tente buscar outro conteúdo
+                        ou selecionar uma matéria diferente.
+                    </p>
+
+                </div>
+
+            `;
+
+        }
+
+
+        contador.textContent =
+            `${encontrados.length} de ${MINUTADA.length} episódios encontrados`;
+
+    }
+
+
+    busca.addEventListener('input', filtrar);
+
+    filtrar();
+
+}
+
+
+render();
+
+</script>
 
 </body>
 </html>
