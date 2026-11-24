@@ -2364,6 +2364,7 @@ const SITE={
 
 
 
+
 /* ===== MATEMÁTICA MINUTADA ===== */
 
 const MINUTADA = [
@@ -2371,49 +2372,109 @@ const MINUTADA = [
         titulo: 'Raiz quadrada',
         video: 'LGTiGfulDwU',
         descricao: 'Aprenda o conceito de raiz quadrada.',
-        categoria: 'Aritmética'
+        materia: 'Aritmética'
     },
     {
         titulo: 'Potência',
         video: 'ID_DO_VIDEO',
         descricao: 'Entenda a potenciação.',
-        categoria: 'Aritmética'
+        materia: 'Aritmética'
+    },
+    {
+        titulo: 'Frações',
+        video: '',
+        materia: 'Aritmética'
+    },
+    {
+        titulo: 'MMC',
+        video: '',
+        materia: 'Matemática básica'
+    },
+    {
+        titulo: 'MDC',
+        video: '',
+        materia: 'Matemática básica'
+    },
+    {
+        titulo: 'Regra de três',
+        video: '',
+        materia: 'Proporcionalidade'
     },
     {
         titulo: 'Porcentagem',
-        video: 'ID_DO_VIDEO',
-        descricao: 'Aprenda os fundamentos da porcentagem.',
-        categoria: 'Aritmética'
+        video: '',
+        materia: 'Matemática financeira'
     },
-    { titulo: 'PA', video: '', categoria: 'Sequências' },
-    { titulo: 'PG', video: '', categoria: 'Sequências' },
-    { titulo: 'Probabilidade', video: '', categoria: 'Estatística' },
-    { titulo: 'Mediana', video: '', categoria: 'Estatística' },
-    { titulo: 'Média', video: '', categoria: 'Estatística' },
-    { titulo: 'Moda', video: '', categoria: 'Estatística' },
-    { titulo: 'Regra de três', video: '', categoria: 'Proporcionalidade' },
-    { titulo: 'Logaritmo', video: '', categoria: 'Álgebra' },
-    { titulo: 'Módulo de um número', video: '', categoria: 'Números' },
-    { titulo: 'Número oposto', video: '', categoria: 'Números' },
-    { titulo: 'Números pares e ímpares', video: '', categoria: 'Números' },
-    { titulo: 'Números primos', video: '', categoria: 'Números' },
-    { titulo: 'MMC', video: '', categoria: 'Divisibilidade' },
-    { titulo: 'MDC', video: '', categoria: 'Divisibilidade' },
-    { titulo: 'Frações', video: '', categoria: 'Aritmética' },
-    { titulo: 'Frações equivalentes', video: '', categoria: 'Aritmética' },
-    { titulo: 'Fração imprópria', video: '', categoria: 'Aritmética' },
-    { titulo: 'Fatorial', video: '', categoria: 'Aritmética' },
-    { titulo: 'Fração irredutível', video: '', categoria: 'Aritmética' },
-    { titulo: 'Número decimal', video: '', categoria: 'Aritmética' },
-    { titulo: 'Valor absoluto', video: '', categoria: 'Números' },
-    { titulo: 'Inverso de um número', video: '', categoria: 'Números' },
-    { titulo: 'Ângulos complementares', video: '', categoria: 'Geometria' },
-    { titulo: 'Ângulos suplementares', video: '', categoria: 'Geometria' },
-    { titulo: 'Perímetro', video: '', categoria: 'Geometria' },
-    { titulo: 'Área', video: '', categoria: 'Geometria' },
-    { titulo: 'Volume', video: '', categoria: 'Geometria' },
-    { titulo: 'Juros simples', video: '', categoria: 'Matemática financeira' },
-    { titulo: 'Juros compostos', video: '', categoria: 'Matemática financeira' }
+    {
+        titulo: 'Juros simples',
+        video: '',
+        materia: 'Matemática financeira'
+    },
+    {
+        titulo: 'Juros compostos',
+        video: '',
+        materia: 'Matemática financeira'
+    },
+    {
+        titulo: 'Logaritmo',
+        video: '',
+        materia: 'Álgebra'
+    },
+    {
+        titulo: 'PA',
+        video: '',
+        materia: 'Sequências'
+    },
+    {
+        titulo: 'PG',
+        video: '',
+        materia: 'Sequências'
+    },
+    {
+        titulo: 'Média',
+        video: '',
+        materia: 'Estatística'
+    },
+    {
+        titulo: 'Mediana',
+        video: '',
+        materia: 'Estatística'
+    },
+    {
+        titulo: 'Moda',
+        video: '',
+        materia: 'Estatística'
+    },
+    {
+        titulo: 'Probabilidade',
+        video: '',
+        materia: 'Probabilidade'
+    },
+    {
+        titulo: 'Ângulos complementares',
+        video: '',
+        materia: 'Geometria'
+    },
+    {
+        titulo: 'Ângulos suplementares',
+        video: '',
+        materia: 'Geometria'
+    },
+    {
+        titulo: 'Perímetro',
+        video: '',
+        materia: 'Geometria'
+    },
+    {
+        titulo: 'Área',
+        video: '',
+        materia: 'Geometria'
+    },
+    {
+        titulo: 'Volume',
+        video: '',
+        materia: 'Geometria'
+    }
 
 ].map((item, indice) => ({
     ...item,
