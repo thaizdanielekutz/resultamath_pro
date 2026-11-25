@@ -2550,77 +2550,843 @@ const MINUTADA = [
 }));
 
 
+
 /* ===== BIBLIOTECA DE CONTEÚDOS ===== */
 
 const RESUMOS = [
 
-    {
-        id: 'conjuntos-numericos',
-        titulo: 'Conjuntos numéricos',
-        modulo: 'Fundamentos da Matemática',
-        conteudo: `
-            <h2>1. O que são conjuntos numéricos?</h2>
+/* =====================================================
+   01. FUNDAMENTOS DA MATEMÁTICA
+===================================================== */
 
-            <p>Os conjuntos numéricos são agrupamentos de números que apresentam características em comum.</p>
+{
+    id: 'conjuntos-numericos',
+    titulo: 'Conjuntos numéricos',
+    modulo: 'Fundamentos da Matemática',
+    conteudo: `
+        <h2>1. O que são conjuntos numéricos?</h2>
+        <p>São agrupamentos de números que apresentam características em comum. Cada conjunto possui propriedades específicas.</p>
 
-            <h2>2. Principais conjuntos numéricos</h2>
+        <h2>2. Números naturais (ℕ)</h2>
+        <p>São utilizados principalmente para contar e ordenar elementos.</p>
+        <p><b>Representação:</b> ℕ = {0, 1, 2, 3, 4, 5...}</p>
 
-            <h3>Números naturais (ℕ)</h3>
-            <p>São utilizados principalmente para contar e ordenar.</p>
-            <p><b>Exemplos:</b> 0, 1, 2, 3, 4, 5...</p>
+        <h2>3. Números inteiros (ℤ)</h2>
+        <p>Incluem os números naturais, seus opostos negativos e o zero.</p>
+        <p><b>Representação:</b> ℤ = {..., -3, -2, -1, 0, 1, 2, 3...}</p>
 
-            <h3>Números inteiros (ℤ)</h3>
-            <p>Incluem os números naturais, seus opostos negativos e o zero.</p>
-            <p><b>Exemplos:</b> ..., -3, -2, -1, 0, 1, 2, 3...</p>
+        <h2>4. Números racionais (ℚ)</h2>
+        <p>São aqueles que podem ser escritos na forma de fração, com numerador e denominador inteiros e denominador diferente de zero.</p>
+        <p><b>Exemplos:</b> 1/2, -3/4, 5, 0,25 e 0,333...</p>
+        <p>Possuem representação decimal exata ou periódica.</p>
 
-            <h3>Números racionais (ℚ)</h3>
-            <p>Podem ser representados por uma fração de números inteiros, com denominador diferente de zero.</p>
-            <p><b>Exemplos:</b> 1/2, -3/4, 5 e 0,25.</p>
+        <h2>5. Números irracionais (𝕀)</h2>
+        <p>Não podem ser representados por uma fração de números inteiros. Sua representação decimal é infinita e não periódica.</p>
+        <p><b>Exemplos:</b> √2, √3 e π.</p>
 
-            <h3>Números irracionais (𝕀)</h3>
-            <p>Não podem ser representados por uma fração de números inteiros.</p>
-            <p><b>Exemplos:</b> √2, √3 e π.</p>
+        <h2>6. Números reais (ℝ)</h2>
+        <p>São formados pela união dos números racionais e irracionais.</p>
+        <p><b>ℝ = ℚ ∪ 𝕀</b></p>
 
-            <h3>Números reais (ℝ)</h3>
-            <p>Reúnem os números racionais e irracionais.</p>
+        <h2>7. Relação entre os conjuntos</h2>
+        <p><b>ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ</b></p>
+        <p>Todo número natural é inteiro, todo inteiro é racional e todo racional é real.</p>
+        <p>Os irracionais também pertencem aos reais, mas não aos racionais.</p>
 
-            <h2>3. Relação entre os conjuntos</h2>
+        <h2>8. Atenção para as provas</h2>
+        <ul>
+            <li>O número 1 é natural, inteiro, racional e real.</li>
+            <li>O zero é natural na convenção adotada neste material.</li>
+            <li>Todo número inteiro pode ser escrito como uma fração de denominador 1.</li>
+            <li>Uma dízima periódica é racional.</li>
+            <li>Uma decimal infinita não periódica é irracional.</li>
+        </ul>
 
-            <p>ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ</p>
+        <div class="dica"><b>DICA RESULTAMATH</b><p>Memorize a sequência ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ. Cada conjunto está contido no seguinte.</p></div>
+    `
+},
 
-            <p>Os números irracionais também pertencem aos reais, mas não aos racionais.</p>
+{
+    id: 'operacoes-fundamentais',
+    titulo: 'Operações fundamentais',
+    modulo: 'Fundamentos da Matemática',
+    conteudo: `
+        <h2>1. Adição</h2>
+        <p>Consiste em reunir duas ou mais quantidades.</p>
+        <p><b>Exemplo:</b> 25 + 13 = 38.</p>
 
-            <h2>4. Atenção!</h2>
+        <h3>Propriedades da adição</h3>
+        <ul>
+            <li><b>Comutativa:</b> a + b = b + a.</li>
+            <li><b>Associativa:</b> (a + b) + c = a + (b + c).</li>
+            <li><b>Elemento neutro:</b> a + 0 = a.</li>
+        </ul>
 
-            <p>Todo número natural é inteiro, mas nem todo número inteiro é natural.</p>
-        `
-    },
+        <h2>2. Subtração</h2>
+        <p>Representa a diferença entre duas quantidades.</p>
+        <p><b>Exemplo:</b> 45 - 18 = 27.</p>
+        <p>A subtração não é comutativa: 45 - 18 ≠ 18 - 45.</p>
 
-    {
-        id: 'multiplos-divisores',
-        titulo: 'Múltiplos e divisores',
-        modulo: 'Divisibilidade e fatoração',
-        conteudo: `
-            <h2>1. O que são múltiplos?</h2>
+        <h2>3. Multiplicação</h2>
+        <p>Representa uma adição de parcelas iguais.</p>
+        <p><b>Exemplo:</b> 4 × 6 = 24.</p>
 
-            <p>Os múltiplos de um número são obtidos multiplicando esse número pelos naturais.</p>
+        <h3>Propriedades da multiplicação</h3>
+        <ul>
+            <li><b>Comutativa:</b> a × b = b × a.</li>
+            <li><b>Associativa:</b> (a × b) × c = a × (b × c).</li>
+            <li><b>Elemento neutro:</b> a × 1 = a.</li>
+            <li><b>Elemento nulo:</b> a × 0 = 0.</li>
+            <li><b>Distributiva:</b> a(b + c) = ab + ac.</li>
+        </ul>
 
-            <p><b>Exemplo:</b> múltiplos de 3.</p>
+        <h2>4. Divisão</h2>
+        <p>Consiste em repartir uma quantidade em partes iguais ou verificar quantas vezes um número cabe em outro.</p>
+        <p><b>Exemplo:</b> 36 ÷ 4 = 9.</p>
 
-            <p>0, 3, 6, 9, 12, 15, 18...</p>
+        <h3>Elementos da divisão</h3>
+        <ul>
+            <li>Dividendo: número que será dividido.</li>
+            <li>Divisor: número pelo qual dividimos.</li>
+            <li>Quociente: resultado da divisão.</li>
+            <li>Resto: quantidade que sobra.</li>
+        </ul>
 
-            <h2>2. O que são divisores?</h2>
+        <p><b>Relação fundamental:</b></p>
+        <p>D = d × q + r</p>
+        <p>Em que D é o dividendo, d é o divisor, q é o quociente e r é o resto.</p>
 
-            <p>Um número é divisor de outro quando a divisão é exata, ou seja, apresenta resto zero.</p>
+        <h2>5. Regras de sinais</h2>
+        <table>
+            <tr><th>Operação</th><th>Sinais</th><th>Resultado</th></tr>
+            <tr><td>Multiplicação</td><td>+ e +</td><td>+</td></tr>
+            <tr><td>Multiplicação</td><td>- e -</td><td>+</td></tr>
+            <tr><td>Multiplicação</td><td>+ e -</td><td>-</td></tr>
+            <tr><td>Multiplicação</td><td>- e +</td><td>-</td></tr>
+        </table>
+        <p>Na divisão, a regra dos sinais é a mesma da multiplicação.</p>
 
-            <p><b>Exemplo:</b> divisores de 12.</p>
+        <h2>6. Adição e subtração com sinais</h2>
+        <p><b>Sinais iguais:</b> some os valores e conserve o sinal.</p>
+        <p>Exemplo: (-5) + (-3) = -8.</p>
+        <p><b>Sinais diferentes:</b> subtraia os módulos e conserve o sinal do número de maior módulo.</p>
+        <p>Exemplo: (-9) + 4 = -5.</p>
 
-            <p>1, 2, 3, 4, 6 e 12.</p>
+        <h2>7. Atenção para as provas</h2>
+        <ul>
+            <li>A divisão por zero não é definida.</li>
+            <li>A subtração não é comutativa.</li>
+            <li>Multiplicação e divisão possuem a mesma prioridade.</li>
+            <li>Não confunda -3² = -9 com (-3)² = 9.</li>
+        </ul>
 
-            <h2>3. Atenção!</h2>
+        <div class="dica"><b>DICA RESULTAMATH</b><p>Na multiplicação e na divisão, sinais iguais produzem resultado positivo; sinais diferentes produzem resultado negativo.</p></div>
+    `
+},
 
-            <p>Todo número natural diferente de zero possui uma quantidade finita de divisores.</p>
-        `
-    }
+{
+    id: 'expressoes-numericas',
+    titulo: 'Expressões numéricas',
+    modulo: 'Fundamentos da Matemática',
+    conteudo: `
+        <h2>1. O que são expressões numéricas?</h2>
+        <p>São sequências de operações matemáticas que devem ser resolvidas seguindo uma ordem específica.</p>
+
+        <h2>2. Ordem das operações</h2>
+        <p>A sequência de resolução é:</p>
+        <ol>
+            <li>Parênteses ( ).</li>
+            <li>Colchetes [ ].</li>
+            <li>Chaves { }.</li>
+            <li>Potenciação e radiciação.</li>
+            <li>Multiplicação e divisão.</li>
+            <li>Adição e subtração.</li>
+        </ol>
+        <p>Operações de mesma prioridade são resolvidas da esquerda para a direita.</p>
+
+        <h2>3. Exemplo resolvido</h2>
+        <p>Calcule:</p>
+        <p><b>20 + 3 × (8 - 4)² ÷ 4</b></p>
+
+        <p><b>1° PASSO: Resolva os parênteses.</b></p>
+        <p>20 + 3 × 4² ÷ 4</p>
+
+        <p><b>2° PASSO: Resolva a potenciação.</b></p>
+        <p>20 + 3 × 16 ÷ 4</p>
+
+        <p><b>3° PASSO: Resolva multiplicação e divisão, da esquerda para a direita.</b></p>
+        <p>20 + 48 ÷ 4</p>
+        <p>20 + 12</p>
+
+        <p><b>4° PASSO: Resolva a adição.</b></p>
+        <p><b>20 + 12 = 32.</b></p>
+
+        <h2>4. Uso dos sinais de associação</h2>
+        <p>Quando aparecem parênteses, colchetes e chaves, resolvemos primeiro os sinais mais internos.</p>
+        <p>Exemplo: {10 + [8 - (3 + 2)]}.</p>
+        <p>Primeiro resolvemos (3 + 2), depois os colchetes e, por último, as chaves.</p>
+
+        <h2>5. Atenção para as provas</h2>
+        <ul>
+            <li>Multiplicação não tem prioridade sobre divisão.</li>
+            <li>Adição não tem prioridade sobre subtração.</li>
+            <li>Potenciação e radiciação vêm antes de multiplicação e divisão.</li>
+            <li>Não resolva simplesmente na ordem em que os números aparecem.</li>
+        </ul>
+
+        <div class="dica"><b>DICA RESULTAMATH</b><p>Siga a hierarquia das operações e, quando houver empate de prioridade, resolva da esquerda para a direita.</p></div>
+    `
+},
+
+/* =====================================================
+   02. DIVISIBILIDADE E FATORAÇÃO
+===================================================== */
+
+{
+    id: 'multiplos-divisores',
+    titulo: 'Múltiplos e divisores',
+    modulo: 'Divisibilidade e fatoração',
+    conteudo: `
+        <h2>1. Múltiplos</h2>
+        <p>Os múltiplos de um número são obtidos multiplicando esse número pelos números naturais.</p>
+        <p><b>Exemplo: múltiplos de 4.</b></p>
+        <p>M(4) = {0, 4, 8, 12, 16, 20...}</p>
+        <p>Os múltiplos de um número são infinitos.</p>
+
+        <h2>2. Divisores</h2>
+        <p>Um número é divisor de outro quando a divisão é exata, ou seja, apresenta resto igual a zero.</p>
+        <p><b>Exemplo: divisores de 12.</b></p>
+        <p>D(12) = {1, 2, 3, 4, 6, 12}.</p>
+        <p>Os divisores de um número natural diferente de zero são finitos.</p>
+
+        <h2>3. Relação entre múltiplos e divisores</h2>
+        <p>Se 24 ÷ 6 = 4, então:</p>
+        <ul>
+            <li>24 é múltiplo de 6.</li>
+            <li>6 é divisor de 24.</li>
+            <li>4 também é divisor de 24.</li>
+        </ul>
+
+        <h2>4. Números pares e ímpares</h2>
+        <p><b>Pares:</b> são divisíveis por 2.</p>
+        <p>Exemplos: 0, 2, 4, 6, 8, 10...</p>
+        <p><b>Ímpares:</b> não são divisíveis por 2.</p>
+        <p>Exemplos: 1, 3, 5, 7, 9, 11...</p>
+
+        <h2>5. Atenção para as provas</h2>
+        <ul>
+            <li>Todo número natural diferente de zero é divisor de si mesmo.</li>
+            <li>O número 1 é divisor de qualquer número natural.</li>
+            <li>O zero é múltiplo de qualquer número natural.</li>
+            <li>A divisão por zero não existe.</li>
+        </ul>
+
+        <div class="dica"><b>DICA RESULTAMATH</b><p>Para verificar se um número é divisor de outro, confira se a divisão apresenta resto zero.</p></div>
+    `
+},
+
+{
+    id: 'divisibilidade',
+    titulo: 'Critérios de divisibilidade',
+    modulo: 'Divisibilidade e fatoração',
+    conteudo: `
+        <h2>1. O que são critérios de divisibilidade?</h2>
+        <p>São regras que permitem verificar se um número é divisível por outro sem precisar realizar a divisão.</p>
+
+        <h2>2. Divisibilidade por 2</h2>
+        <p>Um número é divisível por 2 quando termina em 0, 2, 4, 6 ou 8.</p>
+        <p><b>Exemplo:</b> 348 é divisível por 2 porque termina em 8.</p>
+
+        <h2>3. Divisibilidade por 3</h2>
+        <p>Um número é divisível por 3 quando a soma de seus algarismos é múltipla de 3.</p>
+        <p><b>Exemplo:</b> 729.</p>
+        <p>7 + 2 + 9 = 18.</p>
+        <p>Como 18 é divisível por 3, 729 também é.</p>
+
+        <h2>4. Divisibilidade por 4</h2>
+        <p>Um número é divisível por 4 quando os dois últimos algarismos formam um número divisível por 4.</p>
+        <p><b>Exemplo:</b> 1.316. Os dois últimos algarismos formam 16, que é divisível por 4.</p>
+
+        <h2>5. Divisibilidade por 5</h2>
+        <p>Um número é divisível por 5 quando termina em 0 ou 5.</p>
+        <p><b>Exemplo:</b> 235.</p>
+
+        <h2>6. Divisibilidade por 6</h2>
+        <p>Um número é divisível por 6 quando é divisível simultaneamente por 2 e por 3.</p>
+        <p><b>Exemplo:</b> 126.</p>
+        <p>É par e a soma dos algarismos é 1 + 2 + 6 = 9.</p>
+
+        <h2>7. Divisibilidade por 8</h2>
+        <p>Um número é divisível por 8 quando os três últimos algarismos formam um número divisível por 8.</p>
+        <p><b>Exemplo:</b> 2.104. Como 104 ÷ 8 = 13, o número é divisível por 8.</p>
+
+        <h2>8. Divisibilidade por 9</h2>
+        <p>Um número é divisível por 9 quando a soma de seus algarismos é múltipla de 9.</p>
+        <p><b>Exemplo:</b> 4.536.</p>
+        <p>4 + 5 + 3 + 6 = 18. Portanto, é divisível por 9.</p>
+
+        <h2>9. Divisibilidade por 10</h2>
+        <p>Um número é divisível por 10 quando termina em zero.</p>
+        <p><b>Exemplo:</b> 1.250.</p>
+
+        <h2>10. Divisibilidade por 11</h2>
+        <p>Um número é divisível por 11 quando a diferença entre as somas dos algarismos em posições alternadas é zero ou múltipla de 11.</p>
+        <p><b>Exemplo:</b> 1.331.</p>
+        <p>(1 + 3) - (3 + 1) = 0.</p>
+        <p>Portanto, é divisível por 11.</p>
+
+        <h2>11. Divisibilidade por 25</h2>
+        <p>Um número é divisível por 25 quando termina em 00, 25, 50 ou 75.</p>
+        <p><b>Exemplo:</b> 1.275.</p>
+
+        <h2>12. Divisibilidade por 100</h2>
+        <p>Um número é divisível por 100 quando termina em dois zeros.</p>
+        <p><b>Exemplo:</b> 4.500.</p>
+
+        <h2>13. Quadro-resumo</h2>
+        <table>
+            <tr><th>Divisor</th><th>Critério</th></tr>
+            <tr><td>2</td><td>Termina em 0, 2, 4, 6 ou 8.</td></tr>
+            <tr><td>3</td><td>Soma dos algarismos múltipla de 3.</td></tr>
+            <tr><td>4</td><td>Dois últimos algarismos divisíveis por 4.</td></tr>
+            <tr><td>5</td><td>Termina em 0 ou 5.</td></tr>
+            <tr><td>6</td><td>Divisível por 2 e por 3.</td></tr>
+            <tr><td>8</td><td>Três últimos algarismos divisíveis por 8.</td></tr>
+            <tr><td>9</td><td>Soma dos algarismos múltipla de 9.</td></tr>
+            <tr><td>10</td><td>Termina em 0.</td></tr>
+            <tr><td>11</td><td>Diferença das somas alternadas igual a 0 ou múltipla de 11.</td></tr>
+            <tr><td>25</td><td>Termina em 00, 25, 50 ou 75.</td></tr>
+            <tr><td>100</td><td>Termina em 00.</td></tr>
+        </table>
+
+        <div class="dica"><b>DICA RESULTAMATH</b><p>Memorize os finais mais importantes e utilize a soma dos algarismos para verificar a divisibilidade por 3 e 9.</p></div>
+    `
+},
+
+{
+    id: 'numeros-primos',
+    titulo: 'Números primos',
+    modulo: 'Divisibilidade e fatoração',
+    conteudo: `
+        <h2>1. O que são números primos?</h2>
+        <p>Um número natural maior que 1 é primo quando possui exatamente dois divisores naturais: 1 e ele mesmo.</p>
+        <p><b>Exemplos:</b> 2, 3, 5, 7, 11, 13, 17, 19...</p>
+
+        <h2>2. Números compostos</h2>
+        <p>São números naturais maiores que 1 que possuem mais de dois divisores naturais.</p>
+        <p><b>Exemplo:</b> 12.</p>
+        <p>D(12) = {1, 2, 3, 4, 6, 12}.</p>
+        <p>Como possui mais de dois divisores, é composto.</p>
+
+        <h2>3. O número 1</h2>
+        <p>O número 1 não é primo nem composto, pois possui apenas um divisor natural.</p>
+
+        <h2>4. O número 2</h2>
+        <p>É o único número primo par. Todos os outros números pares maiores que 2 são compostos.</p>
+
+        <h2>5. Decomposição em fatores primos</h2>
+        <p>Consiste em escrever um número como produto de números primos.</p>
+        <p><b>Exemplo: decomposição de 60.</b></p>
+
+        <p><b>1° PASSO: Divida sucessivamente pelos menores números primos possíveis.</b></p>
+        <p>60 ÷ 2 = 30</p>
+        <p>30 ÷ 2 = 15</p>
+        <p>15 ÷ 3 = 5</p>
+        <p>5 ÷ 5 = 1</p>
+
+        <p><b>2° PASSO: Escreva o produto dos fatores encontrados.</b></p>
+        <p>60 = 2 × 2 × 3 × 5.</p>
+
+        <p><b>3° PASSO: Agrupe os fatores iguais utilizando potências.</b></p>
+        <p><b>60 = 2² × 3 × 5.</b></p>
+
+        <h2>6. Aplicações</h2>
+        <p>A decomposição em fatores primos é utilizada para calcular MMC, MDC, simplificar frações e determinar divisores.</p>
+
+        <h2>7. Atenção para as provas</h2>
+        <ul>
+            <li>O número 1 não é primo.</li>
+            <li>O número 2 é o único primo par.</li>
+            <li>Todo número composto pode ser decomposto em fatores primos.</li>
+            <li>A fatoração prima é única, desconsiderando a ordem dos fatores.</li>
+        </ul>
+
+        <div class="dica"><b>DICA RESULTAMATH</b><p>Para decompor um número, divida sucessivamente pelos menores números primos possíveis, começando por 2.</p></div>
+    `
+},
+
+{
+    id: 'mmc-mdc',
+    titulo: 'MMC e MDC',
+    modulo: 'Divisibilidade e fatoração',
+    conteudo: `
+        <h2>1. Mínimo Múltiplo Comum (MMC)</h2>
+        <p>É o menor múltiplo positivo comum entre dois ou mais números.</p>
+        <p><b>Exemplo:</b> MMC de 12 e 18.</p>
+        <p>Múltiplos de 12: 12, 24, 36, 48, 60...</p>
+        <p>Múltiplos de 18: 18, 36, 54, 72...</p>
+        <p>O menor múltiplo positivo comum é 36.</p>
+        <p><b>MMC(12, 18) = 36.</b></p>
+
+        <h2>2. Como calcular o MMC pela fatoração</h2>
+        <p><b>1° PASSO:</b> Decomponha os números simultaneamente.</p>
+        <table>
+            <tr><th>12</th><th>18</th><th>Divisor</th></tr>
+            <tr><td>12</td><td>18</td><td>2</td></tr>
+            <tr><td>6</td><td>9</td><td>2</td></tr>
+            <tr><td>3</td><td>9</td><td>3</td></tr>
+            <tr><td>1</td><td>3</td><td>3</td></tr>
+            <tr><td>1</td><td>1</td><td></td></tr>
+        </table>
+        <p><b>2° PASSO:</b> Multiplique todos os fatores primos utilizados.</p>
+        <p>MMC = 2 × 2 × 3 × 3.</p>
+        <p><b>MMC = 36.</b></p>
+
+        <h2>3. Máximo Divisor Comum (MDC)</h2>
+        <p>É o maior divisor positivo comum entre dois ou mais números.</p>
+        <p><b>Exemplo:</b> MDC de 24 e 36.</p>
+        <p>Divisores de 24: 1, 2, 3, 4, 6, 8, 12 e 24.</p>
+        <p>Divisores de 36: 1, 2, 3, 4, 6, 9, 12, 18 e 36.</p>
+        <p><b>MDC(24, 36) = 12.</b></p>
+
+        <h2>4. Como calcular o MDC pela fatoração</h2>
+        <p><b>1° PASSO:</b> Decomponha os números em fatores primos.</p>
+        <p>24 = 2³ × 3.</p>
+        <p>36 = 2² × 3².</p>
+        <p><b>2° PASSO:</b> Escolha os fatores comuns com os menores expoentes.</p>
+        <p>MDC = 2² × 3.</p>
+        <p><b>MDC = 12.</b></p>
+
+        <h2>5. Quando utilizar MMC e MDC?</h2>
+        <table>
+            <tr><th>MMC</th><th>MDC</th></tr>
+            <tr><td>Encontros periódicos.</td><td>Divisão em partes iguais.</td></tr>
+            <tr><td>Eventos que se repetem.</td><td>Maior tamanho possível.</td></tr>
+            <tr><td>Coincidência de intervalos.</td><td>Formação de grupos iguais.</td></tr>
+        </table>
+
+        <h2>6. Relação entre MMC e MDC</h2>
+        <p>Para dois números naturais positivos:</p>
+        <p><b>MMC(a,b) × MDC(a,b) = a × b.</b></p>
+
+        <h2>7. Atenção para as provas</h2>
+        <ul>
+            <li>O MMC utiliza os maiores expoentes dos fatores primos.</li>
+            <li>O MDC utiliza os menores expoentes dos fatores comuns.</li>
+            <li>O MMC nunca é menor que os números considerados.</li>
+            <li>O MDC nunca é maior que os números considerados.</li>
+        </ul>
+
+        <div class="dica"><b>DICA RESULTAMATH</b><p>MMC: maiores expoentes. MDC: menores expoentes dos fatores comuns.</p></div>
+    `
+},
+
+/* =====================================================
+   03. FRAÇÕES E NÚMEROS DECIMAIS
+===================================================== */
+
+{
+    id: 'fracoes',
+    titulo: 'Frações',
+    modulo: 'Frações e números decimais',
+    conteudo: `
+        <h2>1. O que são frações?</h2>
+        <p>Frações representam partes de um todo ou o resultado de uma divisão entre dois números inteiros, com denominador diferente de zero.</p>
+        <p><b>Representação:</b> a/b, com b diferente de zero.</p>
+        <ul>
+            <li><b>Numerador:</b> indica quantas partes foram consideradas.</li>
+            <li><b>Denominador:</b> indica em quantas partes iguais o todo foi dividido.</li>
+        </ul>
+
+        <h2>2. Tipos de frações</h2>
+        <h3>Fração própria</h3>
+        <p>O numerador é menor que o denominador. Exemplo: 2/5.</p>
+
+        <h3>Fração imprópria</h3>
+        <p>O numerador é maior que o denominador. Exemplo: 7/4.</p>
+
+        <h3>Fração aparente</h3>
+        <p>O numerador é múltiplo do denominador, resultando em um número inteiro.</p>
+        <p>Exemplo: 12/4 = 3.</p>
+
+        <h3>Fração equivalente</h3>
+        <p>Representa a mesma quantidade, mesmo apresentando numeradores e denominadores diferentes.</p>
+        <p>Exemplo: 1/2 = 2/4 = 3/6.</p>
+
+        <h2>3. Simplificação de frações</h2>
+        <p>Simplificar uma fração significa dividir o numerador e o denominador pelo mesmo número diferente de zero.</p>
+        <p><b>Exemplo: 18/24.</b></p>
+        <p><b>1° PASSO:</b> Identifique um divisor comum.</p>
+        <p>18 e 24 são divisíveis por 6.</p>
+        <p><b>2° PASSO:</b> Divida o numerador e o denominador por 6.</p>
+        <p>18/24 = 3/4.</p>
+
+        <h2>4. Fração de uma quantidade</h2>
+        <p>Para calcular uma fração de determinado valor, divida o valor pelo denominador e multiplique pelo numerador.</p>
+        <p><b>Exemplo: calcule 3/5 de 200.</b></p>
+        <p>200 ÷ 5 = 40.</p>
+        <p>40 × 3 = 120.</p>
+
+        <h2>5. Transformação de fração em decimal</h2>
+        <p>Basta dividir o numerador pelo denominador.</p>
+        <p>3/4 = 3 ÷ 4 = 0,75.</p>
+
+        <h2>6. Transformação de decimal em fração</h2>
+        <p>Escreva o número sem vírgula no numerador e utilize uma potência de 10 no denominador, de acordo com as casas decimais. Depois, simplifique.</p>
+        <p>0,35 = 35/100 = 7/20.</p>
+
+        <h2>7. Comparação de frações</h2>
+        <p>Para comparar frações com denominadores diferentes, podemos utilizar o produto cruzado.</p>
+        <p><b>Exemplo: compare 2/3 e 3/5.</b></p>
+        <p>2 × 5 = 10.</p>
+        <p>3 × 3 = 9.</p>
+        <p>Como 10 é maior que 9:</p>
+        <p><b>2/3 é maior que 3/5.</b></p>
+
+        <h2>8. Atenção para as provas</h2>
+        <ul>
+            <li>O denominador nunca pode ser zero.</li>
+            <li>Frações equivalentes representam o mesmo valor.</li>
+            <li>A simplificação não altera o valor da fração.</li>
+            <li>Uma fração imprópria pode ser transformada em número misto.</li>
+        </ul>
+
+        <div class="dica"><b>DICA RESULTAMATH</b><p>Para simplificar uma fração, divida o numerador e o denominador pelo mesmo divisor comum.</p></div>
+    `
+},
+
+{
+    id: 'operacoes-fracoes',
+    titulo: 'Operações com frações',
+    modulo: 'Frações e números decimais',
+    conteudo: `
+        <h2>1. Adição de frações</h2>
+        <p>Quando os denominadores são iguais, some os numeradores e conserve o denominador.</p>
+        <p>2/7 + 3/7 = 5/7.</p>
+        <p>Quando os denominadores são diferentes, encontre um denominador comum, preferencialmente pelo MMC.</p>
+
+        <h3>Exemplo resolvido</h3>
+        <p>1/2 + 1/3.</p>
+        <p><b>1° PASSO:</b> Calcule o MMC dos denominadores.</p>
+        <p>MMC(2, 3) = 6.</p>
+        <p><b>2° PASSO:</b> Transforme as frações em equivalentes.</p>
+        <p>1/2 = 3/6.</p>
+        <p>1/3 = 2/6.</p>
+        <p><b>3° PASSO:</b> Some os numeradores.</p>
+        <p>3/6 + 2/6 = 5/6.</p>
+
+        <h2>2. Subtração de frações</h2>
+        <p>Segue a mesma regra da adição.</p>
+        <p><b>Exemplo:</b> 3/4 - 1/2.</p>
+        <p><b>1° PASSO:</b> Encontre um denominador comum.</p>
+        <p>MMC(4, 2) = 4.</p>
+        <p><b>2° PASSO:</b> Transforme as frações.</p>
+        <p>3/4 - 2/4.</p>
+        <p><b>3° PASSO:</b> Subtraia os numeradores.</p>
+        <p>3/4 - 2/4 = 1/4.</p>
+
+        <h2>3. Multiplicação de frações</h2>
+        <p>Multiplique os numeradores entre si e os denominadores entre si.</p>
+        <p><b>Exemplo:</b></p>
+        <p>2/3 × 4/5 = (2 × 4)/(3 × 5) = 8/15.</p>
+        <p>Não é necessário encontrar denominadores iguais.</p>
+
+        <h2>4. Divisão de frações</h2>
+        <p>Conserve a primeira fração e multiplique pelo inverso da segunda.</p>
+        <p><b>Exemplo:</b> 2/3 ÷ 4/5.</p>
+        <p><b>1° PASSO:</b> Conserve a primeira fração e inverta a segunda.</p>
+        <p>2/3 × 5/4.</p>
+        <p><b>2° PASSO:</b> Multiplique os numeradores e denominadores.</p>
+        <p>10/12.</p>
+        <p><b>3° PASSO:</b> Simplifique o resultado.</p>
+        <p>10/12 = 5/6.</p>
+
+        <h2>5. Potenciação de frações</h2>
+        <p>Eleve o numerador e o denominador ao expoente indicado.</p>
+        <p>(2/3)² = 2²/3² = 4/9.</p>
+
+        <h2>6. Radiciação de frações</h2>
+        <p>Quando possível, extraia a raiz do numerador e do denominador separadamente.</p>
+        <p>√(9/16) = √9/√16 = 3/4.</p>
+
+        <h2>7. Atenção para as provas</h2>
+        <ul>
+            <li>Na adição e subtração, os denominadores precisam ser iguais.</li>
+            <li>Na multiplicação, multiplique em linha.</li>
+            <li>Na divisão, inverta a segunda fração.</li>
+            <li>Na divisão, a segunda fração não pode ser zero.</li>
+            <li>Sempre que possível, simplifique o resultado.</li>
+        </ul>
+
+        <div class="dica"><b>DICA RESULTAMATH</b><p>Adição e subtração exigem denominadores iguais; multiplicação e divisão não.</p></div>
+    `
+},
+
+{
+    id: 'decimais',
+    titulo: 'Números decimais',
+    modulo: 'Frações e números decimais',
+    conteudo: `
+        <h2>1. O que são números decimais?</h2>
+        <p>São números que apresentam uma parte inteira e uma parte decimal, separadas por uma vírgula.</p>
+        <p><b>Exemplos:</b> 2,5; 0,75; 12,345; 8,04.</p>
+
+        <h2>2. Valor posicional</h2>
+        <p>Cada algarismo ocupa uma posição de acordo com sua distância da vírgula.</p>
+        <table>
+            <tr><th>Posição</th><th>Valor</th></tr>
+            <tr><td>Unidade</td><td>1</td></tr>
+            <tr><td>Décimo</td><td>0,1</td></tr>
+            <tr><td>Centésimo</td><td>0,01</td></tr>
+            <tr><td>Milésimo</td><td>0,001</td></tr>
+        </table>
+        <p>No número 3,456:</p>
+        <ul>
+            <li>3 representa 3 unidades.</li>
+            <li>4 representa 4 décimos.</li>
+            <li>5 representa 5 centésimos.</li>
+            <li>6 representa 6 milésimos.</li>
+        </ul>
+
+        <h2>3. Adição e subtração</h2>
+        <p>Alinhe as vírgulas e coloque os algarismos de mesma ordem na mesma coluna.</p>
+        <p><b>Exemplo:</b></p>
+        <p>12,50 + 3,25 = 15,75.</p>
+        <p><b>Subtração:</b> 8,50 - 2,30 = 6,20.</p>
+
+        <h2>4. Multiplicação</h2>
+        <p>Multiplique os números normalmente e, ao final, conte o total de casas decimais dos fatores para posicionar a vírgula no resultado.</p>
+        <p><b>Exemplo:</b> 2,5 × 1,2.</p>
+        <p>25 × 12 = 300.</p>
+        <p>Existem duas casas decimais no total.</p>
+        <p>Resultado: 3,00 = 3.</p>
+
+        <h2>5. Divisão</h2>
+        <p>Quando o divisor apresenta casas decimais, podemos multiplicar o dividendo e o divisor por uma potência de 10 para transformar o divisor em inteiro.</p>
+        <p><b>Exemplo:</b> 4,5 ÷ 0,5.</p>
+        <p>45 ÷ 5 = 9.</p>
+
+        <h2>6. Comparação de números decimais</h2>
+        <p>Compare primeiro a parte inteira. Se ela for igual, compare os algarismos decimais da esquerda para a direita.</p>
+        <p><b>Exemplo:</b> 2,45 e 2,5.</p>
+        <p>Podemos escrever 2,5 como 2,50.</p>
+        <p>Como 2,50 é maior que 2,45, temos:</p>
+        <p><b>2,5 > 2,45.</b></p>
+
+        <h2>7. Transformação em fração</h2>
+        <p>0,4 = 4/10 = 2/5.</p>
+        <p>0,25 = 25/100 = 1/4.</p>
+        <p>1,75 = 175/100 = 7/4.</p>
+
+        <h2>8. Dízimas periódicas</h2>
+        <p>São números decimais infinitos que apresentam repetição de algarismos.</p>
+        <p><b>Exemplos:</b> 0,333... e 0,272727...</p>
+        <p>São números racionais e podem ser representados por frações.</p>
+
+        <h2>9. Atenção para as provas</h2>
+        <ul>
+            <li>Zeros à direita da parte decimal não alteram o valor: 2,5 = 2,50.</li>
+            <li>Na adição e subtração, alinhe as vírgulas.</li>
+            <li>Na multiplicação, conte as casas decimais.</li>
+            <li>Na divisão, transforme o divisor em inteiro quando necessário.</li>
+        </ul>
+
+        <div class="dica"><b>DICA RESULTAMATH</b><p>Na adição e subtração, alinhe as vírgulas; na multiplicação, conte as casas decimais.</p></div>
+    `
+},
+
+/* =====================================================
+   04. POTENCIAÇÃO E RADICIAÇÃO
+===================================================== */
+
+{
+    id: 'potenciacao',
+    titulo: 'Potenciação',
+    modulo: 'Potenciação e radiciação',
+    conteudo: `
+        <h2>1. O que é potenciação?</h2>
+        <p>É uma operação que representa a multiplicação de fatores iguais.</p>
+        <p><b>Exemplo:</b> 2³ = 2 × 2 × 2 = 8.</p>
+
+        <h2>2. Elementos da potenciação</h2>
+        <p>Em aⁿ:</p>
+        <ul>
+            <li><b>Base (a):</b> número que será multiplicado.</li>
+            <li><b>Expoente (n):</b> quantidade de vezes que a base aparece como fator.</li>
+            <li><b>Potência:</b> resultado da operação.</li>
+        </ul>
+
+        <h2>3. Casos especiais</h2>
+        <p><b>Expoente igual a 1:</b></p>
+        <p>a¹ = a.</p>
+        <p><b>Expoente igual a zero:</b></p>
+        <p>a⁰ = 1, para a diferente de zero.</p>
+        <p><b>Base igual a 1:</b></p>
+        <p>1ⁿ = 1.</p>
+        <p><b>Base igual a zero:</b></p>
+        <p>0ⁿ = 0, para n positivo.</p>
+
+        <h2>4. Base negativa</h2>
+        <p>Quando a base negativa está entre parênteses:</p>
+        <ul>
+            <li>Expoente par: resultado positivo.</li>
+            <li>Expoente ímpar: resultado negativo.</li>
+        </ul>
+        <p>(-2)² = 4.</p>
+        <p>(-2)³ = -8.</p>
+
+        <h2>5. Potências de base 10</h2>
+        <p>São utilizadas para representar números grandes e pequenos.</p>
+        <p>10¹ = 10.</p>
+        <p>10² = 100.</p>
+        <p>10³ = 1.000.</p>
+        <p>10⁴ = 10.000.</p>
+
+        <h2>6. Notação científica</h2>
+        <p>É uma forma de representar números utilizando potências de base 10.</p>
+        <p><b>Formato:</b> a × 10ⁿ, em que 1 ≤ |a| < 10.</p>
+        <p><b>Exemplo:</b> 350.000 = 3,5 × 10⁵.</p>
+
+        <h2>7. Atenção para as provas</h2>
+        <ul>
+            <li>Potenciação não significa multiplicar a base pelo expoente.</li>
+            <li>0⁰ não possui valor definido na aritmética usual.</li>
+            <li>Não confunda -2² com (-2)².</li>
+        </ul>
+
+        <div class="dica"><b>DICA RESULTAMATH</b><p>O expoente indica quantas vezes a base aparece como fator na multiplicação.</p></div>
+    `
+},
+
+{
+    id: 'propriedades-potencias',
+    titulo: 'Propriedades das potências',
+    modulo: 'Potenciação e radiciação',
+    conteudo: `
+        <h2>1. Produto de potências de mesma base</h2>
+        <p>Conserve a base e some os expoentes.</p>
+        <p><b>Regra:</b> aᵐ × aⁿ = aᵐ⁺ⁿ.</p>
+        <p><b>Exemplo:</b></p>
+        <p>2³ × 2² = 2⁵ = 32.</p>
+
+        <h2>2. Divisão de potências de mesma base</h2>
+        <p>Conserve a base e subtraia os expoentes, considerando base diferente de zero.</p>
+        <p><b>Regra:</b> aᵐ ÷ aⁿ = aᵐ⁻ⁿ.</p>
+        <p><b>Exemplo:</b></p>
+        <p>3⁵ ÷ 3² = 3³ = 27.</p>
+
+        <h2>3. Potência de potência</h2>
+        <p>Conserve a base e multiplique os expoentes.</p>
+        <p><b>Regra:</b> (aᵐ)ⁿ = aᵐˣⁿ.</p>
+        <p><b>Exemplo:</b></p>
+        <p>(2²)³ = 2⁶ = 64.</p>
+
+        <h2>4. Potência de um produto</h2>
+        <p>Eleve cada fator ao expoente indicado.</p>
+        <p><b>Regra:</b> (a × b)ⁿ = aⁿ × bⁿ.</p>
+        <p><b>Exemplo:</b></p>
+        <p>(2 × 3)² = 2² × 3² = 36.</p>
+
+        <h2>5. Potência de uma divisão</h2>
+        <p>Eleve o numerador e o denominador ao expoente indicado, com denominador diferente de zero.</p>
+        <p><b>Regra:</b> (a/b)ⁿ = aⁿ/bⁿ.</p>
+        <p><b>Exemplo:</b></p>
+        <p>(2/3)² = 4/9.</p>
+
+        <h2>6. Expoente negativo</h2>
+        <p>Inverta a base e transforme o expoente em positivo.</p>
+        <p><b>Regra:</b> a⁻ⁿ = 1/aⁿ, para a diferente de zero.</p>
+        <p><b>Exemplo:</b></p>
+        <p>2⁻³ = 1/2³ = 1/8.</p>
+
+        <h2>7. Quadro-resumo</h2>
+        <table>
+            <tr><th>Propriedade</th><th>Regra</th></tr>
+            <tr><td>Produto de mesma base</td><td>aᵐ × aⁿ = aᵐ⁺ⁿ</td></tr>
+            <tr><td>Divisão de mesma base</td><td>aᵐ ÷ aⁿ = aᵐ⁻ⁿ</td></tr>
+            <tr><td>Potência de potência</td><td>(aᵐ)ⁿ = aᵐⁿ</td></tr>
+            <tr><td>Potência de produto</td><td>(ab)ⁿ = aⁿbⁿ</td></tr>
+            <tr><td>Potência de divisão</td><td>(a/b)ⁿ = aⁿ/bⁿ</td></tr>
+            <tr><td>Expoente negativo</td><td>a⁻ⁿ = 1/aⁿ</td></tr>
+        </table>
+
+        <h2>8. Atenção para as provas</h2>
+        <ul>
+            <li>Na multiplicação de potências de mesma base, somamos os expoentes.</li>
+            <li>Na divisão de potências de mesma base, subtraímos os expoentes.</li>
+            <li>Na potência de potência, multiplicamos os expoentes.</li>
+            <li>Não existe propriedade que permita distribuir uma potência sobre uma soma: (a + b)² não é igual a a² + b².</li>
+        </ul>
+
+        <div class="dica"><b>DICA RESULTAMATH</b><p>Multiplicação: some os expoentes. Divisão: subtraia. Potência de potência: multiplique.</p></div>
+    `
+},
+
+{
+    id: 'radiciacao',
+    titulo: 'Radiciação',
+    modulo: 'Potenciação e radiciação',
+    conteudo: `
+        <h2>1. O que é radiciação?</h2>
+        <p>É a operação inversa da potenciação. Consiste em encontrar um número que, elevado a determinado expoente, produz o radicando.</p>
+        <p><b>Exemplo:</b> √25 = 5, pois 5² = 25.</p>
+
+        <h2>2. Elementos da raiz</h2>
+        <p>Na expressão ⁿ√a:</p>
+        <ul>
+            <li><b>Índice:</b> indica qual raiz deve ser calculada.</li>
+            <li><b>Radicando:</b> número que está dentro do radical.</li>
+            <li><b>Radical:</b> símbolo da raiz.</li>
+            <li><b>Raiz:</b> resultado da operação.</li>
+        </ul>
+
+        <h2>3. Raiz quadrada</h2>
+        <p>É a operação inversa da elevação ao quadrado.</p>
+        <p>√36 = 6, pois 6² = 36.</p>
+
+        <h2>4. Raiz cúbica</h2>
+        <p>É a operação inversa da elevação ao cubo.</p>
+        <p>∛27 = 3, pois 3³ = 27.</p>
+
+        <h2>5. Raiz de números negativos</h2>
+        <p>Nos números reais, raízes de índice par de números negativos não estão definidas.</p>
+        <p>Exemplo: √(-9) não é um número real.</p>
+        <p>Já as raízes de índice ímpar de números negativos são reais.</p>
+        <p>Exemplo: ∛(-8) = -2.</p>
+
+        <h2>6. Propriedades da radiciação</h2>
+        <p><b>Produto de radicais de mesmo índice:</b></p>
+        <p>ⁿ√a × ⁿ√b = ⁿ√(a × b), quando as expressões estão definidas.</p>
+        <p><b>Quociente de radicais de mesmo índice:</b></p>
+        <p>ⁿ√a ÷ ⁿ√b = ⁿ√(a ÷ b), com divisor diferente de zero.</p>
+        <p><b>Raiz de uma potência:</b></p>
+        <p>√(a²) = |a|.</p>
+
+        <h2>7. Simplificação de radicais</h2>
+        <p>Podemos retirar fatores que possuem expoentes múltiplos do índice da raiz.</p>
+        <p><b>Exemplo:</b> √72.</p>
+        <p><b>1° PASSO:</b> Decomponha o radicando.</p>
+        <p>72 = 36 × 2.</p>
+        <p><b>2° PASSO:</b> Separe os fatores.</p>
+        <p>√72 = √36 × √2.</p>
+        <p><b>3° PASSO:</b> Calcule a raiz exata.</p>
+        <p><b>√72 = 6√2.</b></p>
+
+        <h2>8. Relação entre potência e raiz</h2>
+        <p>Uma raiz pode ser representada por uma potência de expoente fracionário.</p>
+        <p>ⁿ√a = a¹/ⁿ.</p>
+        <p>Exemplo: √9 = 9¹/² = 3.</p>
+
+        <h2>9. Atenção para as provas</h2>
+        <ul>
+            <li>Raiz quadrada principal é sempre não negativa.</li>
+            <li>Raízes de índice par exigem radicando não negativo nos reais.</li>
+            <li>Raízes de índice ímpar admitem radicandos negativos.</li>
+            <li>Não se pode separar uma soma dentro de uma raiz: √(a + b) não é igual a √a + √b.</li>
+        </ul>
+
+        <div class="dica"><b>DICA RESULTAMATH</b><p>Para simplificar uma raiz, procure fatores que sejam potências perfeitas do índice do radical.</p></div>
+    `
+}
 
 ];
