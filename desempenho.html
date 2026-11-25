@@ -1,19 +1,183 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Meu desempenho – Resultamath</title>
+<title>Meu desempenho | Resultamath</title>
 <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
+
 <script src="dados.js"></script>
 <script src="app.js"></script>
+
 <script>
-const m=pagina('desempenho');
-m.innerHTML='<h1>Meu desempenho</h1>'+modulos().map(mod=>{
- const d=mod.aulas.filter(a=>S.feitas[a.id]).length,qs=QUESTOES.filter(q=>q.modulo==mod.nome&&q.id in S.resp),ok=qs.filter(q=>S.resp[q.id]).length;
- return `<div class="cartao"><h2>${mod.nome}</h2><p class="suave">Aulas: ${d}/${mod.aulas.length}</p>${barra(pct(d,mod.aulas.length))}<p class="suave">Acertos: ${qs.length?ok+' de '+qs.length:'nenhum exercício feito'}</p>${qs.length?barra(pct(ok,qs.length)):''}</div>`}).join('');
+
+const m = pagina('desempenho');
+
+const modulos = [...new Set(QUESTOES.map(q => q.modulo))];
+
+let totalRespondidas = 0;
+let totalAcertos = 0;
+let totalQuestoes = QUESTOES.length;
+
+const conteudo = modulos.map(mod => {
+
+    const questoes = QUESTOES.filter(q => q.modulo === mod);
+
+    const respondidas = questoes.filter(q =>
+        Object.prototype.hasOwnProperty.call(S.resp, q.id)
+    );
+
+    const acertos = respondidas.filter(q =>
+        S.resp[q.id] === true
+    );
+
+    const erros = respondidas.filter(q =>
+        S.resp[q.id] === false
+    );
+
+    const aproveitamento = respondidas.length
+        ? pct(acertos.length, respondidas.length)
+        : 0;
+
+    totalRespondidas += respondidas.length;
+    totalAcertos += acertos.length;
+
+    return `
+
+        <section class="cartao">
+
+            <h2>${mod}</h2>
+
+            <div class="grade">
+
+                <div class="stat-card">
+                    <span class="muted">Questões</span>
+                    <span class="num">${questoes.length}</span>
+                </div>
+
+                <div class="stat-card">
+                    <span class="muted">Respondidas</span>
+                    <span class="num">${respondidas.length}</span>
+                </div>
+
+                <div class="stat-card">
+                    <span class="muted">Acertos</span>
+                    <span class="num">${acertos.length}</span>
+                </div>
+
+                <div class="stat-card">
+                    <span class="muted">Erros</span>
+                    <span class="num">${erros.length}</span>
+                </div>
+
+            </div>
+
+            <div class="linha" style="margin-top:18px">
+                <span class="suave">Aproveitamento</span>
+                <b>${aproveitamento}%</b>
+            </div>
+
+            ${barra(aproveitamento)}
+
+            <p class="suave">
+                ${respondidas.length} de ${questoes.length} questões respondidas.
+            </p>
+
+            <a class="btn sec" href="exercicios.html?modulo=${encodeURIComponent(mod)}">
+                Praticar este módulo →
+            </a>
+
+        </section>
+
+    `;
+
+}).join('');
+
+const aproveitamentoGeral = totalRespondidas
+    ? pct(totalAcertos, totalRespondidas)
+    : 0;
+
+m.innerHTML = `
+
+    <div class="section-head">
+        <div>
+            <span class="tag">ACOMPANHAMENTO</span>
+            <h1 style="margin-top:8px">Meu desempenho</h1>
+            <p>Acompanhe sua evolução e descubra quais assuntos precisam de mais atenção.</p>
+        </div>
+    </div>
+
+    <section class="cartao">
+
+        <h2>Desempenho geral</h2>
+
+        <div class="grade">
+
+            <div class="stat-card">
+                <span class="muted">Questões cadastradas</span>
+                <span class="num">${totalQuestoes}</span>
+            </div>
+
+            <div class="stat-card">
+                <span class="muted">Respondidas</span>
+                <span class="num">${totalRespondidas}</span>
+            </div>
+
+            <div class="stat-card">
+                <span class="muted">Acertos</span>
+                <span class="num">${totalAcertos}</span>
+            </div>
+
+            <div class="stat-card">
+                <span class="muted">Aproveitamento</span>
+                <span class="num">${aproveitamentoGeral}%</span>
+            </div>
+
+        </div>
+
+        <div class="linha" style="margin-top:18px">
+            <span class="suave">Seu aproveitamento</span>
+            <b>${aproveitamentoGeral}%</b>
+        </div>
+
+        ${barra(aproveitamentoGeral)}
+
+        <p class="suave">
+            ${totalRespondidas} de ${totalQuestoes} questões respondidas.
+        </p>
+
+    </section>
+
+    <div class="section-head">
+        <div>
+            <h2>Desempenho por módulo</h2>
+            <p>Confira seus resultados em cada área da matemática.</p>
+        </div>
+    </div>
+
+    ${conteudo || `
+        <section class="cartao">
+            <h2>Nenhuma questão cadastrada</h2>
+            <p class="suave">Os resultados aparecerão aqui quando os exercícios forem adicionados.</p>
+        </section>
+    `}
+
+    <div class="linha" style="justify-content:flex-start">
+        <a class="btn sec" href="exercicios.html">
+            Voltar aos exercícios
+        </a>
+
+        <a class="btn sec" href="erros.html">
+            Caderno de erros
+        </a>
+    </div>
+
+`;
+
 </script>
+
 </body>
 </html>
