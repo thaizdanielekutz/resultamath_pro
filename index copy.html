@@ -358,111 +358,85 @@ document.getElementById('ano').textContent =
     new Date().getFullYear();
 
 
-/* ===== MATEMÁTICA MINUTADA POR MATÉRIA ===== */
+/* ===== MATEMÁTICA MINUTADA — SOMENTE ARITMÉTICA ===== */
 
 const containerMinutada =
     document.getElementById('minutada-categorias');
 
+function normalizarMateria(texto) {
+    return String(texto || '')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .trim()
+        .toLowerCase();
+}
 
 function renderizarMinutada() {
 
     if (!Array.isArray(MINUTADA) || MINUTADA.length === 0) {
-
         containerMinutada.innerHTML =
             '<p>Nenhum episódio cadastrado no momento.</p>';
-
         return;
     }
 
+    // Exibe exclusivamente os episódios classificados como Aritmética.
+    // Aceita tanto "materia" quanto "categoria" no dados.js.
+    const videos = MINUTADA.filter(video => {
+        const materia = video.materia || video.categoria || '';
+        return normalizarMateria(materia) === 'aritmetica';
+    });
 
-    // Agrupa os episódios por categoria
+    if (videos.length === 0) {
+        containerMinutada.innerHTML = `
+            <p>Nenhum episódio de Aritmética cadastrado no momento.</p>
+        `;
+        return;
+    }
 
-    const grupos = MINUTADA.reduce((acumulador, item) => {
+    containerMinutada.innerHTML = `
+        <div class="minutada-grupo">
 
-        const categoria = item.categoria || 'Outros';
+            <div class="minutada-grupo-header">
+                <h3>Aritmética</h3>
 
-        if (!acumulador[categoria]) {
-            acumulador[categoria] = [];
-        }
+                <span>
+                    ${videos.length}
+                    ${videos.length === 1 ? 'episódio' : 'episódios'}
+                </span>
+            </div>
 
-        acumulador[categoria].push(item);
-
-        return acumulador;
-
-    }, {});
-
-
-    // Monta as categorias e os respectivos vídeos
-
-    containerMinutada.innerHTML =
-        Object.entries(grupos).map(([categoria, videos]) => {
-
-            return `
-
-                <div class="minutada-grupo">
-
-                    <div class="minutada-grupo-header">
-
-                        <h3>${categoria}</h3>
+            <div class="minutada-grid">
+                ${videos.slice(0, 4).map(video => `
+                    <a
+                        class="minutada-card"
+                        href="minutada.html?id=${encodeURIComponent(video.id)}"
+                    >
+                        <span class="play-mark">▶</span>
 
                         <span>
-                            ${videos.length}
-                            ${videos.length === 1 ? 'episódio' : 'episódios'}
+                            <b>${video.titulo}</b>
+
+                            <small>
+                                EP. ${String(video.indice).padStart(2, '0')}
+                                · 1 MIN
+                            </small>
                         </span>
 
-                    </div>
+                        <span class="card-arrow">›</span>
+                    </a>
+                `).join('')}
+            </div>
 
+            <a
+                class="ver-categoria"
+                href="minutada.html?categoria=${encodeURIComponent('Aritmética')}"
+            >
+                Ver todos os episódios de Aritmética →
+            </a>
 
-                    <div class="minutada-grid">
-
-                        ${videos.slice(0, 4).map(video => `
-
-                            <a
-                                class="minutada-card"
-                                href="minutada.html?id=${encodeURIComponent(video.id)}"
-                            >
-
-                                <span class="play-mark">▶</span>
-
-                                <span>
-
-                                    <b>${video.titulo}</b>
-
-                                    <small>
-                                        EP. ${String(video.indice).padStart(2, '0')}
-                                        · 1 MIN
-                                    </small>
-
-                                </span>
-
-                                <span class="card-arrow">›</span>
-
-                            </a>
-
-                        `).join('')}
-
-                    </div>
-
-
-                    ${videos.length > 4 ? `
-
-                        <a
-                            class="ver-categoria"
-                            href="minutada.html?categoria=${encodeURIComponent(categoria)}"
-                        >
-                            Ver todos os episódios de ${categoria} →
-                        </a>
-
-                    ` : ''}
-
-                </div>
-
-            `;
-
-        }).join('');
-
+        </div>
+    `;
 }
-
 
 renderizarMinutada();
 
