@@ -47,6 +47,38 @@ AULA('5. Razão, proporção e porcentagem','Regra de três');
 AULA('5. Razão, proporção e porcentagem','Porcentagem','','x% de N = N · x / 100.');
 
 
+/* =========================================
+   SIMULADOS DE CONCURSOS
+   ========================================= */
+
+const SIMULADOS_BANCAS = [];
+
+
+SIMULADO_BANCA({
+    banca: 'FGV',
+    concurso: 'Prefeitura Municipal',
+    ano: 2025,
+    cargo: 'Professor de Matemática',
+    titulo: 'Simulado FGV - Professor',
+    questoes: [
+        {
+            enunciado: 'Quanto é 25% de 200?',
+            alts: ['25', '40', '50', '60', '75'],
+            certa: 2,
+            resolucao: '25% de 200 = 200 × 0,25 = 50.'
+        },
+        {
+            enunciado: 'Qual é o MMC de 12 e 15?',
+            alts: ['30', '45', '60', '90', '180'],
+            certa: 2,
+            resolucao: '12 = 2² × 3 e 15 = 3 × 5. MMC = 2² × 3 × 5 = 60.'
+        }
+    ]
+});
+
+
+
+
 
 /* =====================================================
    EXERCÍCIOS RESULTAMATH
