@@ -2548,3 +2548,79 @@ const MINUTADA = [
     descricao: item.descricao || '',
     categoria: item.materia
 }));
+
+
+/* ===== BIBLIOTECA DE CONTEÚDOS ===== */
+
+const RESUMOS = [
+
+    {
+        id: 'conjuntos-numericos',
+        titulo: 'Conjuntos numéricos',
+        modulo: 'Fundamentos da Matemática',
+        conteudo: `
+            <h2>1. O que são conjuntos numéricos?</h2>
+
+            <p>Os conjuntos numéricos são agrupamentos de números que apresentam características em comum.</p>
+
+            <h2>2. Principais conjuntos numéricos</h2>
+
+            <h3>Números naturais (ℕ)</h3>
+            <p>São utilizados principalmente para contar e ordenar.</p>
+            <p><b>Exemplos:</b> 0, 1, 2, 3, 4, 5...</p>
+
+            <h3>Números inteiros (ℤ)</h3>
+            <p>Incluem os números naturais, seus opostos negativos e o zero.</p>
+            <p><b>Exemplos:</b> ..., -3, -2, -1, 0, 1, 2, 3...</p>
+
+            <h3>Números racionais (ℚ)</h3>
+            <p>Podem ser representados por uma fração de números inteiros, com denominador diferente de zero.</p>
+            <p><b>Exemplos:</b> 1/2, -3/4, 5 e 0,25.</p>
+
+            <h3>Números irracionais (𝕀)</h3>
+            <p>Não podem ser representados por uma fração de números inteiros.</p>
+            <p><b>Exemplos:</b> √2, √3 e π.</p>
+
+            <h3>Números reais (ℝ)</h3>
+            <p>Reúnem os números racionais e irracionais.</p>
+
+            <h2>3. Relação entre os conjuntos</h2>
+
+            <p>ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ</p>
+
+            <p>Os números irracionais também pertencem aos reais, mas não aos racionais.</p>
+
+            <h2>4. Atenção!</h2>
+
+            <p>Todo número natural é inteiro, mas nem todo número inteiro é natural.</p>
+        `
+    },
+
+    {
+        id: 'multiplos-divisores',
+        titulo: 'Múltiplos e divisores',
+        modulo: 'Divisibilidade e fatoração',
+        conteudo: `
+            <h2>1. O que são múltiplos?</h2>
+
+            <p>Os múltiplos de um número são obtidos multiplicando esse número pelos naturais.</p>
+
+            <p><b>Exemplo:</b> múltiplos de 3.</p>
+
+            <p>0, 3, 6, 9, 12, 15, 18...</p>
+
+            <h2>2. O que são divisores?</h2>
+
+            <p>Um número é divisor de outro quando a divisão é exata, ou seja, apresenta resto zero.</p>
+
+            <p><b>Exemplo:</b> divisores de 12.</p>
+
+            <p>1, 2, 3, 4, 6 e 12.</p>
+
+            <h2>3. Atenção!</h2>
+
+            <p>Todo número natural diferente de zero possui uma quantidade finita de divisores.</p>
+        `
+    }
+
+];
