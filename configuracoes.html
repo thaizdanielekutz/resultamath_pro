@@ -46,18 +46,11 @@ m.innerHTML = `
 
     <p class="suave">
         Seu progresso de estudos fica salvo neste navegador.
-        Exporte uma cópia de segurança para preservar seus dados.
     </p>
 
-    <div class="linha" style="justify-content:flex-start">
-        <button class="btn sec" id="exportar">
-            Exportar backup
-        </button>
-
-        <button class="btn sec" id="zerar">
-            Zerar progresso
-        </button>
-    </div>
+    <button class="btn sec" id="zerar">
+        Zerar progresso
+    </button>
 </section>
 `;
 
@@ -67,33 +60,18 @@ document.getElementById('salvaNome').onclick = () => {
     alert('Perfil atualizado com sucesso!');
 };
 
-document.getElementById('exportar').onclick = () => {
-    const blob = new Blob(
-        [JSON.stringify(S, null, 2)],
-        {type:'application/json'}
-    );
-
-    const a = document.createElement('a');
-    const u = URL.createObjectURL(blob);
-
-    a.href = u;
-    a.download = 'backup-resultamath.json';
-    a.click();
-
-    URL.revokeObjectURL(u);
-};
-
 document.getElementById('zerar').onclick = () => {
     if(confirm('Apagar todo o progresso deste navegador?')) {
         S = {
-            nome:S.nome,
-            feitas:{},
-            resp:{},
-            erros:[],
-            simulados:[],
-            videosAulas:S.videosAulas || {},
-            videosQuestoes:S.videosQuestoes || {},
-            videosMinutados:S.videosMinutados || {}
+            nome: S.nome,
+            feitas: {},
+            resp: {},
+            erros: [],
+            simulados: [],
+            videosAulas: S.videosAulas || {},
+            videosQuestoes: S.videosQuestoes || {},
+            videosMinutados: S.videosMinutados || {},
+            videosResolucoes: S.videosResolucoes || {}
         };
 
         salvar();
