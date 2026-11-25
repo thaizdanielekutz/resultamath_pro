@@ -2492,12 +2492,12 @@ const MINUTADA = [
     // PROPORCIONALIDADE
     {
         titulo: 'Regra de três',
-        video: '',
+        video: 'HdcWI8fklyA',
         materia: 'Proporcionalidade'
     },
     {
         titulo: 'Porcentagem',
-        video: 'ID_DO_VIDEO',
+        video: '6ms9fQnrCOE',
         descricao: 'Aprenda os fundamentos da porcentagem.',
         materia: 'Matemática Financeira'
     },
@@ -2505,27 +2505,27 @@ const MINUTADA = [
     // GEOMETRIA
     {
         titulo: 'Ângulos complementares',
-        video: '',
+        video: '8heuEiqpTFs',
         materia: 'Geometria'
     },
     {
         titulo: 'Ângulos suplementares',
-        video: '',
+        video: 't8YYZ2pvzHA',
         materia: 'Geometria'
     },
     {
         titulo: 'Perímetro',
-        video: '',
+        video: 'OgziWTZAlNY',
         materia: 'Geometria'
     },
     {
         titulo: 'Área',
-        video: '',
+        video: '5L9ihtjb5Eo',
         materia: 'Geometria'
     },
     {
         titulo: 'Volume',
-        video: '',
+        video: 'gl2FIIE78S4',
         materia: 'Geometria'
     },
 
