@@ -47,12 +47,33 @@ AULA('5. Razão, proporção e porcentagem','Regra de três');
 AULA('5. Razão, proporção e porcentagem','Porcentagem','','x% de N = N · x / 100.');
 
 
+
 /* =========================================
    SIMULADOS DE CONCURSOS
    ========================================= */
 
 const SIMULADOS_BANCAS = [];
 
+function SIMULADO_BANCA({
+    banca,
+    concurso,
+    ano,
+    cargo,
+    titulo,
+    questoes
+}) {
+    SIMULADOS_BANCAS.push({
+        id: slug(banca + '-' + concurso + '-' + cargo),
+        banca: banca || '',
+        concurso: concurso || '',
+        ano: ano || '',
+        cargo: cargo || '',
+        titulo: titulo || '',
+        questoes: questoes || []
+    });
+}
+
+/* ===== CADASTRO DOS SIMULADOS ===== */
 
 SIMULADO_BANCA({
     banca: 'FGV',
@@ -71,7 +92,7 @@ SIMULADO_BANCA({
             enunciado: 'Qual é o MMC de 12 e 15?',
             alts: ['30', '45', '60', '90', '180'],
             certa: 2,
-            resolucao: '12 = 2² × 3 e 15 = 3 × 5. MMC = 2² × 3 × 5 = 60.'
+            resolucao: '12 = 2² × 3 e 15 = 3 × 5. O MMC é 2² × 3 × 5 = 60.'
         }
     ]
 });
