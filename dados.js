@@ -2532,12 +2532,12 @@ const MINUTADA = [
     // MATEMÁTICA FINANCEIRA
     {
         titulo: 'Juros simples',
-        video: '',
+        video: 'bdfXXVxHmb4',
         materia: 'Matemática Financeira'
     },
     {
         titulo: 'Juros compostos',
-        video: '',
+        video: 'yuxfUgw_biY',
         materia: 'Matemática Financeira'
     }
 
