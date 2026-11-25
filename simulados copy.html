@@ -1,3 +1,337 @@
-<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Simulados | Resultamath</title><link rel="stylesheet" href="estilo.css"></head><body><script src="dados.js"></script><script src="app.js"></script><script>
-const m=pagina('simulados');function inicio(){m.innerHTML=`<span class="tag">AVALIAÇÃO</span><h1 style="margin-top:8px">Simulados</h1><p>Teste seus conhecimentos com questões selecionadas dos módulos estudados.</p><div class="cartao destaque"><h2>Simulado de matemática</h2><p>Até 10 questões. O gabarito e o resultado aparecem ao finalizar.</p><button class="btn" onclick="comeca()">Iniciar simulado →</button></div>`+(S.simulados.length?'<h2>Histórico de tentativas</h2>'+S.simulados.slice().reverse().map(s=>`<div class="cartao linha"><span>${s.d}</span><b>${s.ac} de ${s.n} questões · ${pct(s.ac,s.n)}%</b></div>`).join(''):'')}window.comeca=()=>{const L=QUESTOES.slice().sort(()=>Math.random()-.5).slice(0,10);if(!L.length){m.innerHTML='<h1>Simulados</h1><p>Cadastre questões em dados.js para liberar os simulados.</p>';return}m.innerHTML='<h1>Simulado</h1><p>Responda todas as questões e finalize para ver seu resultado.</p><form id="f">'+L.map((q,i)=>`<div class="cartao"><span class="tag">QUESTÃO ${i+1}</span><h2 style="margin-top:10px">${q.enunciado}</h2>${q.alts.map((a,j)=>`<label class="opcao-r"><input type="radio" name="q${i}" value="${j}" required> ${a}</label>`).join('')}</div>`).join('')+'<button class="btn">Finalizar simulado</button></form>';document.getElementById('f').onsubmit=e=>{e.preventDefault();let ac=0;const d=new FormData(e.target);L.forEach((q,i)=>{const v=d.get('q'+i),ok=v!==null&&+v===q.certa;if(ok)ac++;S.resp[q.id]=ok;if(!ok&&!S.erros.includes(q.id))S.erros.push(q.id);if(ok){const p=S.erros.indexOf(q.id);if(p>-1)S.erros.splice(p,1)}});S.simulados.push({d:new Date().toLocaleDateString('pt-BR'),ac,n:L.length});salvar();m.innerHTML=`<span class="tag">RESULTADO</span><h1 style="margin-top:8px">Simulado finalizado</h1><div class="cartao destaque"><span class="num">${pct(ac,L.length)}%</span><h2>${ac} de ${L.length} acertos</h2><p>As questões que você errou foram adicionadas ao caderno de erros.</p></div><a class="btn" href="erros.html">Revisar erros</a> <a class="btn sec" href="simulados.html">Voltar</a>`}};inicio();
-</script></body></html>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Simulados | Resultamath</title>
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+<script src="dados.js"></script>
+<script src="app.js"></script>
+
+<script>
+(function(){
+
+const m = pagina('simulados');
+
+if (!S.simulados) S.simulados = [];
+if (!S.resp) S.resp = {};
+if (!S.erros) S.erros = [];
+
+const NIVEIS = {
+    facil: {
+        nome: 'Fácil',
+        descricao: 'Questões diretas para fortalecer os fundamentos.',
+        cor: '#16a34a',
+        posicoes: [0,1,2]
+    },
+    medio: {
+        nome: 'Médio',
+        descricao: 'Questões que exigem interpretação e aplicação.',
+        cor: '#d97706',
+        posicoes: [3,4,5,6]
+    },
+    hard: {
+        nome: 'Hard',
+        descricao: 'Questões desafiadoras para testar seu raciocínio.',
+        cor: '#dc2626',
+        posicoes: [7,8,9]
+    }
+};
+
+function percentual(a,b){
+    return b ? Math.round(a/b*100) : 0;
+}
+
+function embaralhar(lista){
+    const copia = [...lista];
+
+    for(let i = copia.length-1; i > 0; i--){
+        const j = Math.floor(Math.random()*(i+1));
+        [copia[i],copia[j]] = [copia[j],copia[i]];
+    }
+
+    return copia;
+}
+
+/* Classificação inicial das questões:
+   3 fáceis, 4 médias e 3 difíceis por módulo.
+*/
+
+function nivelDaQuestao(q){
+    const indice = QUESTOES.indexOf(q);
+    const posicao = indice % 10;
+
+    for(const [nivel,dados] of Object.entries(NIVEIS)){
+        if(dados.posicoes.includes(posicao)){
+            return nivel;
+        }
+    }
+
+    return 'facil';
+}
+
+function inicio(){
+
+    const historico = S.simulados.slice().reverse();
+
+    m.innerHTML = `
+    <span class="tag">AVALIAÇÃO</span>
+
+    <h1 style="margin-top:8px">Simulados</h1>
+
+    <p>Escolha o nível de dificuldade e teste seus conhecimentos.</p>
+
+    <div class="grade">
+
+        ${Object.entries(NIVEIS).map(([id,n])=>`
+            <div class="cartao">
+                <span style="font-weight:800;color:${n.cor}">
+                    ${n.nome.toUpperCase()}
+                </span>
+
+                <h2 style="margin:10px 0">10 questões</h2>
+
+                <p class="suave">${n.descricao}</p>
+
+                <button class="btn" onclick="comeca('${id}')">
+                    Iniciar simulado →
+                </button>
+            </div>
+        `).join('')}
+
+    </div>
+
+    ${historico.length ? `
+        <h2 style="margin-top:30px">Histórico de tentativas</h2>
+
+        ${historico.map(s=>`
+            <div class="cartao linha" style="margin-bottom:10px;justify-content:space-between">
+                <div>
+                    <b>${s.nivel || 'Simulado'}</b>
+                    <p class="suave">${s.d}</p>
+                </div>
+
+                <b>${s.ac} de ${s.n} questões · ${percentual(s.ac,s.n)}%</b>
+            </div>
+        `).join('')}
+    ` : `
+        <div class="cartao" style="margin-top:25px">
+            <h3>Seu histórico aparecerá aqui</h3>
+            <p class="suave">Finalize seu primeiro simulado para acompanhar sua evolução.</p>
+        </div>
+    `}
+    `;
+}
+
+window.comeca = function(nivel){
+
+    const dados = NIVEIS[nivel];
+
+    if(!dados) return;
+
+    const disponiveis = QUESTOES.filter(q =>
+        nivelDaQuestao(q) === nivel
+    );
+
+    if(disponiveis.length < 10){
+        m.innerHTML = `
+            <h1>Simulado indisponível</h1>
+            <p>Não há questões suficientes para este nível.</p>
+            <button class="btn sec" onclick="inicio()">Voltar</button>
+        `;
+        return;
+    }
+
+    const L = embaralhar(disponiveis).slice(0,10);
+
+    m.innerHTML = `
+        <span class="tag">${dados.nome.toUpperCase()}</span>
+
+        <h1 style="margin-top:8px">Simulado ${dados.nome}</h1>
+
+        <p>Responda às 10 questões. Todas são obrigatórias.</p>
+
+        <div class="cartao" style="margin-bottom:20px">
+            <div class="linha" style="justify-content:space-between">
+                <b>Progresso</b>
+                <span id="contador">0 de 10 respondidas</span>
+            </div>
+
+            <div style="height:8px;background:var(--linha,#e5e7eb);border-radius:20px;margin-top:12px;overflow:hidden">
+                <div id="progresso" style="height:100%;width:0%;background:#069eda;transition:width .2s"></div>
+            </div>
+        </div>
+
+        <form id="formSimulado">
+
+            ${L.map((q,i)=>`
+                <div class="cartao" style="margin-bottom:16px">
+
+                    <span class="tag">QUESTÃO ${i+1} DE 10</span>
+
+                    <h3 style="margin:12px 0">${q.enunciado}</h3>
+
+                    ${q.alts.map((a,j)=>`
+                        <label class="opcao-r">
+                            <input
+                                type="radio"
+                                name="q${i}"
+                                value="${j}"
+                                required
+                                onchange="atualizaProgresso()"
+                            >
+                            ${a}
+                        </label>
+                    `).join('')}
+
+                </div>
+            `).join('')}
+
+            <button class="btn" type="submit">
+                Finalizar simulado
+            </button>
+
+        </form>
+
+        <button class="btn sec" style="margin-top:12px" onclick="inicio()">
+            Sair do simulado
+        </button>
+    `;
+
+    window.atualizaProgresso = function(){
+
+        const form = document.getElementById('formSimulado');
+        const respondidas = new Set(
+            [...form.querySelectorAll('input:checked')].map(x=>x.name)
+        ).size;
+
+        document.getElementById('contador').textContent =
+            `${respondidas} de 10 respondidas`;
+
+        document.getElementById('progresso').style.width =
+            `${respondidas*10}%`;
+    };
+
+    document.getElementById('formSimulado').onsubmit = function(e){
+
+        e.preventDefault();
+
+        let acertos = 0;
+        const formData = new FormData(e.target);
+
+        L.forEach((q,i)=>{
+
+            const resposta = formData.get('q'+i);
+            const acertou = Number(resposta) === q.certa;
+
+            if(acertou){
+                acertos++;
+            }
+
+            S.resp[q.id] = acertou;
+
+            if(!acertou && !S.erros.includes(q.id)){
+                S.erros.push(q.id);
+            }
+
+            if(acertou){
+                const pos = S.erros.indexOf(q.id);
+                if(pos !== -1) S.erros.splice(pos,1);
+            }
+
+        });
+
+        const resultado = percentual(acertos,L.length);
+
+        S.simulados.push({
+            d: new Date().toLocaleDateString('pt-BR'),
+            nivel: dados.nome,
+            ac: acertos,
+            n: L.length
+        });
+
+        salvar();
+
+        resultadoFinal(dados,L,acertos,resultado);
+    };
+};
+
+function resultadoFinal(dados,L,acertos,resultado){
+
+    const erros = L.length-acertos;
+
+    let mensagem = '';
+
+    if(resultado >= 90){
+        mensagem = 'Excelente! Você demonstrou domínio do conteúdo.';
+    }else if(resultado >= 70){
+        mensagem = 'Muito bem! Continue praticando para avançar.';
+    }else if(resultado >= 50){
+        mensagem = 'Bom começo! Revise os assuntos em que teve dificuldade.';
+    }else{
+        mensagem = 'É hora de reforçar os fundamentos e tentar novamente.';
+    }
+
+    m.innerHTML = `
+        <span class="tag">RESULTADO FINAL</span>
+
+        <h1 style="margin-top:8px">Simulado concluído!</h1>
+
+        <div class="cartao destaque" style="margin-top:20px">
+
+            <span class="num">${resultado}%</span>
+
+            <h2>${acertos} de ${L.length} acertos</h2>
+
+            <p>${mensagem}</p>
+
+        </div>
+
+        <div class="grade" style="margin-top:16px">
+
+            <div class="cartao">
+                <span class="suave">Acertos</span>
+                <h2>${acertos}</h2>
+            </div>
+
+            <div class="cartao">
+                <span class="suave">Erros</span>
+                <h2>${erros}</h2>
+            </div>
+
+        </div>
+
+        <div class="cartao" style="margin-top:16px">
+            <b>Nível realizado:</b> ${dados.nome}
+            <p class="suave">As questões erradas foram adicionadas ao caderno de erros.</p>
+        </div>
+
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:20px">
+
+            <button class="btn" onclick="comeca('${Object.keys(NIVEIS).find(k=>NIVEIS[k]===dados)}')">
+                Refazer simulado
+            </button>
+
+            <a class="btn sec" href="erros.html">
+                Revisar erros
+            </a>
+
+            <button class="btn sec" onclick="inicio()">
+                Voltar aos simulados
+            </button>
+
+        </div>
+    `;
+}
+
+inicio();
+
+})();
+</script>
+
+</body>
+</html>
