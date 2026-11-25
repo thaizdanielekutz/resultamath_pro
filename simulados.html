@@ -7,6 +7,7 @@
 <title>Simulados | Resultamath</title>
 <link rel="stylesheet" href="estilo.css">
 </head>
+
 <body>
 
 <script src="dados.js"></script>
@@ -15,11 +16,23 @@
 <script>
 (function(){
 
+/* =========================================
+   CONFIGURAÇÕES INICIAIS
+   ========================================= */
+
 const m = pagina('simulados');
 
-if (!S.simulados) S.simulados = [];
-if (!S.resp) S.resp = {};
-if (!S.erros) S.erros = [];
+if (!Array.isArray(S.simulados)) S.simulados = [];
+
+const PROVAS = typeof SIMULADOS_BANCAS !== 'undefined'
+    && Array.isArray(SIMULADOS_BANCAS)
+    ? SIMULADOS_BANCAS
+    : [];
+
+
+/* =========================================
+   NÍVEIS DE DIFICULDADE
+   ========================================= */
 
 const NIVEIS = {
     facil: {
@@ -28,12 +41,14 @@ const NIVEIS = {
         cor: '#16a34a',
         posicoes: [0,1,2]
     },
+
     medio: {
         nome: 'Médio',
         descricao: 'Questões que exigem interpretação e aplicação.',
         cor: '#d97706',
         posicoes: [3,4,5,6]
     },
+
     hard: {
         nome: 'Hard',
         descricao: 'Questões desafiadoras para testar seu raciocínio.',
@@ -42,91 +57,218 @@ const NIVEIS = {
     }
 };
 
+
+/* =========================================
+   FUNÇÕES AUXILIARES
+   ========================================= */
+
 function percentual(a,b){
     return b ? Math.round(a/b*100) : 0;
 }
 
 function embaralhar(lista){
+
     const copia = [...lista];
 
     for(let i = copia.length-1; i > 0; i--){
+
         const j = Math.floor(Math.random()*(i+1));
+
         [copia[i],copia[j]] = [copia[j],copia[i]];
     }
 
     return copia;
 }
 
-/* Classificação inicial das questões:
-   3 fáceis, 4 médias e 3 difíceis por módulo.
+
+/* =========================================
+   CLASSIFICAÇÃO DAS QUESTÕES
+   ========================================= */
+
+/*
+   Classificação inicial:
+   3 fáceis, 4 médias e 3 difíceis
+   por bloco de 10 questões.
 */
 
 function nivelDaQuestao(q){
+
     const indice = QUESTOES.indexOf(q);
+
+    if(indice < 0) return null;
+
     const posicao = indice % 10;
 
     for(const [nivel,dados] of Object.entries(NIVEIS)){
+
         if(dados.posicoes.includes(posicao)){
             return nivel;
         }
     }
 
-    return 'facil';
+    return null;
 }
+
+
+/* =========================================
+   TELA INICIAL
+   ========================================= */
 
 function inicio(){
 
-    const historico = S.simulados.slice().reverse();
+    const historico = [...S.simulados].reverse();
 
     m.innerHTML = `
-    <span class="tag">AVALIAÇÃO</span>
 
-    <h1 style="margin-top:8px">Simulados</h1>
+        <span class="tag">AVALIAÇÃO</span>
 
-    <p>Escolha o nível de dificuldade e teste seus conhecimentos.</p>
+        <h1 style="margin-top:8px">Simulados</h1>
 
-    <div class="grade">
+        <p>
+            Escolha o nível de dificuldade ou uma prova
+            organizada por banca examinadora.
+        </p>
 
-        ${Object.entries(NIVEIS).map(([id,n])=>`
-            <div class="cartao">
-                <span style="font-weight:800;color:${n.cor}">
-                    ${n.nome.toUpperCase()}
-                </span>
 
-                <h2 style="margin:10px 0">10 questões</h2>
+        <!-- NÍVEIS DE DIFICULDADE -->
 
-                <p class="suave">${n.descricao}</p>
+        <h2 style="margin-top:25px">Por nível de dificuldade</h2>
 
-                <button class="btn" onclick="comeca('${id}')">
-                    Iniciar simulado →
-                </button>
-            </div>
-        `).join('')}
+        <div class="grade">
 
-    </div>
+            ${Object.entries(NIVEIS).map(([id,n])=>`
 
-    ${historico.length ? `
-        <h2 style="margin-top:30px">Histórico de tentativas</h2>
+                <div class="cartao">
 
-        ${historico.map(s=>`
-            <div class="cartao linha" style="margin-bottom:10px;justify-content:space-between">
-                <div>
-                    <b>${s.nivel || 'Simulado'}</b>
-                    <p class="suave">${s.d}</p>
+                    <span style="font-weight:800;color:${n.cor}">
+                        ${n.nome.toUpperCase()}
+                    </span>
+
+                    <h2 style="margin:10px 0">10 questões</h2>
+
+                    <p class="suave">${n.descricao}</p>
+
+                    <button class="btn"
+                        onclick="comeca('${id}')">
+
+                        Iniciar simulado →
+
+                    </button>
+
                 </div>
 
-                <b>${s.ac} de ${s.n} questões · ${percentual(s.ac,s.n)}%</b>
-            </div>
-        `).join('')}
-    ` : `
-        <div class="cartao" style="margin-top:25px">
-            <h3>Seu histórico aparecerá aqui</h3>
-            <p class="suave">Finalize seu primeiro simulado para acompanhar sua evolução.</p>
+            `).join('')}
+
         </div>
-    `}
+
+
+        <!-- SIMULADOS POR BANCA -->
+
+        ${PROVAS.length ? `
+
+            <h2 style="margin-top:35px">
+                Simulados por banca
+            </h2>
+
+            <p class="suave">
+                Pratique com questões organizadas por banca,
+                concurso e cargo.
+            </p>
+
+            <div class="grade">
+
+                ${PROVAS.map(p=>`
+
+                    <div class="cartao">
+
+                        <span class="tag">
+                            ${p.banca} · ${p.ano}
+                        </span>
+
+                        <h3 style="margin:12px 0">
+                            ${p.titulo}
+                        </h3>
+
+                        <p class="suave">
+                            ${p.concurso}
+                        </p>
+
+                        <p class="suave">
+                            ${p.cargo}
+                        </p>
+
+                        <p style="margin:12px 0">
+                            <b>${p.questoes.length} questões</b>
+                        </p>
+
+                        <button class="btn"
+                            onclick="comecaBanca('${p.id}')">
+
+                            Iniciar prova →
+
+                        </button>
+
+                    </div>
+
+                `).join('')}
+
+            </div>
+
+        ` : ''}
+
+
+        <!-- HISTÓRICO -->
+
+        ${historico.length ? `
+
+            <h2 style="margin-top:35px">
+                Histórico de tentativas
+            </h2>
+
+            ${historico.map(s=>`
+
+                <div class="cartao linha"
+                    style="margin-bottom:10px;justify-content:space-between">
+
+                    <div>
+
+                        <b>${s.titulo || s.nivel || 'Simulado'}</b>
+
+                        <p class="suave">${s.d || ''}</p>
+
+                    </div>
+
+                    <b>
+                        ${s.ac} de ${s.n} questões ·
+                        ${percentual(s.ac,s.n)}%
+                    </b>
+
+                </div>
+
+            `).join('')}
+
+        ` : `
+
+            <div class="cartao" style="margin-top:30px">
+
+                <h3>Seu histórico aparecerá aqui</h3>
+
+                <p class="suave">
+                    Finalize seu primeiro simulado para
+                    acompanhar sua evolução.
+                </p>
+
+            </div>
+
+        `}
+
     `;
 }
-window.inicio = inicio;
+
+
+/* =========================================
+   INICIAR SIMULADO POR NÍVEL
+   ========================================= */
 
 window.comeca = function(nivel){
 
@@ -139,58 +281,111 @@ window.comeca = function(nivel){
     );
 
     if(disponiveis.length < 10){
+
         m.innerHTML = `
+
             <h1>Simulado indisponível</h1>
-            <p>Não há questões suficientes para este nível.</p>
-            <button class="btn sec" onclick="inicio()">Voltar</button>
+
+            <p>
+                Não há 10 questões suficientes
+                cadastradas para este nível.
+            </p>
+
+            <button class="btn sec" onclick="inicio()">
+                Voltar
+            </button>
+
         `;
+
         return;
     }
 
     const L = embaralhar(disponiveis).slice(0,10);
 
     m.innerHTML = `
+
         <span class="tag">${dados.nome.toUpperCase()}</span>
 
-        <h1 style="margin-top:8px">Simulado ${dados.nome}</h1>
+        <h1 style="margin-top:8px">
+            Simulado ${dados.nome}
+        </h1>
 
-        <p>Responda às 10 questões. Todas são obrigatórias.</p>
+        <p>
+            Responda às 10 questões.
+            Todas são obrigatórias.
+        </p>
+
+
+        <!-- PROGRESSO -->
 
         <div class="cartao" style="margin-bottom:20px">
+
             <div class="linha" style="justify-content:space-between">
+
                 <b>Progresso</b>
-                <span id="contador">0 de 10 respondidas</span>
+
+                <span id="contador">
+                    0 de 10 respondidas
+                </span>
+
             </div>
 
-            <div style="height:8px;background:var(--linha,#e5e7eb);border-radius:20px;margin-top:12px;overflow:hidden">
-                <div id="progresso" style="height:100%;width:0%;background:#069eda;transition:width .2s"></div>
+            <div style="
+                height:8px;
+                background:var(--linha,#e5e7eb);
+                border-radius:20px;
+                margin-top:12px;
+                overflow:hidden">
+
+                <div id="progresso" style="
+                    height:100%;
+                    width:0%;
+                    background:#069eda;
+                    transition:width .2s">
+                </div>
+
             </div>
+
         </div>
+
+
+        <!-- QUESTÕES -->
 
         <form id="formSimulado">
 
             ${L.map((q,i)=>`
+
                 <div class="cartao" style="margin-bottom:16px">
 
-                    <span class="tag">QUESTÃO ${i+1} DE 10</span>
+                    <span class="tag">
+                        QUESTÃO ${i+1} DE 10
+                    </span>
 
-                    <h3 style="margin:12px 0">${q.enunciado}</h3>
+                    <h3 style="margin:12px 0">
+                        ${q.enunciado}
+                    </h3>
 
                     ${q.alts.map((a,j)=>`
+
                         <label class="opcao-r">
+
                             <input
                                 type="radio"
                                 name="q${i}"
                                 value="${j}"
                                 required
-                                onchange="atualizaProgresso()"
                             >
+
                             ${a}
+
                         </label>
+
                     `).join('')}
 
                 </div>
+
             `).join('')}
+
 
             <button class="btn" type="submit">
                 Finalizar simulado
@@ -198,16 +393,29 @@ window.comeca = function(nivel){
 
         </form>
 
-        <button class="btn sec" style="margin-top:12px" onclick="inicio()">
+
+        <button class="btn sec"
+            style="margin-top:12px"
+            onclick="inicio()">
+
             Sair do simulado
+
         </button>
+
     `;
 
-    window.atualizaProgresso = function(){
 
-        const form = document.getElementById('formSimulado');
+    /* ATUALIZA PROGRESSO */
+
+    const form = document.getElementById('formSimulado');
+
+    form.addEventListener('change',function(){
+
         const respondidas = new Set(
-            [...form.querySelectorAll('input:checked')].map(x=>x.name)
+
+            [...form.querySelectorAll('input:checked')]
+                .map(x=>x.name)
+
         ).size;
 
         document.getElementById('contador').textContent =
@@ -215,33 +423,26 @@ window.comeca = function(nivel){
 
         document.getElementById('progresso').style.width =
             `${respondidas*10}%`;
-    };
 
-    document.getElementById('formSimulado').onsubmit = function(e){
+    });
+
+
+    /* FINALIZA SIMULADO */
+
+    form.onsubmit = function(e){
 
         e.preventDefault();
 
         let acertos = 0;
-        const formData = new FormData(e.target);
+
+        const formData = new FormData(form);
 
         L.forEach((q,i)=>{
 
-            const resposta = formData.get('q'+i);
-            const acertou = Number(resposta) === q.certa;
+            const resposta = Number(formData.get('q'+i));
 
-            if(acertou){
+            if(resposta === q.certa){
                 acertos++;
-            }
-
-            S.resp[q.id] = acertou;
-
-            if(!acertou && !S.erros.includes(q.id)){
-                S.erros.push(q.id);
-            }
-
-            if(acertou){
-                const pos = S.erros.indexOf(q.id);
-                if(pos !== -1) S.erros.splice(pos,1);
             }
 
         });
@@ -249,38 +450,68 @@ window.comeca = function(nivel){
         const resultado = percentual(acertos,L.length);
 
         S.simulados.push({
+
             d: new Date().toLocaleDateString('pt-BR'),
+
+            tipo: 'nivel',
+
             nivel: dados.nome,
+
             ac: acertos,
+
             n: L.length
+
         });
 
         salvar();
 
-        resultadoFinal(dados,L,acertos,resultado);
+        resultadoNivel(dados,L,acertos,resultado);
+
     };
+
 };
 
-function resultadoFinal(dados,L,acertos,resultado){
+
+/* =========================================
+   RESULTADO DO SIMULADO POR NÍVEL
+   ========================================= */
+
+function resultadoNivel(dados,L,acertos,resultado){
 
     const erros = L.length-acertos;
 
     let mensagem = '';
 
     if(resultado >= 90){
+
         mensagem = 'Excelente! Você demonstrou domínio do conteúdo.';
+
     }else if(resultado >= 70){
+
         mensagem = 'Muito bem! Continue praticando para avançar.';
+
     }else if(resultado >= 50){
+
         mensagem = 'Bom começo! Revise os assuntos em que teve dificuldade.';
+
     }else{
+
         mensagem = 'É hora de reforçar os fundamentos e tentar novamente.';
+
     }
 
+    const nivel = Object.keys(NIVEIS).find(
+        k => NIVEIS[k] === dados
+    );
+
     m.innerHTML = `
+
         <span class="tag">RESULTADO FINAL</span>
 
-        <h1 style="margin-top:8px">Simulado concluído!</h1>
+        <h1 style="margin-top:8px">
+            Simulado concluído!
+        </h1>
+
 
         <div class="cartao destaque" style="margin-top:20px">
 
@@ -292,42 +523,427 @@ function resultadoFinal(dados,L,acertos,resultado){
 
         </div>
 
+
         <div class="grade" style="margin-top:16px">
 
             <div class="cartao">
+
                 <span class="suave">Acertos</span>
+
                 <h2>${acertos}</h2>
+
             </div>
 
             <div class="cartao">
+
                 <span class="suave">Erros</span>
+
                 <h2>${erros}</h2>
+
             </div>
 
         </div>
 
+
         <div class="cartao" style="margin-top:16px">
+
             <b>Nível realizado:</b> ${dados.nome}
-            <p class="suave">As questões erradas foram adicionadas ao caderno de erros.</p>
+
+            <p class="suave">
+                Resultado registrado no histórico de simulados.
+            </p>
+
         </div>
 
-        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:20px">
 
-            <button class="btn" onclick="comeca('${Object.keys(NIVEIS).find(k=>NIVEIS[k]===dados)}')">
+        <div style="
+            display:flex;
+            gap:10px;
+            flex-wrap:wrap;
+            margin-top:20px">
+
+            <button class="btn" onclick="comeca('${nivel}')">
                 Refazer simulado
             </button>
-
-            <a class="btn sec" href="erros.html">
-                Revisar erros
-            </a>
 
             <button class="btn sec" onclick="inicio()">
                 Voltar aos simulados
             </button>
 
         </div>
+
     `;
 }
+
+
+/* =========================================
+   INICIAR SIMULADO POR BANCA
+   ========================================= */
+
+window.comecaBanca = function(id){
+
+    const prova = PROVAS.find(p => p.id === id);
+
+    if(!prova || !Array.isArray(prova.questoes) || !prova.questoes.length){
+
+        alert('Este simulado não possui questões cadastradas.');
+
+        return;
+    }
+
+    /* Mantém a ordem original da prova */
+
+    const L = [...prova.questoes];
+
+
+    m.innerHTML = `
+
+        <span class="tag">
+            ${prova.banca} · ${prova.ano}
+        </span>
+
+        <h1 style="margin-top:8px">
+            ${prova.titulo}
+        </h1>
+
+        <p>
+            ${prova.concurso} · ${prova.cargo}
+        </p>
+
+
+        <!-- PROGRESSO -->
+
+        <div class="cartao" style="margin:20px 0">
+
+            <b>${L.length} questões</b>
+
+            <p class="suave">
+                Responda a todas para finalizar a prova.
+            </p>
+
+            <div style="
+                height:8px;
+                background:var(--linha,#e5e7eb);
+                border-radius:20px;
+                margin-top:12px;
+                overflow:hidden">
+
+                <div id="progressoBanca" style="
+                    height:100%;
+                    width:0%;
+                    background:#069eda;
+                    transition:width .2s">
+                </div>
+
+            </div>
+
+            <p id="contadorBanca">
+                0 de ${L.length} respondidas
+            </p>
+
+        </div>
+
+
+        <!-- QUESTÕES -->
+
+        <form id="formBanca">
+
+            ${L.map((q,i)=>`
+
+                <div class="cartao" style="margin-bottom:16px">
+
+                    <span class="tag">
+                        QUESTÃO ${i+1} DE ${L.length}
+                    </span>
+
+                    <h3 style="margin:12px 0">
+                        ${q.enunciado}
+                    </h3>
+
+                    ${q.alts.map((a,j)=>`
+
+                        <label class="opcao-r">
+
+                            <input
+                                type="radio"
+                                name="q${i}"
+                                value="${j}"
+                                required
+                            >
+
+                            ${a}
+
+                        </label>
+
+                    `).join('')}
+
+                </div>
+
+            `).join('')}
+
+
+            <button class="btn" type="submit">
+                Finalizar prova
+            </button>
+
+        </form>
+
+
+        <button class="btn sec"
+            style="margin-top:12px"
+            onclick="inicio()">
+
+            Sair da prova
+
+        </button>
+
+    `;
+
+
+    /* ATUALIZA PROGRESSO */
+
+    const form = document.getElementById('formBanca');
+
+    form.addEventListener('change',function(){
+
+        const respondidas = new Set(
+
+            [...form.querySelectorAll('input:checked')]
+                .map(x=>x.name)
+
+        ).size;
+
+        document.getElementById('contadorBanca').textContent =
+            `${respondidas} de ${L.length} respondidas`;
+
+        document.getElementById('progressoBanca').style.width =
+            `${respondidas/L.length*100}%`;
+
+    });
+
+
+    /* FINALIZA PROVA */
+
+    form.onsubmit = function(e){
+
+        e.preventDefault();
+
+        const respostas = new FormData(form);
+
+        let acertos = 0;
+
+        const correcao = L.map((q,i)=>{
+
+            const resposta = Number(respostas.get('q'+i));
+
+            const acertou = resposta === q.certa;
+
+            if(acertou) acertos++;
+
+            return {
+                resposta,
+                acertou
+            };
+
+        });
+
+        const resultado = percentual(acertos,L.length);
+
+
+        S.simulados.push({
+
+            d: new Date().toLocaleDateString('pt-BR'),
+
+            tipo: 'banca',
+
+            nivel: prova.banca,
+
+            titulo: prova.titulo,
+
+            ac: acertos,
+
+            n: L.length
+
+        });
+
+        salvar();
+
+        resultadoBanca(
+            prova,
+            L,
+            correcao,
+            acertos,
+            resultado
+        );
+
+    };
+
+};
+
+
+/* =========================================
+   RESULTADO DOS SIMULADOS POR BANCA
+   ========================================= */
+
+function resultadoBanca(prova,L,correcao,acertos,resultado){
+
+    const erros = L.length-acertos;
+
+    let mensagem = '';
+
+    if(resultado >= 90){
+
+        mensagem = 'Excelente! Você demonstrou domínio do conteúdo.';
+
+    }else if(resultado >= 70){
+
+        mensagem = 'Muito bem! Continue praticando.';
+
+    }else if(resultado >= 50){
+
+        mensagem = 'Bom começo! Revise os assuntos em que teve dificuldade.';
+
+    }else{
+
+        mensagem = 'É hora de reforçar os fundamentos e tentar novamente.';
+
+    }
+
+
+    m.innerHTML = `
+
+        <span class="tag">RESULTADO DA PROVA</span>
+
+        <h1 style="margin-top:8px">
+            Prova concluída!
+        </h1>
+
+
+        <div class="cartao destaque" style="margin-top:20px">
+
+            <span class="num">${resultado}%</span>
+
+            <h2>${acertos} de ${L.length} acertos</h2>
+
+            <p>${mensagem}</p>
+
+        </div>
+
+
+        <div class="grade" style="margin-top:16px">
+
+            <div class="cartao">
+
+                <span class="suave">Acertos</span>
+
+                <h2>${acertos}</h2>
+
+            </div>
+
+            <div class="cartao">
+
+                <span class="suave">Erros</span>
+
+                <h2>${erros}</h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="cartao" style="margin-top:16px">
+
+            <b>${prova.banca}</b>
+
+            <p class="suave">${prova.concurso}</p>
+
+            <p class="suave">${prova.cargo}</p>
+
+        </div>
+
+
+        <h2 style="margin-top:30px">
+            Gabarito comentado
+        </h2>
+
+
+        ${L.map((q,i)=>`
+
+            <div class="cartao" style="margin-bottom:14px">
+
+                <span class="tag">
+                    QUESTÃO ${i+1}
+                </span>
+
+                <h3 style="margin:10px 0">
+                    ${q.enunciado}
+                </h3>
+
+                <p>
+                    <b>Sua resposta:</b>
+                    ${q.alts[correcao[i].resposta]}
+                </p>
+
+                <p>
+                    <b>Gabarito:</b>
+                    ${q.alts[q.certa]}
+                </p>
+
+                <p style="color:${correcao[i].acertou ? '#16a34a' : '#dc2626'}">
+
+                    <b>
+                        ${correcao[i].acertou
+                            ? 'Resposta correta'
+                            : 'Resposta incorreta'}
+                    </b>
+
+                </p>
+
+                <p>
+                    <b>Resolução:</b>
+                    ${q.resolucao || 'Resolução não cadastrada.'}
+                </p>
+
+            </div>
+
+        `).join('')}
+
+
+        <div style="
+            display:flex;
+            gap:10px;
+            flex-wrap:wrap;
+            margin-top:20px">
+
+            <button class="btn"
+                onclick="comecaBanca('${prova.id}')">
+
+                Refazer prova
+
+            </button>
+
+            <button class="btn sec"
+                onclick="inicio()">
+
+                Voltar aos simulados
+
+            </button>
+
+        </div>
+
+    `;
+}
+
+
+/* =========================================
+   INICIALIZAÇÃO
+   ========================================= */
+
+/* Disponibiliza a função para os botões HTML */
+
+window.inicio = inicio;
+
+/* Abre a tela inicial */
 
 inicio();
 
