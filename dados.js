@@ -2997,18 +2997,6 @@ FLASH(
 
 
 
-/* ===== DADOS DA PÁGINA INICIAL (index.html) — troque pelos seus ===== */
-const SITE={
-  professora:'Dani Resulta',
-  sobre:'Sou professora de Matemática licenciada, diagramadora e criadora do projeto ResultaMath. Acredito que a matemática não precisa ser complicada, por isso ensino de forma clara, visual e objetiva, transformando conceitos difíceis em ideias simples e acessíveis. Meu objetivo não é apenas ensinar a resolver questões, mas ajudar cada aluno a compreender a matemática e ganhar confiança para utilizá-la.',
-  whatsapp:'5542991367740',   /* só números, com 55 + DDD. Deixe '' para esconder o botão */
-  instagram:'',               /* ex.: https://instagram.com/seuperfil */
-  youtube:'',                 /* ex.: https://youtube.com/@seucanal */
-  email:''                    /* ex.: contato@seusite.com */
-};
-
-
-
 
 
 /* ===== MATEMÁTICA MINUTADA ===== */
@@ -4035,3 +4023,14 @@ const RESUMOS = [
 }
 
 ];
+
+/* ===== DADOS DA PÁGINA INICIAL (index.html) — troque pelos seus ===== */
+const SITE={
+  professora:'Dani Resulta',
+  sobre:'Sou professora de Matemática licenciada, diagramadora e criadora do projeto ResultaMath. Acredito que a matemática não precisa ser complicada, por isso ensino de forma clara, visual e objetiva, transformando conceitos difíceis em ideias simples e acessíveis. Meu objetivo não é apenas ensinar a resolver questões, mas ajudar cada aluno a compreender a matemática e ganhar confiança para utilizá-la.',
+  whatsapp:'5542991367740',   /* só números, com 55 + DDD. Deixe '' para esconder o botão */
+  instagram:'https://www.instagram.com/professora_thaiz?igsh=d2M0aHJ5dDFlMXcy',      /* ex.: https://instagram.com/seuperfil */
+  youtube:'https://www.youtube.com/@resultamath',                 /* ex.: https://youtube.com/@seucanal */
+  email:''                    /* ex.: contato@seusite.com */
+};
+
