@@ -48,25 +48,575 @@ AULA('5. Razão, proporção e porcentagem','Porcentagem','','x% de N = N · x /
 
 
 
+
+/* =====================================================
+   EXERCÍCIOS RESULTAMATH
+   100 questões organizadas em 10 áreas
+   ===================================================== */
+
 /* QUESTAO(módulo, enunciado, [alternativas], índice da correta começando em 0, resolução comentada) */
 
-function QUESTAO(modulo,enunciado,alts,certa,resolucao){QUESTOES.push({id:slug(enunciado),modulo,enunciado,alts,certa,resolucao})}
+function QUESTAO(modulo, enunciado, alts, certa, resolucao) {
+    QUESTOES.push({
+        id: slug(enunciado),
+        modulo,
+        enunciado,
+        alts,
+        certa,
+        resolucao
+    });
+}
 
-QUESTAO('1. Fundamentos da matemática','Qual destes números é irracional?',['0,5','√2','3/4','7'],1,'√2 = 1,41421… não termina nem repete, então não vira fração. Os outros são racionais.');
 
-QUESTAO('2. Operações fundamentais','Quanto vale 2³ · 2²?',['16','32','64','10'],1,'Mesma base: somam-se os expoentes. 2³ · 2² = 2⁵ = 32.');
+/* =====================================================
+   1. FUNDAMENTOS DA MATEMÁTICA
+   ===================================================== */
 
-QUESTAO('3. Divisibilidade','Qual número é divisível por 3?',['124','231','407','508'],1,'2 + 3 + 1 = 6, e 6 é divisível por 3. Nos outros, a soma não é.');
+QUESTAO('1. Fundamentos da matemática',
+'Qual destes números é irracional?',
+['0,5', '√2', '3/4', '7', '0,25'], 1,
+'√2 = 1,414213... é uma dízima não periódica. Portanto, não pode ser representado por uma fração de inteiros. Os demais números são racionais.');
 
-QUESTAO('3. Divisibilidade','Qual é o MMC de 12 e 18?',['6','36','72','54'],1,'12 = 2²·3 e 18 = 2·3². O MMC usa os maiores expoentes: 2²·3² = 36.');
+QUESTAO('1. Fundamentos da matemática',
+'Qual dos números abaixo pertence ao conjunto dos números naturais?',
+['-3', '-1/2', '0', '√5', '-7'], 2,
+'O número 0 pertence ao conjunto dos naturais quando adotamos ℕ = {0, 1, 2, 3, ...}. Os números negativos e irracionais não pertencem a esse conjunto.');
 
-QUESTAO('4. Frações e números decimais','Quanto vale 1/2 + 1/3?',['2/5','5/6','1/5','2/6'],1,'MMC de 2 e 3 é 6: 3/6 + 2/6 = 5/6.');
+QUESTAO('1. Fundamentos da matemática',
+'Qual é o antecessor do número inteiro -4?',
+['-3', '-5', '4', '5', '0'], 1,
+'O antecessor é o número imediatamente anterior na sequência dos inteiros. Assim, -4 - 1 = -5.');
 
-QUESTAO('4. Frações e números decimais','Qual é a fração irredutível de 0,75?',['75/10','3/4','7/5','3/5'],1,'0,75 = 75/100. Dividindo por 25 em cima e embaixo, fica 3/4.');
+QUESTAO('1. Fundamentos da matemática',
+'Qual é o valor absoluto de -15?',
+['-15', '0', '15', '1', '-1'], 2,
+'O valor absoluto, ou módulo, representa a distância entre o número e o zero. Portanto, |-15| = 15.');
 
-QUESTAO('5. Razão, proporção e porcentagem','Quanto é 20% de 350?',['60','70','75','17,5'],1,'350 · 20/100 = 70.');
+QUESTAO('1. Fundamentos da matemática',
+'Qual número é maior?',
+['-8', '-3', '-12', '-15', '-20'], 1,
+'Entre números negativos, aquele que está mais próximo de zero é o maior. Portanto, -3 é maior que os demais.');
 
-QUESTAO('5. Razão, proporção e porcentagem','3 cadernos custam R$ 24. Quanto custam 5 cadernos?',['R$ 36','R$ 40','R$ 45','R$ 30'],1,'Cada caderno custa 24 ÷ 3 = 8. Então 5 cadernos custam R$ 40.');
+QUESTAO('1. Fundamentos da matemática',
+'Qual alternativa apresenta apenas números primos?',
+['2, 3 e 5', '1, 3 e 7', '2, 4 e 7', '3, 6 e 11', '5, 9 e 13'], 0,
+'Os números primos possuem exatamente dois divisores positivos: 1 e eles mesmos. Os números 2, 3 e 5 são primos.');
+
+QUESTAO('1. Fundamentos da matemática',
+'Qual é o maior número inteiro entre -2, 0, -5, 3 e -1?',
+['-1', '-2', '0', '3', '-5'], 3,
+'Na reta numérica, os números aumentam da esquerda para a direita. Portanto, 3 é o maior número da lista.');
+
+QUESTAO('1. Fundamentos da matemática',
+'Qual fração representa o número 0,5?',
+['1/4', '1/2', '2/5', '3/4', '5/2'], 1,
+'0,5 = 5/10. Simplificando a fração por 5, temos 1/2.');
+
+QUESTAO('1. Fundamentos da matemática',
+'Qual é o resultado da comparação 3/4 e 2/3?',
+['3/4 < 2/3', '3/4 = 2/3', '3/4 > 2/3', 'Não é possível comparar', 'Ambas são iguais a 1'], 2,
+'Usando o mesmo denominador: 3/4 = 9/12 e 2/3 = 8/12. Como 9/12 é maior que 8/12, temos 3/4 > 2/3.');
+
+QUESTAO('1. Fundamentos da matemática',
+'Quantos elementos possui o conjunto A = {2, 4, 6, 8, 10}?',
+['3', '4', '5', '6', '10'], 2,
+'Basta contar os elementos distintos do conjunto. A possui cinco elementos: 2, 4, 6, 8 e 10.');
+
+
+/* =====================================================
+   2. OPERAÇÕES FUNDAMENTAIS
+   ===================================================== */
+
+QUESTAO('2. Operações fundamentais',
+'Quanto é 248 + 376?',
+['614', '624', '634', '6240', '6140'], 1,
+'Somando os números: 248 + 376 = 624.');
+
+QUESTAO('2. Operações fundamentais',
+'Qual é o resultado de 900 - 457?',
+['443', '453', '463', '543', '447'], 0,
+'Realizando a subtração: 900 - 457 = 443.');
+
+QUESTAO('2. Operações fundamentais',
+'Quanto vale 24 × 15?',
+['340', '350', '360', '370', '380'], 2,
+'Podemos decompor 15 em 10 + 5. Assim: 24 × 10 = 240 e 24 × 5 = 120. Somando: 240 + 120 = 360.');
+
+QUESTAO('2. Operações fundamentais',
+'Qual é o resultado de 864 ÷ 12?',
+['62', '68', '70', '72', '74'], 3,
+'Como 12 × 72 = 864, temos 864 ÷ 12 = 72.');
+
+QUESTAO('2. Operações fundamentais',
+'Quanto vale 2³ · 2²?',
+['16', '32', '64', '10', '8'], 1,
+'Na multiplicação de potências de mesma base, somamos os expoentes: 2³ · 2² = 2⁵ = 32.');
+
+QUESTAO('2. Operações fundamentais',
+'Qual é o resultado de 150 + 80 ÷ 4?',
+['57,5', '170', '230', '60', '230?'], 1,
+'Primeiro realizamos a divisão: 80 ÷ 4 = 20. Depois somamos: 150 + 20 = 170.');
+
+QUESTAO('2. Operações fundamentais',
+'Quanto vale 7 × (12 - 5)?',
+['35', '42', '49', '56', '84'], 2,
+'Primeiro resolvemos os parênteses: 12 - 5 = 7. Depois multiplicamos: 7 × 7 = 49.');
+
+QUESTAO('2. Operações fundamentais',
+'Qual é o resultado de 1.200 ÷ 100?',
+['1,2', '12', '120', '1200', '0,12'], 1,
+'Na divisão por 100, deslocamos a vírgula duas casas para a esquerda: 1.200 ÷ 100 = 12.');
+
+QUESTAO('2. Operações fundamentais',
+'Uma pessoa comprou 4 produtos de R$ 18 cada. Quanto gastou?',
+['R$ 62', 'R$ 68', 'R$ 72', 'R$ 74', 'R$ 82'], 2,
+'Multiplicamos o preço unitário pela quantidade: 4 × 18 = 72. O gasto total foi de R$ 72.');
+
+QUESTAO('2. Operações fundamentais',
+'Qual é o resultado de 45 + 18 × 3 - 12?',
+['87', '93', '99', '111', '117'], 1,
+'Primeiro fazemos a multiplicação: 18 × 3 = 54. Depois: 45 + 54 - 12 = 87. Resposta correta: alternativa A.', 0);
+
+
+/* =====================================================
+   3. DIVISIBILIDADE E FATORAÇÃO
+   ===================================================== */
+
+QUESTAO('3. Divisibilidade e fatoração',
+'Qual número é divisível por 3?',
+['124', '231', '407', '508', '701'], 1,
+'Somamos os algarismos de 231: 2 + 3 + 1 = 6. Como 6 é divisível por 3, 231 também é.');
+
+QUESTAO('3. Divisibilidade e fatoração',
+'Qual dos números abaixo é divisível por 5?',
+['132', '247', '365', '418', '522'], 2,
+'Um número é divisível por 5 quando termina em 0 ou 5. O número 365 termina em 5.');
+
+QUESTAO('3. Divisibilidade e fatoração',
+'Qual é o menor número primo?',
+['0', '1', '2', '3', '5'], 2,
+'O menor número primo é 2, pois possui exatamente dois divisores positivos: 1 e 2.');
+
+QUESTAO('3. Divisibilidade e fatoração',
+'Qual é o MDC de 18 e 24?',
+['3', '4', '6', '8', '12'], 2,
+'Os divisores comuns de 18 e 24 são 1, 2, 3 e 6. O maior deles é 6.');
+
+QUESTAO('3. Divisibilidade e fatoração',
+'Qual é o MMC de 12 e 18?',
+['6', '36', '72', '54', '24'], 1,
+'12 = 2² × 3 e 18 = 2 × 3². O MMC utiliza os maiores expoentes: 2² × 3² = 36.');
+
+QUESTAO('3. Divisibilidade e fatoração',
+'Qual é a decomposição em fatores primos do número 60?',
+['2 × 3 × 10', '2² × 3 × 5', '2 × 3² × 5', '2³ × 5', '3 × 4 × 5'], 1,
+'Dividindo 60 sucessivamente por números primos: 60 = 2 × 2 × 3 × 5 = 2² × 3 × 5.');
+
+QUESTAO('3. Divisibilidade e fatoração',
+'Qual número é divisível por 9?',
+['124', '315', '421', '503', '617'], 1,
+'Somamos os algarismos de 315: 3 + 1 + 5 = 9. Como 9 é múltiplo de 9, o número é divisível por 9.');
+
+QUESTAO('3. Divisibilidade e fatoração',
+'Qual é a quantidade de divisores positivos do número 12?',
+['4', '5', '6', '7', '8'], 2,
+'Os divisores positivos de 12 são 1, 2, 3, 4, 6 e 12. Portanto, existem 6 divisores.');
+
+QUESTAO('3. Divisibilidade e fatoração',
+'Qual é o menor número positivo divisível simultaneamente por 4 e 6?',
+['8', '10', '12', '18', '24'], 2,
+'Precisamos calcular o MMC de 4 e 6. Como 4 = 2² e 6 = 2 × 3, MMC = 2² × 3 = 12.');
+
+QUESTAO('3. Divisibilidade e fatoração',
+'Um número é divisível por 2 e por 3 ao mesmo tempo. Qual alternativa apresenta um exemplo?',
+['14', '21', '27', '30', '35'], 3,
+'Para ser divisível por 2, precisa ser par. Para ser divisível por 3, a soma dos algarismos deve ser múltipla de 3. Em 30, temos um número par e 3 + 0 = 3.');
+
+
+/* =====================================================
+   4. FRAÇÕES E NÚMEROS DECIMAIS
+   ===================================================== */
+
+QUESTAO('4. Frações e números decimais',
+'Quanto vale 1/2 + 1/3?',
+['2/5', '5/6', '1/5', '2/6', '3/5'], 1,
+'O MMC de 2 e 3 é 6. Transformando as frações: 3/6 + 2/6 = 5/6.');
+
+QUESTAO('4. Frações e números decimais',
+'Qual é a fração irredutível de 0,75?',
+['75/10', '3/4', '7/5', '3/5', '1/4'], 1,
+'0,75 = 75/100. Dividindo o numerador e o denominador por 25, obtemos 3/4.');
+
+QUESTAO('4. Frações e números decimais',
+'Quanto vale 3/4 - 1/4?',
+['1/4', '1/2', '2/3', '3/8', '1'], 1,
+'Como os denominadores são iguais, subtraímos os numeradores: (3 - 1)/4 = 2/4 = 1/2.');
+
+QUESTAO('4. Frações e números decimais',
+'Qual é o resultado de 2/3 × 3/5?',
+['2/5', '3/8', '5/6', '6/15', '1/5'], 0,
+'Multiplicamos os numeradores e os denominadores: (2 × 3)/(3 × 5) = 6/15. Simplificando por 3, obtemos 2/5.');
+
+QUESTAO('4. Frações e números decimais',
+'Quanto vale 2/5 ÷ 4/5?',
+['1/2', '2', '1/4', '4/5', '5/2'], 0,
+'Na divisão de frações, multiplicamos pela inversa da segunda: 2/5 × 5/4 = 10/20 = 1/2.');
+
+QUESTAO('4. Frações e números decimais',
+'Qual é o resultado de 2,5 + 3,75?',
+['5,25', '6,15', '6,25', '6,50', '7,25'], 2,
+'Alinhando as vírgulas: 2,50 + 3,75 = 6,25.');
+
+QUESTAO('4. Frações e números decimais',
+'Quanto vale 8,4 ÷ 2?',
+['2,2', '3,2', '4,2', '4,4', '5,2'], 2,
+'Dividindo 8,4 por 2, obtemos 4,2.');
+
+QUESTAO('4. Frações e números decimais',
+'Qual fração representa 0,2?',
+['1/2', '1/5', '2/5', '1/4', '2/3'], 1,
+'0,2 = 2/10. Simplificando por 2, temos 1/5.');
+
+QUESTAO('4. Frações e números decimais',
+'Quanto é 3/8 de 80?',
+['20', '25', '30', '35', '40'], 2,
+'Para calcular 3/8 de 80, dividimos 80 por 8 e multiplicamos por 3: 10 × 3 = 30.');
+
+QUESTAO('4. Frações e números decimais',
+'Qual é o resultado de 1,2 × 0,5?',
+['0,06', '0,6', '1,7', '6', '0,12'], 1,
+'Podemos perceber que multiplicar por 0,5 equivale a dividir por 2. Portanto, 1,2 ÷ 2 = 0,6.');
+
+
+/* =====================================================
+   5. RAZÃO, PROPORÇÃO E PORCENTAGEM
+   ===================================================== */
+
+QUESTAO('5. Razão, proporção e porcentagem',
+'Quanto é 20% de 350?',
+['60', '70', '75', '17,5', '80'], 1,
+'Calculamos 20% de 350: 350 × 20/100 = 70.');
+
+QUESTAO('5. Razão, proporção e porcentagem',
+'3 cadernos custam R$ 24. Quanto custam 5 cadernos?',
+['R$ 36', 'R$ 40', 'R$ 45', 'R$ 30', 'R$ 48'], 1,
+'Cada caderno custa 24 ÷ 3 = R$ 8. Então, 5 × 8 = R$ 40.');
+
+QUESTAO('5. Razão, proporção e porcentagem',
+'Uma camisa de R$ 120 recebeu desconto de 25%. Qual é o preço final?',
+['R$ 80', 'R$ 85', 'R$ 90', 'R$ 95', 'R$ 100'], 2,
+'25% de 120 = 30. Subtraindo o desconto: 120 - 30 = R$ 90.');
+
+QUESTAO('5. Razão, proporção e porcentagem',
+'Em uma turma há 12 meninas e 8 meninos. Qual é a razão entre meninas e meninos?',
+['2/3', '3/2', '4/3', '1/2', '5/2'], 1,
+'A razão é 12/8. Simplificando numerador e denominador por 4, obtemos 3/2.');
+
+QUESTAO('5. Razão, proporção e porcentagem',
+'Se 4 trabalhadores realizam um serviço em 12 dias, em quantos dias 8 trabalhadores realizariam o mesmo serviço, mantendo o mesmo ritmo?',
+['3 dias', '4 dias', '6 dias', '8 dias', '24 dias'], 2,
+'As grandezas são inversamente proporcionais. Dobrando o número de trabalhadores, o tempo cai pela metade: 12 ÷ 2 = 6 dias.');
+
+QUESTAO('5. Razão, proporção e porcentagem',
+'Um produto de R$ 200 sofreu aumento de 10%. Qual é o novo preço?',
+['R$ 210', 'R$ 215', 'R$ 220', 'R$ 230', 'R$ 240'], 2,
+'10% de 200 = 20. Somando o aumento: 200 + 20 = R$ 220.');
+
+QUESTAO('5. Razão, proporção e porcentagem',
+'Se 6 máquinas produzem 900 peças em determinado período, quantas peças 2 máquinas iguais produzem no mesmo período?',
+['150', '200', '250', '300', '450'], 3,
+'As grandezas são diretamente proporcionais. Cada máquina produz 900 ÷ 6 = 150 peças. Duas máquinas produzem 2 × 150 = 300 peças.');
+
+QUESTAO('5. Razão, proporção e porcentagem',
+'Uma prova possui 40 questões. Um candidato acertou 75%. Quantas questões ele acertou?',
+['20', '25', '28', '30', '35'], 3,
+'Calculamos 75% de 40: 40 × 75/100 = 30 questões.');
+
+QUESTAO('5. Razão, proporção e porcentagem',
+'Uma receita utiliza 300 g de farinha para 4 pessoas. Quantos gramas serão necessários para 10 pessoas?',
+['600 g', '650 g', '700 g', '750 g', '800 g'], 3,
+'As grandezas são diretamente proporcionais. 300 ÷ 4 = 75 g por pessoa. Para 10 pessoas: 75 × 10 = 750 g.');
+
+QUESTAO('5. Razão, proporção e porcentagem',
+'Um salário de R$ 2.000 recebeu aumento de 15%. Qual passou a ser o salário?',
+['R$ 2.150', 'R$ 2.200', 'R$ 2.250', 'R$ 2.300', 'R$ 2.350'], 3,
+'15% de 2.000 = 300. Somando o aumento: 2.000 + 300 = R$ 2.300.');
+
+
+/* =====================================================
+   6. POTENCIAÇÃO E RADICIAÇÃO
+   ===================================================== */
+
+QUESTAO('6. Potenciação e radiciação',
+'Quanto vale 3⁴?',
+['27', '54', '64', '81', '243'], 3,
+'3⁴ = 3 × 3 × 3 × 3 = 81.');
+
+QUESTAO('6. Potenciação e radiciação',
+'Qual é o resultado de 5⁰?',
+['0', '1', '5', '10', '25'], 1,
+'Toda potência de base não nula e expoente zero é igual a 1. Portanto, 5⁰ = 1.');
+
+QUESTAO('6. Potenciação e radiciação',
+'Quanto vale 2⁵?',
+['16', '24', '32', '64', '128'], 2,
+'2⁵ = 2 × 2 × 2 × 2 × 2 = 32.');
+
+QUESTAO('6. Potenciação e radiciação',
+'Qual é a raiz quadrada de 144?',
+['10', '11', '12', '13', '14'], 2,
+'A raiz quadrada de 144 é 12, pois 12 × 12 = 144.');
+
+QUESTAO('6. Potenciação e radiciação',
+'Qual é o resultado de √81 + √16?',
+['9', '11', '12', '13', '15'], 3,
+'√81 = 9 e √16 = 4. Somando: 9 + 4 = 13.');
+
+QUESTAO('6. Potenciação e radiciação',
+'Quanto vale 10³?',
+['100', '300', '1.000', '10.000', '100.000'], 2,
+'10³ = 10 × 10 × 10 = 1.000.');
+
+QUESTAO('6. Potenciação e radiciação',
+'Qual é o resultado de 4² - 3²?',
+['5', '7', '9', '12', '25'], 1,
+'4² = 16 e 3² = 9. Subtraindo: 16 - 9 = 7.');
+
+QUESTAO('6. Potenciação e radiciação',
+'Qual é a raiz cúbica de 125?',
+['3', '4', '5', '6', '25'], 2,
+'A raiz cúbica de 125 é 5, pois 5 × 5 × 5 = 125.');
+
+QUESTAO('6. Potenciação e radiciação',
+'Quanto vale 2³ × 3²?',
+['36', '48', '64', '72', '96'], 3,
+'Calculamos cada potência: 2³ = 8 e 3² = 9. Multiplicando: 8 × 9 = 72.');
+
+QUESTAO('6. Potenciação e radiciação',
+'Qual é o resultado de √50 simplificado?',
+['2√5', '5√2', '10√5', '25√2', '5√5'], 1,
+'Decompomos 50 = 25 × 2. Assim, √50 = √25 × √2 = 5√2.');
+
+
+/* =====================================================
+   7. EXPRESSÕES NUMÉRICAS E ALGÉBRICAS
+   ===================================================== */
+
+QUESTAO('7. Expressões numéricas e algébricas',
+'Qual é o resultado de 18 + 6 × 4?',
+['42', '48', '96', '72', '24'], 0,
+'Primeiro fazemos a multiplicação: 6 × 4 = 24. Depois somamos: 18 + 24 = 42.');
+
+QUESTAO('7. Expressões numéricas e algébricas',
+'Quanto vale (20 - 8) ÷ 3 + 5?',
+['7', '8', '9', '10', '11'], 3,
+'Primeiro resolvemos os parênteses: 20 - 8 = 12. Depois dividimos: 12 ÷ 3 = 4. Por fim: 4 + 5 = 9. Resposta correta: alternativa C.', 2);
+
+QUESTAO('7. Expressões numéricas e algébricas',
+'Se x = 4, qual é o valor de 3x + 5?',
+['12', '15', '17', '20', '25'], 2,
+'Substituímos x por 4: 3 × 4 + 5 = 12 + 5 = 17.');
+
+QUESTAO('7. Expressões numéricas e algébricas',
+'Qual expressão representa o dobro de um número x aumentado em 7?',
+['2x - 7', 'x + 7', '2(x + 7)', '2x + 7', 'x - 14'], 3,
+'O dobro de x é 2x. Aumentado em 7, temos 2x + 7.');
+
+QUESTAO('7. Expressões numéricas e algébricas',
+'Reduzindo os termos semelhantes de 3x + 5x - 2x, obtemos:',
+['4x', '5x', '6x', '8x', '10x'], 2,
+'Somamos os coeficientes dos termos semelhantes: 3 + 5 - 2 = 6. Portanto, o resultado é 6x.');
+
+QUESTAO('7. Expressões numéricas e algébricas',
+'Qual é o resultado de 2a + 3b, sabendo que a = 2 e b = 4?',
+['12', '14', '16', '18', '20'], 2,
+'Substituímos os valores: 2 × 2 + 3 × 4 = 4 + 12 = 16.');
+
+QUESTAO('7. Expressões numéricas e algébricas',
+'Qual é o desenvolvimento de (x + 2)²?',
+['x² + 4', 'x² + 2x + 4', 'x² + 4x + 4', 'x² - 4x + 4', '2x² + 4'], 2,
+'Aplicamos o produto notável: (x + 2)² = x² + 2 × x × 2 + 2² = x² + 4x + 4.');
+
+QUESTAO('7. Expressões numéricas e algébricas',
+'Qual é o resultado da expressão 5x - 3, para x = -2?',
+['-13', '-7', '7', '10', '13'], 0,
+'Substituindo x por -2: 5 × (-2) - 3 = -10 - 3 = -13.');
+
+QUESTAO('7. Expressões numéricas e algébricas',
+'Qual é a expressão simplificada de 4(x + 3)?',
+['4x + 3', '4x + 7', '4x + 12', 'x + 12', '7x'], 2,
+'Aplicamos a propriedade distributiva: 4 × x + 4 × 3 = 4x + 12.');
+
+QUESTAO('7. Expressões numéricas e algébricas',
+'Se x = 3, qual é o valor de x² + 2x?',
+['9', '12', '15', '18', '21'], 2,
+'Substituindo x por 3: 3² + 2 × 3 = 9 + 6 = 15.');
+
+
+/* =====================================================
+   8. EQUAÇÕES E SISTEMAS
+   ===================================================== */
+
+QUESTAO('8. Equações e sistemas',
+'Qual é a solução da equação x + 7 = 15?',
+['6', '7', '8', '9', '22'], 2,
+'Isolamos x: x = 15 - 7. Portanto, x = 8.');
+
+QUESTAO('8. Equações e sistemas',
+'Resolva a equação 3x = 27.',
+['6', '7', '8', '9', '10'], 3,
+'Dividimos os dois lados por 3: x = 27 ÷ 3 = 9.');
+
+QUESTAO('8. Equações e sistemas',
+'Qual é a solução de 2x + 4 = 14?',
+['3', '4', '5', '6', '7'], 2,
+'Subtraímos 4 dos dois lados: 2x = 10. Dividimos por 2: x = 5.');
+
+QUESTAO('8. Equações e sistemas',
+'Resolva 5x - 10 = 20.',
+['4', '5', '6', '7', '8'], 2,
+'Somamos 10 aos dois lados: 5x = 30. Dividimos por 5: x = 6.');
+
+QUESTAO('8. Equações e sistemas',
+'Qual é a solução da equação 2(x + 3) = 16?',
+['3', '4', '5', '6', '7'], 1,
+'Dividimos os dois lados por 2: x + 3 = 8. Subtraindo 3: x = 5. Resposta correta: alternativa C.', 2);
+
+QUESTAO('8. Equações e sistemas',
+'Qual é a solução da equação x/4 = 6?',
+['10', '18', '20', '24', '30'], 3,
+'Multiplicamos os dois lados por 4: x = 6 × 4 = 24.');
+
+QUESTAO('8. Equações e sistemas',
+'A soma de um número com seu dobro é 24. Qual é esse número?',
+['6', '8', '10', '12', '16'], 1,
+'Chamando o número de x: x + 2x = 24. Logo, 3x = 24 e x = 8.');
+
+QUESTAO('8. Equações e sistemas',
+'Qual é o par ordenado que resolve o sistema x + y = 10 e x - y = 2?',
+['(4, 6)', '(5, 5)', '(6, 4)', '(7, 3)', '(8, 2)'], 2,
+'Somando as equações: 2x = 12, então x = 6. Substituindo em x + y = 10: 6 + y = 10, logo y = 4. O par é (6, 4).');
+
+QUESTAO('8. Equações e sistemas',
+'Qual é a raiz da equação x² = 49, considerando as duas soluções reais?',
+['7', '-7', '7 e -7', '49', '0'], 2,
+'Como 7² = 49 e (-7)² = 49, as duas soluções são x = 7 e x = -7.');
+
+QUESTAO('8. Equações e sistemas',
+'Qual é a soma das raízes da equação x² - 5x + 6 = 0?',
+['2', '3', '5', '6', '11'], 2,
+'Fatorando: (x - 2)(x - 3) = 0. As raízes são 2 e 3. A soma é 2 + 3 = 5.');
+
+
+/* =====================================================
+   9. GRANDEZAS, MEDIDAS E GEOMETRIA
+   ===================================================== */
+
+QUESTAO('9. Grandezas, medidas e geometria',
+'Quantos centímetros existem em 2,5 metros?',
+['25 cm', '150 cm', '200 cm', '250 cm', '2.500 cm'], 3,
+'Como 1 metro equivale a 100 centímetros, fazemos 2,5 × 100 = 250 cm.');
+
+QUESTAO('9. Grandezas, medidas e geometria',
+'Quantos minutos existem em 3 horas?',
+['120', '150', '180', '200', '240'], 2,
+'Cada hora possui 60 minutos. Portanto, 3 × 60 = 180 minutos.');
+
+QUESTAO('9. Grandezas, medidas e geometria',
+'Qual é a área de um retângulo de 8 cm de comprimento e 5 cm de largura?',
+['13 cm²', '26 cm²', '35 cm²', '40 cm²', '45 cm²'], 3,
+'A área do retângulo é base × altura: 8 × 5 = 40 cm².');
+
+QUESTAO('9. Grandezas, medidas e geometria',
+'Qual é o perímetro de um quadrado com lado de 6 cm?',
+['12 cm', '18 cm', '24 cm', '30 cm', '36 cm'], 2,
+'O quadrado possui quatro lados iguais. Assim, P = 4 × 6 = 24 cm.');
+
+QUESTAO('9. Grandezas, medidas e geometria',
+'Qual é a área de um triângulo com base de 10 cm e altura de 6 cm?',
+['16 cm²', '30 cm²', '40 cm²', '60 cm²', '80 cm²'], 1,
+'A área do triângulo é (base × altura)/2. Logo, (10 × 6)/2 = 30 cm².');
+
+QUESTAO('9. Grandezas, medidas e geometria',
+'Qual é o comprimento de uma circunferência de raio 3 cm? Considere π = 3,14.',
+['9,42 cm', '12,56 cm', '18,84 cm', '28,26 cm', '37,68 cm'], 2,
+'O comprimento é C = 2πr. Substituindo: 2 × 3,14 × 3 = 18,84 cm.');
+
+QUESTAO('9. Grandezas, medidas e geometria',
+'Qual é o volume de um cubo com aresta de 4 cm?',
+['16 cm³', '32 cm³', '48 cm³', '64 cm³', '80 cm³'], 3,
+'O volume do cubo é lado³. Portanto, 4³ = 4 × 4 × 4 = 64 cm³.');
+
+QUESTAO('9. Grandezas, medidas e geometria',
+'Um ângulo de 90° é classificado como:',
+['Agudo', 'Obtuso', 'Reto', 'Raso', 'Completo'], 2,
+'Um ângulo reto mede exatamente 90°.');
+
+QUESTAO('9. Grandezas, medidas e geometria',
+'Qual é a soma dos ângulos internos de um triângulo?',
+['90°', '120°', '180°', '270°', '360°'], 2,
+'A soma dos ângulos internos de qualquer triângulo plano é sempre 180°.');
+
+QUESTAO('9. Grandezas, medidas e geometria',
+'Uma caixa possui 2 m de comprimento, 1,5 m de largura e 1 m de altura. Qual é seu volume?',
+['2 m³', '2,5 m³', '3 m³', '3,5 m³', '4 m³'], 2,
+'O volume do paralelepípedo é comprimento × largura × altura: 2 × 1,5 × 1 = 3 m³.');
+
+
+/* =====================================================
+   10. ESTATÍSTICA E PROBABILIDADE
+   ===================================================== */
+
+QUESTAO('10. Estatística e probabilidade',
+'Qual é a média aritmética dos números 4, 6, 8 e 10?',
+['6', '7', '8', '9', '10'], 1,
+'Somamos os valores: 4 + 6 + 8 + 10 = 28. Dividimos pela quantidade de valores: 28 ÷ 4 = 7.');
+
+QUESTAO('10. Estatística e probabilidade',
+'Qual é a mediana do conjunto 2, 5, 7, 9 e 12?',
+['5', '6', '7', '9', '12'], 2,
+'Os dados já estão em ordem crescente. Como existem cinco valores, a mediana é o elemento central: 7.');
+
+QUESTAO('10. Estatística e probabilidade',
+'Qual é a moda do conjunto 3, 5, 5, 7, 8, 5 e 9?',
+['3', '5', '7', '8', '9'], 1,
+'A moda é o valor que aparece com maior frequência. O número 5 aparece três vezes.');
+
+QUESTAO('10. Estatística e probabilidade',
+'Qual é a amplitude do conjunto 4, 8, 10, 15 e 20?',
+['10', '12', '14', '16', '24'], 3,
+'A amplitude é a diferença entre o maior e o menor valor: 20 - 4 = 16.');
+
+QUESTAO('10. Estatística e probabilidade',
+'Uma moeda honesta é lançada uma vez. Qual é a probabilidade de sair cara?',
+['10%', '25%', '40%', '50%', '75%'], 3,
+'Existem dois resultados igualmente prováveis: cara e coroa. A probabilidade de cara é 1/2 = 50%.');
+
+QUESTAO('10. Estatística e probabilidade',
+'Um dado comum é lançado. Qual é a probabilidade de sair um número par?',
+['1/6', '1/3', '1/2', '2/3', '5/6'], 2,
+'Os resultados pares são 2, 4 e 6. São 3 casos favoráveis entre 6 possíveis: 3/6 = 1/2.');
+
+QUESTAO('10. Estatística e probabilidade',
+'Em uma caixa há 3 bolas vermelhas e 7 azuis. Qual é a probabilidade de retirar uma bola vermelha?',
+['10%', '20%', '30%', '40%', '70%'], 2,
+'Existem 10 bolas no total e 3 são vermelhas. A probabilidade é 3/10 = 30%.');
+
+QUESTAO('10. Estatística e probabilidade',
+'As notas de um aluno foram 6, 8 e 10. Qual é a média?',
+['6', '7', '8', '9', '10'], 2,
+'Somamos as notas: 6 + 8 + 10 = 24. Dividimos por 3: 24 ÷ 3 = 8.');
+
+QUESTAO('10. Estatística e probabilidade',
+'Uma urna contém 5 bolas verdes, 2 amarelas e 3 brancas. Qual é a probabilidade de retirar uma bola amarela?',
+['10%', '20%', '30%', '40%', '50%'], 1,
+'O total é 5 + 2 + 3 = 10 bolas. Duas são amarelas. Logo, 2/10 = 20%.');
+
+QUESTAO('10. Estatística e probabilidade',
+'Em uma pesquisa com 200 pessoas, 60 preferem estudar pela manhã. Qual é o percentual correspondente?',
+['20%', '25%', '30%', '35%', '40%'], 2,
+'Calculamos a razão entre os que preferem a manhã e o total: 60/200 = 0,3. Convertendo para porcentagem: 0,3 × 100 = 30%.');
+
 
 
 
