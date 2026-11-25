@@ -13,185 +13,105 @@
 <script src="app.js"></script>
 
 <script>
+(function(){
 
-(function() {
+const m = pagina('plano');
 
-    const m = pagina('plano');
+const MODULOS = [
+'1. Fundamentos da matemática',
+'2. Operações fundamentais',
+'3. Divisibilidade e fatoração',
+'4. Frações e números decimais',
+'5. Razão, proporção e porcentagem',
+'6. Potenciação e radiciação',
+'7. Expressões numéricas e algébricas',
+'8. Equações e sistemas',
+'9. Grandezas, medidas e geometria',
+'10. Estatística e probabilidade'
+];
 
-    const DIAS = [
-        'Segunda-feira',
-        'Terça-feira',
-        'Quarta-feira',
-        'Quinta-feira',
-        'Sexta-feira'
-    ];
+const META = 10;
+const questoes = typeof QUESTOES !== 'undefined' ? QUESTOES : [];
+const respostas = (typeof S !== 'undefined' && S.resp) ? S.resp : {};
 
-    const MODULOS = [...new Set(QUESTOES.map(q => q.modulo))];
+function progresso(modulo){
+    const lista = questoes.filter(q => q.modulo === modulo);
+    const feitas = lista.filter(q =>
+        Object.prototype.hasOwnProperty.call(respostas,q.id)
+    ).length;
 
-    const META = 10;
+    const acertos = lista.filter(q => respostas[q.id] === true).length;
 
-    const plano = DIAS.map((dia, i) => ({
-        dia,
-        modulo: MODULOS[i % MODULOS.length]
-    }));
+    return {
+        total: lista.length,
+        feitas,
+        acertos,
+        erros: feitas - acertos,
+        percentual: lista.length ? Math.round(feitas/lista.length*100) : 0
+    };
+}
 
-    function questoesDoModulo(modulo) {
-        return QUESTOES.filter(q => q.modulo === modulo);
-    }
+m.innerHTML = `
+<h1>Plano de estudos</h1>
+<p class="suave">
+Uma trilha organizada para estudar os 10 módulos da matemática.
+</p>
 
-    function progressoModulo(modulo) {
+<div class="grade">
+    <div class="cartao">
+        <span class="suave">Módulos</span>
+        <h2>10</h2>
+    </div>
+    <div class="cartao">
+        <span class="suave">Questões</span>
+        <h2>${questoes.length}</h2>
+    </div>
+    <div class="cartao">
+        <span class="suave">Meta por módulo</span>
+        <h2>${META}</h2>
+    </div>
+</div>
 
-        const lista = questoesDoModulo(modulo);
+<h2 style="margin-top:28px">Sua trilha de estudos</h2>
+<p class="suave">Complete os exercícios de cada módulo antes de avançar.</p>
 
-        const feitas = lista.filter(q =>
-            Object.prototype.hasOwnProperty.call(S.resp, q.id)
-        );
+${MODULOS.map((modulo,i)=>{
+    const p = progresso(modulo);
+    const concluido = p.feitas >= p.total && p.total > 0;
 
-        return {
-            total: lista.length,
-            feitas: feitas.length
-        };
-
-    }
-
-    function mostra() {
-
-        m.innerHTML = `
-
-            <div class="section-head">
-                <div>
-                    <span class="tag">ORGANIZAÇÃO</span>
-                    <h1 style="margin-top:8px">Plano de estudos</h1>
-                    <p>Uma rotina organizada para avançar na matemática todos os dias.</p>
-                </div>
+    return `
+    <section class="cartao" style="margin-bottom:14px">
+        <div class="linha" style="justify-content:space-between">
+            <div>
+                <span class="tag">MÓDULO ${i+1}</span>
+                <h3 style="margin:8px 0">${modulo.replace(/^\\d+\\. /,'')}</h3>
             </div>
+            <strong>${p.feitas}/${p.total}</strong>
+        </div>
 
-            <section class="cartao destaque">
+        <div style="height:8px;background:var(--linha,#e5e7eb);border-radius:20px;overflow:hidden;margin:14px 0">
+            <div style="height:100%;width:${p.percentual}%;background:#069eda;border-radius:20px"></div>
+        </div>
 
-                <h2>Sua meta semanal</h2>
+        <p class="suave">
+            ${p.acertos} acertos · ${p.erros} erros · ${p.percentual}% concluído
+        </p>
 
-                <p>Estude um módulo por dia e resolva até ${META} questões por sessão.</p>
+        <a class="btn ${concluido ? 'sec' : ''}"
+           href="exercicios.html?modulo=${encodeURIComponent(modulo)}">
+           ${concluido ? 'Revisar módulo' : 'Estudar módulo'}
+        </a>
+    </section>`;
+}).join('')}
 
-                <div class="grade">
-
-                    <div class="stat-card">
-                        <span class="muted">Dias de estudo</span>
-                        <span class="num">5</span>
-                    </div>
-
-                    <div class="stat-card">
-                        <span class="muted">Meta semanal</span>
-                        <span class="num">${META * 5}</span>
-                    </div>
-
-                </div>
-
-            </section>
-
-            <div class="section-head">
-                <div>
-                    <h2>Rotina semanal</h2>
-                    <p>Siga a sequência de estudos proposta.</p>
-                </div>
-            </div>
-
-            ${plano.map((item, i) => {
-
-                const dados = progressoModulo(item.modulo);
-
-                const limite = Math.min(META, dados.total);
-
-                const concluidas = Math.min(dados.feitas, limite);
-
-                const percentual = limite
-                    ? Math.round(concluidas / limite * 100)
-                    : 0;
-
-                return `
-
-                    <section class="cartao">
-
-                        <div class="linha">
-                            <span class="tag">${item.dia}</span>
-                            <span class="muted">${percentual}% concluído</span>
-                        </div>
-
-                        <h2 style="margin-top:14px">${item.modulo}</h2>
-
-                        <p class="suave">
-                            Meta: ${limite} questões
-                        </p>
-
-                        <div style="
-                            width:100%;
-                            height:9px;
-                            background:var(--linha,#e5e7eb);
-                            border-radius:20px;
-                            overflow:hidden;
-                        ">
-                            <div style="
-                                width:${percentual}%;
-                                height:100%;
-                                background:#069eda;
-                                border-radius:20px;
-                            "></div>
-                        </div>
-
-                        <p class="suave">
-                            ${concluidas} de ${limite} questões respondidas.
-                        </p>
-
-                        <a class="btn"
-                           href="exercicios.html?modulo=${encodeURIComponent(item.modulo)}">
-                           Começar a estudar →
-                        </a>
-
-                    </section>
-
-                `;
-
-            }).join('')}
-
-            <section class="cartao">
-
-                <h2>Não esqueça da revisão!</h2>
-
-                <p>
-                    Reserve alguns minutos para revisar os erros e reforçar
-                    os assuntos que ainda apresentam dificuldades.
-                </p>
-
-                <div class="linha" style="justify-content:flex-start;flex-wrap:wrap">
-
-                    <a class="btn sec" href="erros.html">
-                        Caderno de erros
-                    </a>
-
-                    <a class="btn sec" href="flashcards.html">
-                        Revisar flashcards
-                    </a>
-
-                </div>
-
-            </section>
-
-        `;
-
-    }
-
-    if (MODULOS.length) {
-        mostra();
-    } else {
-        m.innerHTML = `
-            <section class="cartao">
-                <h1>Plano de estudos</h1>
-                <p>Cadastre exercícios para montar sua rotina de estudos.</p>
-            </section>
-        `;
-    }
+<div class="cartao" style="margin-top:24px">
+    <h3>Revisão</h3>
+    <p class="suave">Retome as questões que errou e revise os conteúdos estudados.</p>
+    <a class="btn sec" href="erros.html">Acessar caderno de erros</a>
+</div>
+`;
 
 })();
-
 </script>
 
 </body>
