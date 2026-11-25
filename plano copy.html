@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plano de estudos – Resultamath</title>
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<script src="dados.js"></script>
+<script src="app.js"></script>
+<script>
+const m=pagina('plano'),D=['Segunda','Terça','Quarta','Quinta','Sexta'],L=AULAS.filter(a=>!S.feitas[a.id]).slice(0,5);
+m.innerHTML='<h1>Plano de estudos</h1><p>Uma aula por dia e 5 minutos de flashcards.</p>'+(L.length?L.map((a,i)=>`<div class="cartao linha"><div><b>${D[i]}</b><br>${a.titulo}</div><a class="btn sec" href="aula.html?id=${a.id}">Abrir aula</a></div>`).join(''):'<div class="cartao destaque">Trilha concluída. Revise o caderno de erros.</div>');
+</script>
+</body>
+</html>

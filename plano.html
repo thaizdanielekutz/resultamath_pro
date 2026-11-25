@@ -1,17 +1,198 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Plano de estudos – Resultamath</title>
+<title>Plano de estudos | Resultamath</title>
 <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
+
 <script src="dados.js"></script>
 <script src="app.js"></script>
+
 <script>
-const m=pagina('plano'),D=['Segunda','Terça','Quarta','Quinta','Sexta'],L=AULAS.filter(a=>!S.feitas[a.id]).slice(0,5);
-m.innerHTML='<h1>Plano de estudos</h1><p>Uma aula por dia e 5 minutos de flashcards.</p>'+(L.length?L.map((a,i)=>`<div class="cartao linha"><div><b>${D[i]}</b><br>${a.titulo}</div><a class="btn sec" href="aula.html?id=${a.id}">Abrir aula</a></div>`).join(''):'<div class="cartao destaque">Trilha concluída. Revise o caderno de erros.</div>');
+
+(function() {
+
+    const m = pagina('plano');
+
+    const DIAS = [
+        'Segunda-feira',
+        'Terça-feira',
+        'Quarta-feira',
+        'Quinta-feira',
+        'Sexta-feira'
+    ];
+
+    const MODULOS = [...new Set(QUESTOES.map(q => q.modulo))];
+
+    const META = 10;
+
+    const plano = DIAS.map((dia, i) => ({
+        dia,
+        modulo: MODULOS[i % MODULOS.length]
+    }));
+
+    function questoesDoModulo(modulo) {
+        return QUESTOES.filter(q => q.modulo === modulo);
+    }
+
+    function progressoModulo(modulo) {
+
+        const lista = questoesDoModulo(modulo);
+
+        const feitas = lista.filter(q =>
+            Object.prototype.hasOwnProperty.call(S.resp, q.id)
+        );
+
+        return {
+            total: lista.length,
+            feitas: feitas.length
+        };
+
+    }
+
+    function mostra() {
+
+        m.innerHTML = `
+
+            <div class="section-head">
+                <div>
+                    <span class="tag">ORGANIZAÇÃO</span>
+                    <h1 style="margin-top:8px">Plano de estudos</h1>
+                    <p>Uma rotina organizada para avançar na matemática todos os dias.</p>
+                </div>
+            </div>
+
+            <section class="cartao destaque">
+
+                <h2>Sua meta semanal</h2>
+
+                <p>Estude um módulo por dia e resolva até ${META} questões por sessão.</p>
+
+                <div class="grade">
+
+                    <div class="stat-card">
+                        <span class="muted">Dias de estudo</span>
+                        <span class="num">5</span>
+                    </div>
+
+                    <div class="stat-card">
+                        <span class="muted">Meta semanal</span>
+                        <span class="num">${META * 5}</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <div class="section-head">
+                <div>
+                    <h2>Rotina semanal</h2>
+                    <p>Siga a sequência de estudos proposta.</p>
+                </div>
+            </div>
+
+            ${plano.map((item, i) => {
+
+                const dados = progressoModulo(item.modulo);
+
+                const limite = Math.min(META, dados.total);
+
+                const concluidas = Math.min(dados.feitas, limite);
+
+                const percentual = limite
+                    ? Math.round(concluidas / limite * 100)
+                    : 0;
+
+                return `
+
+                    <section class="cartao">
+
+                        <div class="linha">
+                            <span class="tag">${item.dia}</span>
+                            <span class="muted">${percentual}% concluído</span>
+                        </div>
+
+                        <h2 style="margin-top:14px">${item.modulo}</h2>
+
+                        <p class="suave">
+                            Meta: ${limite} questões
+                        </p>
+
+                        <div style="
+                            width:100%;
+                            height:9px;
+                            background:var(--linha,#e5e7eb);
+                            border-radius:20px;
+                            overflow:hidden;
+                        ">
+                            <div style="
+                                width:${percentual}%;
+                                height:100%;
+                                background:#069eda;
+                                border-radius:20px;
+                            "></div>
+                        </div>
+
+                        <p class="suave">
+                            ${concluidas} de ${limite} questões respondidas.
+                        </p>
+
+                        <a class="btn"
+                           href="exercicios.html?modulo=${encodeURIComponent(item.modulo)}">
+                           Começar a estudar →
+                        </a>
+
+                    </section>
+
+                `;
+
+            }).join('')}
+
+            <section class="cartao">
+
+                <h2>Não esqueça da revisão!</h2>
+
+                <p>
+                    Reserve alguns minutos para revisar os erros e reforçar
+                    os assuntos que ainda apresentam dificuldades.
+                </p>
+
+                <div class="linha" style="justify-content:flex-start;flex-wrap:wrap">
+
+                    <a class="btn sec" href="erros.html">
+                        Caderno de erros
+                    </a>
+
+                    <a class="btn sec" href="flashcards.html">
+                        Revisar flashcards
+                    </a>
+
+                </div>
+
+            </section>
+
+        `;
+
+    }
+
+    if (MODULOS.length) {
+        mostra();
+    } else {
+        m.innerHTML = `
+            <section class="cartao">
+                <h1>Plano de estudos</h1>
+                <p>Cadastre exercícios para montar sua rotina de estudos.</p>
+            </section>
+        `;
+    }
+
+})();
+
 </script>
+
 </body>
 </html>
