@@ -1,3 +1,97 @@
-<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Biblioteca | Resultamath</title><link rel="stylesheet" href="estilo.css"></head><body><script src="dados.js"></script><script src="app.js"></script><script>
-const m=pagina('biblioteca'),mods=modulos();m.innerHTML=`<div class="section-head"><div><span class="tag">CONTEÚDO ORGANIZADO</span><h1 style="margin-top:8px">Biblioteca de aulas</h1><p>Aprenda por etapas e acompanhe sua evolução em cada módulo.</p></div><span class="tag">${AULAS.length} aulas</span></div>`+mods.map(mod=>{const d=mod.aulas.filter(a=>S.feitas[a.id]).length;return `<section class="cartao"><div class="linha"><div><h2>${mod.nome}</h2><p class="suave">${d} de ${mod.aulas.length} aulas concluídas</p></div><b class="tag">${pct(d,mod.aulas.length)}%</b></div>${barra(pct(d,mod.aulas.length))}${mod.aulas.map(a=>`<div class="aula"><div><b>${a.titulo}</b><div class="suave">${(S.videosAulas[a.id]||a.video)?'▶ Vídeo disponível':'Material de aula'}</div></div><a class="btn sec" href="aula.html?id=${encodeURIComponent(a.id)}">${S.feitas[a.id]?'Revisar aula':'Acessar aula'} →</a></div>`).join('')}</section>`}).join('')||'<p>Nenhuma aula cadastrada.</p>';
-</script></body></html>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Biblioteca de conteúdos | Resultamath</title>
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+<script src="dados.js"></script>
+<script src="app.js"></script>
+
+<script>
+const m = pagina('biblioteca');
+
+m.innerHTML = `
+<div class="section-head">
+    <div>
+        <span class="tag">MATERIAL DE ESTUDO</span>
+        <h1 style="margin-top:8px">Biblioteca de conteúdos</h1>
+        <p>Resumos, conceitos e fórmulas para consultar e revisar sempre que precisar.</p>
+    </div>
+    <span class="tag">RESUMOS</span>
+</div>
+
+<div id="conteudos"></div>
+`;
+
+const CONTEUDOS = [
+    {
+        modulo: '01. Fundamentos da Matemática',
+        descricao: 'Conceitos essenciais para começar.',
+        itens: [
+            {titulo:'Conjuntos numéricos', arquivo:'resumo.html?id=conjuntos-numericos'},
+            {titulo:'Operações fundamentais', arquivo:'resumo.html?id=operacoes-fundamentais'},
+            {titulo:'Expressões numéricas', arquivo:'resumo.html?id=expressoes-numericas'}
+        ]
+    },
+    {
+        modulo: '02. Divisibilidade e fatoração',
+        descricao: 'Critérios, múltiplos e divisores.',
+        itens: [
+            {titulo:'Múltiplos e divisores', arquivo:'resumo.html?id=multiplos-divisores'},
+            {titulo:'Critérios de divisibilidade', arquivo:'resumo.html?id=divisibilidade'},
+            {titulo:'Números primos', arquivo:'resumo.html?id=numeros-primos'},
+            {titulo:'MMC e MDC', arquivo:'resumo.html?id=mmc-mdc'}
+        ]
+    },
+    {
+        modulo: '03. Frações e números decimais',
+        descricao: 'Representações e operações.',
+        itens: [
+            {titulo:'Frações', arquivo:'resumo.html?id=fracoes'},
+            {titulo:'Operações com frações', arquivo:'resumo.html?id=operacoes-fracoes'},
+            {titulo:'Números decimais', arquivo:'resumo.html?id=decimais'}
+        ]
+    },
+    {
+        modulo: '04. Potenciação e radiciação',
+        descricao: 'Propriedades e cálculos.',
+        itens: [
+            {titulo:'Potenciação', arquivo:'resumo.html?id=potenciacao'},
+            {titulo:'Propriedades das potências', arquivo:'resumo.html?id=propriedades-potencias'},
+            {titulo:'Radiciação', arquivo:'resumo.html?id=radiciacao'}
+        ]
+    }
+];
+
+document.getElementById('conteudos').innerHTML = CONTEUDOS.map((mod, i) => `
+<section class="cartao">
+    <div class="linha">
+        <div>
+            <h2>${mod.modulo}</h2>
+            <p class="suave">${mod.descricao}</p>
+        </div>
+        <span class="tag">${mod.itens.length} conteúdos</span>
+    </div>
+
+    ${mod.itens.map(item => `
+        <div class="aula">
+            <div>
+                <b>${item.titulo}</b>
+                <div class="suave">Resumo de estudo</div>
+            </div>
+            <a class="btn sec" href="${item.arquivo}">
+                Acessar resumo →
+            </a>
+        </div>
+    `).join('')}
+</section>
+`).join('');
+</script>
+
+</body>
+</html>
