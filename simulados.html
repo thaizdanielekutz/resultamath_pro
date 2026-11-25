@@ -21,10 +21,6 @@ if (!S.simulados) S.simulados = [];
 if (!S.resp) S.resp = {};
 if (!S.erros) S.erros = [];
 
-const BANCAS = typeof SIMULADOS_BANCAS !== 'undefined'
-    ? SIMULADOS_BANCAS
-    : [];
-
 const NIVEIS = {
     facil: {
         nome: 'Fácil',
@@ -61,17 +57,9 @@ function embaralhar(lista){
     return copia;
 }
 
-function escapar(texto){
-    return String(texto ?? '').replace(/[&<>"']/g, c => ({
-        '&':'&amp;',
-        '<':'&lt;',
-        '>':'&gt;',
-        '"':'&quot;',
-        "'":'&#39;'
-    })[c]);
-}
-
-/* CLASSIFICAÇÃO DOS NÍVEIS */
+/* Classificação inicial das questões:
+   3 fáceis, 4 médias e 3 difíceis por módulo.
+*/
 
 function nivelDaQuestao(q){
     const indice = QUESTOES.indexOf(q);
@@ -86,139 +74,58 @@ function nivelDaQuestao(q){
     return 'facil';
 }
 
-/* TELA INICIAL */
-
 function inicio(){
 
     const historico = S.simulados.slice().reverse();
 
     m.innerHTML = `
-        <span class="tag">AVALIAÇÃO</span>
+    <span class="tag">AVALIAÇÃO</span>
 
-        <h1 style="margin-top:8px">Simulados</h1>
+    <h1 style="margin-top:8px">Simulados</h1>
 
-        <p>Escolha um tipo de avaliação e teste seus conhecimentos.</p>
+    <p>Escolha o nível de dificuldade e teste seus conhecimentos.</p>
 
-        <h2 style="margin-top:25px">Simulados por dificuldade</h2>
+    <div class="grade">
 
-        <div class="grade">
+        ${Object.entries(NIVEIS).map(([id,n])=>`
+            <div class="cartao">
+                <span style="font-weight:800;color:${n.cor}">
+                    ${n.nome.toUpperCase()}
+                </span>
 
-            ${Object.entries(NIVEIS).map(([id,n])=>`
-                <div class="cartao">
+                <h2 style="margin:10px 0">10 questões</h2>
 
-                    <span style="font-weight:800;color:${n.cor}">
-                        ${n.nome.toUpperCase()}
-                    </span>
+                <p class="suave">${n.descricao}</p>
 
-                    <h2 style="margin:10px 0">10 questões</h2>
+                <button class="btn" onclick="comeca('${id}')">
+                    Iniciar simulado →
+                </button>
+            </div>
+        `).join('')}
 
-                    <p class="suave">${n.descricao}</p>
+    </div>
 
-                    <button class="btn" onclick="comeca('${id}')">
-                        Iniciar simulado →
-                    </button>
+    ${historico.length ? `
+        <h2 style="margin-top:30px">Histórico de tentativas</h2>
 
+        ${historico.map(s=>`
+            <div class="cartao linha" style="margin-bottom:10px;justify-content:space-between">
+                <div>
+                    <b>${s.nivel || 'Simulado'}</b>
+                    <p class="suave">${s.d}</p>
                 </div>
-            `).join('')}
 
+                <b>${s.ac} de ${s.n} questões · ${percentual(s.ac,s.n)}%</b>
+            </div>
+        `).join('')}
+    ` : `
+        <div class="cartao" style="margin-top:25px">
+            <h3>Seu histórico aparecerá aqui</h3>
+            <p class="suave">Finalize seu primeiro simulado para acompanhar sua evolução.</p>
         </div>
-
-        <div style="margin-top:35px">
-
-            <span class="tag">PROVAS DE CONCURSOS</span>
-
-            <h2 style="margin-top:10px">Simulados por banca</h2>
-
-            <p>
-                Resolva questões de provas organizadas por banca,
-                concurso, ano e cargo.
-            </p>
-
-            ${
-                BANCAS.length
-                ? `
-                    <div class="grade">
-                        ${BANCAS.map((s,i)=>`
-                            <div class="cartao">
-
-                                <span class="tag">
-                                    ${escapar(s.banca)}
-                                </span>
-
-                                <h3 style="margin:12px 0">
-                                    ${escapar(s.titulo || s.concurso)}
-                                </h3>
-
-                                <p class="suave">
-                                    ${escapar(s.concurso)}
-                                </p>
-
-                                <p class="suave">
-                                    ${escapar(s.ano)} ·
-                                    ${escapar(s.cargo)}
-                                </p>
-
-                                <p>
-                                    <b>${s.questoes.length} questões</b>
-                                </p>
-
-                                <button class="btn"
-                                    onclick="comecaBanca(${i})">
-                                    Iniciar prova →
-                                </button>
-
-                            </div>
-                        `).join('')}
-                    </div>
-                `
-                : `
-                    <div class="cartao">
-                        <h3>Nenhum simulado cadastrado ainda.</h3>
-                        <p class="suave">
-                            Os simulados de concursos aparecerão aqui
-                            quando forem adicionados ao arquivo dados.js.
-                        </p>
-                    </div>
-                `
-            }
-
-        </div>
-
-        ${
-            historico.length
-            ? `
-                <h2 style="margin-top:35px">Histórico de tentativas</h2>
-
-                ${historico.map(s=>`
-                    <div class="cartao linha"
-                        style="margin-bottom:10px;justify-content:space-between">
-
-                        <div>
-                            <b>${escapar(s.nivel || s.titulo || 'Simulado')}</b>
-                            <p class="suave">${escapar(s.d)}</p>
-                        </div>
-
-                        <b>
-                            ${s.ac} de ${s.n} questões ·
-                            ${percentual(s.ac,s.n)}%
-                        </b>
-
-                    </div>
-                `).join('')}
-            `
-            : `
-                <div class="cartao" style="margin-top:25px">
-                    <h3>Seu histórico aparecerá aqui</h3>
-                    <p class="suave">
-                        Finalize seu primeiro simulado para acompanhar sua evolução.
-                    </p>
-                </div>
-            `
-        }
+    `}
     `;
 }
-
-/* SIMULADOS POR NÍVEL */
 
 window.comeca = function(nivel){
 
@@ -241,80 +148,22 @@ window.comeca = function(nivel){
 
     const L = embaralhar(disponiveis).slice(0,10);
 
-    executarSimulado({
-        questoes: L,
-        titulo: dados.nome,
-        tipo: 'nivel',
-        nivel: nivel
-    });
-};
-
-/* SIMULADOS POR BANCA */
-
-window.comecaBanca = function(indice){
-
-    const simulado = BANCAS[indice];
-
-    if(!simulado || !Array.isArray(simulado.questoes) || !simulado.questoes.length){
-        alert('Este simulado não possui questões cadastradas.');
-        return;
-    }
-
-    executarSimulado({
-        questoes: simulado.questoes,
-        titulo: simulado.titulo || simulado.banca,
-        tipo: 'banca',
-        banca: simulado.banca,
-        concurso: simulado.concurso,
-        ano: simulado.ano,
-        cargo: simulado.cargo
-    });
-};
-
-/* EXECUÇÃO */
-
-function executarSimulado(config){
-
-    const L = config.questoes;
-
-    let respondidas = 0;
-
     m.innerHTML = `
-        <span class="tag">
-            ${escapar(config.banca || config.titulo)}
-        </span>
+        <span class="tag">${dados.nome.toUpperCase()}</span>
 
-        <h1 style="margin-top:8px">
-            ${escapar(config.titulo)}
-        </h1>
+        <h1 style="margin-top:8px">Simulado ${dados.nome}</h1>
 
-        ${
-            config.tipo === 'banca'
-            ? `
-                <p class="suave">
-                    ${escapar(config.concurso)} ·
-                    ${escapar(config.ano)} ·
-                    ${escapar(config.cargo)}
-                </p>
-            `
-            : ''
-        }
-
-        <p>Responda às questões e finalize para conferir seu resultado.</p>
+        <p>Responda às 10 questões. Todas são obrigatórias.</p>
 
         <div class="cartao" style="margin-bottom:20px">
-
             <div class="linha" style="justify-content:space-between">
                 <b>Progresso</b>
-                <span id="contador">0 de ${L.length} respondidas</span>
+                <span id="contador">0 de 10 respondidas</span>
             </div>
 
             <div style="height:8px;background:var(--linha,#e5e7eb);border-radius:20px;margin-top:12px;overflow:hidden">
-                <div id="progresso"
-                    style="height:100%;width:0%;background:#069eda;transition:width .2s">
-                </div>
+                <div id="progresso" style="height:100%;width:0%;background:#069eda;transition:width .2s"></div>
             </div>
-
         </div>
 
         <form id="formSimulado">
@@ -322,13 +171,9 @@ function executarSimulado(config){
             ${L.map((q,i)=>`
                 <div class="cartao" style="margin-bottom:16px">
 
-                    <span class="tag">
-                        QUESTÃO ${i+1} DE ${L.length}
-                    </span>
+                    <span class="tag">QUESTÃO ${i+1} DE 10</span>
 
-                    <h3 style="margin:12px 0">
-                        ${escapar(q.enunciado)}
-                    </h3>
+                    <h3 style="margin:12px 0">${q.enunciado}</h3>
 
                     ${q.alts.map((a,j)=>`
                         <label class="opcao-r">
@@ -339,7 +184,7 @@ function executarSimulado(config){
                                 required
                                 onchange="atualizaProgresso()"
                             >
-                            ${escapar(a)}
+                            ${a}
                         </label>
                     `).join('')}
 
@@ -352,8 +197,7 @@ function executarSimulado(config){
 
         </form>
 
-        <button class="btn sec" style="margin-top:12px"
-            onclick="inicio()">
+        <button class="btn sec" style="margin-top:12px" onclick="inicio()">
             Sair do simulado
         </button>
     `;
@@ -361,95 +205,64 @@ function executarSimulado(config){
     window.atualizaProgresso = function(){
 
         const form = document.getElementById('formSimulado');
-
-        const total = new Set(
+        const respondidas = new Set(
             [...form.querySelectorAll('input:checked')].map(x=>x.name)
         ).size;
 
         document.getElementById('contador').textContent =
-            `${total} de ${L.length} respondidas`;
+            `${respondidas} de 10 respondidas`;
 
         document.getElementById('progresso').style.width =
-            `${total/L.length*100}%`;
+            `${respondidas*10}%`;
     };
 
     document.getElementById('formSimulado').onsubmit = function(e){
 
         e.preventDefault();
 
-        const formData = new FormData(e.target);
         let acertos = 0;
-        const respostas = [];
+        const formData = new FormData(e.target);
 
         L.forEach((q,i)=>{
 
-            const resposta = Number(formData.get('q'+i));
-            const acertou = resposta === Number(q.certa);
+            const resposta = formData.get('q'+i);
+            const acertou = Number(resposta) === q.certa;
 
-            if(acertou) acertos++;
+            if(acertou){
+                acertos++;
+            }
 
-            respostas.push({
-                enunciado: q.enunciado,
-                alts: q.alts,
-                marcada: resposta,
-                certa: Number(q.certa),
-                acertou,
-                resolucao: q.resolucao || ''
-            });
+            S.resp[q.id] = acertou;
 
-            /*
-              As questões de banca ficam registradas
-              no histórico do simulado.
-              Não entram em S.resp ou S.erros, pois esses
-              registros pertencem às questões gerais.
-            */
+            if(!acertou && !S.erros.includes(q.id)){
+                S.erros.push(q.id);
+            }
 
-            if(config.tipo === 'nivel'){
-
-                S.resp[q.id] = acertou;
-
-                if(!acertou && !S.erros.includes(q.id)){
-                    S.erros.push(q.id);
-                }
-
-                if(acertou){
-                    const pos = S.erros.indexOf(q.id);
-                    if(pos !== -1) S.erros.splice(pos,1);
-                }
+            if(acertou){
+                const pos = S.erros.indexOf(q.id);
+                if(pos !== -1) S.erros.splice(pos,1);
             }
 
         });
 
         const resultado = percentual(acertos,L.length);
 
-        const registro = {
+        S.simulados.push({
             d: new Date().toLocaleDateString('pt-BR'),
-            nivel: config.tipo === 'nivel'
-                ? config.titulo
-                : 'Banca: ' + config.banca,
-            titulo: config.titulo,
-            banca: config.banca || '',
-            concurso: config.concurso || '',
-            ano: config.ano || '',
-            cargo: config.cargo || '',
+            nivel: dados.nome,
             ac: acertos,
-            n: L.length,
-            respostas
-        };
-
-        S.simulados.push(registro);
+            n: L.length
+        });
 
         salvar();
 
-        resultadoFinal(config,respostas,acertos,resultado);
+        resultadoFinal(dados,L,acertos,resultado);
     };
-}
+};
 
-/* RESULTADO E GABARITO COMENTADO */
+function resultadoFinal(dados,L,acertos,resultado){
 
-function resultadoFinal(config,respostas,acertos,resultado){
-
-    const erros = respostas.length-acertos;
+    const erros = L.length-acertos;
 
     let mensagem = '';
 
@@ -472,7 +285,7 @@ function resultadoFinal(config,respostas,acertos,resultado){
 
             <span class="num">${resultado}%</span>
 
-            <h2>${acertos} de ${respostas.length} acertos</h2>
+            <h2>${acertos} de ${L.length} acertos</h2>
 
             <p>${mensagem}</p>
 
@@ -493,67 +306,19 @@ function resultadoFinal(config,respostas,acertos,resultado){
         </div>
 
         <div class="cartao" style="margin-top:16px">
-
-            <b>${config.tipo === 'banca' ? 'Prova realizada:' : 'Nível realizado:'}</b>
-
-            <p>${escapar(config.titulo)}</p>
-
-            ${
-                config.tipo === 'banca'
-                ? `
-                    <p class="suave">
-                        ${escapar(config.banca)} ·
-                        ${escapar(config.ano)} ·
-                        ${escapar(config.cargo)}
-                    </p>
-                `
-                : ''
-            }
-
+            <b>Nível realizado:</b> ${dados.nome}
+            <p class="suave">As questões erradas foram adicionadas ao caderno de erros.</p>
         </div>
 
-        <h2 style="margin-top:30px">Gabarito comentado</h2>
-
-        ${respostas.map((q,i)=>`
-            <div class="cartao" style="margin-bottom:14px">
-
-                <span class="tag">QUESTÃO ${i+1}</span>
-
-                <h3 style="margin:12px 0">
-                    ${escapar(q.enunciado)}
-                </h3>
-
-                <p style="font-weight:700;color:${q.acertou?'#16a34a':'#dc2626'}">
-                    ${q.acertou ? 'Você acertou!' : 'Você errou.'}
-                </p>
-
-                <p>
-                    <b>Sua resposta:</b>
-                    ${escapar(q.alts[q.marcada])}
-                </p>
-
-                <p>
-                    <b>Gabarito:</b>
-                    ${escapar(q.alts[q.certa])}
-                </p>
-
-                ${
-                    q.resolucao
-                    ? `
-                        <div style="margin-top:14px">
-                            <b>Resolução comentada</b>
-                            <p style="white-space:pre-line">
-                                ${escapar(q.resolucao)}
-                            </p>
-                        </div>
-                    `
-                    : ''
-                }
-
-            </div>
-        `).join('')}
-
         <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:20px">
+
+            <button class="btn" onclick="comeca('${Object.keys(NIVEIS).find(k=>NIVEIS[k]===dados)}')">
+                Refazer simulado
+            </button>
+
+            <a class="btn sec" href="erros.html">
+                Revisar erros
+            </a>
 
             <button class="btn sec" onclick="inicio()">
                 Voltar aos simulados
