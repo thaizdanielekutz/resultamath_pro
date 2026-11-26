@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mestre da Divisibilidade | ResultaLabs</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f4f7fa;color:#202832;font-family:Arial,sans-serif}
+header{background:#171b22;color:white;padding:18px 5%;display:flex;justify-content:space-between}
+header a{color:white;text-decoration:none}
+main{max-width:750px;margin:35px auto;padding:20px}
+.card{background:white;padding:27px;border-radius:18px;box-shadow:0 5px 20px #0001}
+h1{color:#069eda;margin-top:0}
+.categoria{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
+.categoria button{background:#edf7fc;color:#087eae;border:1px solid #ccebf7;padding:10px 13px;border-radius:9px;cursor:pointer;font-weight:bold}
+.categoria button.ativo{background:#069eda;color:white}
+.questao{background:#edf7fc;border-radius:14px;padding:25px;text-align:center;font-size:24px;font-weight:bold;margin:20px 0}
+.opcoes{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opcoes button{padding:15px;border:2px solid #dce5eb;background:white;border-radius:10px;font-size:17px;cursor:pointer}
+.opcoes button:hover{border-color:#069eda}
+.opcoes button:disabled{cursor:default}
+#mensagem{min-height:55px;line-height:1.5;font-weight:bold}
+.acao{background:#069eda;color:white;border:0;border-radius:9px;padding:13px 20px;font-weight:bold;cursor:pointer}
+@media(max-width:500px){.opcoes{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><strong>RESULTALABS</strong><a href="../resultalabs.html">← Voltar aos jogos</a></header>
+<main>
+<div class="card">
+<h1>Mestre da divisibilidade</h1>
+<p>Domine os critérios de divisibilidade, os múltiplos, os divisores, o MMC e o MDC.</p>
+
+<div class="categoria">
+<button class="ativo" data-tipo="divisibilidade">Divisibilidade</button>
+<button data-tipo="divisores">Divisores</button>
+<button data-tipo="multiplos">Múltiplos</button>
+<button data-tipo="mmc">MMC</button>
+<button data-tipo="mdc">MDC</button>
+</div>
+
+<p>Questão <strong id="numero">0</strong>/10 | Pontos: <strong id="pontos">0</strong></p>
+<div class="questao" id="pergunta">Escolha uma categoria e comece!</div>
+<div class="opcoes" id="opcoes"></div>
+<p id="mensagem" aria-live="polite"></p>
+<button class="acao" id="iniciar">Começar desafio</button>
+</div>
+</main>
+<script>
+(()=>{
+const banco={
+divisibilidade:[
+{p:'O número 234 é divisível por 3?',o:['Sim','Não'],c:0,e:'2 + 3 + 4 = 9. Como 9 é múltiplo de 3, 234 é divisível por 3.'},
+{p:'Qual número é divisível por 5?',o:['132','245','318','421'],c:1,e:'245 termina em 5. Todo número terminado em 0 ou 5 é divisível por 5.'},
+{p:'O número 728 é divisível por 2?',o:['Sim','Não'],c:0,e:'Sim. Todo número par é divisível por 2.'},
+{p:'Qual número é divisível por 9?',o:['123','234','729','451'],c:2,e:'7 + 2 + 9 = 18. Como 18 é múltiplo de 9, 729 é divisível por 9.'},
+{p:'O número 1.248 é divisível por 4?',o:['Sim','Não'],c:0,e:'Os dois últimos algarismos formam 48, que é divisível por 4.'},
+{p:'Qual número é divisível por 10?',o:['125','230','342','415'],c:1,e:'230 termina em zero, portanto é divisível por 10.'},
+{p:'O número 315 é divisível por 3?',o:['Sim','Não'],c:0,e:'3 + 1 + 5 = 9. Logo, é divisível por 3.'},
+{p:'Qual número é divisível por 6?',o:['21','32','42','55'],c:2,e:'42 é par e a soma 4 + 2 = 6 é divisível por 3.'},
+{p:'O número 1.125 é divisível por 5?',o:['Sim','Não'],c:0,e:'Termina em 5, então é divisível por 5.'},
+{p:'Qual número é divisível por 8?',o:['124','216','230','342'],c:1,e:'216 ÷ 8 = 27. Portanto, é divisível por 8.'}
+],
+divisores:[
+{p:'Quantos divisores positivos tem o número 12?',o:['4','5','6','8'],c:2,e:'Os divisores são 1, 2, 3, 4, 6 e 12. São 6 divisores.'},
+{p:'Qual é um divisor de 35?',o:['4','6','7','9'],c:2,e:'35 ÷ 7 = 5. Portanto, 7 é divisor de 35.'},
+{p:'Qual é o maior divisor próprio de 18?',o:['3','6','9','12'],c:2,e:'Os divisores próprios são 1, 2, 3, 6 e 9. O maior é 9.'},
+{p:'Qual número possui apenas dois divisores positivos?',o:['1','9','13','15'],c:2,e:'13 é primo: seus únicos divisores positivos são 1 e 13.'},
+{p:'Qual alternativa apresenta um divisor de 48?',o:['5','7','9','8'],c:3,e:'48 ÷ 8 = 6.'},
+{p:'O número 1 é divisor de qualquer número natural?',o:['Sim','Não'],c:0,e:'Todo número natural é divisível por 1.'},
+{p:'Qual número é divisor de 60?',o:['7','11','12','13'],c:2,e:'60 ÷ 12 = 5.'},
+{p:'Quantos divisores positivos tem o número 7?',o:['1','2','3','7'],c:1,e:'Os divisores de 7 são 1 e 7.'},
+{p:'Qual é o menor divisor positivo de 24?',o:['1','2','3','4'],c:0,e:'O menor divisor positivo de qualquer número natural é 1.'},
+{p:'Qual alternativa contém somente divisores de 20?',o:['2, 4 e 5','3, 4 e 5','2, 6 e 10','4, 5 e 8'],c:0,e:'20 é divisível por 2, 4 e 5.'}
+],
+multiplos:[
+{p:'Qual é o menor múltiplo positivo de 8?',o:['0','4','8','16'],c:2,e:'Os múltiplos positivos começam em 8.'},
+{p:'Qual número é múltiplo de 7?',o:['32','42','50','55'],c:1,e:'7 × 6 = 42.'},
+{p:'Qual é o terceiro múltiplo positivo de 5?',o:['10','15','20','25'],c:1,e:'Os três primeiros são 5, 10 e 15.'},
+{p:'O número 72 é múltiplo de 9?',o:['Sim','Não'],c:0,e:'9 × 8 = 72.'},
+{p:'Qual número é múltiplo comum de 3 e 4?',o:['10','12','15','18'],c:1,e:'12 é divisível por 3 e por 4.'},
+{p:'Qual é o menor múltiplo positivo de 11?',o:['0','1','11','22'],c:2,e:'11 × 1 = 11.'},
+{p:'Qual alternativa contém um múltiplo de 6?',o:['25','32','36','41'],c:2,e:'6 × 6 = 36.'},
+{p:'O número 100 é múltiplo de 25?',o:['Sim','Não'],c:0,e:'25 × 4 = 100.'},
+{p:'Qual é o quarto múltiplo positivo de 3?',o:['9','12','15','18'],c:1,e:'3, 6, 9 e 12.'},
+{p:'Qual número é múltiplo de 8 e de 10?',o:['20','30','40','50'],c:2,e:'40 ÷ 8 = 5 e 40 ÷ 10 = 4.'}
+],
+mmc:[
+{p:'Qual é o MMC de 4 e 6?',o:['8','10','12','24'],c:2,e:'Múltiplos comuns: 12, 24... O menor é 12.'},
+{p:'Qual é o MMC de 3 e 5?',o:['8','10','15','30'],c:2,e:'Como são primos entre si, MMC = 3 × 5 = 15.'},
+{p:'Qual é o MMC de 8 e 12?',o:['16','20','24','48'],c:2,e:'8 = 2³ e 12 = 2² × 3. MMC = 2³ × 3 = 24.'},
+{p:'Qual é o MMC de 2 e 7?',o:['9','12','14','21'],c:2,e:'MMC = 2 × 7 = 14.'},
+{p:'Qual é o MMC de 5 e 10?',o:['5','10','15','50'],c:1,e:'10 já é múltiplo de 5 e de 10.'},
+{p:'Qual é o MMC de 6 e 9?',o:['12','18','27','54'],c:1,e:'6 = 2 × 3 e 9 = 3². MMC = 2 × 3² = 18.'},
+{p:'Qual é o MMC de 4 e 10?',o:['10','20','30','40'],c:1,e:'4 = 2² e 10 = 2 × 5. MMC = 2² × 5 = 20.'},
+{p:'Qual é o MMC de 3 e 4?',o:['7','9','12','24'],c:2,e:'MMC = 3 × 4 = 12.'},
+{p:'Qual é o MMC de 10 e 15?',o:['15','20','30','45'],c:2,e:'10 = 2 × 5 e 15 = 3 × 5. MMC = 30.'},
+{p:'Qual é o MMC de 6 e 8?',o:['12','18','24','48'],c:2,e:'6 = 2 × 3 e 8 = 2³. MMC = 2³ × 3 = 24.'}
+],
+mdc:[
+{p:'Qual é o MDC de 12 e 18?',o:['2','3','6','9'],c:2,e:'O maior divisor comum de 12 e 18 é 6.'},
+{p:'Qual é o MDC de 8 e 12?',o:['2','4','6','8'],c:1,e:'Os divisores comuns incluem 1, 2 e 4. O maior é 4.'},
+{p:'Qual é o MDC de 15 e 25?',o:['3','5','10','15'],c:1,e:'O maior divisor comum é 5.'},
+{p:'Qual é o MDC de 7 e 13?',o:['1','7','13','20'],c:0,e:'São primos entre si. O MDC é 1.'},
+{p:'Qual é o MDC de 20 e 30?',o:['5','10','15','20'],c:1,e:'O maior divisor comum é 10.'},
+{p:'Qual é o MDC de 16 e 24?',o:['4','6','8','12'],c:2,e:'O maior divisor comum é 8.'},
+{p:'Qual é o MDC de 9 e 12?',o:['2','3','4','6'],c:1,e:'O maior divisor comum é 3.'},
+{p:'Qual é o MDC de 18 e 27?',o:['3','6','9','18'],c:2,e:'O maior divisor comum é 9.'},
+{p:'Qual é o MDC de 14 e 21?',o:['3','7','14','21'],c:1,e:'O maior divisor comum é 7.'},
+{p:'Qual é o MDC de 25 e 40?',o:['5','8','10','15'],c:0,e:'O maior divisor comum é 5.'}
+]
+};
+let tipo='divisibilidade',lista=[],pos=0,pontos=0,ativo=false,bloqueado=false;
+const pergunta=document.getElementById('pergunta');
+const opcoes=document.getElementById('opcoes');
+const mensagem=document.getElementById('mensagem');
+function mostrar(){
+ if(pos>=lista.length){
+  ativo=false;pergunta.textContent='Desafio concluído!';
+  opcoes.innerHTML='';
+  mensagem.textContent=`Você acertou ${pontos} de 10 questões!`;
+  document.getElementById('iniciar').textContent='Jogar novamente';
+  return;
+ }
+ const q=lista[pos];
+ document.getElementById('numero').textContent=pos+1;
+ document.getElementById('pontos').textContent=pontos;
+ pergunta.textContent=q.p;
+ opcoes.innerHTML='';
+ q.o.forEach((op,i)=>{
+  const b=document.createElement('button');
+  b.type='button';b.textContent=op;
+  b.addEventListener('click',()=>responder(i));
+  opcoes.appendChild(b);
+ });
+ bloqueado=false;
+ mensagem.textContent='';
+}
+function responder(i){
+ if(!ativo||bloqueado)return;
+ bloqueado=true;
+ const q=lista[pos];
+ if(i===q.c){pontos++;mensagem.textContent='Correto! '+q.e;}
+ else mensagem.textContent='Resposta correta: '+q.o[q.c]+'. '+q.e;
+ document.getElementById('pontos').textContent=pontos;
+ opcoes.querySelectorAll('button').forEach(b=>b.disabled=true);
+ pos++;
+ setTimeout(mostrar,2200);
+}
+document.querySelectorAll('.categoria button').forEach(b=>{
+ b.addEventListener('click',()=>{
+  if(ativo)return;
+  tipo=b.dataset.tipo;
+  document.querySelectorAll('.categoria button').forEach(x=>x.classList.remove('ativo'));
+  b.classList.add('ativo');
+  pergunta.textContent='Categoria selecionada. Clique em começar!';
+  mensagem.textContent='';
+  opcoes.innerHTML='';
+ });
+});
+document.getElementById('iniciar').addEventListener('click',()=>{
+ lista=[...banco[tipo]].sort(()=>Math.random()-.5);
+ pos=0;pontos=0;ativo=true;
+ document.getElementById('iniciar').textContent='Reiniciar';
+ mostrar();
+});
+})();
+</script>
+</body>
+</html>
