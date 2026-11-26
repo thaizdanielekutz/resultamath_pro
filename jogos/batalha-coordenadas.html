@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Batalha das Coordenadas | ResultaLabs</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f4f7fa;color:#202832;font-family:Arial,sans-serif}
+header{background:#171b22;color:white;padding:18px 5%;display:flex;justify-content:space-between}
+header a{color:white;text-decoration:none}
+main{max-width:850px;margin:35px auto;padding:20px}
+.card{background:white;padding:25px;border-radius:18px;box-shadow:0 5px 20px #0001}
+h1{color:#069eda;margin-top:0}
+.alvo{background:#eaf7fc;padding:16px;border-radius:12px;font-size:20px;text-align:center;margin:15px 0}
+svg{width:100%;max-width:500px;display:block;margin:15px auto;touch-action:manipulation}
+.celula{cursor:pointer}
+.celula:hover{fill:#d9f3ff}
+input{width:90px;padding:12px;border:1px solid #ccd6df;border-radius:8px;font-size:18px;text-align:center}
+button{background:#069eda;color:white;border:0;border-radius:9px;padding:12px 20px;font-weight:bold;cursor:pointer}
+#mensagem{min-height:28px;font-weight:bold}
+</style>
+</head>
+<body>
+<header><strong>RESULTALABS</strong><a href="../resultalabs.html">← Voltar aos jogos</a></header>
+<main><div class="card">
+<h1>Batalha das coordenadas</h1>
+<p>Localize os pontos no plano cartesiano. Lembre-se: primeiro vem o x, depois o y.</p>
+<div class="alvo">Encontre o ponto: <strong id="alvo">(2, 3)</strong></div>
+<svg id="plano" viewBox="0 0 440 440" role="img" aria-label="Plano cartesiano interativo"></svg>
+<p>Escolha o ponto no gráfico ou digite suas coordenadas:</p>
+<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+<label>x <input id="x" type="number" min="-4" max="4"></label>
+<label>y <input id="y" type="number" min="-4" max="4"></label>
+<button id="verificar">Verificar</button>
+</div>
+<p id="mensagem" aria-live="polite">Clique em começar para jogar.</p>
+<p><strong>Pontuação:</strong> <span id="pontos">0</span> | <strong>Rodada:</strong> <span id="rodada">0</span>/10</p>
+<button id="comecar">Começar jogo</button>
+</div></main>
+<script>
+(()=>{
+const svg=document.getElementById('plano');
+const alvoEl=document.getElementById('alvo');
+const xEl=document.getElementById('x'),yEl=document.getElementById('y');
+const mensagem=document.getElementById('mensagem');
+const pontosEl=document.getElementById('pontos'),rodadaEl=document.getElementById('rodada');
+let alvo={x:2,y:3},pontos=0,rodada=0,ativo=false;
+const centro=220,passo=42;
+function px(x){return centro+x*passo}
+function py(y){return centro-y*passo}
+function desenhar(){
+ let s='';
+ for(let i=-4;i<=4;i++){
+  s+=`<line x1="${px(i)}" y1="40" x2="${px(i)}" y2="380" stroke="#dce5eb"/>`;
+  s+=`<line x1="40" y1="${py(i)}" x2="380" y2="${py(i)}" stroke="#dce5eb"/>`;
+  if(i!==0){
+   s+=`<text x="${px(i)}" y="405" text-anchor="middle" font-size="12" fill="#52616d">${i}</text>`;
+   s+=`<text x="25" y="${py(i)+4}" text-anchor="middle" font-size="12" fill="#52616d">${i}</text>`;
+  }
+ }
+ s+=`<line x1="35" y1="${centro}" x2="390" y2="${centro}" stroke="#202832" stroke-width="2"/>`;
+ s+=`<line x1="${centro}" y1="390" x2="${centro}" y2="30" stroke="#202832" stroke-width="2"/>`;
+ s+=`<text x="400" y="${centro+5}" font-size="15">x</text><text x="${centro+8}" y="25" font-size="15">y</text>`;
+ for(let x=-4;x<=4;x++)for(let y=-4;y<=4;y++){
+  s+=`<circle class="celula" data-x="${x}" data-y="${y}" cx="${px(x)}" cy="${py(y)}" r="12" fill="transparent"/>`;
+ }
+ svg.innerHTML=s;
+ svg.querySelectorAll('.celula').forEach(c=>c.addEventListener('click',()=>{
+  xEl.value=c.dataset.x;yEl.value=c.dataset.y;
+ }));
+}
+function novaRodada(){
+ alvo={x:Math.floor(Math.random()*9)-4,y:Math.floor(Math.random()*9)-4};
+ if(alvo.x===0&&alvo.y===0)alvo.x=2;
+ alvoEl.textContent=`(${alvo.x}, ${alvo.y})`;
+ xEl.value='';yEl.value='';
+}
+function verificar(){
+ if(!ativo)return;
+ if(xEl.value===''||yEl.value===''){mensagem.textContent='Informe as duas coordenadas.';return}
+ const x=Number(xEl.value),y=Number(yEl.value);
+ rodada++;
+ if(x===alvo.x&&y===alvo.y){pontos++;mensagem.textContent='Acertou! Ponto encontrado.'}
+ else mensagem.textContent=`Não foi dessa vez. O ponto era (${alvo.x}, ${alvo.y}).`;
+ pontosEl.textContent=pontos;rodadaEl.textContent=rodada;
+ if(rodada>=10){ativo=false;mensagem.textContent+=` Fim de jogo! Sua pontuação: ${pontos}/10.`;document.getElementById('comecar').textContent='Jogar novamente'}
+ else novaRodada();
+}
+document.getElementById('verificar').addEventListener('click',verificar);
+document.getElementById('comecar').addEventListener('click',()=>{
+ pontos=0;rodada=0;ativo=true;pontosEl.textContent=0;rodadaEl.textContent=0;
+ document.getElementById('comecar').textContent='Reiniciar';
+ mensagem.textContent='Encontre o ponto indicado.';novaRodada();
+});
+desenhar();
+})();
+</script>
+</body>
+</html>
