@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laboratório da Probabilidade | ResultaLabs</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f4f7fa;color:#202832;font-family:Arial,sans-serif}
+header{background:#171b22;color:white;padding:18px 5%;display:flex;justify-content:space-between}
+header a{color:white;text-decoration:none}
+main{max-width:850px;margin:35px auto;padding:20px}
+.card{background:white;padding:25px;border-radius:18px;box-shadow:0 5px 20px #0001}
+h1{color:#069eda;margin-top:0}
+.paineis{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.painel{background:#edf7fc;padding:20px;border-radius:14px;text-align:center}
+.resultado{font-size:55px;font-weight:bold;min-height:75px;margin:15px}
+button{background:#069eda;color:white;border:0;border-radius:9px;padding:12px 18px;font-weight:bold;cursor:pointer;margin:4px}
+button.sec{background:#596875}
+.stats{margin-top:22px}
+.linha{display:flex;align-items:center;gap:10px;margin:10px 0}
+.nome{width:90px}
+.trilho{height:15px;background:#e4ebef;border-radius:20px;flex:1;overflow:hidden}
+.preenchimento{height:100%;background:#069eda;width:0}
+@media(max-width:600px){.paineis{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><strong>RESULTALABS</strong><a href="../resultalabs.html">← Voltar aos jogos</a></header>
+<main><div class="card">
+<h1>Laboratório da probabilidade</h1>
+<p>Faça experimentos, registre os resultados e compare a frequência observada com a probabilidade teórica.</p>
+<div class="paineis">
+<div class="painel">
+<h2>Moeda</h2><div class="resultado" id="moeda">🪙</div>
+<button id="lancarMoeda">Lançar moeda</button>
+<p>Probabilidade teórica de cada lado: 50%</p>
+</div>
+<div class="painel">
+<h2>Dado</h2><div class="resultado" id="dado">🎲</div>
+<button id="lancarDado">Lançar dado</button>
+<p>Probabilidade teórica de cada face: 16,67%</p>
+</div>
+</div>
+<div class="stats">
+<h2>Resultados da moeda</h2>
+<p>Total de lançamentos: <strong id="totalMoeda">0</strong></p>
+<div class="linha"><span class="nome">Cara</span><div class="trilho"><div class="preenchimento" id="barraCara"></div></div><strong id="cara">0%</strong></div>
+<div class="linha"><span class="nome">Coroa</span><div class="trilho"><div class="preenchimento" id="barraCoroa"></div></div><strong id="coroa">0%</strong></div>
+<h2>Resultados do dado</h2>
+<p>Total de lançamentos: <strong id="totalDado">0</strong></p>
+<div id="barrasDado"></div>
+</div>
+<button class="sec" id="resetar">Zerar experimentos</button>
+<p id="explicacao" aria-live="polite">Faça seu primeiro lançamento!</p>
+</div></main>
+<script>
+(()=>{
+let moedas={Cara:0,Coroa:0},dados=[0,0,0,0,0,0];
+const moeda=document.getElementById('moeda'),dado=document.getElementById('dado');
+function porcentagem(n,total){return total?(n/total*100):0}
+function atualizar(){
+ const tm=moedas.Cara+moedas.Coroa;
+ document.getElementById('totalMoeda').textContent=tm;
+ ['Cara','Coroa'].forEach((nome,i)=>{
+  const p=porcentagem(moedas[nome],tm);
+  document.getElementById(nome.toLowerCase()).textContent=p.toFixed(1)+'%';
+  document.getElementById(i?'barraCoroa':'barraCara').style.width=p+'%';
+ });
+ const td=dados.reduce((a,b)=>a+b,0);
+ document.getElementById('totalDado').textContent=td;
+ document.getElementById('barrasDado').innerHTML=dados.map((n,i)=>{
+  const p=porcentagem(n,td);
+  return `<div class="linha"><span class="nome">Face ${i+1}</span><div class="trilho"><div class="preenchimento" style="width:${p}%"></div></div><strong>${p.toFixed(1)}%</strong></div>`;
+ }).join('');
+}
+document.getElementById('lancarMoeda').addEventListener('click',()=>{
+ const r=Math.random()<.5?'Cara':'Coroa';moedas[r]++;
+ moeda.textContent=r==='Cara'?'🙂':'🌙';
+ document.getElementById('explicacao').textContent=`Resultado: ${r}. A probabilidade teórica de cada lado é 50%, mas os resultados experimentais podem variar.`;
+ atualizar();
+});
+document.getElementById('lancarDado').addEventListener('click',()=>{
+ const r=Math.floor(Math.random()*6)+1;dados[r-1]++;
+ dado.textContent=['⚀','⚁','⚂','⚃','⚄','⚅'][r-1];
+ document.getElementById('explicacao').textContent=`Saiu ${r}. Em um dado honesto, a chance teórica de cada face é 1/6, aproximadamente 16,67%.`;
+ atualizar();
+});
+document.getElementById('resetar').addEventListener('click',()=>{
+ moedas={Cara:0,Coroa:0};dados=[0,0,0,0,0,0];
+ moeda.textContent='🪙';dado.textContent='🎲';
+ document.getElementById('explicacao').textContent='Experimentos zerados. Comece novamente!';
+ atualizar();
+});
+atualizar();
+})();
+</script>
+</body>
+</html>
