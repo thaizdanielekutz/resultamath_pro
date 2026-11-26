@@ -1,0 +1,441 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sequências Numéricas | ResultaLabs</title>
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f8fb;
+    color: #171b22;
+    min-height: 100vh;
+}
+
+header {
+    background: white;
+    border-bottom: 1px solid #e5ebf0;
+    padding: 18px 24px;
+}
+
+nav {
+    max-width: 900px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo {
+    color: #171b22;
+    font-size: 21px;
+    font-weight: 900;
+    text-decoration: none;
+}
+
+.logo span { color: #069eda; }
+
+.voltar {
+    color: #087eae;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+main {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.tag {
+    color: #069eda;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+h1 {
+    font-size: clamp(32px, 6vw, 48px);
+    letter-spacing: -2px;
+    margin: 12px 0;
+}
+
+.descricao {
+    color: #68717d;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+.jogo {
+    background: white;
+    border: 1px solid #e5ebf0;
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(20,40,60,.04);
+}
+
+.status {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.status strong { color: #069eda; }
+
+.progresso-fundo {
+    height: 8px;
+    background: #edf1f4;
+    border-radius: 20px;
+    margin: 18px 0 30px;
+    overflow: hidden;
+}
+
+.progresso {
+    height: 100%;
+    width: 0;
+    background: #069eda;
+    transition: width .3s;
+}
+
+.centro { text-align: center; }
+
+.sequencia {
+    font-size: clamp(28px, 7vw, 48px);
+    font-weight: 900;
+    letter-spacing: -1px;
+    margin: 40px 0;
+    overflow-wrap: anywhere;
+}
+
+.opcoes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    max-width: 500px;
+    margin: auto;
+}
+
+.opcoes button {
+    border: 1px solid #dce8ee;
+    background: #f4f9fc;
+    border-radius: 10px;
+    padding: 18px;
+    font-size: 22px;
+    font-weight: 900;
+    color: #171b22;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.opcoes button:hover:not(:disabled) {
+    border-color: #069eda;
+    background: #e4f6fc;
+    transform: translateY(-2px);
+}
+
+.opcoes button:disabled { cursor: default; }
+
+.opcoes button.correta {
+    background: #e7f8ef;
+    border-color: #16a36a;
+    color: #168451;
+}
+
+.opcoes button.incorreta {
+    background: #fff0f0;
+    border-color: #df5050;
+    color: #df5050;
+}
+
+.feedback {
+    min-height: 55px;
+    margin: 25px auto 10px;
+    max-width: 550px;
+    font-size: 14px;
+    line-height: 1.7;
+    font-weight: 700;
+}
+
+.certo { color: #168451; }
+.errado { color: #df5050; }
+
+button.proximo {
+    border: none;
+    background: #069eda;
+    color: white;
+    padding: 14px 22px;
+    border-radius: 9px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+button.proximo:hover { background: #087eae; }
+
+button:focus-visible {
+    outline: 3px solid #8bd9f5;
+    outline-offset: 3px;
+}
+
+.instrucoes {
+    color: #68717d;
+    font-size: 13px;
+    line-height: 1.7;
+    margin-top: 25px;
+    text-align: center;
+}
+
+@media(max-width: 500px) {
+    .jogo { padding: 22px 14px; }
+    .opcoes button { padding: 15px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <a href="../resultalabs.html" class="logo">
+            RESULTA<span>LABS</span>
+        </a>
+        <a href="../resultalabs.html" class="voltar">← Voltar ao laboratório</a>
+    </nav>
+</header>
+
+<main>
+
+    <span class="tag">JOGO MATEMÁTICO · RACIOCÍNIO LÓGICO</span>
+    <h1>Sequências numéricas ∞</h1>
+
+    <p class="descricao">
+        Todo padrão esconde uma lógica. Observe os números,
+        descubra a regra e encontre o próximo termo.
+    </p>
+
+    <section class="jogo">
+
+        <div class="status">
+            <span>Questão: <strong id="questao">1</strong>/6</span>
+            <span>Pontuação: <strong id="pontos">0</strong></span>
+        </div>
+
+        <div class="progresso-fundo">
+            <div class="progresso" id="progresso"></div>
+        </div>
+
+        <div class="centro">
+
+            <div class="sequencia" id="sequencia">
+                2, 4, 6, 8, ?
+            </div>
+
+            <div class="opcoes" id="opcoes"></div>
+
+            <div class="feedback" id="feedback">
+                Escolha a alternativa que completa a sequência.
+            </div>
+
+            <button class="proximo" id="proximo" hidden>
+                Próxima questão →
+            </button>
+
+        </div>
+
+        <p class="instrucoes">
+            Cada questão vale 1 ponto. Ao final, veja seu resultado
+            e tente novamente para melhorar sua pontuação.
+        </p>
+
+    </section>
+
+</main>
+
+<script>
+(() => {
+    "use strict";
+
+    const questoes = [
+        {
+            sequencia: "2, 4, 6, 8, ?",
+            opcoes: [9, 10, 12, 14],
+            resposta: 10,
+            explicacao: "A sequência aumenta de 2 em 2: 2, 4, 6, 8, 10."
+        },
+        {
+            sequencia: "3, 6, 12, 24, ?",
+            opcoes: [30, 36, 42, 48],
+            resposta: 48,
+            explicacao: "Cada termo é o dobro do anterior: 24 × 2 = 48."
+        },
+        {
+            sequencia: "1, 4, 9, 16, ?",
+            opcoes: [20, 24, 25, 36],
+            resposta: 25,
+            explicacao: "São quadrados perfeitos: 1², 2², 3², 4² e 5²."
+        },
+        {
+            sequencia: "100, 90, 80, 70, ?",
+            opcoes: [50, 55, 60, 65],
+            resposta: 60,
+            explicacao: "A sequência diminui de 10 em 10."
+        },
+        {
+            sequencia: "2, 3, 5, 8, 13, ?",
+            opcoes: [18, 20, 21, 26],
+            resposta: 21,
+            explicacao: "Cada termo é a soma dos dois anteriores: 8 + 13 = 21."
+        },
+        {
+            sequencia: "1, 3, 7, 15, 31, ?",
+            opcoes: [47, 55, 62, 63],
+            resposta: 63,
+            explicacao: "Multiplicamos por 2 e somamos 1: 31 × 2 + 1 = 63."
+        }
+    ];
+
+    const sequenciaEl = document.getElementById("sequencia");
+    const opcoesEl = document.getElementById("opcoes");
+    const feedbackEl = document.getElementById("feedback");
+    const questaoEl = document.getElementById("questao");
+    const pontosEl = document.getElementById("pontos");
+    const progressoEl = document.getElementById("progresso");
+    const proximo = document.getElementById("proximo");
+
+    let indice = 0;
+    let pontos = 0;
+    let respondida = false;
+
+    function embaralhar(lista) {
+        const copia = [...lista];
+
+        for (let i = copia.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [copia[i], copia[j]] = [copia[j], copia[i]];
+        }
+
+        return copia;
+    }
+
+    function mostrarQuestao() {
+        const atual = questoes[indice];
+
+        respondida = false;
+
+        questaoEl.textContent = indice + 1;
+        pontosEl.textContent = pontos;
+        progressoEl.style.width = (indice / questoes.length * 100) + "%";
+
+        sequenciaEl.textContent = atual.sequencia;
+
+        feedbackEl.textContent = "Escolha uma alternativa.";
+        feedbackEl.className = "feedback";
+
+        proximo.hidden = true;
+        opcoesEl.innerHTML = "";
+
+        embaralhar(atual.opcoes).forEach((opcao) => {
+            const botao = document.createElement("button");
+
+            botao.textContent = opcao;
+
+            botao.addEventListener("click", () => responder(opcao, botao));
+
+            opcoesEl.appendChild(botao);
+        });
+    }
+
+    function responder(valor, botaoSelecionado) {
+        if (respondida) return;
+
+        respondida = true;
+
+        const atual = questoes[indice];
+        const botoes = opcoesEl.querySelectorAll("button");
+
+        botoes.forEach((botao) => {
+            botao.disabled = true;
+
+            if (Number(botao.textContent) === atual.resposta) {
+                botao.classList.add("correta");
+            }
+        });
+
+        if (valor === atual.resposta) {
+            pontos++;
+
+            feedbackEl.textContent =
+                "Correto! " + atual.explicacao;
+
+            feedbackEl.className = "feedback certo";
+
+        } else {
+            botaoSelecionado.classList.add("incorreta");
+
+            feedbackEl.textContent =
+                "Não foi dessa vez. " + atual.explicacao;
+
+            feedbackEl.className = "feedback errado";
+        }
+
+        pontosEl.textContent = pontos;
+        progressoEl.style.width = ((indice + 1) / questoes.length * 100) + "%";
+
+        proximo.hidden = false;
+
+        if (indice === questoes.length - 1) {
+            proximo.textContent = "Ver resultado";
+        } else {
+            proximo.textContent = "Próxima questão →";
+        }
+    }
+
+    function finalizar() {
+        sequenciaEl.textContent = pontos + " de " + questoes.length;
+
+        opcoesEl.innerHTML = "";
+
+        feedbackEl.textContent =
+            pontos === 6
+            ? "Excelente! Você acertou todas as sequências."
+            : "Você concluiu o desafio. Continue praticando para melhorar!";
+
+        feedbackEl.className = "feedback certo";
+
+        proximo.textContent = "Jogar novamente";
+        proximo.dataset.acao = "reiniciar";
+    }
+
+    proximo.addEventListener("click", () => {
+        if (proximo.dataset.acao === "reiniciar") {
+            indice = 0;
+            pontos = 0;
+            delete proximo.dataset.acao;
+            mostrarQuestao();
+            return;
+        }
+
+        if (indice === questoes.length - 1) {
+            finalizar();
+            return;
+        }
+
+        indice++;
+        mostrarQuestao();
+    });
+
+    mostrarQuestao();
+
+})();
+</script>
+
+</body>
+</html>
