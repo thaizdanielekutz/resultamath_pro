@@ -4,20 +4,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>ResultaLabs | Laboratório Matemático</title>
 
 <style>
 :root {
     --azul: #069eda;
-    --azul-escuro: #087eae;
-    --preto: #171b22;
+    --escuro: #171b22;
     --cinza: #68717d;
     --fundo: #f5f8fb;
-    --branco: #ffffff;
     --borda: #e5ebf0;
-    --verde: #16a36a;
-    --vermelho: #df5050;
 }
 
 * {
@@ -26,1629 +21,331 @@
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
     font-family: Arial, Helvetica, sans-serif;
     background: var(--fundo);
-    color: var(--preto);
+    color: var(--escuro);
 }
 
-button, input {
-    font: inherit;
-}
+a { text-decoration: none; }
 
-button {
-    cursor: pointer;
-}
-
-.labs {
-    min-height: 100vh;
-    overflow: hidden;
-}
-
-/* ===== CABEÇALHO ===== */
-
-.labs-header {
-    width: 100%;
-    background: rgba(255,255,255,.94);
+header {
+    background: white;
     border-bottom: 1px solid var(--borda);
     position: sticky;
     top: 0;
-    z-index: 100;
-    backdrop-filter: blur(12px);
+    z-index: 10;
 }
 
-.labs-nav {
-    max-width: 1200px;
+nav {
+    max-width: 1150px;
     margin: auto;
-    padding: 18px 25px;
+    padding: 18px 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 20px;
 }
 
-.labs-logo {
+.logo {
+    color: var(--escuro);
     font-size: 23px;
     font-weight: 900;
     letter-spacing: -1px;
-    text-decoration: none;
-    color: var(--preto);
 }
 
-.labs-logo span {
-    color: var(--azul);
-}
+.logo span { color: var(--azul); }
 
-.labs-links {
-    display: flex;
-    align-items: center;
-    gap: 25px;
-}
-
-.labs-links a {
-    text-decoration: none;
-    color: #4d5662;
-    font-size: 14px;
-    font-weight: 700;
-    transition: .2s;
-}
-
-.labs-links a:hover {
-    color: var(--azul);
-}
-
-.labs-voltar {
-    background: var(--preto);
-    color: white !important;
+.voltar {
+    background: var(--escuro);
+    color: white;
     padding: 11px 17px;
     border-radius: 8px;
+    font-size: 13px;
+    font-weight: 800;
 }
 
-.labs-voltar:hover {
-    background: var(--azul);
-}
-
-/* ===== HERO ===== */
-
-.labs-hero {
-    position: relative;
+.hero {
     background: #111820;
     color: white;
-    padding: 100px 25px 110px;
+    padding: 95px 24px;
+    position: relative;
     overflow: hidden;
 }
 
-.labs-hero-conteudo {
-    max-width: 1150px;
+.hero-conteudo {
+    max-width: 1100px;
     margin: auto;
     position: relative;
     z-index: 2;
 }
 
-.labs-tag {
+.tag {
     display: inline-block;
     color: #7edaff;
-    border: 1px solid rgba(126,218,255,.4);
-    padding: 8px 13px;
+    border: 1px solid #397b96;
     border-radius: 30px;
-    font-size: 12px;
+    padding: 8px 13px;
+    font-size: 11px;
     font-weight: 800;
     letter-spacing: 1.5px;
     margin-bottom: 25px;
 }
 
-.labs-hero h1 {
-    font-size: clamp(42px, 7vw, 76px);
+.hero h1 {
+    font-size: clamp(42px, 7vw, 75px);
     line-height: 1.05;
-    max-width: 750px;
     letter-spacing: -3px;
-    margin-bottom: 25px;
+    max-width: 750px;
 }
 
-.labs-hero h1 span {
-    color: var(--azul);
-}
+.hero h1 span { color: var(--azul); }
 
-.labs-hero p {
+.hero p {
     color: #b8c4ce;
-    font-size: 17px;
-    line-height: 1.7;
-    max-width: 580px;
+    max-width: 590px;
+    line-height: 1.8;
+    margin-top: 22px;
+    font-size: 16px;
 }
 
-.labs-hero-botao {
-    display: inline-block;
-    margin-top: 32px;
-    background: var(--azul);
-    color: white;
-    text-decoration: none;
-    padding: 15px 23px;
-    border-radius: 9px;
-    font-weight: 800;
-    transition: .2s;
-}
-
-.labs-hero-botao:hover {
-    transform: translateY(-4px);
-    background: #0789bd;
-}
-
-.labs-equacoes {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: .17;
-}
-
-.equacao {
+.formula {
     position: absolute;
     color: #6bd2ff;
-    font-weight: 900;
-    animation: flutuar 7s ease-in-out infinite;
-}
-
-.equacao:nth-child(1) {
-    top: 15%;
-    right: 13%;
-    font-size: 55px;
-}
-
-.equacao:nth-child(2) {
-    top: 60%;
-    right: 28%;
-    font-size: 35px;
-    animation-delay: -2s;
-}
-
-.equacao:nth-child(3) {
-    top: 25%;
-    right: 42%;
-    font-size: 27px;
-    animation-delay: -4s;
-}
-
-.equacao:nth-child(4) {
-    bottom: 10%;
-    right: 8%;
+    opacity: .15;
     font-size: 45px;
-    animation-delay: -1s;
+    font-weight: 900;
+    animation: flutuar 6s ease-in-out infinite;
 }
 
-.equacao:nth-child(5) {
-    top: 75%;
-    left: 8%;
-    font-size: 32px;
-    animation-delay: -3s;
-}
+.formula:nth-child(1) { top: 15%; right: 15%; }
+.formula:nth-child(2) { top: 65%; right: 30%; animation-delay: -2s; }
+.formula:nth-child(3) { bottom: 10%; right: 8%; animation-delay: -4s; }
 
 @keyframes flutuar {
-    0%, 100% {
-        transform: translateY(0) rotate(-5deg);
-    }
-    50% {
-        transform: translateY(-25px) rotate(5deg);
-    }
+    0%, 100% { transform: translateY(0) rotate(-5deg); }
+    50% { transform: translateY(-22px) rotate(5deg); }
 }
 
-/* ===== INTRODUÇÃO ===== */
-
-.labs-intro {
+.conteudo {
     max-width: 1150px;
-    margin: 75px auto 35px;
-    padding: 0 25px;
+    margin: 70px auto 90px;
+    padding: 0 24px;
 }
 
-.labs-intro h2 {
+.titulo {
+    margin-bottom: 30px;
+}
+
+.titulo span {
+    color: var(--azul);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.titulo h2 {
     font-size: 30px;
-    margin-bottom: 12px;
+    margin: 9px 0;
     letter-spacing: -1px;
 }
 
-.labs-intro p {
+.titulo p {
     color: var(--cinza);
     line-height: 1.7;
     max-width: 650px;
 }
 
-/* ===== CARDS DE ATIVIDADES ===== */
-
-.labs-atividades {
-    max-width: 1150px;
-    margin: 35px auto 90px;
-    padding: 0 25px;
+.jogos {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 22px;
 }
 
-.labs-card {
+.card {
     background: white;
     border: 1px solid var(--borda);
     border-radius: 16px;
-    padding: 25px;
+    padding: 28px;
     transition: .25s;
+    display: flex;
+    flex-direction: column;
 }
 
-.labs-card:hover {
+.card:hover {
     transform: translateY(-6px);
+    border-color: #9bdcf3;
     box-shadow: 0 15px 35px rgba(20,40,60,.08);
-    border-color: #b8e8f8;
 }
 
-.labs-icone {
-    width: 52px;
-    height: 52px;
-    border-radius: 13px;
+.icone {
+    width: 55px;
+    height: 55px;
+    border-radius: 14px;
     background: #e7f7fd;
     color: var(--azul);
     display: grid;
     place-items: center;
-    font-size: 26px;
+    font-size: 27px;
+    font-weight: 900;
     margin-bottom: 20px;
 }
 
-.labs-card h3 {
-    font-size: 19px;
+.card h3 {
+    font-size: 21px;
     margin-bottom: 10px;
 }
 
-.labs-card p {
+.card p {
     color: var(--cinza);
     font-size: 14px;
-    line-height: 1.6;
-    min-height: 65px;
-}
-
-.labs-card a {
-    display: inline-block;
-    margin-top: 18px;
-    color: var(--azul-escuro);
-    text-decoration: none;
-    font-weight: 800;
-    font-size: 14px;
-}
-
-/* ===== SEÇÕES DOS JOGOS ===== */
-
-.labs-jogos {
-    max-width: 1150px;
-    margin: 0 auto 85px;
-    padding: 0 25px;
-    scroll-margin-top: 100px;
-}
-
-.labs-titulo-secao {
-    margin-bottom: 25px;
-}
-
-.labs-titulo-secao span {
-    color: var(--azul);
-    text-transform: uppercase;
-    font-size: 11px;
-    font-weight: 900;
-    letter-spacing: 2px;
-}
-
-.labs-titulo-secao h2 {
-    font-size: 30px;
-    margin-top: 8px;
-    letter-spacing: -1px;
-}
-
-.labs-titulo-secao p {
-    color: var(--cinza);
-    margin-top: 8px;
-    line-height: 1.6;
-}
-
-.jogo {
-    background: white;
-    border: 1px solid var(--borda);
-    border-radius: 18px;
-    padding: 35px;
-    box-shadow: 0 8px 25px rgba(20,40,60,.03);
-}
-
-.jogo-topo {
-    display: flex;
-    justify-content: space-between;
-    gap: 15px;
-    flex-wrap: wrap;
-    margin-bottom: 30px;
-}
-
-.jogo-topo h3 {
-    font-size: 20px;
-}
-
-.jogo-status {
-    color: var(--cinza);
-    font-size: 13px;
-    font-weight: 700;
-}
-
-.jogo-centro {
-    text-align: center;
-    padding: 20px 0;
-}
-
-.jogo-pergunta {
-    font-size: clamp(35px, 7vw, 55px);
-    font-weight: 900;
-    letter-spacing: -2px;
-    margin: 20px 0;
-}
-
-.jogo-feedback {
-    min-height: 26px;
-    margin-top: 18px;
-    font-size: 14px;
-    font-weight: 800;
-}
-
-.feedback-certo {
-    color: var(--verde);
-}
-
-.feedback-errado {
-    color: var(--vermelho);
-}
-
-.labs-btn {
-    border: none;
-    background: var(--azul);
-    color: white;
-    padding: 13px 20px;
-    border-radius: 9px;
-    font-weight: 800;
-    transition: .2s;
-}
-
-.labs-btn:hover {
-    background: var(--azul-escuro);
-    transform: translateY(-2px);
-}
-
-.labs-btn-secundario {
-    background: #edf3f7;
-    color: var(--preto);
-}
-
-.labs-btn-secundario:hover {
-    background: #dceaf1;
-}
-
-.jogo-input {
-    width: 150px;
-    padding: 14px;
-    border: 2px solid var(--borda);
-    border-radius: 9px;
-    text-align: center;
-    font-size: 23px;
-    font-weight: 800;
-    outline: none;
-    margin-right: 8px;
-}
-
-.jogo-input:focus {
-    border-color: var(--azul);
-}
-
-.jogo-acoes {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 15px;
-}
-
-/* ===== BARRA DE TEMPO ===== */
-
-.tempo-barra {
-    width: 100%;
-    height: 9px;
-    background: #edf1f4;
-    border-radius: 20px;
-    overflow: hidden;
-    margin-top: 12px;
-}
-
-.tempo-progresso {
-    width: 100%;
-    height: 100%;
-    background: var(--azul);
-    transition: width .3s linear;
-}
-
-/* ===== MEMÓRIA ===== */
-
-.memoria-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    max-width: 700px;
-    margin: 25px auto;
-}
-
-.memoria-carta {
-    min-height: 100px;
-    border: 1px solid var(--borda);
-    background: #f0f8fc;
-    border-radius: 12px;
-    color: var(--azul-escuro);
-    font-size: 20px;
-    font-weight: 900;
-    padding: 12px;
-    transition: .2s;
-    word-break: break-word;
-}
-
-.memoria-carta:hover {
-    border-color: var(--azul);
-    transform: scale(1.02);
-}
-
-.memoria-carta.revelada {
-    background: #e1f5fc;
-    border: 2px solid var(--azul);
-}
-
-.memoria-carta.encontrada {
-    background: #e7f8ef;
-    border-color: var(--verde);
-    color: var(--verde);
-    cursor: default;
-}
-
-/* ===== SEQUÊNCIAS ===== */
-
-.sequencia-opcoes {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    max-width: 650px;
-    margin: 25px auto;
-}
-
-.sequencia-opcoes button {
-    border: 1px solid var(--borda);
-    background: #f5f8fb;
-    border-radius: 10px;
-    padding: 17px 10px;
-    font-size: 19px;
-    font-weight: 900;
-    color: var(--preto);
-    transition: .2s;
-}
-
-.sequencia-opcoes button:hover {
-    border-color: var(--azul);
-    background: #e7f7fd;
-}
-
-.sequencia-opcoes button:disabled {
-    cursor: default;
-    opacity: .75;
-}
-
-/* ===== FRAÇÕES ===== */
-
-.fracao-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    align-items: center;
-}
-
-.fracao-controles {
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-}
-
-.fracao-controles label {
-    display: flex;
-    justify-content: space-between;
-    font-weight: 800;
-    margin-bottom: 10px;
-}
-
-.fracao-controles input {
-    width: 100%;
-    accent-color: var(--azul);
-}
-
-.fracao-visual {
-    background: #f5f9fb;
-    border-radius: 15px;
-    padding: 30px;
-    text-align: center;
-}
-
-.fracao-numero {
-    font-size: 50px;
-    font-weight: 900;
-    color: var(--azul-escuro);
-    margin-bottom: 25px;
-}
-
-.fracao-numero span {
-    display: block;
-    font-size: 25px;
-    border-top: 3px solid var(--preto);
-    padding-top: 5px;
-    margin-top: 5px;
-}
-
-.fracao-barra {
-    display: flex;
-    width: 100%;
-    height: 48px;
-    overflow: hidden;
-    border: 2px solid #cbd7df;
-    border-radius: 8px;
-    background: white;
-}
-
-.fracao-parte {
+    line-height: 1.7;
+    margin-bottom: 22px;
     flex: 1;
-    border-right: 2px solid white;
-    background: #e8eef2;
-    transition: background .2s;
 }
 
-.fracao-parte.preenchida {
-    background: var(--azul);
-}
-
-.fracao-legenda {
-    color: var(--cinza);
-    margin-top: 18px;
+.card a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #087eae;
     font-size: 14px;
-    line-height: 1.6;
+    font-weight: 900;
 }
 
-/* ===== RODAPÉ ===== */
+.card a:hover { color: var(--azul); }
 
-.labs-footer {
+footer {
     background: #111820;
     color: #aab5bf;
     text-align: center;
-    padding: 35px 20px;
+    padding: 32px 20px;
     font-size: 13px;
 }
 
-.labs-footer strong {
-    color: white;
-}
+footer strong { color: white; }
 
-/* ===== ANIMAÇÕES DE ENTRADA ===== */
-
-.animar {
-    opacity: 0;
-    transform: translateY(25px);
-    transition: opacity .7s ease, transform .7s ease;
-}
-
-.animar.visivel {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* ===== RESPONSIVIDADE ===== */
-
-@media (max-width: 850px) {
-    .labs-atividades {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .fracao-layout {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 600px) {
-    .labs-nav {
-        padding: 15px;
-    }
-
-    .labs-links {
-        gap: 12px;
-    }
-
-    .labs-links a {
-        font-size: 12px;
-    }
-
-    .labs-links a:not(.labs-voltar) {
-        display: none;
-    }
-
-    .labs-hero {
-        padding: 75px 22px 85px;
-    }
-
-    .labs-hero h1 {
-        letter-spacing: -2px;
-    }
-
-    .labs-atividades {
-        grid-template-columns: 1fr;
-    }
-
-    .jogo {
-        padding: 22px 15px;
-    }
-
-    .memoria-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 8px;
-    }
-
-    .memoria-carta {
-        min-height: 85px;
-        font-size: 16px;
-    }
-
-    .sequencia-opcoes {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .jogo-input {
-        width: 120px;
-    }
-
-    .labs-intro h2,
-    .labs-titulo-secao h2 {
-        font-size: 25px;
-    }
+@media (max-width: 650px) {
+    .hero { padding: 75px 22px; }
+    .hero h1 { letter-spacing: -2px; }
+    .jogos { grid-template-columns: 1fr; }
+    .titulo h2 { font-size: 25px; }
+    .conteudo { margin-top: 50px; }
 }
 </style>
 </head>
 
 <body>
 
-<div class="labs">
+<header>
+    <nav>
+        <a href="../index.html" class="logo">
+            RESULTA<span>LABS</span>
+        </a>
 
-    <!-- ===== CABEÇALHO ===== -->
+        <a href="../inicio.html" class="voltar">
+            Plataforma
+        </a>
+    </nav>
+</header>
 
-    <header class="labs-header">
-        <nav class="labs-nav">
+<section class="hero">
 
-            <a href="index.html" class="labs-logo">
-                RESULTA<span>LABS</span>
-            </a>
+    <div class="formula">π</div>
+    <div class="formula">x² + y²</div>
+    <div class="formula">√144</div>
 
-            <div class="labs-links">
-                <a href="#atividades">Atividades</a>
-                <a href="#jogos">Jogos</a>
-                <a href="inicio.html" class="labs-voltar">
-                    Plataforma
-                </a>
-            </div>
+    <div class="hero-conteudo">
+        <span class="tag">LABORATÓRIO DE EXPERIÊNCIAS MATEMÁTICAS</span>
 
-        </nav>
-    </header>
-
-    <!-- ===== HERO ===== -->
-
-    <section class="labs-hero">
-
-        <div class="labs-equacoes">
-            <span class="equacao">π</span>
-            <span class="equacao">x² + y²</span>
-            <span class="equacao">∑</span>
-            <span class="equacao">√144</span>
-            <span class="equacao">25 × 4</span>
-        </div>
-
-        <div class="labs-hero-conteudo">
-
-            <span class="labs-tag">
-                LABORATÓRIO DE EXPERIÊNCIAS MATEMÁTICAS
-            </span>
-
-            <h1>
-                Matemática para
-                <span>explorar.</span>
-            </h1>
-
-            <p>
-                Experimente, teste, descubra padrões e desafie
-                sua mente. Aqui, a matemática sai do papel e
-                ganha vida por meio de jogos e experiências interativas.
-            </p>
-
-            <a href="#jogos" class="labs-hero-botao">
-                Explorar o laboratório →
-            </a>
-
-        </div>
-
-    </section>
-
-    <!-- ===== ATIVIDADES ===== -->
-
-    <section class="labs-intro animar" id="atividades">
-
-        <h2>Um laboratório de possibilidades.</h2>
+        <h1>
+            Matemática para <span>explorar.</span>
+        </h1>
 
         <p>
-            Aprender também pode ser uma experiência.
-            Escolha uma atividade, interaja com os elementos
-            e descubra a matemática de um jeito diferente.
+            Experimente, teste, descubra padrões e desafie sua mente.
+            Aqui, a matemática sai do papel e ganha vida por meio
+            de jogos e experiências interativas.
         </p>
+    </div>
 
-    </section>
+</section>
 
-    <section class="labs-atividades">
+<main class="conteudo">
 
-        <article class="labs-card animar">
-            <div class="labs-icone">⚡</div>
+    <div class="titulo">
+        <span>EXPLORE E EXPERIMENTE</span>
+        <h2>Escolha sua experiência.</h2>
+        <p>
+            Cada atividade é uma oportunidade de aprender,
+            desenvolver o raciocínio e enxergar a matemática
+            de uma maneira diferente.
+        </p>
+    </div>
+
+    <section class="jogos">
+
+        <article class="card">
+            <div class="icone">⚡</div>
             <h3>Desafio relâmpago</h3>
             <p>
-                Resolva o maior número possível de operações
-                antes que o tempo termine.
+                Resolva operações de cálculo mental antes que o
+                tempo termine. Quanto mais acertos, maior sua pontuação.
             </p>
-            <a href="#relampago">Começar desafio →</a>
+            <a href="jogos/desafio-relampago.html">
+                Jogar agora →
+            </a>
         </article>
 
-        <article class="labs-card animar">
-            <div class="labs-icone">▦</div>
+        <article class="card">
+            <div class="icone">▦</div>
             <h3>Memória matemática</h3>
             <p>
-                Encontre os pares correspondentes entre
-                operações e resultados.
+                Encontre os pares entre operações e resultados.
+                Um desafio de concentração e agilidade mental.
             </p>
-            <a href="#memoria">Jogar agora →</a>
+            <a href="jogos/memoria-matematica.html">
+                Jogar agora →
+            </a>
         </article>
 
-        <article class="labs-card animar">
-            <div class="labs-icone">∞</div>
+        <article class="card">
+            <div class="icone">∞</div>
             <h3>Sequências numéricas</h3>
             <p>
-                Identifique padrões e descubra qual número
-                completa cada sequência.
+                Descubra a lógica por trás das sequências e
+                encontre o número que está faltando.
             </p>
-            <a href="#sequencias">Descobrir padrões →</a>
+            <a href="jogos/sequencias.html">
+                Jogar agora →
+            </a>
         </article>
 
-        <article class="labs-card animar">
-            <div class="labs-icone">½</div>
+        <article class="card">
+            <div class="icone">½</div>
             <h3>Laboratório de frações</h3>
             <p>
-                Modifique numerador e denominador e veja
-                a representação visual da fração.
+                Modifique numeradores e denominadores e veja
+                visualmente como uma fração representa partes de um inteiro.
             </p>
-            <a href="#fracoes">Experimentar →</a>
-        </article>
-
-        <article class="labs-card animar">
-            <div class="labs-icone">√</div>
-            <h3>Exploração matemática</h3>
-            <p>
-                Descubra relações entre números, operações
-                e representações matemáticas.
-            </p>
-            <a href="#sequencias">Explorar →</a>
-        </article>
-
-        <article class="labs-card animar">
-            <div class="labs-icone">π</div>
-            <h3>Aprender brincando</h3>
-            <p>
-                Treine raciocínio lógico, cálculo mental
-                e percepção de padrões.
-            </p>
-            <a href="#jogos">Ver jogos →</a>
+            <a href="jogos/fracoes.html">
+                Experimentar →
+            </a>
         </article>
 
     </section>
 
-    <!-- ===== JOGOS ===== -->
+</main>
 
-    <section class="labs-jogos" id="jogos">
-
-        <div class="labs-titulo-secao">
-            <span>JOGO 01</span>
-            <h2>Desafio relâmpago</h2>
-            <p>
-                Quanto mais rápido calcular, mais pontos poderá conquistar.
-                Você tem 30 segundos!
-            </p>
-        </div>
-
-        <div class="jogo" id="relampago">
-
-            <div class="jogo-topo">
-                <h3>⚡ Cálculo mental</h3>
-                <div class="jogo-status">
-                    Pontos: <strong id="pontos">0</strong>
-                    &nbsp; | &nbsp;
-                    Tempo: <strong id="tempo">30</strong>s
-                </div>
-            </div>
-
-            <div class="tempo-barra">
-                <div class="tempo-progresso" id="progresso-tempo"></div>
-            </div>
-
-            <div class="jogo-centro">
-
-                <div class="jogo-pergunta" id="pergunta">
-                    ?
-                </div>
-
-                <div id="area-resposta" style="display:none;">
-
-                    <input
-                        type="number"
-                        class="jogo-input"
-                        id="resposta"
-                        placeholder="?"
-                    >
-
-                    <button class="labs-btn" id="verificar">
-                        Responder
-                    </button>
-
-                </div>
-
-                <div class="jogo-feedback" id="feedback-relampago">
-                    Clique em começar para iniciar.
-                </div>
-
-                <div class="jogo-acoes">
-                    <button class="labs-btn" id="iniciar-relampago">
-                        Começar jogo
-                    </button>
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <section class="labs-jogos" id="memoria">
-
-        <div class="labs-titulo-secao">
-            <span>JOGO 02</span>
-            <h2>Memória matemática</h2>
-            <p>
-                Combine cada operação com seu resultado.
-                Encontre todos os pares!
-            </p>
-        </div>
-
-        <div class="jogo">
-
-            <div class="jogo-topo">
-                <h3>▦ Encontre os pares</h3>
-                <div class="jogo-status">
-                    Pares encontrados:
-                    <strong id="pares-encontrados">0</strong>/6
-                </div>
-            </div>
-
-            <div class="memoria-grid" id="memoria-grid"></div>
-
-            <div class="jogo-centro">
-                <div class="jogo-feedback" id="feedback-memoria">
-                    Selecione duas cartas para começar.
-                </div>
-
-                <button class="labs-btn labs-btn-secundario" id="reiniciar-memoria">
-                    Reiniciar jogo
-                </button>
-            </div>
-
-        </div>
-
-    </section>
-
-    <section class="labs-jogos" id="sequencias">
-
-        <div class="labs-titulo-secao">
-            <span>JOGO 03</span>
-            <h2>Qual é o próximo número?</h2>
-            <p>
-                Observe a sequência, descubra a lógica
-                e escolha a alternativa correta.
-            </p>
-        </div>
-
-        <div class="jogo">
-
-            <div class="jogo-topo">
-                <h3>∞ Descubra o padrão</h3>
-                <div class="jogo-status">
-                    Questão:
-                    <strong id="numero-sequencia">1</strong>
-                </div>
-            </div>
-
-            <div class="jogo-centro">
-
-                <div class="jogo-pergunta" id="pergunta-sequencia">
-                    2, 4, 6, 8, ?
-                </div>
-
-                <div class="sequencia-opcoes" id="opcoes-sequencia"></div>
-
-                <div class="jogo-feedback" id="feedback-sequencia">
-                    Escolha uma alternativa.
-                </div>
-
-                <div class="jogo-acoes">
-                    <button class="labs-btn" id="proxima-sequencia" style="display:none;">
-                        Próxima sequência →
-                    </button>
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <section class="labs-jogos" id="fracoes">
-
-        <div class="labs-titulo-secao">
-            <span>EXPERIÊNCIA INTERATIVA</span>
-            <h2>Laboratório de frações</h2>
-            <p>
-                Altere os valores e observe como uma fração
-                representa partes de um inteiro.
-            </p>
-        </div>
-
-        <div class="jogo">
-
-            <div class="fracao-layout">
-
-                <div class="fracao-controles">
-
-                    <div>
-                        <label>
-                            Numerador
-                            <strong id="valor-numerador">1</strong>
-                        </label>
-
-                        <input
-                            type="range"
-                            id="numerador"
-                            min="1"
-                            max="4"
-                            value="1"
-                        >
-                    </div>
-
-                    <div>
-                        <label>
-                            Denominador
-                            <strong id="valor-denominador">4</strong>
-                        </label>
-
-                        <input
-                            type="range"
-                            id="denominador"
-                            min="2"
-                            max="10"
-                            value="4"
-                        >
-                    </div>
-
-                    <p style="color:#68717d;line-height:1.7;font-size:14px;">
-                        O numerador indica quantas partes foram
-                        consideradas. O denominador indica em
-                        quantas partes iguais o inteiro foi dividido.
-                    </p>
-
-                </div>
-
-                <div class="fracao-visual">
-
-                    <div class="fracao-numero">
-                        <div id="fracao-cima">1</div>
-                        <span id="fracao-baixo">4</span>
-                    </div>
-
-                    <div class="fracao-barra" id="fracao-barra"></div>
-
-                    <div class="fracao-legenda" id="fracao-legenda">
-                        1 de 4 partes estão preenchidas.
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- ===== RODAPÉ ===== -->
-
-    <footer class="labs-footer">
-        <p>
-            <strong>RESULTALABS</strong> · Um espaço para experimentar a matemática.
-        </p>
-        <p style="margin-top:9px;">
-            © <span id="ano-atual"></span> ResultaMath.
-        </p>
-    </footer>
-
-</div>
+<footer>
+    <p><strong>RESULTALABS</strong> · Um espaço para experimentar a matemática.</p>
+    <p style="margin-top:9px;">© <span id="ano"></span> ResultaMath.</p>
+</footer>
 
 <script>
-(function () {
-
-    "use strict";
-
-    /* ===== ANO ===== */
-
-    document.getElementById("ano-atual").textContent =
-        new Date().getFullYear();
-
-
-    /* ===== ANIMAÇÃO AO ROLAR A PÁGINA ===== */
-
-    const elementosAnimados = document.querySelectorAll(".animar");
-
-    if ("IntersectionObserver" in window) {
-
-        const observador = new IntersectionObserver((entradas) => {
-
-            entradas.forEach((entrada) => {
-
-                if (entrada.isIntersecting) {
-                    entrada.target.classList.add("visivel");
-                    observador.unobserve(entrada.target);
-                }
-
-            });
-
-        }, {
-            threshold: 0.12
-        });
-
-        elementosAnimados.forEach((elemento) => {
-            observador.observe(elemento);
-        });
-
-    } else {
-
-        elementosAnimados.forEach((elemento) => {
-            elemento.classList.add("visivel");
-        });
-
-    }
-
-
-    /* =====================================
-       JOGO 01: DESAFIO RELÂMPAGO
-    ===================================== */
-
-    const pergunta = document.getElementById("pergunta");
-    const resposta = document.getElementById("resposta");
-    const verificar = document.getElementById("verificar");
-    const iniciar = document.getElementById("iniciar-relampago");
-    const pontosElemento = document.getElementById("pontos");
-    const tempoElemento = document.getElementById("tempo");
-    const progresso = document.getElementById("progresso-tempo");
-    const feedback = document.getElementById("feedback-relampago");
-    const areaResposta = document.getElementById("area-resposta");
-
-    let pontos = 0;
-    let tempo = 30;
-    let resultadoCorreto = 0;
-    let jogoAtivo = false;
-    let intervalo = null;
-
-    function gerarOperacao() {
-
-        const operacoes = ["+", "-", "×"];
-        const operacao = operacoes[
-            Math.floor(Math.random() * operacoes.length)
-        ];
-
-        let a = Math.floor(Math.random() * 20) + 1;
-        let b = Math.floor(Math.random() * 15) + 1;
-
-        if (operacao === "-") {
-            if (b > a) {
-                [a, b] = [b, a];
-            }
-            resultadoCorreto = a - b;
-        }
-
-        if (operacao === "+") {
-            resultadoCorreto = a + b;
-        }
-
-        if (operacao === "×") {
-            a = Math.floor(Math.random() * 10) + 1;
-            b = Math.floor(Math.random() * 10) + 1;
-            resultadoCorreto = a * b;
-        }
-
-        pergunta.textContent = `${a} ${operacao} ${b} = ?`;
-        resposta.value = "";
-        resposta.focus();
-
-    }
-
-    function finalizarJogo() {
-
-        jogoAtivo = false;
-        clearInterval(intervalo);
-
-        areaResposta.style.display = "none";
-        iniciar.style.display = "inline-block";
-        iniciar.textContent = "Jogar novamente";
-
-        pergunta.textContent = pontos + " pontos";
-
-        feedback.textContent =
-            "Fim de jogo! Você acertou " + pontos + " operações.";
-
-        feedback.className = "jogo-feedback";
-
-    }
-
-    function iniciarJogo() {
-
-        clearInterval(intervalo);
-
-        pontos = 0;
-        tempo = 30;
-        jogoAtivo = true;
-
-        pontosElemento.textContent = pontos;
-        tempoElemento.textContent = tempo;
-
-        progresso.style.width = "100%";
-
-        feedback.textContent = "Boa sorte! Resolva o máximo que conseguir.";
-        feedback.className = "jogo-feedback";
-
-        areaResposta.style.display = "block";
-        iniciar.style.display = "none";
-
-        gerarOperacao();
-
-        intervalo = setInterval(() => {
-
-            tempo--;
-
-            tempoElemento.textContent = tempo;
-            progresso.style.width = (tempo / 30 * 100) + "%";
-
-            if (tempo <= 0) {
-                finalizarJogo();
-            }
-
-        }, 1000);
-
-    }
-
-    function conferirResposta() {
-
-        if (!jogoAtivo) return;
-
-        if (resposta.value.trim() === "") return;
-
-        const valor = Number(resposta.value);
-
-        if (valor === resultadoCorreto) {
-
-            pontos++;
-            pontosElemento.textContent = pontos;
-
-            feedback.textContent = "Muito bem! Resposta correta.";
-            feedback.className = "jogo-feedback feedback-certo";
-
-        } else {
-
-            feedback.textContent = "Não foi dessa vez. Tente a próxima!";
-            feedback.className = "jogo-feedback feedback-errado";
-
-        }
-
-        gerarOperacao();
-
-    }
-
-    iniciar.addEventListener("click", iniciarJogo);
-    verificar.addEventListener("click", conferirResposta);
-
-    resposta.addEventListener("keydown", (evento) => {
-
-        if (evento.key === "Enter") {
-            conferirResposta();
-        }
-
-    });
-
-
-    /* =====================================
-       JOGO 02: MEMÓRIA MATEMÁTICA
-    ===================================== */
-
-    const memoriaGrid = document.getElementById("memoria-grid");
-    const paresElemento = document.getElementById("pares-encontrados");
-    const feedbackMemoria = document.getElementById("feedback-memoria");
-    const reiniciarMemoria = document.getElementById("reiniciar-memoria");
-
-    const paresOriginais = [
-        ["2 + 3", "5"],
-        ["4 × 2", "8"],
-        ["10 - 4", "6"],
-        ["3 × 3", "9"],
-        ["12 ÷ 2", "6"],
-        ["5 + 7", "12"]
-    ];
-
-    let cartas = [];
-    let selecionadas = [];
-    let paresEncontrados = 0;
-    let bloqueado = false;
-    let rodadaMemoria = 0;
-
-    function embaralhar(lista) {
-
-        const copia = [...lista];
-
-        for (let i = copia.length - 1; i > 0; i--) {
-
-            const j = Math.floor(Math.random() * (i + 1));
-
-            [copia[i], copia[j]] = [copia[j], copia[i]];
-
-        }
-
-        return copia;
-
-    }
-
-    function iniciarMemoria() {
-
-        rodadaMemoria++;
-
-        cartas = [];
-
-        paresOriginais.forEach((par, indice) => {
-
-            cartas.push({
-                texto: par[0],
-                par: indice
-            });
-
-            cartas.push({
-                texto: par[1],
-                par: indice
-            });
-
-        });
-
-        cartas = embaralhar(cartas);
-
-        selecionadas = [];
-        paresEncontrados = 0;
-        bloqueado = false;
-
-        paresElemento.textContent = "0";
-        feedbackMemoria.textContent = "Selecione duas cartas para encontrar os pares.";
-
-        memoriaGrid.innerHTML = "";
-
-        cartas.forEach((carta, indice) => {
-
-            const botao = document.createElement("button");
-
-            botao.className = "memoria-carta";
-            botao.textContent = "?";
-            botao.dataset.indice = indice;
-            botao.setAttribute("aria-label", "Carta fechada");
-
-            botao.addEventListener("click", () => {
-                revelarCarta(indice, botao);
-            });
-
-            memoriaGrid.appendChild(botao);
-
-        });
-
-    }
-
-    function revelarCarta(indice, botao) {
-
-        if (bloqueado) return;
-        if (botao.classList.contains("revelada")) return;
-        if (botao.classList.contains("encontrada")) return;
-
-        botao.textContent = cartas[indice].texto;
-        botao.classList.add("revelada");
-        botao.setAttribute("aria-label", cartas[indice].texto);
-
-        selecionadas.push({
-            indice: indice,
-            botao: botao,
-            par: cartas[indice].par
-        });
-
-        if (selecionadas.length === 2) {
-
-            bloqueado = true;
-
-            const primeira = selecionadas[0];
-            const segunda = selecionadas[1];
-
-            if (primeira.par === segunda.par) {
-
-                primeira.botao.classList.remove("revelada");
-                segunda.botao.classList.remove("revelada");
-
-                primeira.botao.classList.add("encontrada");
-                segunda.botao.classList.add("encontrada");
-
-                paresEncontrados++;
-                paresElemento.textContent = paresEncontrados;
-
-                feedbackMemoria.textContent = "Par encontrado!";
-                feedbackMemoria.className = "jogo-feedback feedback-certo";
-
-                selecionadas = [];
-                bloqueado = false;
-
-                if (paresEncontrados === paresOriginais.length) {
-                    feedbackMemoria.textContent =
-                        "Parabéns! Você encontrou todos os pares!";
-                }
-
-            } else {
-
-                feedbackMemoria.textContent = "Não combinam. Tente novamente.";
-                feedbackMemoria.className = "jogo-feedback feedback-errado";
-
-                const rodadaAtual = rodadaMemoria;
-
-                setTimeout(() => {
-
-                    if (rodadaAtual !== rodadaMemoria) return;
-
-                    primeira.botao.textContent = "?";
-                    segunda.botao.textContent = "?";
-
-                    primeira.botao.classList.remove("revelada");
-                    segunda.botao.classList.remove("revelada");
-
-                    selecionadas = [];
-                    bloqueado = false;
-
-                    feedbackMemoria.textContent = "Continue tentando.";
-                    feedbackMemoria.className = "jogo-feedback";
-
-                }, 900);
-
-            }
-
-        }
-
-    }
-
-    reiniciarMemoria.addEventListener("click", iniciarMemoria);
-
-    iniciarMemoria();
-
-
-    /* =====================================
-       JOGO 03: SEQUÊNCIAS NUMÉRICAS
-    ===================================== */
-
-    const perguntaSequencia = document.getElementById("pergunta-sequencia");
-    const opcoesSequencia = document.getElementById("opcoes-sequencia");
-    const feedbackSequencia = document.getElementById("feedback-sequencia");
-    const proximaSequencia = document.getElementById("proxima-sequencia");
-    const numeroSequencia = document.getElementById("numero-sequencia");
-
-    const sequencias = [
-
-        {
-            pergunta: "2, 4, 6, 8, ?",
-            opcoes: [9, 10, 12, 14],
-            resposta: 10,
-            explicacao: "A sequência aumenta de 2 em 2."
-        },
-
-        {
-            pergunta: "3, 6, 12, 24, ?",
-            opcoes: [30, 36, 42, 48],
-            resposta: 48,
-            explicacao: "Cada número é o dobro do anterior."
-        },
-
-        {
-            pergunta: "1, 4, 9, 16, ?",
-            opcoes: [20, 24, 25, 36],
-            resposta: 25,
-            explicacao: "São quadrados perfeitos: 1², 2², 3², 4² e 5²."
-        },
-
-        {
-            pergunta: "100, 90, 80, 70, ?",
-            opcoes: [50, 55, 60, 65],
-            resposta: 60,
-            explicacao: "A sequência diminui de 10 em 10."
-        },
-
-        {
-            pergunta: "2, 3, 5, 8, 13, ?",
-            opcoes: [18, 20, 21, 26],
-            resposta: 21,
-            explicacao: "Cada termo é a soma dos dois anteriores."
-        },
-
-        {
-            pergunta: "1, 3, 7, 15, 31, ?",
-            opcoes: [47, 55, 62, 63],
-            resposta: 63,
-            explicacao: "Multiplique por 2 e some 1."
-        }
-
-    ];
-
-    let indiceSequencia = 0;
-    let sequenciaRespondida = false;
-
-    function mostrarSequencia() {
-
-        if (indiceSequencia >= sequencias.length) {
-            indiceSequencia = 0;
-        }
-
-        const atual = sequencias[indiceSequencia];
-
-        numeroSequencia.textContent = indiceSequencia + 1;
-        perguntaSequencia.textContent = atual.pergunta;
-
-        feedbackSequencia.textContent = "Escolha uma alternativa.";
-        feedbackSequencia.className = "jogo-feedback";
-
-        proximaSequencia.style.display = "none";
-
-        sequenciaRespondida = false;
-
-        opcoesSequencia.innerHTML = "";
-
-        embaralhar(atual.opcoes).forEach((opcao) => {
-
-            const botao = document.createElement("button");
-
-            botao.textContent = opcao;
-
-            botao.addEventListener("click", () => {
-
-                if (sequenciaRespondida) return;
-
-                sequenciaRespondida = true;
-
-                const botoes = opcoesSequencia.querySelectorAll("button");
-
-                botoes.forEach((item) => {
-                    item.disabled = true;
-                });
-
-                if (opcao === atual.resposta) {
-
-                    feedbackSequencia.textContent =
-                        "Correto! " + atual.explicacao;
-
-                    feedbackSequencia.className =
-                        "jogo-feedback feedback-certo";
-
-                } else {
-
-                    feedbackSequencia.textContent =
-                        "A resposta era " + atual.resposta + ". " + atual.explicacao;
-
-                    feedbackSequencia.className =
-                        "jogo-feedback feedback-errado";
-
-                }
-
-                proximaSequencia.style.display = "inline-block";
-
-            });
-
-            opcoesSequencia.appendChild(botao);
-
-        });
-
-    }
-
-    proximaSequencia.addEventListener("click", () => {
-
-        indiceSequencia++;
-
-        mostrarSequencia();
-
-    });
-
-    mostrarSequencia();
-
-
-    /* =====================================
-       EXPERIÊNCIA: LABORATÓRIO DE FRAÇÕES
-    ===================================== */
-
-    const numerador = document.getElementById("numerador");
-    const denominador = document.getElementById("denominador");
-
-    const valorNumerador = document.getElementById("valor-numerador");
-    const valorDenominador = document.getElementById("valor-denominador");
-
-    const fracaoCima = document.getElementById("fracao-cima");
-    const fracaoBaixo = document.getElementById("fracao-baixo");
-
-    const fracaoBarra = document.getElementById("fracao-barra");
-    const fracaoLegenda = document.getElementById("fracao-legenda");
-
-    function atualizarFracao() {
-
-        const n = Number(numerador.value);
-        const d = Number(denominador.value);
-
-        numerador.max = d;
-
-        if (n > d) {
-            numerador.value = d;
-        }
-
-        const numeradorAtual = Number(numerador.value);
-
-        valorNumerador.textContent = numeradorAtual;
-        valorDenominador.textContent = d;
-
-        fracaoCima.textContent = numeradorAtual;
-        fracaoBaixo.textContent = d;
-
-        fracaoBarra.innerHTML = "";
-
-        for (let i = 0; i < d; i++) {
-
-            const parte = document.createElement("div");
-
-            parte.className = "fracao-parte";
-
-            if (i < numeradorAtual) {
-                parte.classList.add("preenchida");
-            }
-
-            fracaoBarra.appendChild(parte);
-
-        }
-
-        const porcentagem = (numeradorAtual / d) * 100;
-
-        fracaoLegenda.textContent =
-            numeradorAtual + " de " + d +
-            " partes estão preenchidas. Isso representa " +
-            porcentagem.toFixed(1).replace(".", ",") + "% do inteiro.";
-
-    }
-
-    numerador.addEventListener("input", atualizarFracao);
-    denominador.addEventListener("input", atualizarFracao);
-
-    atualizarFracao();
-
-})();
+document.getElementById("ano").textContent = new Date().getFullYear();
 </script>
 
 </body>
