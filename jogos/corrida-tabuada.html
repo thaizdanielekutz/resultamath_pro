@@ -1,42 +1,135 @@
 
-<!-- JOGO 11 -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Corrida contra a Tabuada | ResultaLabs</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f4f7fa;color:#202832;font-family:Arial,sans-serif}
+header{background:#171b22;color:white;padding:18px 5%;display:flex;justify-content:space-between}
+header a{color:white;text-decoration:none}
+main{max-width:750px;margin:35px auto;padding:20px}
+.card{background:white;padding:27px;border-radius:18px;box-shadow:0 5px 20px #0001}
+h1{color:#069eda;margin-top:0}
+.painel{display:flex;justify-content:space-around;gap:10px;flex-wrap:wrap;margin:20px 0}
+.painel div{background:#edf7fc;padding:12px 20px;border-radius:12px;text-align:center}
+.painel strong{display:block;color:#069eda;font-size:25px;margin-top:5px}
+.pista{background:#e8edf0;border-radius:15px;padding:20px 12px;margin:25px 0;position:relative;overflow:hidden}
+.faixa{height:12px;background:repeating-linear-gradient(90deg,#fff 0 25px,#c7d2d9 25px 50px);border-radius:10px}
+.corredor{font-size:38px;position:relative;left:0;transition:left .3s;width:max-content}
+.linha-chegada{position:absolute;right:8px;top:8px;bottom:8px;border-right:4px dashed #e15b5b}
+.pergunta{background:#edf7fc;border-radius:14px;padding:27px;text-align:center;font-size:36px;font-weight:bold;margin:20px 0}
+input{width:100%;padding:15px;border:1px solid #ccd6df;border-radius:9px;font-size:22px;text-align:center}
+button{background:#069eda;color:white;border:0;border-radius:9px;padding:13px 20px;font-weight:bold;cursor:pointer}
+#mensagem{min-height:35px;font-weight:bold}
+.botoes{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}
+.sec{background:#596875}
+@media(max-width:450px){.pergunta{font-size:30px}}
+</style>
+</head>
+<body>
+<header><strong>RESULTALABS</strong><a href="../resultalabs.html">← Voltar aos jogos</a></header>
+<main>
+<div class="card">
+<h1>Corrida contra a tabuada</h1>
+<p>Resolva as multiplicações, avance na pista e tente cruzar a linha de chegada antes que o tempo acabe!</p>
 
-<article class="jogo-card">
+<div class="painel">
+<div>Tempo<strong id="tempo">60</strong></div>
+<div>Acertos<strong id="acertos">0</strong></div>
+<div>Erros<strong id="erros">0</strong></div>
+</div>
 
-    <div class="numero">JOGO 11</div>
+<div class="pista">
+<div class="linha-chegada"></div>
+<div class="corredor" id="corredor">🏃</div>
+<div class="faixa"></div>
+</div>
 
-    <div class="icone">🔍</div>
+<div class="pergunta" id="pergunta">?</div>
+<label for="resposta">Qual é o resultado?</label>
+<input id="resposta" type="number" inputmode="numeric" placeholder="Digite sua resposta">
 
-    <h3>Mestre da divisibilidade</h3>
+<div class="botoes">
+<button id="responder">Responder</button>
+<button class="sec" id="iniciar">Começar corrida</button>
+</div>
 
-    <p>
-        Domine os critérios de divisibilidade, múltiplos,
-        divisores, MMC e MDC.
-    </p>
-
-    <a class="jogar" href="jogos/mestre-divisibilidade.html">
-        Jogar agora →
-    </a>
-
-</article>
-
-<!-- JOGO 12 -->
-
-<article class="jogo-card">
-
-    <div class="numero">JOGO 12</div>
-
-    <div class="icone">🏃</div>
-
-    <h3>Corrida contra a tabuada</h3>
-
-    <p>
-        Resolva multiplicações rapidamente e avance
-        na corrida contra o relógio.
-    </p>
-
-    <a class="jogar" href="jogos/corrida-tabuada.html">
-        Jogar agora →
-    </a>
-
-</article>
+<p id="mensagem" aria-live="polite">Prepare-se para a largada!</p>
+</div>
+</main>
+<script>
+(()=>{
+const tempoEl=document.getElementById('tempo');
+const acertosEl=document.getElementById('acertos');
+const errosEl=document.getElementById('erros');
+const pergunta=document.getElementById('pergunta');
+const resposta=document.getElementById('resposta');
+const mensagem=document.getElementById('mensagem');
+const corredor=document.getElementById('corredor');
+let tempo=60,acertos=0,erros=0,resultado=0,ativo=false,intervalo=null,bloqueado=false;
+function atualizar(){
+ tempoEl.textContent=tempo;
+ acertosEl.textContent=acertos;
+ errosEl.textContent=erros;
+}
+function novaPergunta(){
+ let a=Math.floor(Math.random()*10)+2;
+ let b=Math.floor(Math.random()*10)+2;
+ resultado=a*b;
+ pergunta.textContent=`${a} × ${b} = ?`;
+ resposta.value='';
+ resposta.focus();
+ bloqueado=false;
+}
+function encerrar(){
+ ativo=false;
+ clearInterval(intervalo);
+ resposta.disabled=true;
+ document.getElementById('responder').disabled=true;
+ mensagem.textContent=`Corrida encerrada! Você acertou ${acertos} e errou ${erros}.`;
+ document.getElementById('iniciar').textContent='Correr novamente';
+}
+function responder(){
+ if(!ativo||bloqueado)return;
+ if(resposta.value.trim()===''){mensagem.textContent='Digite sua resposta!';return}
+ bloqueado=true;
+ if(Number(resposta.value)===resultado){
+  acertos++;
+  mensagem.textContent='Correto! Você avançou na pista!';
+  corredor.style.left=Math.min(85,acertos*8)+'%';
+ }else{
+  erros++;
+  mensagem.textContent=`Ops! A resposta correta era ${resultado}.`;
+ }
+ atualizar();
+ if(acertos>=10){
+  mensagem.textContent='🏆 Você cruzou a linha de chegada!';
+  encerrar();
+  return;
+ }
+ setTimeout(()=>{if(ativo)novaPergunta()},650);
+}
+document.getElementById('responder').addEventListener('click',responder);
+resposta.addEventListener('keydown',e=>{if(e.key==='Enter')responder()});
+document.getElementById('iniciar').addEventListener('click',()=>{
+ clearInterval(intervalo);
+ tempo=60;acertos=0;erros=0;ativo=true;
+ resposta.disabled=false;
+ document.getElementById('responder').disabled=false;
+ corredor.style.left='0';
+ atualizar();
+ mensagem.textContent='Valendo! Responda o mais rápido que puder.';
+ document.getElementById('iniciar').textContent='Reiniciar';
+ novaPergunta();
+ intervalo=setInterval(()=>{
+  tempo--;atualizar();
+  if(tempo<=0)encerrar();
+ },1000);
+});
+})();
+</script>
+</body>
+</html>
