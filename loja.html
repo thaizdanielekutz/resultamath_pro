@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -37,8 +38,8 @@ a {
 /* CABEÇALHO */
 
 .nav {
-    background: var(--preto);
-    border-bottom: 1px solid var(--borda);
+    background: #171b22;
+    border-bottom: 1px solid rgba(255,255,255,.08);
 }
 
 .nav-cont {
@@ -53,10 +54,12 @@ a {
 }
 
 .logo {
-    font-size: 22px;
+    color: #fff;
+    font-size: 21px;
     font-weight: 900;
     text-decoration: none;
-    letter-spacing: -1px;
+    letter-spacing: -.7px;
+    text-transform: uppercase;
 }
 
 .logo span {
@@ -66,14 +69,15 @@ a {
 .links {
     display: flex;
     align-items: center;
-    gap: 28px;
+    gap: 30px;
 }
 
 .links a {
     text-decoration: none;
-    color: #525b66;
+    color: #c5cbd2;
     font-size: 13px;
     font-weight: 700;
+    transition: .2s;
 }
 
 .links a:hover {
@@ -82,12 +86,17 @@ a {
 
 .btn-plataforma {
     text-decoration: none;
-    background: var(--preto);
+    background: var(--azul);
     color: white;
-    padding: 12px 18px;
-    border-radius: 8px;
+    padding: 12px 19px;
+    border-radius: 7px;
     font-size: 12px;
     font-weight: 800;
+    transition: .2s;
+}
+
+.btn-plataforma:hover {
+    background: var(--azul-escuro);
 }
 
 /* HERO */
@@ -185,16 +194,23 @@ a {
     gap: 13px;
 }
 
-.faixa-simbolo {
-    width: 42px;
-    height: 42px;
+.faixa-imagem {
+    width: 48px;
+    height: 48px;
     border-radius: 10px;
-    background: #eaf7fc;
-    color: var(--azul);
-    display: grid;
-    place-items: center;
-    font-size: 20px;
-    font-weight: 900;
+    background: #edf8fc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.faixa-imagem img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 8px;
 }
 
 .faixa-item strong {
@@ -336,17 +352,17 @@ a {
     object-fit: contain;
 }
 
-.produto-placeholder {
-    font-size: 76px;
-    font-weight: 900;
-    color: #171b22;
-    opacity: .8;
+.produto-imagem.sem-imagem::after {
+    content: "Imagem em breve";
+    color: #a0a8b0;
+    font-size: 12px;
 }
 
 .produto-etiqueta {
     position: absolute;
     top: 15px;
     left: 15px;
+    z-index: 1;
     background: white;
     color: var(--azul-escuro);
     padding: 7px 10px;
@@ -482,6 +498,7 @@ a {
 /* RESPONSIVO */
 
 @media(max-width: 850px) {
+
     .links {
         display: none;
     }
@@ -497,6 +514,7 @@ a {
 }
 
 @media(max-width: 600px) {
+
     .nav-cont {
         min-height: 65px;
     }
@@ -546,27 +564,36 @@ a {
 
 <body>
 
+<!-- CABEÇALHO -->
+
 <header class="nav">
+
     <div class="nav-cont">
 
         <a class="logo" href="index.html">
-            Resulta<span>Math</span>
+            RESULTA<span>MATH</span>
         </a>
 
-        <nav class="links">
+        <nav class="links" aria-label="Navegação">
+
             <a href="index.html">Início</a>
-            <a href="#vitrine">Produtos</a>
+            <a href="#vitrine">Loja</a>
             <a href="resultalabs.html">ResultaLabs</a>
+
         </nav>
 
         <a class="btn-plataforma" href="inicio.html">
-            Acessar plataforma
+            Plataforma
         </a>
 
     </div>
+
 </header>
 
+<!-- APRESENTAÇÃO -->
+
 <section class="hero">
+
     <div class="hero-conteudo">
 
         <span class="hero-tag">LOJA OFICIAL RESULTAMATH</span>
@@ -589,64 +616,107 @@ a {
     </div>
 
     <div class="hero-decoracao">∑</div>
+
 </section>
 
 <main class="container">
 
+    <!-- BENEFÍCIOS -->
+
     <section class="faixa">
 
         <div class="faixa-item">
-            <div class="faixa-simbolo">▤</div>
+
+            <div class="faixa-imagem">
+                <img src="imagens/icone-livros.png" alt="">
+            </div>
+
             <div>
                 <strong>Livros e materiais</strong>
                 <small>Conteúdo organizado para estudar</small>
             </div>
+
         </div>
 
         <div class="faixa-item">
-            <div class="faixa-simbolo">▶</div>
+
+            <div class="faixa-imagem">
+                <img src="imagens/icone-cursos.png" alt="">
+            </div>
+
             <div>
                 <strong>Cursos online</strong>
                 <small>Aprenda no seu próprio ritmo</small>
             </div>
+
         </div>
 
         <div class="faixa-item">
-            <div class="faixa-simbolo">✓</div>
+
+            <div class="faixa-imagem">
+                <img src="imagens/icone-aprendizado.png" alt="">
+            </div>
+
             <div>
                 <strong>Aprendizado prático</strong>
                 <small>Matemática com clareza e estratégia</small>
             </div>
+
         </div>
 
     </section>
 
+    <!-- VITRINE -->
+
     <section class="vitrine" id="vitrine">
 
         <div class="cabecalho-secao">
+
             <div>
                 <span class="secao-tag">ESCOLHA SEU MATERIAL</span>
+
                 <h2>Conheça nossos produtos</h2>
-                <p>Encontre o recurso ideal para sua próxima etapa.</p>
+
+                <p>
+                    Encontre o recurso ideal para sua próxima etapa.
+                </p>
             </div>
+
         </div>
+
+        <!-- FILTROS E BUSCA -->
 
         <div class="controles">
 
             <div class="filtros">
-                <button class="filtro ativo" data-filtro="todos">Todos</button>
-                <button class="filtro" data-filtro="livros">Livros</button>
-                <button class="filtro" data-filtro="cursos">Cursos</button>
-                <button class="filtro" data-filtro="materiais">Materiais digitais</button>
+
+                <button class="filtro ativo" data-filtro="todos">
+                    Todos
+                </button>
+
+                <button class="filtro" data-filtro="livros">
+                    Livros
+                </button>
+
+                <button class="filtro" data-filtro="cursos">
+                    Cursos
+                </button>
+
+                <button class="filtro" data-filtro="materiais">
+                    Materiais digitais
+                </button>
+
             </div>
 
             <div class="busca">
+
                 <input
                     type="search"
                     id="buscar-produto"
                     placeholder="Buscar produto..."
                     aria-label="Buscar produto"
                 >
+
             </div>
 
         </div>
@@ -655,21 +725,30 @@ a {
 
     </section>
 
+    <!-- CHAMADA FINAL -->
+
     <section class="chamada">
 
         <div>
+
             <h2>Seu próximo resultado começa aqui.</h2>
+
             <p>
                 Escolha um material, organize seus estudos
                 e avance um passo de cada vez.
             </p>
+
         </div>
 
-        <a href="inicio.html">Entrar na plataforma →</a>
+        <a href="inicio.html">
+            Entrar na plataforma →
+        </a>
 
     </section>
 
 </main>
+
+<!-- RODAPÉ -->
 
 <footer class="footer">
 
@@ -679,11 +758,17 @@ a {
         Matemática com clareza, estratégia e resultado.
     </p>
 
-    <a href="index.html">Voltar ao site principal</a>
+    <a href="index.html">
+        Voltar ao site principal
+    </a>
 
-    <p>© <span id="ano"></span> ResultaMath. Todos os direitos reservados.</p>
+    <p>
+        © <span id="ano"></span> ResultaMath. Todos os direitos reservados.
+    </p>
 
 </footer>
+
+<!-- PRODUTOS E FUNCIONALIDADES -->
 
 <script>
 (() => {
@@ -699,9 +784,8 @@ const PRODUTOS = [
         nome: "Protocolo de Prova",
         descricao: "Estratégias e técnicas para resolver questões com mais clareza, inteligência e segurança.",
         preco: "",
-        imagem: "",
+        imagem: "imagens/protocolo-de-prova.jpg",
         etiqueta: "Livro",
-        simbolo: "▤",
         link: "https://loja.uiclap.com/titulo/ua184869"
     },
 
@@ -710,9 +794,8 @@ const PRODUTOS = [
         nome: "Questões Comentadas de Matemática para Concursos",
         descricao: "Questões de matemática resolvidas e comentadas para quem está se preparando para concursos públicos.",
         preco: "",
-        imagem: "",
+        imagem: "imagens/questoes-comentadas.jpg",
         etiqueta: "Curso online",
-        simbolo: "▶",
         link: "https://www.udemy.com/course/questoes-comentadas-de-matematica-para-concursos-publicos/"
     },
 
@@ -721,9 +804,8 @@ const PRODUTOS = [
         nome: "Matemática Básica em 1 Minuto: Do Zero ao Essencial",
         descricao: "Aprenda os fundamentos da matemática básica com explicações rápidas, objetivas e organizadas.",
         preco: "",
-        imagem: "",
+        imagem: "imagens/matematica-basica.jpg",
         etiqueta: "Curso online",
-        simbolo: "∑",
         link: "https://www.udemy.com/course/matematica-basica-em-1-minuto-do-zero-ao-essencial/"
     },
 
@@ -732,9 +814,8 @@ const PRODUTOS = [
         nome: "DecodificadorMath",
         descricao: "Material em PDF para aprender a interpretar e decodificar questões de matemática.",
         preco: "",
-        imagem: "",
+        imagem: "imagens/decodificador-math.jpg",
         etiqueta: "Material digital",
-        simbolo: "▧",
         link: "https://resultamath.hotmart.host/decodi"
     }
 
@@ -751,10 +832,12 @@ let filtroAtual = "todos";
 /* NORMALIZAR TEXTO */
 
 function normalizar(texto) {
+
     return String(texto || "")
         .toLowerCase()
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "");
+
 }
 
 /* CRIAR PRODUTO */
@@ -762,30 +845,61 @@ function normalizar(texto) {
 function criarProduto(produto) {
 
     const imagem = produto.imagem
-        ? `<img src="${produto.imagem}" alt="${produto.nome}" loading="lazy">`
-        : `<span class="produto-placeholder">${produto.simbolo || "∑"}</span>`;
+        ? `
+            <img
+                src="${produto.imagem}"
+                alt="${produto.nome}"
+                loading="lazy"
+                onerror="this.remove(); this.parentElement.classList.add('sem-imagem');"
+            >
+        `
+        : "";
 
     const botao = produto.link
-        ? `<a class="produto-botao" href="${produto.link}" target="_blank" rel="noopener noreferrer">Conhecer produto →</a>`
-        : `<span class="produto-botao">Em breve</span>`;
+        ? `
+            <a
+                class="produto-botao"
+                href="${produto.link}"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Conhecer produto →
+            </a>
+        `
+        : `
+            <span class="produto-botao">
+                Em breve
+            </span>
+        `;
 
     return `
         <article class="produto">
 
-            <div class="produto-imagem">
-                <span class="produto-etiqueta">${produto.etiqueta || produto.categoria}</span>
+            <div class="produto-imagem ${produto.imagem ? "" : "sem-imagem"}">
+
+                <span class="produto-etiqueta">
+                    ${produto.etiqueta || produto.categoria}
+                </span>
+
                 ${imagem}
+
             </div>
 
             <div class="produto-info">
 
-                <span class="produto-categoria">${produto.categoria}</span>
+                <span class="produto-categoria">
+                    ${produto.categoria}
+                </span>
 
                 <h3>${produto.nome}</h3>
 
                 <p>${produto.descricao}</p>
 
-                ${produto.preco ? `<div class="produto-preco">${produto.preco}</div>` : ""}
+                ${
+                    produto.preco
+                    ? `<div class="produto-preco">${produto.preco}</div>`
+                    : ""
+                }
 
                 ${botao}
 
@@ -793,9 +907,10 @@ function criarProduto(produto) {
 
         </article>
     `;
+
 }
 
-/* RENDERIZAR */
+/* RENDERIZAR PRODUTOS */
 
 function renderizar() {
 
@@ -819,7 +934,11 @@ function renderizar() {
 
     lista.innerHTML = encontrados.length
         ? encontrados.map(criarProduto).join("")
-        : `<p class="vazio">Nenhum produto encontrado. Tente outra busca.</p>`;
+        : `
+            <p class="vazio">
+                Nenhum produto encontrado. Tente outra busca.
+            </p>
+        `;
 
 }
 
@@ -829,7 +948,9 @@ filtros.forEach(botao => {
 
     botao.addEventListener("click", () => {
 
-        filtros.forEach(item => item.classList.remove("ativo"));
+        filtros.forEach(item => {
+            item.classList.remove("ativo");
+        });
 
         botao.classList.add("ativo");
 
