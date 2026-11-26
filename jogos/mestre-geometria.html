@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mestre da Geometria | ResultaLabs</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f4f7fa;color:#202832;font-family:Arial,sans-serif}
+header{background:#171b22;color:white;padding:18px 5%;display:flex;justify-content:space-between}
+header a{color:white;text-decoration:none}
+main{max-width:720px;margin:35px auto;padding:20px}
+.card{background:white;padding:28px;border-radius:18px;box-shadow:0 5px 20px #0001}
+h1{color:#069eda;margin-top:0}
+.figura{background:#edf7fc;border-radius:14px;padding:25px;text-align:center;margin:20px 0}
+svg{width:180px;height:140px;max-width:100%}
+.pergunta{font-size:20px;font-weight:bold}
+.opcoes{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0}
+.opcoes button{background:white;color:#202832;border:2px solid #dce5eb;padding:15px;border-radius:10px;font-size:17px;cursor:pointer}
+.opcoes button:hover{border-color:#069eda}
+button.principal{background:#069eda;color:white;border:0;border-radius:9px;padding:13px 20px;font-weight:bold;cursor:pointer}
+#mensagem{min-height:30px;font-weight:bold}
+@media(max-width:450px){.opcoes{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><strong>RESULTALABS</strong><a href="../resultalabs.html">← Voltar aos jogos</a></header>
+<main><div class="card">
+<h1>Mestre da geometria</h1>
+<p>Responda aos desafios e avance por dez questões de geometria.</p>
+<p>Questão <strong id="numero">0</strong>/10 | Pontos: <strong id="pontos">0</strong></p>
+<div class="figura" id="figura"></div>
+<div class="pergunta" id="pergunta">Clique em começar para jogar.</div>
+<div class="opcoes" id="opcoes"></div>
+<p id="mensagem" aria-live="polite"></p>
+<button class="principal" id="iniciar">Começar desafio</button>
+</div></main>
+<script>
+(()=>{
+const questoes=[
+{p:'Um quadrado tem lado de 5 cm. Qual é seu perímetro?',o:['10 cm','20 cm','25 cm','15 cm'],c:1,e:'Perímetro = 4 × 5 = 20 cm.',f:'<svg viewBox="0 0 180 140"><rect x="50" y="25" width="80" height="80" fill="#bce9fa" stroke="#069eda" stroke-width="3"/><text x="90" y="18" text-anchor="middle">5 cm</text></svg>'},
+{p:'Um retângulo mede 8 cm por 3 cm. Qual é sua área?',o:['11 cm²','16 cm²','24 cm²','22 cm²'],c:2,e:'Área = base × altura = 8 × 3 = 24 cm².',f:'<svg viewBox="0 0 180 140"><rect x="25" y="35" width="130" height="65" fill="#bce9fa" stroke="#069eda" stroke-width="3"/><text x="90" y="25" text-anchor="middle">8 cm</text><text x="160" y="70">3 cm</text></svg>'},
+{p:'Qual é a soma dos ângulos internos de um triângulo?',o:['90°','180°','270°','360°'],c:1,e:'A soma dos ângulos internos de qualquer triângulo é 180°.',f:'<svg viewBox="0 0 180 140"><polygon points="25,110 150,110 90,15" fill="#bce9fa" stroke="#069eda" stroke-width="3"/></svg>'},
+{p:'Um quadrado tem lado de 6 cm. Qual é sua área?',o:['12 cm²','24 cm²','36 cm²','30 cm²'],c:2,e:'Área = lado × lado = 6 × 6 = 36 cm².',f:'<svg viewBox="0 0 180 140"><rect x="50" y="25" width="80" height="80" fill="#bce9fa" stroke="#069eda" stroke-width="3"/><text x="90" y="18" text-anchor="middle">6 cm</text></svg>'},
+{p:'Quantos graus mede um ângulo reto?',o:['45°','90°','180°','360°'],c:1,e:'O ângulo reto mede exatamente 90°.',f:'<svg viewBox="0 0 180 140"><path d="M45 105 V25 H125" fill="none" stroke="#069eda" stroke-width="5"/><path d="M45 85 H65 V105" fill="none" stroke="#202832" stroke-width="2"/></svg>'},
+{p:'Um triângulo tem lados de 3, 4 e 5 cm. Qual é o perímetro?',o:['7 cm','10 cm','12 cm','15 cm'],c:2,e:'Perímetro = 3 + 4 + 5 = 12 cm.',f:'<svg viewBox="0 0 180 140"><polygon points="35,110 145,110 35,25" fill="#bce9fa" stroke="#069eda" stroke-width="3"/><text x="90" y="128" text-anchor="middle">4 cm</text></svg>'},
+{p:'Qual é a área de um triângulo com base 10 cm e altura 6 cm?',o:['60 cm²','30 cm²','16 cm²','36 cm²'],c:1,e:'Área = (base × altura) ÷ 2 = (10 × 6) ÷ 2 = 30 cm².',f:'<svg viewBox="0 0 180 140"><polygon points="25,110 155,110 100,20" fill="#bce9fa" stroke="#069eda" stroke-width="3"/><text x="90" y="128" text-anchor="middle">10 cm</text><text x="105" y="70">6 cm</text></svg>'},
+{p:'Um círculo tem raio de 3 cm. Usando π = 3,14, qual é sua área?',o:['18,84 cm²','28,26 cm²','9,42 cm²','12,56 cm²'],c:1,e:'Área = π × r² = 3,14 × 3² = 28,26 cm².',f:'<svg viewBox="0 0 180 140"><circle cx="90" cy="70" r="48" fill="#bce9fa" stroke="#069eda" stroke-width="3"/><line x1="90" y1="70" x2="138" y2="70" stroke="#202832" stroke-width="2"/><text x="112" y="60">3 cm</text></svg>'},
+{p:'Um ângulo de 120° é classificado como:',o:['Agudo','Reto','Obtuso','Raso'],c:2,e:'É obtuso porque está entre 90° e 180°.',f:'<svg viewBox="0 0 180 140"><path d="M35 100 H145 M35 100 L90 15" stroke="#069eda" stroke-width="4" fill="none"/><path d="M65 100 A30 30 0 0 0 51 74" stroke="#202832" fill="none"/></svg>'},
+{p:'Um retângulo tem base 7 cm e altura 4 cm. Qual é o perímetro?',o:['11 cm','22 cm','28 cm','14 cm'],c:1,e:'Perímetro = 2 × (7 + 4) = 22 cm.',f:'<svg viewBox="0 0 180 140"><rect x="30" y="35" width="120" height="65" fill="#bce9fa" stroke="#069eda" stroke-width="3"/><text x="90" y="25" text-anchor="middle">7 cm</text><text x="155" y="70">4 cm</text></svg>'}
+];
+let lista=[],pos=0,pontos=0,ativo=false,bloqueado=false;
+const msg=document.getElementById('mensagem');
+function mostrar(){
+ if(pos>=lista.length){ativo=false;document.getElementById('figura').textContent='🏆';document.getElementById('pergunta').textContent='Desafio concluído!';document.getElementById('opcoes').innerHTML='';msg.textContent=`Sua pontuação: ${pontos}/10.`;document.getElementById('iniciar').textContent='Jogar novamente';return}
+ const q=lista[pos];
+ document.getElementById('numero').textContent=pos+1;
+ document.getElementById('pontos').textContent=pontos;
+ document.getElementById('figura').innerHTML=q.f;
+ document.getElementById('pergunta').textContent=q.p;
+ document.getElementById('opcoes').innerHTML='';
+ q.o.forEach((op,i)=>{
+  const b=document.createElement('button');b.type='button';b.textContent=op;
+  b.addEventListener('click',()=>responder(i));document.getElementById('opcoes').appendChild(b);
+ });
+ bloqueado=false;msg.textContent='';
+}
+function responder(i){
+ if(!ativo||bloqueado)return;bloqueado=true;
+ const q=lista[pos];
+ if(i===q.c){pontos++;msg.textContent='Correto! '+q.e}
+ else msg.textContent='Resposta correta: '+q.o[q.c]+'. '+q.e;
+ document.getElementById('pontos').textContent=pontos;
+ document.querySelectorAll('#opcoes button').forEach(b=>b.disabled=true);
+ pos++;setTimeout(mostrar,2200);
+}
+document.getElementById('iniciar').addEventListener('click',()=>{
+ lista=[...questoes].sort(()=>Math.random()-.5);pos=0;pontos=0;ativo=true;
+ document.getElementById('iniciar').textContent='Reiniciar';mostrar();
+});
+})();
+</script>
+</body>
+</html>
