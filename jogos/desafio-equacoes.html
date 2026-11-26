@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Desafio das Equações | ResultaLabs</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f4f7fa;color:#202832;font-family:Arial,sans-serif}
+header{background:#171b22;color:white;padding:18px 5%;display:flex;justify-content:space-between}
+header a{color:white;text-decoration:none}
+main{max-width:720px;margin:35px auto;padding:20px}
+.card{background:white;padding:28px;border-radius:18px;box-shadow:0 5px 20px #0001}
+h1{color:#069eda;margin-top:0}
+.progresso{height:9px;background:#e5edf2;border-radius:20px;overflow:hidden;margin:20px 0}
+#barra{height:100%;width:0;background:#069eda;transition:.3s}
+.equacao{background:#edf7fc;border-radius:14px;padding:30px;text-align:center;font-size:34px;font-weight:bold;margin:20px 0}
+input{width:100%;padding:15px;border:1px solid #ccd6df;border-radius:9px;font-size:20px;margin:10px 0}
+button{background:#069eda;color:white;border:0;border-radius:9px;padding:13px 20px;font-weight:bold;cursor:pointer}
+#mensagem{min-height:30px;font-weight:bold}
+</style>
+</head>
+<body>
+<header><strong>RESULTALABS</strong><a href="../resultalabs.html">← Voltar aos jogos</a></header>
+<main><div class="card">
+<h1>Desafio das equações</h1>
+<p>Descubra o valor de x e avance pelas dez etapas.</p>
+<div class="progresso"><div id="barra"></div></div>
+<p>Questão <strong id="numero">0</strong>/10 | Pontos: <strong id="pontos">0</strong></p>
+<div class="equacao" id="equacao">Prepare-se!</div>
+<label for="resposta">Qual é o valor de x?</label>
+<input id="resposta" type="number" placeholder="Digite sua resposta">
+<button id="verificar">Verificar resposta</button>
+<p id="mensagem" aria-live="polite">Clique em começar para iniciar.</p>
+<button id="iniciar">Começar</button>
+</div></main>
+<script>
+(()=>{
+const equacoes=[
+{t:'x + 7 = 15',x:8,e:'Subtraia 7 dos dois lados: x = 15 − 7 = 8.'},
+{t:'x − 5 = 12',x:17,e:'Some 5 aos dois lados: x = 12 + 5 = 17.'},
+{t:'3x = 21',x:7,e:'Divida os dois lados por 3: x = 21 ÷ 3 = 7.'},
+{t:'x ÷ 4 = 6',x:24,e:'Multiplique os dois lados por 4: x = 6 × 4 = 24.'},
+{t:'2x + 3 = 13',x:5,e:'Subtraia 3 e divida por 2: x = (13 − 3) ÷ 2 = 5.'},
+{t:'5x − 10 = 20',x:6,e:'Some 10 e divida por 5: x = (20 + 10) ÷ 5 = 6.'},
+{t:'4x + 8 = 28',x:5,e:'Subtraia 8 e divida por 4: x = (28 − 8) ÷ 4 = 5.'},
+{t:'3x − 6 = 18',x:8,e:'Some 6 e divida por 3: x = (18 + 6) ÷ 3 = 8.'},
+{t:'2(x + 3) = 18',x:6,e:'Divida por 2: x + 3 = 9. Então x = 6.'},
+{t:'4x + 2 = 3x + 11',x:9,e:'Subtraia 3x e depois 2: x = 11 − 2 = 9.'}
+];
+let ordem=[],pos=0,pontos=0,ativo=false,respondida=false;
+const eq=document.getElementById('equacao'),msg=document.getElementById('mensagem');
+function mostrar(){
+ if(pos>=10){ativo=false;eq.textContent='Fim de jogo!';msg.textContent=`Você fez ${pontos} de 10 pontos.`;document.getElementById('iniciar').textContent='Jogar novamente';return}
+ const q=ordem[pos];eq.textContent=q.t;
+ document.getElementById('numero').textContent=pos+1;
+ document.getElementById('pontos').textContent=pontos;
+ document.getElementById('barra').style.width=(pos/10*100)+'%';
+ document.getElementById('resposta').value='';
+ document.getElementById('resposta').disabled=false;
+ document.getElementById('verificar').disabled=false;
+ respondida=false;msg.textContent='Encontre o valor de x.';
+}
+document.getElementById('iniciar').addEventListener('click',()=>{
+ ordem=[...equacoes].sort(()=>Math.random()-.5);pos=0;pontos=0;ativo=true;
+ document.getElementById('iniciar').textContent='Reiniciar';mostrar();
+});
+document.getElementById('verificar').addEventListener('click',()=>{
+ if(!ativo||respondida)return;
+ const q=ordem[pos],v=document.getElementById('resposta').value;
+ if(v===''){msg.textContent='Digite um valor para x.';return}
+ respondida=true;
+ if(Number(v)===q.x){pontos++;msg.textContent='Correto! '+q.e}
+ else msg.textContent=`Não foi dessa vez. x = ${q.x}. ${q.e}`;
+ document.getElementById('pontos').textContent=pontos;
+ document.getElementById('resposta').disabled=true;
+ document.getElementById('verificar').disabled=true;
+ pos++;
+ setTimeout(mostrar,1800);
+});
+document.getElementById('resposta').addEventListener('keydown',e=>{
+ if(e.key==='Enter')document.getElementById('verificar').click();
+});
+})();
+</script>
+</body>
+</html>

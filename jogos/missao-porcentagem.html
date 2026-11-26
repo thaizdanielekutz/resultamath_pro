@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Missão Porcentagem | ResultaLabs</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f4f7fa;color:#202832;font-family:Arial,sans-serif}
+header{background:#171b22;color:white;padding:18px 5%;display:flex;justify-content:space-between}
+header a{color:white;text-decoration:none}
+main{max-width:720px;margin:35px auto;padding:20px}
+.card{background:white;padding:28px;border-radius:18px;box-shadow:0 5px 20px #0001}
+h1{color:#069eda;margin-top:0}
+.questao{background:#edf7fc;padding:22px;border-radius:13px;font-size:21px;margin:20px 0}
+input{width:100%;padding:15px;border:1px solid #ccd6df;border-radius:9px;font-size:20px;margin:10px 0}
+button{background:#069eda;color:white;border:0;border-radius:9px;padding:13px 20px;font-weight:bold;cursor:pointer}
+#mensagem{min-height:32px;font-weight:bold}
+small{color:#687782}
+</style>
+</head>
+<body>
+<header><strong>RESULTALABS</strong><a href="../resultalabs.html">← Voltar aos jogos</a></header>
+<main><div class="card">
+<h1>Missão porcentagem</h1>
+<p>Resolva os desafios e mostre que domina porcentagens no dia a dia.</p>
+<p>Questão <strong id="numero">0</strong>/10 | Pontos: <strong id="pontos">0</strong></p>
+<div class="questao" id="pergunta">Clique em começar para receber sua missão.</div>
+<label for="resposta">Digite o resultado:</label>
+<input id="resposta" type="number" step="0.01" placeholder="Sua resposta">
+<small>Use apenas números. Se necessário, utilize ponto ou vírgula nos decimais.</small>
+<p><button id="verificar">Conferir</button></p>
+<p id="mensagem" aria-live="polite"></p>
+<button id="iniciar">Começar missão</button>
+</div></main>
+<script>
+(()=>{
+const questoes=[
+{p:'Quanto é 20% de R$ 150?',r:30,e:'20% de 150 = 0,20 × 150 = R$ 30.'},
+{p:'Um produto de R$ 200 recebeu desconto de 15%. Qual é o preço final?',r:170,e:'15% de 200 = 30. Preço final: 200 − 30 = R$ 170.'},
+{p:'Uma conta de R$ 80 aumentou 10%. Qual é o novo valor?',r:88,e:'10% de 80 = 8. Novo valor: 80 + 8 = R$ 88.'},
+{p:'Quanto é 25% de 240?',r:60,e:'25% é a quarta parte: 240 ÷ 4 = 60.'},
+{p:'Um tênis de R$ 300 teve desconto de 20%. Qual é o preço final?',r:240,e:'20% de 300 = 60. Preço final: 300 − 60 = R$ 240.'},
+{p:'Quanto é 5% de 400?',r:20,e:'5% de 400 = 0,05 × 400 = 20.'},
+{p:'Um salário de R$ 1.500 aumentou 8%. Qual é o novo salário?',r:1620,e:'8% de 1.500 = 120. Novo salário: R$ 1.620.'},
+{p:'Um produto de R$ 120 passou a custar R$ 90. Qual foi o desconto percentual?',r:25,e:'O desconto foi 30. Como 30 ÷ 120 = 0,25, o desconto foi de 25%.'},
+{p:'Quanto é 12% de 250?',r:30,e:'12% de 250 = 0,12 × 250 = 30.'},
+{p:'Um valor de R$ 500 sofreu aumento de 20%. Qual é o novo valor?',r:600,e:'20% de 500 = 100. Novo valor: R$ 600.'}
+];
+let lista=[],pos=0,pontos=0,ativo=false,bloqueado=false;
+const pergunta=document.getElementById('pergunta'),msg=document.getElementById('mensagem');
+function mostrar(){
+ if(pos>=lista.length){ativo=false;pergunta.textContent='Missão concluída!';msg.textContent=`Resultado final: ${pontos}/10 pontos.`;document.getElementById('iniciar').textContent='Jogar novamente';return}
+ pergunta.textContent=lista[pos].p;
+ document.getElementById('numero').textContent=pos+1;
+ document.getElementById('pontos').textContent=pontos;
+ document.getElementById('resposta').value='';
+ document.getElementById('resposta').disabled=false;
+ document.getElementById('verificar').disabled=false;
+ bloqueado=false;msg.textContent='';
+}
+document.getElementById('iniciar').addEventListener('click',()=>{
+ lista=[...questoes].sort(()=>Math.random()-.5);pos=0;pontos=0;ativo=true;
+ document.getElementById('iniciar').textContent='Reiniciar';mostrar();
+});
+document.getElementById('verificar').addEventListener('click',()=>{
+ if(!ativo||bloqueado)return;
+ const v=document.getElementById('resposta').value.replace(',','.');
+ if(v.trim()===''){msg.textContent='Digite sua resposta.';return}
+ bloqueado=true;
+ const q=lista[pos];
+ if(Math.abs(Number(v)-q.r)<0.011){pontos++;msg.textContent='Acertou! '+q.e}
+ else msg.textContent=`Resposta correta: ${q.r}. ${q.e}`;
+ document.getElementById('pontos').textContent=pontos;
+ document.getElementById('resposta').disabled=true;
+ document.getElementById('verificar').disabled=true;
+ pos++;setTimeout(mostrar,2200);
+});
+document.getElementById('resposta').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('verificar').click()});
+})();
+</script>
+</body>
+</html>
