@@ -1,0 +1,396 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Desafio Relâmpago | ResultaLabs</title>
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f8fb;
+    color: #171b22;
+    min-height: 100vh;
+}
+
+header {
+    background: white;
+    border-bottom: 1px solid #e5ebf0;
+    padding: 18px 24px;
+}
+
+nav {
+    max-width: 900px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: #171b22;
+    font-size: 21px;
+    font-weight: 900;
+    text-decoration: none;
+}
+
+.logo span { color: #069eda; }
+
+.voltar {
+    color: #087eae;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+main {
+    max-width: 800px;
+    margin: 65px auto;
+    padding: 0 20px;
+}
+
+.tag {
+    color: #069eda;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+h1 {
+    font-size: clamp(32px, 6vw, 48px);
+    letter-spacing: -2px;
+    margin: 12px 0;
+}
+
+.descricao {
+    color: #68717d;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+.jogo {
+    background: white;
+    border: 1px solid #e5ebf0;
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(20,40,60,.04);
+}
+
+.status {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.status strong { color: #069eda; }
+
+.barra {
+    height: 9px;
+    background: #edf1f4;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 18px 0 30px;
+}
+
+.progresso {
+    height: 100%;
+    width: 100%;
+    background: #069eda;
+    transition: width .3s linear;
+}
+
+.centro { text-align: center; }
+
+.pergunta {
+    font-size: clamp(42px, 9vw, 65px);
+    font-weight: 900;
+    letter-spacing: -2px;
+    margin: 35px 0;
+}
+
+input {
+    width: 160px;
+    padding: 15px;
+    border: 2px solid #e5ebf0;
+    border-radius: 10px;
+    font-size: 24px;
+    text-align: center;
+    font-weight: 800;
+    outline: none;
+}
+
+input:focus { border-color: #069eda; }
+
+button {
+    border: none;
+    background: #069eda;
+    color: white;
+    padding: 15px 22px;
+    border-radius: 9px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: .2s;
+}
+
+button:hover {
+    background: #087eae;
+    transform: translateY(-2px);
+}
+
+button:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.acoes {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.secundario {
+    background: #edf3f7;
+    color: #171b22;
+}
+
+.secundario:hover { background: #dceaf1; }
+
+.feedback {
+    min-height: 28px;
+    margin-top: 22px;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.certo { color: #16a36a; }
+.errado { color: #df5050; }
+
+.instrucoes {
+    color: #68717d;
+    font-size: 13px;
+    line-height: 1.7;
+    margin-top: 25px;
+    text-align: center;
+}
+
+@media(max-width: 500px) {
+    .jogo { padding: 22px 15px; }
+    .acoes button { width: 100%; }
+    input { width: 100%; margin-bottom: 10px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <a href="../resultalabs.html" class="logo">
+            RESULTA<span>LABS</span>
+        </a>
+        <a href="../resultalabs.html" class="voltar">← Voltar ao laboratório</a>
+    </nav>
+</header>
+
+<main>
+
+    <span class="tag">JOGO MATEMÁTICO · CÁLCULO MENTAL</span>
+    <h1>Desafio relâmpago ⚡</h1>
+
+    <p class="descricao">
+        O tempo está correndo! Resolva as operações o mais rápido
+        possível e tente alcançar sua melhor pontuação.
+    </p>
+
+    <section class="jogo">
+
+        <div class="status">
+            <span>Pontos: <strong id="pontos">0</strong></span>
+            <span>Tempo: <strong id="tempo">30</strong>s</span>
+            <span>Recorde: <strong id="recorde">0</strong></span>
+        </div>
+
+        <div class="barra">
+            <div class="progresso" id="progresso"></div>
+        </div>
+
+        <div class="centro">
+
+            <div class="pergunta" id="pergunta">Pronto?</div>
+
+            <div id="area-resposta" hidden>
+                <input
+                    type="number"
+                    id="resposta"
+                    placeholder="?"
+                    autocomplete="off"
+                    aria-label="Sua resposta"
+                >
+                <button id="verificar">Responder</button>
+            </div>
+
+            <div class="feedback" id="feedback">
+                Clique em começar para iniciar.
+            </div>
+
+            <div class="acoes">
+                <button id="iniciar">Começar jogo</button>
+            </div>
+
+        </div>
+
+        <p class="instrucoes">
+            São 30 segundos de desafio. Cada resposta correta vale 1 ponto.
+            Pressione Enter para enviar sua resposta.
+        </p>
+
+    </section>
+
+</main>
+
+<script>
+(() => {
+    "use strict";
+
+    const pergunta = document.getElementById("pergunta");
+    const resposta = document.getElementById("resposta");
+    const areaResposta = document.getElementById("area-resposta");
+    const pontosEl = document.getElementById("pontos");
+    const tempoEl = document.getElementById("tempo");
+    const recordeEl = document.getElementById("recorde");
+    const progresso = document.getElementById("progresso");
+    const feedback = document.getElementById("feedback");
+    const iniciar = document.getElementById("iniciar");
+    const verificar = document.getElementById("verificar");
+
+    let pontos = 0;
+    let tempo = 30;
+    let resultado = 0;
+    let ativo = false;
+    let intervalo = null;
+
+    let recorde = 0;
+
+    try {
+        recorde = Number(localStorage.getItem("resultalabs_recorde") || 0);
+    } catch (e) {}
+
+    recordeEl.textContent = recorde;
+
+    function novaOperacao() {
+        const operacoes = ["+", "-", "×"];
+        const op = operacoes[Math.floor(Math.random() * operacoes.length)];
+
+        let a = Math.floor(Math.random() * 20) + 1;
+        let b = Math.floor(Math.random() * 15) + 1;
+
+        if (op === "+") {
+            resultado = a + b;
+        }
+
+        if (op === "-") {
+            if (b > a) [a, b] = [b, a];
+            resultado = a - b;
+        }
+
+        if (op === "×") {
+            a = Math.floor(Math.random() * 10) + 1;
+            b = Math.floor(Math.random() * 10) + 1;
+            resultado = a * b;
+        }
+
+        pergunta.textContent = `${a} ${op} ${b} = ?`;
+        resposta.value = "";
+        resposta.focus();
+    }
+
+    function iniciarJogo() {
+        clearInterval(intervalo);
+
+        pontos = 0;
+        tempo = 30;
+        ativo = true;
+
+        pontosEl.textContent = pontos;
+        tempoEl.textContent = tempo;
+        progresso.style.width = "100%";
+
+        feedback.textContent = "Vamos lá! Resolva a operação.";
+        feedback.className = "feedback";
+
+        areaResposta.hidden = false;
+        iniciar.hidden = true;
+
+        novaOperacao();
+
+        intervalo = setInterval(() => {
+            tempo--;
+            tempoEl.textContent = tempo;
+            progresso.style.width = (tempo / 30 * 100) + "%";
+
+            if (tempo <= 0) finalizar();
+        }, 1000);
+    }
+
+    function finalizar() {
+        ativo = false;
+        clearInterval(intervalo);
+
+        areaResposta.hidden = true;
+        iniciar.hidden = false;
+        iniciar.textContent = "Jogar novamente";
+
+        pergunta.textContent = pontos + " pontos";
+
+        feedback.textContent = "Fim de jogo! Você fez " + pontos + " pontos.";
+        feedback.className = "feedback";
+
+        if (pontos > recorde) {
+            recorde = pontos;
+            recordeEl.textContent = recorde;
+
+            try {
+                localStorage.setItem("resultalabs_recorde", String(recorde));
+            } catch (e) {}
+
+            feedback.textContent += " Novo recorde!";
+        }
+    }
+
+    function conferir() {
+        if (!ativo || resposta.value.trim() === "") return;
+
+        if (Number(resposta.value) === resultado) {
+            pontos++;
+            pontosEl.textContent = pontos;
+            feedback.textContent = "Muito bem! Resposta correta.";
+            feedback.className = "feedback certo";
+        } else {
+            feedback.textContent = "Não foi dessa vez. Continue tentando!";
+            feedback.className = "feedback errado";
+        }
+
+        novaOperacao();
+    }
+
+    iniciar.addEventListener("click", iniciarJogo);
+    verificar.addEventListener("click", conferir);
+
+    resposta.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") conferir();
+    });
+
+})();
+</script>
+
+</body>
+</html>
