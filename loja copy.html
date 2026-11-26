@@ -1,0 +1,673 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Loja | ResultaMath</title>
+
+<meta name="description" content="Conheça os livros, cursos e materiais digitais da ResultaMath.">
+
+<link rel="stylesheet" href="estilo.css">
+<link rel="stylesheet" href="landing.css">
+
+<style>
+
+/* ===== LOJA ===== */
+
+.loja {
+    max-width: 1180px;
+    width: calc(100% - 40px);
+    margin: 0 auto;
+}
+
+/* ===== APRESENTAÇÃO ===== */
+
+.loja-hero {
+    padding: 90px 20px 65px;
+    text-align: center;
+}
+
+.loja-hero .eyebrow {
+    color: #069eda;
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+.loja-hero h1 {
+    font-family: Manrope, sans-serif;
+    font-size: clamp(34px, 6vw, 58px);
+    line-height: 1.1;
+    margin: 18px 0;
+    color: #20242b;
+}
+
+.loja-hero h1 span {
+    color: #069eda;
+}
+
+.loja-hero p {
+    max-width: 650px;
+    margin: 0 auto;
+    color: #69717c;
+    line-height: 1.7;
+    font-size: 16px;
+}
+
+/* ===== CATEGORIAS ===== */
+
+.loja-categorias {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 0 auto 45px;
+}
+
+.loja-categorias a {
+    text-decoration: none;
+    color: #333b45;
+    background: #f2f5f7;
+    padding: 11px 20px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 700;
+    transition: .2s;
+}
+
+.loja-categorias a:hover {
+    background: #069eda;
+    color: white;
+}
+
+/* ===== BUSCA ===== */
+
+.loja-busca {
+    max-width: 480px;
+    margin: 0 auto 45px;
+}
+
+.loja-busca input {
+    width: 100%;
+    padding: 15px 18px;
+    border: 1px solid #e0e6ea;
+    border-radius: 12px;
+    outline: none;
+    font: inherit;
+    box-sizing: border-box;
+}
+
+.loja-busca input:focus {
+    border-color: #069eda;
+    box-shadow: 0 0 0 3px rgba(6,158,218,.1);
+}
+
+/* ===== SEÇÕES ===== */
+
+.loja-secao {
+    padding: 35px 0 55px;
+    scroll-margin-top: 90px;
+}
+
+.loja-titulo {
+    margin-bottom: 25px;
+}
+
+.loja-titulo span {
+    color: #069eda;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.loja-titulo h2 {
+    font-family: Manrope, sans-serif;
+    font-size: 29px;
+    margin: 8px 0;
+    color: #20242b;
+}
+
+.loja-titulo p {
+    color: #737b85;
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* ===== CARDS ===== */
+
+.produtos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 22px;
+}
+
+.produto {
+    background: white;
+    border: 1px solid #e8edf0;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform .2s, box-shadow .2s;
+}
+
+.produto:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0,0,0,.07);
+}
+
+.produto-imagem {
+    background: #f2f6f8;
+    height: 230px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.produto-imagem img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.produto-placeholder {
+    color: #069eda;
+    font-size: 65px;
+    font-weight: 800;
+}
+
+.produto-info {
+    padding: 20px;
+}
+
+.produto-categoria {
+    color: #069eda;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.produto-info h3 {
+    color: #252b32;
+    font-size: 18px;
+    line-height: 1.4;
+    margin: 9px 0;
+}
+
+.produto-info p {
+    color: #747d87;
+    font-size: 13px;
+    line-height: 1.6;
+    min-height: 60px;
+}
+
+.produto-preco {
+    font-size: 20px;
+    font-weight: 800;
+    color: #20242b;
+    margin: 15px 0;
+}
+
+.produto-botao {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    background: #069eda;
+    color: white;
+    padding: 12px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 800;
+    transition: .2s;
+}
+
+.produto-botao:hover {
+    background: #0787bc;
+}
+
+.produtos-vazios {
+    color: #858e97;
+    padding: 25px;
+    text-align: center;
+    grid-column: 1 / -1;
+}
+
+/* ===== RODAPÉ ===== */
+
+.loja-footer {
+    margin-top: 60px;
+    padding: 30px 20px;
+    border-top: 1px solid #e9edf0;
+    text-align: center;
+    color: #828b94;
+    font-size: 13px;
+}
+
+.loja-footer a {
+    color: #069eda;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+
+@media (max-width: 600px) {
+
+    .loja-hero {
+        padding: 65px 10px 45px;
+    }
+
+    .loja-secao {
+        padding: 25px 0 40px;
+    }
+
+    .loja-titulo h2 {
+        font-size: 25px;
+    }
+
+    .produtos-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ===== CABEÇALHO ===== -->
+
+<header class="nav">
+
+    <div class="nav-cont">
+
+        <a class="logo" href="index.html">
+            ResultaMath
+        </a>
+
+        <nav class="links" aria-label="Navegação">
+
+            <a href="index.html">Início</a>
+            <a href="#livros">Livros</a>
+            <a href="#cursos">Cursos</a>
+            <a href="#materiais">Materiais digitais</a>
+
+        </nav>
+
+        <a class="btn" href="inicio.html">
+            Plataforma
+        </a>
+
+    </div>
+
+</header>
+
+
+<main class="loja">
+
+    <!-- ===== APRESENTAÇÃO ===== -->
+
+    <section class="loja-hero">
+
+        <span class="eyebrow">
+            LOJA OFICIAL
+        </span>
+
+        <h1>
+            Conhecimento que<br>
+            transforma em <span>resultado.</span>
+        </h1>
+
+        <p>
+            Livros, cursos e materiais desenvolvidos para
+            facilitar seu aprendizado e ajudar você a dominar
+            a matemática.
+        </p>
+
+    </section>
+
+
+    <!-- ===== CATEGORIAS ===== -->
+
+    <nav class="loja-categorias">
+
+        <a href="#livros">♧ Livros</a>
+
+        <a href="#cursos">▶ Cursos</a>
+
+        <a href="#materiais">▤ Materiais digitais</a>
+
+    </nav>
+
+
+    <!-- ===== BUSCA ===== -->
+
+    <div class="loja-busca">
+
+        <input
+            type="search"
+            id="buscar-produto"
+            placeholder="Buscar um produto..."
+            aria-label="Buscar produtos"
+        >
+
+    </div>
+
+
+    <!-- ===== LIVROS ===== -->
+
+    <section class="loja-secao" id="livros">
+
+        <div class="loja-titulo">
+
+            <span>LEITURA E APRENDIZADO</span>
+
+            <h2>Livros</h2>
+
+            <p>
+                Materiais para construir uma base matemática
+                sólida e melhorar seu desempenho.
+            </p>
+
+        </div>
+
+        <div class="produtos-grid" id="lista-livros"></div>
+
+    </section>
+
+
+    <!-- ===== CURSOS ===== -->
+
+    <section class="loja-secao" id="cursos">
+
+        <div class="loja-titulo">
+
+            <span>APRENDA NO SEU RITMO</span>
+
+            <h2>Cursos online</h2>
+
+            <p>
+                Aulas organizadas, explicações e exercícios
+                para desenvolver suas habilidades.
+            </p>
+
+        </div>
+
+        <div class="produtos-grid" id="lista-cursos"></div>
+
+    </section>
+
+
+    <!-- ===== MATERIAIS DIGITAIS ===== -->
+
+    <section class="loja-secao" id="materiais">
+
+        <div class="loja-titulo">
+
+            <span>RECURSOS PARA ESTUDAR</span>
+
+            <h2>Materiais digitais</h2>
+
+            <p>
+                Apostilas, flashcards, listas de exercícios
+                e materiais complementares.
+            </p>
+
+        </div>
+
+        <div class="produtos-grid" id="lista-materiais"></div>
+
+    </section>
+
+</main>
+
+
+<!-- ===== RODAPÉ ===== -->
+
+<footer class="loja-footer">
+
+    <p>
+        © <span id="ano"></span> ResultaMath.
+        Todos os direitos reservados.
+    </p>
+
+    <a href="index.html">
+        Voltar ao site principal
+    </a>
+
+</footer>
+
+
+<!-- ===== PRODUTOS ===== -->
+
+<script>
+
+/*
+CADASTRO DE PRODUTOS
+
+Categorias disponíveis:
+livros
+cursos
+materiais
+
+Campos:
+categoria
+nome
+descricao
+preco
+imagem
+link
+*/
+
+const PRODUTOS = [
+
+    /* ===== LIVROS ===== */
+
+    {
+        categoria: 'livros',
+
+        nome: 'Protocolo de Prova',
+
+        descricao:
+            'Estratégias e técnicas para resolver questões com mais clareza, inteligência e segurança.',
+
+        preco: '',
+
+        imagem: '',
+
+        link:
+            'https://loja.uiclap.com/titulo/ua184869'
+    },
+
+
+    /* ===== CURSOS ===== */
+
+    {
+        categoria: 'cursos',
+
+        nome: 'Questões Comentadas de Matemática para Concursos',
+
+        descricao:
+            'Questões de matemática resolvidas e comentadas para quem está se preparando para concursos públicos.',
+
+        preco: '',
+
+        imagem: '',
+
+        link:
+            'https://www.udemy.com/course/questoes-comentadas-de-matematica-para-concursos-publicos/'
+    },
+
+    {
+        categoria: 'cursos',
+
+        nome: 'Matemática Básica em 1 Minuto: Do Zero ao Essencial',
+
+        descricao:
+            'Aprenda os fundamentos da matemática básica com explicações rápidas, objetivas e organizadas.',
+
+        preco: '',
+
+        imagem: '',
+
+        link:
+            'https://www.udemy.com/course/matematica-basica-em-1-minuto-do-zero-ao-essencial/'
+    },
+
+
+    /* ===== MATERIAIS DIGITAIS ===== */
+
+    {
+        categoria: 'materiais',
+
+        nome: 'DecodificadorMath',
+
+        descricao:
+            'Material em PDF para aprender a interpretar e decodificar questões de matemática.',
+
+        preco: '',
+
+        imagem: '',
+
+        link:
+            'https://resultamath.hotmart.host/decodi'
+    }
+
+];
+
+
+/* ===== CRIAR CARD ===== */
+
+function criarProduto(produto) {
+
+    const imagem = produto.imagem
+        ? `
+            <img
+                src="${produto.imagem}"
+                alt="${produto.nome}"
+                loading="lazy"
+            >
+        `
+        : `
+            <span class="produto-placeholder">▤</span>
+        `;
+
+    const botao = produto.link
+        ? `
+            <a
+                class="produto-botao"
+                href="${produto.link}"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Conhecer produto →
+            </a>
+        `
+        : `
+            <span class="produto-botao">
+                Em breve
+            </span>
+        `;
+
+    return `
+        <article class="produto">
+
+            <div class="produto-imagem">
+                ${imagem}
+            </div>
+
+            <div class="produto-info">
+
+                <span class="produto-categoria">
+                    ${produto.categoria}
+                </span>
+
+                <h3>${produto.nome}</h3>
+
+                <p>${produto.descricao}</p>
+
+                ${
+                    produto.preco
+                    ? `<div class="produto-preco">${produto.preco}</div>`
+                    : ''
+                }
+
+                ${botao}
+
+            </div>
+
+        </article>
+    `;
+
+}
+
+
+/* ===== RENDERIZAR PRODUTOS ===== */
+
+function renderizarProdutos() {
+
+    const categorias = {
+
+        livros: document.getElementById('lista-livros'),
+
+        cursos: document.getElementById('lista-cursos'),
+
+        materiais: document.getElementById('lista-materiais')
+
+    };
+
+    Object.entries(categorias).forEach(([categoria, elemento]) => {
+
+        const produtos = PRODUTOS.filter(
+            produto => produto.categoria === categoria
+        );
+
+        elemento.innerHTML = produtos.length
+            ? produtos.map(criarProduto).join('')
+            : '<p class="produtos-vazios">Novidades em breve.</p>';
+
+    });
+
+}
+
+
+/* ===== BUSCAR PRODUTOS ===== */
+
+document
+    .getElementById('buscar-produto')
+    .addEventListener('input', function() {
+
+        const termo = this.value
+            .toLowerCase()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '');
+
+        document.querySelectorAll('.produto').forEach(produto => {
+
+            const conteudo = produto.textContent
+                .toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '');
+
+            produto.style.display =
+                conteudo.includes(termo) ? '' : 'none';
+
+        });
+
+    });
+
+
+/* ===== INICIALIZAÇÃO ===== */
+
+renderizarProdutos();
+
+document.getElementById('ano').textContent =
+    new Date().getFullYear();
+
+</script>
+
+</body>
+</html>

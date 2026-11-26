@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -6,162 +6,328 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Loja | ResultaMath</title>
-
-<meta name="description" content="Conheça os livros, cursos e materiais digitais da ResultaMath.">
+<meta name="description" content="Livros, cursos e materiais de matemática da ResultaMath.">
 
 <link rel="stylesheet" href="estilo.css">
-<link rel="stylesheet" href="landing.css">
 
 <style>
-
-/* ===== LOJA ===== */
-
-.loja {
-    max-width: 1180px;
-    width: calc(100% - 40px);
-    margin: 0 auto;
+:root {
+    --azul: #069eda;
+    --azul-escuro: #087eae;
+    --preto: #171b22;
+    --cinza: #69717c;
+    --fundo: #f6f8fa;
+    --borda: #e8edf0;
 }
 
-/* ===== APRESENTAÇÃO ===== */
-
-.loja-hero {
-    padding: 90px 20px 65px;
-    text-align: center;
-}
-
-.loja-hero .eyebrow {
-    color: #069eda;
-    font-weight: 800;
-    font-size: 12px;
-    letter-spacing: 2px;
-}
-
-.loja-hero h1 {
-    font-family: Manrope, sans-serif;
-    font-size: clamp(34px, 6vw, 58px);
-    line-height: 1.1;
-    margin: 18px 0;
-    color: #20242b;
-}
-
-.loja-hero h1 span {
-    color: #069eda;
-}
-
-.loja-hero p {
-    max-width: 650px;
-    margin: 0 auto;
-    color: #69717c;
-    line-height: 1.7;
-    font-size: 16px;
-}
-
-/* ===== CATEGORIAS ===== */
-
-.loja-categorias {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin: 0 auto 45px;
-}
-
-.loja-categorias a {
-    text-decoration: none;
-    color: #333b45;
-    background: #f2f5f7;
-    padding: 11px 20px;
-    border-radius: 30px;
-    font-size: 14px;
-    font-weight: 700;
-    transition: .2s;
-}
-
-.loja-categorias a:hover {
-    background: #069eda;
-    color: white;
-}
-
-/* ===== BUSCA ===== */
-
-.loja-busca {
-    max-width: 480px;
-    margin: 0 auto 45px;
-}
-
-.loja-busca input {
-    width: 100%;
-    padding: 15px 18px;
-    border: 1px solid #e0e6ea;
-    border-radius: 12px;
-    outline: none;
-    font: inherit;
+* {
     box-sizing: border-box;
 }
 
-.loja-busca input:focus {
-    border-color: #069eda;
-    box-shadow: 0 0 0 3px rgba(6,158,218,.1);
-}
-
-/* ===== SEÇÕES ===== */
-
-.loja-secao {
-    padding: 35px 0 55px;
-    scroll-margin-top: 90px;
-}
-
-.loja-titulo {
-    margin-bottom: 25px;
-}
-
-.loja-titulo span {
-    color: #069eda;
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 1.5px;
-}
-
-.loja-titulo h2 {
-    font-family: Manrope, sans-serif;
-    font-size: 29px;
-    margin: 8px 0;
-    color: #20242b;
-}
-
-.loja-titulo p {
-    color: #737b85;
+body {
     margin: 0;
-    line-height: 1.6;
+    background: #fff;
+    color: var(--preto);
+    font-family: Arial, sans-serif;
 }
 
-/* ===== CARDS ===== */
+a {
+    color: inherit;
+}
+
+/* CABEÇALHO */
+
+.nav {
+    background: #fff;
+    border-bottom: 1px solid var(--borda);
+}
+
+.nav-cont {
+    max-width: 1200px;
+    width: calc(100% - 40px);
+    min-height: 76px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 900;
+    text-decoration: none;
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: var(--azul);
+}
+
+.links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.links a {
+    text-decoration: none;
+    color: #525b66;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.links a:hover {
+    color: var(--azul);
+}
+
+.btn-plataforma {
+    text-decoration: none;
+    background: var(--preto);
+    color: white;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+/* HERO */
+
+.hero {
+    background: var(--preto);
+    color: white;
+    padding: 85px 20px 80px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-conteudo {
+    max-width: 1120px;
+    margin: auto;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-tag {
+    color: #66c9ef;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.hero h1 {
+    max-width: 720px;
+    font-size: clamp(38px, 6vw, 68px);
+    line-height: 1.05;
+    letter-spacing: -2.5px;
+    margin: 22px 0;
+}
+
+.hero h1 span {
+    color: #40b9e8;
+}
+
+.hero p {
+    max-width: 550px;
+    color: #b9c1ca;
+    line-height: 1.8;
+    font-size: 15px;
+}
+
+.hero-botao {
+    display: inline-block;
+    margin-top: 22px;
+    padding: 15px 22px;
+    background: var(--azul);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 800;
+    transition: .2s;
+}
+
+.hero-botao:hover {
+    background: var(--azul-escuro);
+}
+
+.hero-decoracao {
+    position: absolute;
+    right: 9%;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255,255,255,.07);
+    font-size: clamp(130px, 22vw, 290px);
+    font-weight: 900;
+    pointer-events: none;
+}
+
+/* CONTEÚDO */
+
+.container {
+    max-width: 1200px;
+    width: calc(100% - 40px);
+    margin: auto;
+}
+
+/* FAIXA DE BENEFÍCIOS */
+
+.faixa {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-bottom: 1px solid var(--borda);
+    padding: 25px 0;
+    gap: 20px;
+}
+
+.faixa-item {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.faixa-simbolo {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background: #eaf7fc;
+    color: var(--azul);
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.faixa-item strong {
+    display: block;
+    font-size: 13px;
+}
+
+.faixa-item small {
+    display: block;
+    margin-top: 4px;
+    color: var(--cinza);
+    font-size: 11px;
+}
+
+/* VITRINE */
+
+.vitrine {
+    padding: 65px 0 35px;
+}
+
+.cabecalho-secao {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 28px;
+}
+
+.secao-tag {
+    color: var(--azul);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.cabecalho-secao h2 {
+    margin: 9px 0 0;
+    font-size: clamp(26px, 4vw, 36px);
+    letter-spacing: -1px;
+}
+
+.cabecalho-secao p {
+    color: var(--cinza);
+    font-size: 13px;
+    line-height: 1.6;
+    margin: 9px 0 0;
+}
+
+/* CONTROLES */
+
+.controles {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.filtro {
+    border: 1px solid var(--borda);
+    background: white;
+    padding: 10px 16px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 700;
+    color: #58616b;
+    transition: .2s;
+}
+
+.filtro:hover,
+.filtro.ativo {
+    background: var(--preto);
+    color: white;
+    border-color: var(--preto);
+}
+
+.busca {
+    width: 240px;
+    max-width: 100%;
+}
+
+.busca input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    outline: none;
+    font-size: 12px;
+}
+
+.busca input:focus {
+    border-color: var(--azul);
+}
+
+/* PRODUTOS */
 
 .produtos-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 22px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
 }
 
 .produto {
-    background: white;
-    border: 1px solid #e8edf0;
-    border-radius: 16px;
+    border: 1px solid var(--borda);
+    border-radius: 13px;
     overflow: hidden;
-    transition: transform .2s, box-shadow .2s;
+    background: white;
+    transition: .25s;
+    display: flex;
+    flex-direction: column;
 }
 
 .produto:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 30px rgba(0,0,0,.07);
+    transform: translateY(-5px);
+    box-shadow: 0 14px 35px rgba(0,0,0,.07);
 }
 
 .produto-imagem {
-    background: #f2f6f8;
-    height: 230px;
+    height: 245px;
+    background: var(--fundo);
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 20px;
+    position: relative;
     overflow: hidden;
 }
 
@@ -172,428 +338,455 @@
 }
 
 .produto-placeholder {
-    color: #069eda;
-    font-size: 65px;
-    font-weight: 800;
+    font-size: 76px;
+    font-weight: 900;
+    color: #171b22;
+    opacity: .8;
+}
+
+.produto-etiqueta {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: white;
+    color: var(--azul-escuro);
+    padding: 7px 10px;
+    border-radius: 5px;
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: .7px;
+    text-transform: uppercase;
 }
 
 .produto-info {
-    padding: 20px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 .produto-categoria {
-    color: #069eda;
     font-size: 10px;
-    font-weight: 800;
+    color: var(--azul);
+    font-weight: 900;
     letter-spacing: 1px;
     text-transform: uppercase;
 }
 
 .produto-info h3 {
-    color: #252b32;
     font-size: 18px;
-    line-height: 1.4;
-    margin: 9px 0;
+    line-height: 1.35;
+    margin: 10px 0;
 }
 
 .produto-info p {
-    color: #747d87;
-    font-size: 13px;
-    line-height: 1.6;
-    min-height: 60px;
+    color: var(--cinza);
+    font-size: 12px;
+    line-height: 1.7;
+    margin: 0 0 20px;
+    flex: 1;
 }
 
 .produto-preco {
-    font-size: 20px;
-    font-weight: 800;
-    color: #20242b;
-    margin: 15px 0;
+    font-size: 19px;
+    font-weight: 900;
+    margin-bottom: 15px;
 }
 
 .produto-botao {
     display: block;
     text-align: center;
-    text-decoration: none;
-    background: #069eda;
+    padding: 13px;
+    background: var(--preto);
     color: white;
-    padding: 12px;
-    border-radius: 9px;
-    font-size: 13px;
+    text-decoration: none;
+    border-radius: 7px;
+    font-size: 12px;
     font-weight: 800;
     transition: .2s;
 }
 
 .produto-botao:hover {
-    background: #0787bc;
+    background: var(--azul);
 }
 
-.produtos-vazios {
-    color: #858e97;
-    padding: 25px;
-    text-align: center;
+.vazio {
     grid-column: 1 / -1;
-}
-
-/* ===== RODAPÉ ===== */
-
-.loja-footer {
-    margin-top: 60px;
-    padding: 30px 20px;
-    border-top: 1px solid #e9edf0;
+    padding: 40px;
     text-align: center;
-    color: #828b94;
-    font-size: 13px;
+    color: var(--cinza);
 }
 
-.loja-footer a {
-    color: #069eda;
+/* DESTAQUE FINAL */
+
+.chamada {
+    margin: 70px 0;
+    padding: 45px;
+    background: #edf8fc;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.chamada h2 {
+    font-size: 26px;
+    margin: 0 0 10px;
+}
+
+.chamada p {
+    color: #65717b;
+    font-size: 13px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.chamada a {
+    flex-shrink: 0;
+    background: var(--azul);
+    color: white;
     text-decoration: none;
+    padding: 14px 20px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+/* RODAPÉ */
+
+.footer {
+    background: var(--preto);
+    color: white;
+    padding: 35px 20px;
+    text-align: center;
+}
+
+.footer strong {
+    font-size: 18px;
+    letter-spacing: -.5px;
+}
+
+.footer p {
+    color: #aeb7c0;
+    font-size: 11px;
+    margin: 10px 0;
+}
+
+.footer a {
+    color: #52c1ed;
+    text-decoration: none;
+    font-size: 12px;
     font-weight: 700;
 }
 
-/* ===== RESPONSIVIDADE ===== */
+/* RESPONSIVO */
 
-@media (max-width: 600px) {
-
-    .loja-hero {
-        padding: 65px 10px 45px;
+@media(max-width: 850px) {
+    .links {
+        display: none;
     }
 
-    .loja-secao {
-        padding: 25px 0 40px;
+    .produtos-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .loja-titulo h2 {
-        font-size: 25px;
+    .hero-decoracao {
+        right: -30px;
+        opacity: .6;
+    }
+}
+
+@media(max-width: 600px) {
+    .nav-cont {
+        min-height: 65px;
+    }
+
+    .hero {
+        padding: 65px 20px;
+    }
+
+    .hero h1 {
+        letter-spacing: -1.5px;
+    }
+
+    .faixa {
+        grid-template-columns: 1fr;
+        gap: 17px;
+    }
+
+    .cabecalho-secao {
+        display: block;
+    }
+
+    .controles {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .busca {
+        width: 100%;
     }
 
     .produtos-grid {
         grid-template-columns: 1fr;
     }
 
-}
+    .produto-imagem {
+        height: 260px;
+    }
 
+    .chamada {
+        padding: 30px 23px;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
 </style>
 </head>
 
 <body>
 
-<!-- ===== CABEÇALHO ===== -->
-
 <header class="nav">
-
     <div class="nav-cont">
 
         <a class="logo" href="index.html">
-            ResultaMath
+            Resulta<span>Math</span>
         </a>
 
-        <nav class="links" aria-label="Navegação">
-
+        <nav class="links">
             <a href="index.html">Início</a>
-            <a href="#livros">Livros</a>
-            <a href="#cursos">Cursos</a>
-            <a href="#materiais">Materiais digitais</a>
-
+            <a href="#vitrine">Produtos</a>
+            <a href="resultalabs.html">ResultaLabs</a>
         </nav>
 
-        <a class="btn" href="inicio.html">
-            Plataforma
+        <a class="btn-plataforma" href="inicio.html">
+            Acessar plataforma
         </a>
 
     </div>
-
 </header>
 
+<section class="hero">
+    <div class="hero-conteudo">
 
-<main class="loja">
-
-    <!-- ===== APRESENTAÇÃO ===== -->
-
-    <section class="loja-hero">
-
-        <span class="eyebrow">
-            LOJA OFICIAL
-        </span>
+        <span class="hero-tag">LOJA OFICIAL RESULTAMATH</span>
 
         <h1>
-            Conhecimento que<br>
-            transforma em <span>resultado.</span>
+            Aprenda melhor.<br>
+            Estude com <span>estratégia.</span>
         </h1>
 
         <p>
             Livros, cursos e materiais desenvolvidos para
-            facilitar seu aprendizado e ajudar você a dominar
-            a matemática.
+            transformar a maneira como você aprende matemática.
+            Conhecimento prático, direto e pensado para gerar resultados.
         </p>
 
-    </section>
-
-
-    <!-- ===== CATEGORIAS ===== -->
-
-    <nav class="loja-categorias">
-
-        <a href="#livros">♧ Livros</a>
-
-        <a href="#cursos">▶ Cursos</a>
-
-        <a href="#materiais">▤ Materiais digitais</a>
-
-    </nav>
-
-
-    <!-- ===== BUSCA ===== -->
-
-    <div class="loja-busca">
-
-        <input
-            type="search"
-            id="buscar-produto"
-            placeholder="Buscar um produto..."
-            aria-label="Buscar produtos"
-        >
+        <a href="#vitrine" class="hero-botao">
+            Explorar produtos →
+        </a>
 
     </div>
 
+    <div class="hero-decoracao">∑</div>
+</section>
 
-    <!-- ===== LIVROS ===== -->
+<main class="container">
 
-    <section class="loja-secao" id="livros">
+    <section class="faixa">
 
-        <div class="loja-titulo">
-
-            <span>LEITURA E APRENDIZADO</span>
-
-            <h2>Livros</h2>
-
-            <p>
-                Materiais para construir uma base matemática
-                sólida e melhorar seu desempenho.
-            </p>
-
+        <div class="faixa-item">
+            <div class="faixa-simbolo">▤</div>
+            <div>
+                <strong>Livros e materiais</strong>
+                <small>Conteúdo organizado para estudar</small>
+            </div>
         </div>
 
-        <div class="produtos-grid" id="lista-livros"></div>
+        <div class="faixa-item">
+            <div class="faixa-simbolo">▶</div>
+            <div>
+                <strong>Cursos online</strong>
+                <small>Aprenda no seu próprio ritmo</small>
+            </div>
+        </div>
+
+        <div class="faixa-item">
+            <div class="faixa-simbolo">✓</div>
+            <div>
+                <strong>Aprendizado prático</strong>
+                <small>Matemática com clareza e estratégia</small>
+            </div>
+        </div>
 
     </section>
 
+    <section class="vitrine" id="vitrine">
 
-    <!-- ===== CURSOS ===== -->
+        <div class="cabecalho-secao">
+            <div>
+                <span class="secao-tag">ESCOLHA SEU MATERIAL</span>
+                <h2>Conheça nossos produtos</h2>
+                <p>Encontre o recurso ideal para sua próxima etapa.</p>
+            </div>
+        </div>
 
-    <section class="loja-secao" id="cursos">
+        <div class="controles">
 
-        <div class="loja-titulo">
+            <div class="filtros">
+                <button class="filtro ativo" data-filtro="todos">Todos</button>
+                <button class="filtro" data-filtro="livros">Livros</button>
+                <button class="filtro" data-filtro="cursos">Cursos</button>
+                <button class="filtro" data-filtro="materiais">Materiais digitais</button>
+            </div>
 
-            <span>APRENDA NO SEU RITMO</span>
-
-            <h2>Cursos online</h2>
-
-            <p>
-                Aulas organizadas, explicações e exercícios
-                para desenvolver suas habilidades.
-            </p>
+            <div class="busca">
+                <input
+                    type="search"
+                    id="buscar-produto"
+                    placeholder="Buscar produto..."
+                    aria-label="Buscar produto"
+                >
+            </div>
 
         </div>
 
-        <div class="produtos-grid" id="lista-cursos"></div>
+        <div class="produtos-grid" id="lista-produtos"></div>
 
     </section>
 
+    <section class="chamada">
 
-    <!-- ===== MATERIAIS DIGITAIS ===== -->
-
-    <section class="loja-secao" id="materiais">
-
-        <div class="loja-titulo">
-
-            <span>RECURSOS PARA ESTUDAR</span>
-
-            <h2>Materiais digitais</h2>
-
+        <div>
+            <h2>Seu próximo resultado começa aqui.</h2>
             <p>
-                Apostilas, flashcards, listas de exercícios
-                e materiais complementares.
+                Escolha um material, organize seus estudos
+                e avance um passo de cada vez.
             </p>
-
         </div>
 
-        <div class="produtos-grid" id="lista-materiais"></div>
+        <a href="inicio.html">Entrar na plataforma →</a>
 
     </section>
 
 </main>
 
+<footer class="footer">
 
-<!-- ===== RODAPÉ ===== -->
-
-<footer class="loja-footer">
+    <strong>RESULTAMATH</strong>
 
     <p>
-        © <span id="ano"></span> ResultaMath.
-        Todos os direitos reservados.
+        Matemática com clareza, estratégia e resultado.
     </p>
 
-    <a href="index.html">
-        Voltar ao site principal
-    </a>
+    <a href="index.html">Voltar ao site principal</a>
+
+    <p>© <span id="ano"></span> ResultaMath. Todos os direitos reservados.</p>
 
 </footer>
 
-
-<!-- ===== PRODUTOS ===== -->
-
 <script>
+(() => {
 
-/*
-CADASTRO DE PRODUTOS
+"use strict";
 
-Categorias disponíveis:
-livros
-cursos
-materiais
-
-Campos:
-categoria
-nome
-descricao
-preco
-imagem
-link
-*/
+/* CADASTRO DOS PRODUTOS */
 
 const PRODUTOS = [
 
-    /* ===== LIVROS ===== */
-
     {
-        categoria: 'livros',
-
-        nome: 'Protocolo de Prova',
-
-        descricao:
-            'Estratégias e técnicas para resolver questões com mais clareza, inteligência e segurança.',
-
-        preco: '',
-
-        imagem: '',
-
-        link:
-            'https://loja.uiclap.com/titulo/ua184869'
-    },
-
-
-    /* ===== CURSOS ===== */
-
-    {
-        categoria: 'cursos',
-
-        nome: 'Questões Comentadas de Matemática para Concursos',
-
-        descricao:
-            'Questões de matemática resolvidas e comentadas para quem está se preparando para concursos públicos.',
-
-        preco: '',
-
-        imagem: '',
-
-        link:
-            'https://www.udemy.com/course/questoes-comentadas-de-matematica-para-concursos-publicos/'
+        categoria: "livros",
+        nome: "Protocolo de Prova",
+        descricao: "Estratégias e técnicas para resolver questões com mais clareza, inteligência e segurança.",
+        preco: "",
+        imagem: "",
+        etiqueta: "Livro",
+        simbolo: "▤",
+        link: "https://loja.uiclap.com/titulo/ua184869"
     },
 
     {
-        categoria: 'cursos',
-
-        nome: 'Matemática Básica em 1 Minuto: Do Zero ao Essencial',
-
-        descricao:
-            'Aprenda os fundamentos da matemática básica com explicações rápidas, objetivas e organizadas.',
-
-        preco: '',
-
-        imagem: '',
-
-        link:
-            'https://www.udemy.com/course/matematica-basica-em-1-minuto-do-zero-ao-essencial/'
+        categoria: "cursos",
+        nome: "Questões Comentadas de Matemática para Concursos",
+        descricao: "Questões de matemática resolvidas e comentadas para quem está se preparando para concursos públicos.",
+        preco: "",
+        imagem: "",
+        etiqueta: "Curso online",
+        simbolo: "▶",
+        link: "https://www.udemy.com/course/questoes-comentadas-de-matematica-para-concursos-publicos/"
     },
 
-
-    /* ===== MATERIAIS DIGITAIS ===== */
+    {
+        categoria: "cursos",
+        nome: "Matemática Básica em 1 Minuto: Do Zero ao Essencial",
+        descricao: "Aprenda os fundamentos da matemática básica com explicações rápidas, objetivas e organizadas.",
+        preco: "",
+        imagem: "",
+        etiqueta: "Curso online",
+        simbolo: "∑",
+        link: "https://www.udemy.com/course/matematica-basica-em-1-minuto-do-zero-ao-essencial/"
+    },
 
     {
-        categoria: 'materiais',
-
-        nome: 'DecodificadorMath',
-
-        descricao:
-            'Material em PDF para aprender a interpretar e decodificar questões de matemática.',
-
-        preco: '',
-
-        imagem: '',
-
-        link:
-            'https://resultamath.hotmart.host/decodi'
+        categoria: "materiais",
+        nome: "DecodificadorMath",
+        descricao: "Material em PDF para aprender a interpretar e decodificar questões de matemática.",
+        preco: "",
+        imagem: "",
+        etiqueta: "Material digital",
+        simbolo: "▧",
+        link: "https://resultamath.hotmart.host/decodi"
     }
 
 ];
 
+/* ELEMENTOS */
 
-/* ===== CRIAR CARD ===== */
+const lista = document.getElementById("lista-produtos");
+const busca = document.getElementById("buscar-produto");
+const filtros = document.querySelectorAll(".filtro");
+
+let filtroAtual = "todos";
+
+/* NORMALIZAR TEXTO */
+
+function normalizar(texto) {
+    return String(texto || "")
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+}
+
+/* CRIAR PRODUTO */
 
 function criarProduto(produto) {
 
     const imagem = produto.imagem
-        ? `
-            <img
-                src="${produto.imagem}"
-                alt="${produto.nome}"
-                loading="lazy"
-            >
-        `
-        : `
-            <span class="produto-placeholder">▤</span>
-        `;
+        ? `<img src="${produto.imagem}" alt="${produto.nome}" loading="lazy">`
+        : `<span class="produto-placeholder">${produto.simbolo || "∑"}</span>`;
 
     const botao = produto.link
-        ? `
-            <a
-                class="produto-botao"
-                href="${produto.link}"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                Conhecer produto →
-            </a>
-        `
-        : `
-            <span class="produto-botao">
-                Em breve
-            </span>
-        `;
+        ? `<a class="produto-botao" href="${produto.link}" target="_blank" rel="noopener noreferrer">Conhecer produto →</a>`
+        : `<span class="produto-botao">Em breve</span>`;
 
     return `
         <article class="produto">
 
             <div class="produto-imagem">
+                <span class="produto-etiqueta">${produto.etiqueta || produto.categoria}</span>
                 ${imagem}
             </div>
 
             <div class="produto-info">
 
-                <span class="produto-categoria">
-                    ${produto.categoria}
-                </span>
+                <span class="produto-categoria">${produto.categoria}</span>
 
                 <h3>${produto.nome}</h3>
 
                 <p>${produto.descricao}</p>
 
-                ${
-                    produto.preco
-                    ? `<div class="produto-preco">${produto.preco}</div>`
-                    : ''
-                }
+                ${produto.preco ? `<div class="produto-preco">${produto.preco}</div>` : ""}
 
                 ${botao}
 
@@ -601,73 +794,68 @@ function criarProduto(produto) {
 
         </article>
     `;
-
 }
 
+/* RENDERIZAR */
 
-/* ===== RENDERIZAR PRODUTOS ===== */
+function renderizar() {
 
-function renderizarProdutos() {
+    const termo = normalizar(busca.value);
 
-    const categorias = {
+    const encontrados = PRODUTOS.filter(produto => {
 
-        livros: document.getElementById('lista-livros'),
+        const correspondeCategoria =
+            filtroAtual === "todos" ||
+            produto.categoria === filtroAtual;
 
-        cursos: document.getElementById('lista-cursos'),
-
-        materiais: document.getElementById('lista-materiais')
-
-    };
-
-    Object.entries(categorias).forEach(([categoria, elemento]) => {
-
-        const produtos = PRODUTOS.filter(
-            produto => produto.categoria === categoria
+        const conteudo = normalizar(
+            produto.nome + " " +
+            produto.descricao + " " +
+            produto.categoria
         );
 
-        elemento.innerHTML = produtos.length
-            ? produtos.map(criarProduto).join('')
-            : '<p class="produtos-vazios">Novidades em breve.</p>';
+        return correspondeCategoria && conteudo.includes(termo);
 
     });
+
+    lista.innerHTML = encontrados.length
+        ? encontrados.map(criarProduto).join("")
+        : `<p class="vazio">Nenhum produto encontrado. Tente outra busca.</p>`;
 
 }
 
+/* FILTROS */
 
-/* ===== BUSCAR PRODUTOS ===== */
+filtros.forEach(botao => {
 
-document
-    .getElementById('buscar-produto')
-    .addEventListener('input', function() {
+    botao.addEventListener("click", () => {
 
-        const termo = this.value
-            .toLowerCase()
-            .normalize('NFD')
-            .replace(/[\u0300-\u036f]/g, '');
+        filtros.forEach(item => item.classList.remove("ativo"));
 
-        document.querySelectorAll('.produto').forEach(produto => {
+        botao.classList.add("ativo");
 
-            const conteudo = produto.textContent
-                .toLowerCase()
-                .normalize('NFD')
-                .replace(/[\u0300-\u036f]/g, '');
+        filtroAtual = botao.dataset.filtro;
 
-            produto.style.display =
-                conteudo.includes(termo) ? '' : 'none';
-
-        });
+        renderizar();
 
     });
 
+});
 
-/* ===== INICIALIZAÇÃO ===== */
+/* BUSCA */
 
-renderizarProdutos();
+busca.addEventListener("input", renderizar);
 
-document.getElementById('ano').textContent =
+/* INICIALIZAÇÃO */
+
+document.getElementById("ano").textContent =
     new Date().getFullYear();
 
+renderizar();
+
+})();
 </script>
 
 </body>
 </html>
+```
