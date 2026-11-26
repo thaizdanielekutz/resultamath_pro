@@ -1,0 +1,431 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laboratório de Frações | ResultaLabs</title>
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f8fb;
+    color: #171b22;
+    min-height: 100vh;
+}
+
+header {
+    background: white;
+    border-bottom: 1px solid #e5ebf0;
+    padding: 18px 24px;
+}
+
+nav {
+    max-width: 900px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo {
+    color: #171b22;
+    font-size: 21px;
+    font-weight: 900;
+    text-decoration: none;
+}
+
+.logo span { color: #069eda; }
+
+.voltar {
+    color: #087eae;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+main {
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.tag {
+    color: #069eda;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+h1 {
+    font-size: clamp(32px, 6vw, 48px);
+    letter-spacing: -2px;
+    margin: 12px 0;
+}
+
+.descricao {
+    color: #68717d;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+.laboratorio {
+    background: white;
+    border: 1px solid #e5ebf0;
+    border-radius: 18px;
+    padding: 35px;
+    box-shadow: 0 10px 30px rgba(20,40,60,.04);
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 45px;
+    align-items: center;
+}
+
+.controles {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.controle label {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    font-weight: 800;
+    margin-bottom: 14px;
+}
+
+.controle strong { color: #069eda; }
+
+input[type="range"] {
+    width: 100%;
+    accent-color: #069eda;
+    cursor: pointer;
+}
+
+.dica {
+    color: #68717d;
+    font-size: 13px;
+    line-height: 1.7;
+    background: #f5f8fb;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.visual {
+    background: #f5f9fb;
+    border-radius: 15px;
+    padding: 30px 22px;
+    text-align: center;
+}
+
+.fracao {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 75px;
+    font-size: 43px;
+    font-weight: 900;
+    color: #087eae;
+    margin-bottom: 30px;
+}
+
+.fracao .linha {
+    width: 100%;
+    height: 3px;
+    background: #171b22;
+    margin: 5px 0;
+}
+
+.barra {
+    display: flex;
+    width: 100%;
+    min-height: 48px;
+    overflow: hidden;
+    border: 2px solid #d2dfe6;
+    border-radius: 8px;
+    background: white;
+}
+
+.parte {
+    flex: 1;
+    background: #e8eef2;
+    border-right: 2px solid white;
+    transition: background .25s;
+}
+
+.parte:last-child { border-right: none; }
+
+.parte.preenchida {
+    background: #069eda;
+    animation: aparecer .3s ease;
+}
+
+@keyframes aparecer {
+    from { opacity: .3; }
+    to { opacity: 1; }
+}
+
+.porcentagem {
+    font-size: 27px;
+    font-weight: 900;
+    color: #069eda;
+    margin-top: 24px;
+}
+
+.legenda {
+    color: #68717d;
+    font-size: 13px;
+    line-height: 1.7;
+    margin-top: 10px;
+}
+
+.resultado {
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 12px;
+    background: #eaf7fc;
+    color: #20546a;
+    line-height: 1.7;
+    font-size: 14px;
+}
+
+.resultado strong { color: #087eae; }
+
+.acoes {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
+button {
+    border: none;
+    background: #069eda;
+    color: white;
+    padding: 13px 19px;
+    border-radius: 9px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: .2s;
+}
+
+button:hover {
+    background: #087eae;
+    transform: translateY(-2px);
+}
+
+button.secundario {
+    background: #edf3f7;
+    color: #171b22;
+}
+
+button.secundario:hover { background: #dceaf1; }
+
+@media(max-width: 650px) {
+    .laboratorio { padding: 22px 16px; }
+    .layout { grid-template-columns: 1fr; gap: 30px; }
+    .visual { padding: 25px 15px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <a href="../resultalabs.html" class="logo">
+            RESULTA<span>LABS</span>
+        </a>
+        <a href="../resultalabs.html" class="voltar">← Voltar ao laboratório</a>
+    </nav>
+</header>
+
+<main>
+
+    <span class="tag">EXPERIÊNCIA INTERATIVA · NÚMEROS RACIONAIS</span>
+    <h1>Laboratório de frações ½</h1>
+
+    <p class="descricao">
+        Uma fração representa partes de um inteiro.
+        Altere os valores e observe como essa representação muda.
+    </p>
+
+    <section class="laboratorio">
+
+        <div class="layout">
+
+            <div class="controles">
+
+                <div class="controle">
+                    <label for="numerador">
+                        Numerador
+                        <strong id="valor-numerador">1</strong>
+                    </label>
+
+                    <input
+                        type="range"
+                        id="numerador"
+                        min="1"
+                        max="4"
+                        value="1"
+                    >
+                </div>
+
+                <div class="controle">
+                    <label for="denominador">
+                        Denominador
+                        <strong id="valor-denominador">4</strong>
+                    </label>
+
+                    <input
+                        type="range"
+                        id="denominador"
+                        min="2"
+                        max="10"
+                        value="4"
+                    >
+                </div>
+
+                <div class="dica">
+                    <strong>Como interpretar?</strong><br>
+                    O denominador indica em quantas partes iguais
+                    o inteiro foi dividido. O numerador indica
+                    quantas dessas partes foram consideradas.
+                </div>
+
+            </div>
+
+            <div class="visual">
+
+                <div class="fracao">
+                    <span id="fracao-cima">1</span>
+                    <div class="linha"></div>
+                    <span id="fracao-baixo">4</span>
+                </div>
+
+                <div class="barra" id="barra"></div>
+
+                <div class="porcentagem" id="porcentagem">25%</div>
+
+                <div class="legenda" id="legenda">
+                    1 de 4 partes estão preenchidas.
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="resultado" id="resultado">
+            A fração <strong>1/4</strong> representa
+            <strong>25%</strong> do inteiro.
+        </div>
+
+        <div class="acoes">
+            <button id="reiniciar">Restaurar valores</button>
+            <button class="secundario" id="metade">Mostrar 1/2</button>
+            <button class="secundario" id="tres-quartos">Mostrar 3/4</button>
+        </div>
+
+    </section>
+
+</main>
+
+<script>
+(() => {
+    "use strict";
+
+    const numerador = document.getElementById("numerador");
+    const denominador = document.getElementById("denominador");
+
+    const valorNumerador = document.getElementById("valor-numerador");
+    const valorDenominador = document.getElementById("valor-denominador");
+
+    const fracaoCima = document.getElementById("fracao-cima");
+    const fracaoBaixo = document.getElementById("fracao-baixo");
+
+    const barra = document.getElementById("barra");
+    const porcentagem = document.getElementById("porcentagem");
+    const legenda = document.getElementById("legenda");
+    const resultado = document.getElementById("resultado");
+
+    function atualizar() {
+        const d = Number(denominador.value);
+
+        numerador.max = d;
+
+        if (Number(numerador.value) > d) {
+            numerador.value = d;
+        }
+
+        const n = Number(numerador.value);
+        const percentual = n / d * 100;
+
+        valorNumerador.textContent = n;
+        valorDenominador.textContent = d;
+
+        fracaoCima.textContent = n;
+        fracaoBaixo.textContent = d;
+
+        barra.innerHTML = "";
+
+        for (let i = 0; i < d; i++) {
+            const parte = document.createElement("div");
+
+            parte.className = "parte";
+
+            if (i < n) {
+                parte.classList.add("preenchida");
+            }
+
+            barra.appendChild(parte);
+        }
+
+        porcentagem.textContent =
+            percentual.toFixed(1).replace(".", ",") + "%";
+
+        legenda.textContent =
+            n + " de " + d +
+            " partes estão preenchidas.";
+
+        resultado.innerHTML =
+            "A fração <strong>" + n + "/" + d +
+            "</strong> representa <strong>" +
+            percentual.toFixed(1).replace(".", ",") +
+            "%</strong> do inteiro.";
+    }
+
+    numerador.addEventListener("input", atualizar);
+    denominador.addEventListener("input", atualizar);
+
+    document.getElementById("reiniciar").addEventListener("click", () => {
+        denominador.value = 4;
+        numerador.value = 1;
+        atualizar();
+    });
+
+    document.getElementById("metade").addEventListener("click", () => {
+        denominador.value = 2;
+        numerador.value = 1;
+        atualizar();
+    });
+
+    document.getElementById("tres-quartos").addEventListener("click", () => {
+        denominador.value = 4;
+        numerador.value = 3;
+        atualizar();
+    });
+
+    atualizar();
+
+})();
+</script>
+
+</body>
+</html>
