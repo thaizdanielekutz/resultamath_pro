@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caça aos Primos | ResultaLabs</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f4f7fa;color:#202832;font-family:Arial,sans-serif}
+header{background:#171b22;color:white;padding:18px 5%;display:flex;justify-content:space-between;align-items:center}
+header a{color:white;text-decoration:none}
+main{max-width:850px;margin:35px auto;padding:20px}
+.card{background:white;border-radius:18px;padding:25px;box-shadow:0 5px 20px #0000000c}
+h1{margin-top:0;color:#069eda}
+.info{display:flex;justify-content:space-around;gap:10px;flex-wrap:wrap;margin:20px 0}
+.info div{background:#edf7fc;padding:12px 20px;border-radius:12px;text-align:center}
+.info strong{display:block;font-size:25px;color:#069eda}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:22px 0}
+.numero{border:2px solid #dce5eb;background:#fff;border-radius:12px;padding:18px 5px;font-size:22px;font-weight:bold;cursor:pointer}
+.numero:hover{border-color:#069eda}
+.numero.acerto{background:#d9f5e8;border-color:#20a46b;color:#14784b}
+.numero.erro{background:#ffe1e1;border-color:#e45c5c;color:#a52b2b}
+.numero:disabled{cursor:default}
+button.acao{border:0;background:#069eda;color:white;padding:13px 22px;border-radius:10px;font-weight:bold;cursor:pointer}
+button.acao:hover{background:#087fb0}
+#mensagem{min-height:28px;font-weight:bold}
+@media(max-width:500px){.grid{grid-template-columns:repeat(4,1fr)}.numero{padding:14px 3px}}
+</style>
+</head>
+<body>
+<header>
+<strong>RESULTALABS</strong>
+<a href="../resultalabs.html">← Voltar aos jogos</a>
+</header>
+<main>
+<div class="card">
+<h1>Caça aos números primos</h1>
+<p>Encontre todos os números primos do tabuleiro. Cuidado: números compostos podem confundir!</p>
+<div class="info">
+<div>Tempo<strong id="tempo">45</strong></div>
+<div>Acertos<strong id="acertos">0</strong></div>
+<div>Erros<strong id="erros">0</strong></div>
+</div>
+<p><strong>Como jogar:</strong> clique em todos os números primos. Um número primo possui exatamente dois divisores positivos: 1 e ele mesmo.</p>
+<div class="grid" id="tabuleiro"></div>
+<p id="mensagem" aria-live="polite">Clique em começar para jogar.</p>
+<button class="acao" id="iniciar">Começar jogo</button>
+</div>
+</main>
+<script>
+(()=>{
+const tabuleiro=document.getElementById('tabuleiro');
+const tempoEl=document.getElementById('tempo');
+const acertosEl=document.getElementById('acertos');
+const errosEl=document.getElementById('erros');
+const mensagem=document.getElementById('mensagem');
+const iniciar=document.getElementById('iniciar');
+let numeros=[],primos=[],acertos=0,erros=0,tempo=45,intervalo=null,ativo=false;
+
+function primo(n){
+ if(n<2)return false;
+ for(let i=2;i<=Math.sqrt(n);i++)if(n%i===0)return false;
+ return true;
+}
+function atualizar(){
+ acertosEl.textContent=acertos;
+ errosEl.textContent=erros;
+ tempoEl.textContent=tempo;
+}
+function encerrar(texto){
+ ativo=false;clearInterval(intervalo);
+ tabuleiro.querySelectorAll('button').forEach(b=>b.disabled=true);
+ mensagem.textContent=texto;
+ iniciar.textContent='Jogar novamente';
+}
+function montar(){
+ numeros=Array.from({length:20},(_,i)=>i+2);
+ numeros.sort(()=>Math.random()-.5);
+ primos=numeros.filter(primo);
+ tabuleiro.innerHTML='';
+ numeros.forEach(n=>{
+  const b=document.createElement('button');
+  b.className='numero';b.textContent=n;
+  b.type='button';
+  b.addEventListener('click',()=>{
+   if(!ativo||b.disabled)return;
+   b.disabled=true;
+   if(primo(n)){
+    b.classList.add('acerto');acertos++;
+    if(acertos===primos.length)encerrar('Excelente! Você encontrou todos os números primos!');
+   }else{
+    b.classList.add('erro');erros++;
+   }
+   atualizar();
+  });
+  tabuleiro.appendChild(b);
+ });
+}
+iniciar.addEventListener('click',()=>{
+ clearInterval(intervalo);
+ acertos=0;erros=0;tempo=45;ativo=true;
+ atualizar();montar();
+ mensagem.textContent='Valendo! Encontre todos os números primos.';
+ iniciar.textContent='Reiniciar';
+ intervalo=setInterval(()=>{
+  tempo--;atualizar();
+  if(tempo<=0)encerrar('O tempo acabou! Tente novamente.');
+ },1000);
+});
+})();
+</script>
+</body>
+</html>
