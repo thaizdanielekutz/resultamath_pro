@@ -1,0 +1,384 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memória Matemática | ResultaLabs</title>
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f8fb;
+    color: #171b22;
+    min-height: 100vh;
+}
+
+header {
+    background: white;
+    border-bottom: 1px solid #e5ebf0;
+    padding: 18px 24px;
+}
+
+nav {
+    max-width: 900px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo {
+    color: #171b22;
+    font-size: 21px;
+    font-weight: 900;
+    text-decoration: none;
+}
+
+.logo span { color: #069eda; }
+
+.voltar {
+    color: #087eae;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+main {
+    max-width: 850px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.tag {
+    color: #069eda;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+h1 {
+    font-size: clamp(32px, 6vw, 48px);
+    letter-spacing: -2px;
+    margin: 12px 0;
+}
+
+.descricao {
+    color: #68717d;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+.jogo {
+    background: white;
+    border: 1px solid #e5ebf0;
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(20,40,60,.04);
+}
+
+.status {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.status strong { color: #069eda; }
+
+.grade {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 13px;
+    margin: 28px auto;
+}
+
+.carta {
+    min-height: 115px;
+    border: 1px solid #dce8ee;
+    background: #edf8fc;
+    border-radius: 13px;
+    color: #087eae;
+    font-size: 23px;
+    font-weight: 900;
+    padding: 10px;
+    cursor: pointer;
+    transition: .2s;
+    overflow-wrap: anywhere;
+}
+
+.carta:hover {
+    border-color: #069eda;
+    transform: scale(1.03);
+}
+
+.carta.revelada {
+    background: #dff4fc;
+    border: 2px solid #069eda;
+}
+
+.carta.encontrada {
+    background: #e7f8ef;
+    border: 2px solid #16a36a;
+    color: #168451;
+    cursor: default;
+    transform: none;
+}
+
+.feedback {
+    text-align: center;
+    min-height: 28px;
+    font-weight: 800;
+    margin-bottom: 18px;
+    font-size: 14px;
+}
+
+.certo { color: #16a36a; }
+.errado { color: #df5050; }
+
+.acoes {
+    text-align: center;
+}
+
+button.reiniciar {
+    border: none;
+    background: #069eda;
+    color: white;
+    padding: 14px 22px;
+    border-radius: 9px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+button.reiniciar:hover { background: #087eae; }
+
+.instrucoes {
+    color: #68717d;
+    font-size: 13px;
+    line-height: 1.7;
+    margin-top: 25px;
+    text-align: center;
+}
+
+@media(max-width: 600px) {
+    .jogo { padding: 20px 12px; }
+    .grade { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .carta { min-height: 90px; font-size: 17px; }
+}
+
+@media(max-width: 370px) {
+    .carta { min-height: 75px; font-size: 15px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <a href="../resultalabs.html" class="logo">
+            RESULTA<span>LABS</span>
+        </a>
+        <a href="../resultalabs.html" class="voltar">← Voltar ao laboratório</a>
+    </nav>
+</header>
+
+<main>
+
+    <span class="tag">JOGO MATEMÁTICO · RACIOCÍNIO</span>
+    <h1>Memória matemática ▦</h1>
+
+    <p class="descricao">
+        Sua missão é encontrar os pares correspondentes.
+        Uma carta apresenta uma operação e a outra, seu resultado.
+    </p>
+
+    <section class="jogo">
+
+        <div class="status">
+            <span>Pares encontrados: <strong id="pares">0</strong>/6</span>
+            <span>Tentativas: <strong id="tentativas">0</strong></span>
+        </div>
+
+        <div class="grade" id="grade"></div>
+
+        <div class="feedback" id="feedback">
+            Selecione duas cartas para começar.
+        </div>
+
+        <div class="acoes">
+            <button class="reiniciar" id="reiniciar">
+                Reiniciar jogo
+            </button>
+        </div>
+
+        <p class="instrucoes">
+            Selecione duas cartas por vez. Se forem correspondentes,
+            elas permanecerão abertas. Encontre todos os seis pares!
+        </p>
+
+    </section>
+
+</main>
+
+<script>
+(() => {
+    "use strict";
+
+    const grade = document.getElementById("grade");
+    const paresEl = document.getElementById("pares");
+    const tentativasEl = document.getElementById("tentativas");
+    const feedback = document.getElementById("feedback");
+    const reiniciar = document.getElementById("reiniciar");
+
+    const paresOriginais = [
+        ["2 + 3", "5"],
+        ["4 × 2", "8"],
+        ["10 - 4", "6"],
+        ["3 × 3", "9"],
+        ["12 ÷ 2", "6"],
+        ["5 + 7", "12"]
+    ];
+
+    let cartas = [];
+    let selecionadas = [];
+    let encontrados = 0;
+    let tentativas = 0;
+    let bloqueado = false;
+    let rodada = 0;
+
+    function embaralhar(lista) {
+        const copia = [...lista];
+
+        for (let i = copia.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [copia[i], copia[j]] = [copia[j], copia[i]];
+        }
+
+        return copia;
+    }
+
+    function iniciar() {
+        rodada++;
+
+        cartas = [];
+
+        paresOriginais.forEach((par, indice) => {
+            cartas.push({ texto: par[0], par: indice });
+            cartas.push({ texto: par[1], par: indice });
+        });
+
+        cartas = embaralhar(cartas);
+
+        selecionadas = [];
+        encontrados = 0;
+        tentativas = 0;
+        bloqueado = false;
+
+        paresEl.textContent = "0";
+        tentativasEl.textContent = "0";
+        feedback.textContent = "Selecione duas cartas para começar.";
+        feedback.className = "feedback";
+
+        grade.innerHTML = "";
+
+        cartas.forEach((carta, indice) => {
+            const botao = document.createElement("button");
+
+            botao.className = "carta";
+            botao.textContent = "?";
+            botao.setAttribute("aria-label", "Carta fechada");
+
+            botao.addEventListener("click", () => revelar(indice, botao));
+
+            grade.appendChild(botao);
+        });
+    }
+
+    function revelar(indice, botao) {
+        if (bloqueado) return;
+        if (botao.classList.contains("revelada")) return;
+        if (botao.classList.contains("encontrada")) return;
+
+        botao.textContent = cartas[indice].texto;
+        botao.classList.add("revelada");
+        botao.setAttribute("aria-label", cartas[indice].texto);
+
+        selecionadas.push({
+            indice,
+            botao,
+            par: cartas[indice].par
+        });
+
+        if (selecionadas.length !== 2) return;
+
+        tentativas++;
+        tentativasEl.textContent = tentativas;
+
+        const [primeira, segunda] = selecionadas;
+
+        if (primeira.par === segunda.par) {
+            primeira.botao.classList.remove("revelada");
+            segunda.botao.classList.remove("revelada");
+
+            primeira.botao.classList.add("encontrada");
+            segunda.botao.classList.add("encontrada");
+
+            encontrados++;
+            paresEl.textContent = encontrados;
+
+            selecionadas = [];
+
+            feedback.textContent = "Muito bem! Você encontrou um par.";
+            feedback.className = "feedback certo";
+
+            if (encontrados === paresOriginais.length) {
+                feedback.textContent =
+                    "Parabéns! Você encontrou todos os pares em " +
+                    tentativas + " tentativas!";
+            }
+
+            return;
+        }
+
+        bloqueado = true;
+
+        feedback.textContent = "As cartas não combinam. Tente novamente.";
+        feedback.className = "feedback errado";
+
+        const rodadaAtual = rodada;
+
+        setTimeout(() => {
+            if (rodadaAtual !== rodada) return;
+
+            primeira.botao.textContent = "?";
+            segunda.botao.textContent = "?";
+
+            primeira.botao.classList.remove("revelada");
+            segunda.botao.classList.remove("revelada");
+
+            primeira.botao.setAttribute("aria-label", "Carta fechada");
+            segunda.botao.setAttribute("aria-label", "Carta fechada");
+
+            selecionadas = [];
+            bloqueado = false;
+
+            feedback.textContent = "Continue tentando!";
+            feedback.className = "feedback";
+        }, 900);
+    }
+
+    reiniciar.addEventListener("click", iniciar);
+
+    iniciar();
+
+})();
+</script>
+
+</body>
+</html>
