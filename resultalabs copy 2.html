@@ -1,0 +1,764 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#171b22">
+<meta name="description" content="ResultaLabs: jogos e desafios interativos para aprender matemática na prática.">
+<title>ResultaLabs | ResultaMath</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --azul:#069eda;
+    --azul-escuro:#087eae;
+    --preto:#171b22;
+    --cinza:#687782;
+    --fundo:#f5f7f9;
+    --branco:#ffffff;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--fundo);
+    color:#202832;
+    min-height:100vh;
+}
+
+/* ===== CABEÇALHO ===== */
+
+header{
+    width:100%;
+    height:72px;
+    background:var(--preto);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 7%;
+    position:relative;
+    z-index:10;
+}
+
+.logo{
+    color:white;
+    font-size:21px;
+    font-weight:800;
+    letter-spacing:1px;
+    text-decoration:none;
+}
+
+.logo span{
+    color:var(--azul);
+}
+
+nav{
+    display:flex;
+    align-items:center;
+    gap:28px;
+}
+
+nav a{
+    color:#d9e0e5;
+    text-decoration:none;
+    font-size:14px;
+    transition:.2s;
+}
+
+nav a:hover{
+    color:var(--azul);
+}
+
+/* ===== HERO ===== */
+
+.hero{
+    position:relative;
+    overflow:hidden;
+    background:linear-gradient(135deg,#111820,#202e3a);
+    color:white;
+    padding:85px 20px 95px;
+    text-align:center;
+}
+
+.hero::before,
+.hero::after{
+    content:"";
+    position:absolute;
+    border:1px solid rgba(255,255,255,.07);
+    border-radius:50%;
+    pointer-events:none;
+}
+
+.hero::before{
+    width:300px;
+    height:300px;
+    left:-120px;
+    top:-140px;
+}
+
+.hero::after{
+    width:420px;
+    height:420px;
+    right:-150px;
+    bottom:-240px;
+}
+
+.hero-conteudo{
+    position:relative;
+    z-index:2;
+}
+
+.tag{
+    display:inline-block;
+    color:#70d4ff;
+    border:1px solid rgba(6,158,218,.55);
+    padding:9px 17px;
+    border-radius:30px;
+    font-size:11px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.hero h1{
+    font-size:clamp(36px,6vw,62px);
+    margin:24px 0 16px;
+    font-weight:800;
+}
+
+.hero h1 span{
+    color:var(--azul);
+}
+
+.hero p{
+    max-width:650px;
+    margin:auto;
+    color:#c5d0d8;
+    font-size:16px;
+    line-height:1.8;
+}
+
+/* ===== FÓRMULAS FLUTUANTES ===== */
+
+.formulas{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    opacity:.12;
+}
+
+.formula{
+    position:absolute;
+    color:white;
+    font-size:25px;
+    font-weight:bold;
+    animation:flutuar 7s ease-in-out infinite;
+}
+
+.formula:nth-child(1){
+    left:10%;
+    top:25%;
+}
+
+.formula:nth-child(2){
+    right:13%;
+    top:20%;
+    animation-delay:1s;
+}
+
+.formula:nth-child(3){
+    left:18%;
+    bottom:15%;
+    animation-delay:2s;
+}
+
+.formula:nth-child(4){
+    right:20%;
+    bottom:18%;
+    animation-delay:3s;
+}
+
+@keyframes flutuar{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-18px)}
+}
+
+/* ===== CONTEÚDO ===== */
+
+.conteudo{
+    width:100%;
+    max-width:1200px;
+    margin:auto;
+    padding:60px 25px 80px;
+}
+
+.titulo-secao{
+    margin-bottom:30px;
+}
+
+.titulo-secao h2{
+    font-size:28px;
+    margin-bottom:9px;
+    color:#202832;
+}
+
+.titulo-secao p{
+    color:var(--cinza);
+    font-size:14px;
+    line-height:1.6;
+}
+
+/* ===== CONTADOR ===== */
+
+.resumo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:28px;
+    color:#687782;
+    font-size:13px;
+}
+
+.resumo strong{
+    color:var(--azul);
+    font-size:16px;
+}
+
+/* ===== GRID DOS JOGOS ===== */
+
+.grid-jogos{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:22px;
+}
+
+.jogo-card{
+    position:relative;
+    background:var(--branco);
+    border:1px solid #e6edf1;
+    border-radius:17px;
+    padding:25px;
+    min-height:255px;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
+}
+
+.jogo-card::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:3px;
+    background:var(--azul);
+    transform:scaleX(0);
+    transform-origin:left;
+    transition:transform .25s ease;
+}
+
+.jogo-card:hover{
+    transform:translateY(-6px);
+    border-color:#b9e5f5;
+    box-shadow:0 14px 30px rgba(0,0,0,.07);
+}
+
+.jogo-card:hover::before{
+    transform:scaleX(1);
+}
+
+.numero{
+    color:#a1adb5;
+    font-size:11px;
+    font-weight:bold;
+    letter-spacing:1.5px;
+    margin-bottom:17px;
+}
+
+.icone{
+    width:53px;
+    height:53px;
+    background:#eaf7fc;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:18px;
+    color:var(--azul);
+    font-size:25px;
+    filter: grayscale(100%);
+}
+
+.jogo-card h3{
+    font-size:18px;
+    margin-bottom:10px;
+    color:#202832;
+}
+
+.jogo-card p{
+    color:var(--cinza);
+    font-size:13px;
+    line-height:1.7;
+    margin-bottom:22px;
+    flex:1;
+}
+
+.jogar{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    color:var(--azul);
+    font-size:13px;
+    font-weight:bold;
+    text-decoration:none;
+    transition:gap .2s;
+}
+
+.jogar:hover{
+    gap:14px;
+    color:var(--azul-escuro);
+}
+
+/* ===== RODAPÉ ===== */
+
+footer{
+    background:var(--preto);
+    color:#aeb8c0;
+    text-align:center;
+    padding:30px 20px;
+    font-size:12px;
+    line-height:1.8;
+}
+
+footer strong{
+    color:white;
+    letter-spacing:1px;
+}
+
+footer span{
+    color:var(--azul);
+}
+
+/* ===== RESPONSIVIDADE ===== */
+
+@media(max-width:900px){
+    .grid-jogos{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+    }
+}
+
+@media(max-width:600px){
+    header{
+        height:65px;
+        padding:0 5%;
+    }
+
+    .logo{
+        font-size:18px;
+    }
+
+    nav{
+        gap:14px;
+    }
+
+    nav a{
+        font-size:12px;
+    }
+
+    .hero{
+        padding:65px 20px 75px;
+    }
+
+    .hero p{
+        font-size:14px;
+    }
+
+    .conteudo{
+        padding:42px 17px 60px;
+    }
+
+    .titulo-secao h2{
+        font-size:24px;
+    }
+
+    .grid-jogos{
+        grid-template-columns:1fr;
+        gap:15px;
+    }
+
+    .jogo-card{
+        min-height:225px;
+        padding:22px;
+    }
+
+    .formula{
+        font-size:18px;
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+    *,
+    *::before,
+    *::after{
+        scroll-behavior:auto!important;
+        animation:none!important;
+        transition:none!important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== CABEÇALHO ===== -->
+
+<header>
+
+    <a href="index.html" class="logo">
+        RESULTA<span>MATH</span>
+    </a>
+
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="inicio.html">Plataforma</a>
+    </nav>
+
+</header>
+
+<!-- ===== APRESENTAÇÃO ===== -->
+
+<section class="hero">
+
+    <div class="formulas" aria-hidden="true">
+        <div class="formula">x² + y²</div>
+        <div class="formula">∑ x</div>
+        <div class="formula">a² + b²</div>
+        <div class="formula">π ≈ 3,14</div>
+    </div>
+
+    <div class="hero-conteudo">
+
+        <span class="tag">Laboratório de matemática</span>
+
+        <h1>
+            Bem-vindo ao <span>ResultaLabs</span>
+        </h1>
+
+        <p>
+            Aprender matemática também pode ser uma aventura.
+            Explore desafios, teste suas habilidades e descubra
+            novas maneiras de pensar.
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ===== JOGOS ===== -->
+
+<main class="conteudo">
+
+    <div class="titulo-secao">
+
+        <h2>Escolha seu desafio</h2>
+
+        <p>
+            Dez experiências interativas para aprender matemática na prática.
+        </p>
+
+    </div>
+
+    <div class="resumo">
+        <strong>10 jogos</strong>
+        <span>•</span>
+        <span>Escolha, explore e divirta-se.</span>
+    </div>
+
+    <section class="grid-jogos">
+
+        <!-- JOGO 01 -->
+
+        <article class="jogo-card">
+
+            <div class="numero">JOGO 01</div>
+
+            <div class="icone">⚡</div>
+
+            <h3>Desafio relâmpago</h3>
+
+            <p>
+                Resolva operações matemáticas contra o relógio
+                e teste sua velocidade de cálculo mental.
+            </p>
+
+            <a class="jogar" href="jogos/desafio-relampago.html">
+                Jogar agora →
+            </a>
+
+        </article>
+
+        <!-- JOGO 02 -->
+
+        <article class="jogo-card">
+
+            <div class="numero">JOGO 02</div>
+
+            <div class="icone">🧠</div>
+
+            <h3>Memória matemática</h3>
+
+            <p>
+                Encontre os pares de operações e resultados.
+                Um desafio para a memória e o raciocínio.
+            </p>
+
+            <a class="jogar" href="jogos/memoria-matematica.html">
+                Jogar agora →
+            </a>
+
+        </article>
+
+        <!-- JOGO 03 -->
+
+        <article class="jogo-card">
+
+            <div class="numero">JOGO 03</div>
+
+            <div class="icone">🔢</div>
+
+            <h3>Sequências numéricas</h3>
+
+            <p>
+                Descubra os padrões escondidos e encontre
+                o próximo número de cada sequência.
+            </p>
+
+            <a class="jogar" href="jogos/sequencias.html">
+                Jogar agora →
+            </a>
+
+        </article>
+
+        <!-- JOGO 04 -->
+
+        <article class="jogo-card">
+
+            <div class="numero">JOGO 04</div>
+
+            <div class="icone">🍕</div>
+
+            <h3>Laboratório de frações</h3>
+
+            <p>
+                Explore numeradores, denominadores e
+                representações visuais de frações.
+            </p>
+
+            <a class="jogar" href="jogos/fracoes.html">
+                Jogar agora →
+            </a>
+
+        </article>
+
+        <!-- JOGO 05 -->
+
+        <article class="jogo-card">
+
+            <div class="numero">JOGO 05</div>
+
+            <div class="icone">🎯</div>
+
+            <h3>Caça aos números primos</h3>
+
+            <p>
+                Encontre os números primos no tabuleiro
+                antes que o tempo termine.
+            </p>
+
+            <a class="jogar" href="jogos/caca-primos.html">
+                Jogar agora →
+            </a>
+
+        </article>
+
+        <!-- JOGO 06 -->
+
+        <article class="jogo-card">
+
+            <div class="numero">JOGO 06</div>
+
+            <div class="icone">📍</div>
+
+            <h3>Batalha das coordenadas</h3>
+
+            <p>
+                Localize pontos no plano cartesiano e mostre
+                que domina as coordenadas.
+            </p>
+
+            <a class="jogar" href="jogos/batalha-coordenadas.html">
+                Jogar agora →
+            </a>
+
+        </article>
+
+        <!-- JOGO 07 -->
+
+        <article class="jogo-card">
+
+            <div class="numero">JOGO 07</div>
+
+            <div class="icone">⚖️</div>
+
+            <h3>Desafio das equações</h3>
+
+            <p>
+                Resolva equações de primeiro grau e avance
+                pelas etapas do desafio.
+            </p>
+
+            <a class="jogar" href="jogos/desafio-equacoes.html">
+                Jogar agora →
+            </a>
+
+        </article>
+
+        <!-- JOGO 08 -->
+
+        <article class="jogo-card">
+
+            <div class="numero">JOGO 08</div>
+
+            <div class="icone">💰</div>
+
+            <h3>Missão porcentagem</h3>
+
+            <p>
+                Encare situações de descontos, aumentos
+                e cálculos percentuais do cotidiano.
+            </p>
+
+            <a class="jogar" href="jogos/missao-porcentagem.html">
+                Jogar agora →
+            </a>
+
+        </article>
+
+        <!-- JOGO 09 -->
+
+        <article class="jogo-card">
+
+            <div class="numero">JOGO 09</div>
+
+            <div class="icone">🎲</div>
+
+            <h3>Laboratório da probabilidade</h3>
+
+            <p>
+                Lance moedas e dados, observe os resultados
+                e investigue as chances.
+            </p>
+
+            <a class="jogar" href="jogos/laboratorio-probabilidade.html">
+                Jogar agora →
+            </a>
+
+        </article>
+
+        <!-- JOGO 10 -->
+
+        <article class="jogo-card">
+
+            <div class="numero">JOGO 10</div>
+
+            <div class="icone">📐</div>
+
+            <h3>Mestre da geometria</h3>
+
+            <p>
+                Teste seus conhecimentos sobre áreas,
+                perímetros, figuras e ângulos.
+            </p>
+
+            <a class="jogar" href="jogos/mestre-geometria.html">
+                Jogar agora →
+            </a>
+
+        </article>
+
+
+<!-- JOGO 11 -->
+
+<article class="jogo-card">
+
+    <div class="numero">JOGO 11</div>
+
+    <div class="icone">🔍</div>
+
+    <h3>Mestre da divisibilidade</h3>
+
+    <p>
+        Domine os critérios de divisibilidade, múltiplos,
+        divisores, MMC e MDC.
+    </p>
+
+    <a class="jogar" href="jogos/mestre-divisibilidade.html">
+        Jogar agora →
+    </a>
+
+</article>
+
+<!-- JOGO 12 -->
+
+<article class="jogo-card">
+
+    <div class="numero">JOGO 12</div>
+
+    <div class="icone">🏃</div>
+
+    <h3>Corrida contra a tabuada</h3>
+
+    <p>
+        Resolva multiplicações rapidamente e avance
+        na corrida contra o relógio.
+    </p>
+
+    <a class="jogar" href="jogos/corrida-tabuada.html">
+        Jogar agora →
+    </a>
+
+</article>
+
+
+    </section>
+
+</main>
+
+<!-- ===== RODAPÉ ===== -->
+
+<footer>
+
+    <strong>RESULTA<span>MATH</span></strong>
+
+    <p>
+        ResultaLabs · Matemática para explorar,
+        experimentar e aprender.
+    </p>
+
+</footer>
+
+</body>
+</html>
