@@ -77,7 +77,7 @@ function atualizar(){
 }
 document.getElementById('lancarMoeda').addEventListener('click',()=>{
  const r=Math.random()<.5?'Cara':'Coroa';moedas[r]++;
- moeda.textContent=r==='Cara'?'🙂':'🌙';
+ moeda.textContent=r==='Cara'?'🙂':'👑';
  document.getElementById('explicacao').textContent=`Resultado: ${r}. A probabilidade teórica de cada lado é 50%, mas os resultados experimentais podem variar.`;
  atualizar();
 });
