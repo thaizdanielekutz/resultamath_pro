@@ -75,30 +75,6 @@ function SIMULADO_BANCA({
 
 /* ===== CADASTRO DOS SIMULADOS ===== */
 
-/* ===== SIMULADOS FGV ===== */
-
-SIMULADO_BANCA({
-    banca: 'FGV',
-    concurso: 'Prefeitura Municipal',
-    ano: 2025,
-    cargo: 'Professor de Matemática',
-    titulo: 'Simulado FGV - Professor',
-    questoes: [
-        {
-            enunciado: 'Quanto é 25% de 200?',
-            alts: ['25', '40', '50', '60', '75'],
-            certa: 2,
-            resolucao: '25% de 200 = 200 × 0,25 = 50.'
-        },
-        {
-            enunciado: 'Qual é o MMC de 12 e 15?',
-            alts: ['30', '45', '60', '90', '180'],
-            certa: 2,
-            resolucao: '12 = 2² × 3 e 15 = 3 × 5. O MMC é 2² × 3 × 5 = 60.'
-        }
-    ]
-});
-
 /* ===== SIMULADOS FUNDATEC Tribunal de Justiça do Paraná - TJ-PR ===== */
 
 SIMULADO_BANCA({
@@ -311,6 +287,172 @@ SIMULADO_BANCA({
                 Portanto, as três rotinas voltarão a coincidir depois de 180 dias.
 
                 Resposta correta: alternativa E.
+            `
+        }
+    ]
+});
+
+
+/* ===== SIMULADOS FUNDATEC Prefeitura de Redentora - Eletricista ===== */
+
+SIMULADO_BANCA({
+    banca: 'FUNDATEC',
+    concurso: 'Prefeitura Municipal de Redentora - RS',
+    ano: 2026,
+    cargo: 'Eletricista',
+    titulo: 'FUNDATEC 2026 - Prefeitura de Redentora - Eletricista',
+
+    questoes: [
+        {
+            enunciado: 'Assinale a alternativa que apresenta, correta e respectivamente, a quantidade de lados e de ângulos internos que há em um eneágono.',
+
+            alts: [
+                '9 e 9.',
+                '9 e 8.',
+                '8 e 9.',
+                '7 e 7.'
+            ],
+
+            certa: 0,
+
+            resolucao: `
+                Um eneágono é um polígono que possui 9 lados.
+
+                Em qualquer polígono, a quantidade de lados é igual à quantidade de ângulos internos.
+
+                Portanto, um eneágono possui:
+
+                9 lados e 9 ângulos internos.
+
+                Resposta correta: alternativa A.
+            `
+        },
+
+        {
+            enunciado: 'Considere a sequência numérica a seguir: 5, 13, 21, 29... Qual é o valor do quinto termo dessa sequência?',
+
+            alts: [
+                '36.',
+                '37.',
+                '38.',
+                '39.'
+            ],
+
+            certa: 1,
+
+            resolucao: `
+                Vamos observar a diferença entre os termos:
+
+                13 - 5 = 8
+
+                21 - 13 = 8
+
+                29 - 21 = 8
+
+                A sequência aumenta de 8 em 8.
+
+                Para encontrar o quinto termo:
+
+                29 + 8 = 37.
+
+                Portanto, o quinto termo é 37.
+
+                Resposta correta: alternativa B.
+            `
+        },
+
+        {
+            enunciado: 'Maurício é motorista e, para entregar uma determinada mercadoria, ele saiu às 8h da manhã e deverá percorrer 120 km. Às 9h ele já havia percorrido 65% do trecho. Quantos quilômetros restam para Maurício chegar ao seu destino?',
+
+            alts: [
+                '78 km.',
+                '68 km.',
+                '52 km.',
+                '42 km.'
+            ],
+
+            certa: 3,
+
+            resolucao: `
+                O percurso total é de 120 km.
+
+                Maurício já percorreu 65% desse percurso.
+
+                Primeiro, calculamos a distância percorrida:
+
+                65% de 120
+
+                65/100 × 120 = 78 km.
+
+                Agora, subtraímos do percurso total:
+
+                120 - 78 = 42 km.
+
+                Portanto, faltam 42 km para chegar ao destino.
+
+                Resposta correta: alternativa D.
+            `
+        },
+
+        {
+            enunciado: 'Quantos minutos equivalem a 2/5 de 1 hora?',
+
+            alts: [
+                '12 minutos.',
+                '15 minutos.',
+                '24 minutos.',
+                '25 minutos.'
+            ],
+
+            certa: 2,
+
+            resolucao: `
+                Sabemos que 1 hora corresponde a 60 minutos.
+
+                Precisamos calcular 2/5 de 60:
+
+                2/5 × 60
+
+                60 ÷ 5 = 12.
+
+                12 × 2 = 24.
+
+                Portanto, 2/5 de uma hora correspondem a 24 minutos.
+
+                Resposta correta: alternativa C.
+            `
+        },
+
+        {
+            enunciado: 'Qual é o maior número de quatro algarismos que pode ser formado utilizando os algarismos 2, 8, 7 e 4, sem repetir nenhum deles?',
+
+            alts: [
+                '7.842.',
+                '8.472.',
+                '8.742.',
+                '8.872.'
+            ],
+
+            certa: 2,
+
+            resolucao: `
+                Para formar o maior número possível, devemos organizar os algarismos em ordem decrescente.
+
+                Os algarismos disponíveis são:
+
+                2, 8, 7 e 4.
+
+                Organizando do maior para o menor:
+
+                8, 7, 4, 2.
+
+                Assim, formamos o número:
+
+                8.742.
+
+                Portanto, o maior número possível é 8.742.
+
+                Resposta correta: alternativa C.
             `
         }
     ]
