@@ -24,9 +24,7 @@
     --branco:#ffffff;
 }
 
-html{
-    scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth;}
 
 body{
     font-family:Arial,Helvetica,sans-serif;
@@ -35,7 +33,7 @@ body{
     min-height:100vh;
 }
 
-/* ===== CABEÇALHO ===== */
+/* CABEÇALHO */
 
 header{
     width:100%;
@@ -57,9 +55,7 @@ header{
     text-decoration:none;
 }
 
-.logo span{
-    color:var(--azul);
-}
+.logo span{color:var(--azul);}
 
 nav{
     display:flex;
@@ -74,11 +70,9 @@ nav a{
     transition:.2s;
 }
 
-nav a:hover{
-    color:var(--azul);
-}
+nav a:hover{color:var(--azul);}
 
-/* ===== HERO ===== */
+/* HERO */
 
 .hero{
     position:relative;
@@ -134,9 +128,7 @@ nav a:hover{
     font-weight:800;
 }
 
-.hero h1 span{
-    color:var(--azul);
-}
+.hero h1 span{color:var(--azul);}
 
 .hero p{
     max-width:650px;
@@ -146,7 +138,7 @@ nav a:hover{
     line-height:1.8;
 }
 
-/* ===== FÓRMULAS FLUTUANTES ===== */
+/* FÓRMULAS FLUTUANTES */
 
 .formulas{
     position:absolute;
@@ -192,7 +184,7 @@ nav a:hover{
     50%{transform:translateY(-18px)}
 }
 
-/* ===== CONTEÚDO ===== */
+/* CONTEÚDO */
 
 .conteudo{
     width:100%;
@@ -217,7 +209,7 @@ nav a:hover{
     line-height:1.6;
 }
 
-/* ===== CONTADOR ===== */
+/* CONTADOR */
 
 .resumo{
     display:flex;
@@ -233,7 +225,7 @@ nav a:hover{
     font-size:16px;
 }
 
-/* ===== GRID DOS JOGOS ===== */
+/* GRID DOS JOGOS */
 
 .grid-jogos{
     display:grid;
@@ -280,6 +272,8 @@ nav a:hover{
     transform:scaleX(1);
 }
 
+/* NÚMERO DO JOGO */
+
 .numero{
     color:#a1adb5;
     font-size:11px;
@@ -288,19 +282,30 @@ nav a:hover{
     margin-bottom:17px;
 }
 
-.icone{
-    width:53px;
-    height:53px;
-    background:#eaf7fc;
-    border-radius:14px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    margin-bottom:18px;
-    color:var(--azul);
-    font-size:25px;
-    filter: grayscale(100%);
+/* IMAGENS DOS JOGOS */
+
+.jogo-imagem{
+    width:100%;
+    aspect-ratio:16 / 9;
+    border-radius:12px;
+    overflow:hidden;
+    background:#eaf2f7;
+    margin-bottom:20px;
 }
+
+.jogo-imagem img{
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform .35s ease;
+}
+
+.jogo-card:hover .jogo-imagem img{
+    transform:scale(1.04);
+}
+
+/* TEXTOS E LINKS */
 
 .jogo-card h3{
     font-size:18px;
@@ -332,7 +337,7 @@ nav a:hover{
     color:var(--azul-escuro);
 }
 
-/* ===== RODAPÉ ===== */
+/* RODAPÉ */
 
 footer{
     background:var(--preto);
@@ -348,11 +353,9 @@ footer strong{
     letter-spacing:1px;
 }
 
-footer span{
-    color:var(--azul);
-}
+footer span{color:var(--azul);}
 
-/* ===== RESPONSIVIDADE ===== */
+/* RESPONSIVIDADE */
 
 @media(max-width:900px){
     .grid-jogos{
@@ -361,38 +364,29 @@ footer span{
 }
 
 @media(max-width:600px){
+
     header{
         height:65px;
         padding:0 5%;
     }
 
-    .logo{
-        font-size:18px;
-    }
+    .logo{font-size:18px;}
 
-    nav{
-        gap:14px;
-    }
+    nav{gap:14px;}
 
-    nav a{
-        font-size:12px;
-    }
+    nav a{font-size:12px;}
 
     .hero{
         padding:65px 20px 75px;
     }
 
-    .hero p{
-        font-size:14px;
-    }
+    .hero p{font-size:14px;}
 
     .conteudo{
         padding:42px 17px 60px;
     }
 
-    .titulo-secao h2{
-        font-size:24px;
-    }
+    .titulo-secao h2{font-size:24px;}
 
     .grid-jogos{
         grid-template-columns:1fr;
@@ -404,9 +398,7 @@ footer span{
         padding:22px;
     }
 
-    .formula{
-        font-size:18px;
-    }
+    .formula{font-size:18px;}
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -423,7 +415,7 @@ footer span{
 
 <body>
 
-<!-- ===== CABEÇALHO ===== -->
+<!-- CABEÇALHO -->
 
 <header>
 
@@ -438,7 +430,7 @@ footer span{
 
 </header>
 
-<!-- ===== APRESENTAÇÃO ===== -->
+<!-- APRESENTAÇÃO -->
 
 <section class="hero">
 
@@ -467,7 +459,7 @@ footer span{
 
 </section>
 
-<!-- ===== JOGOS ===== -->
+<!-- JOGOS -->
 
 <main class="conteudo">
 
@@ -476,13 +468,13 @@ footer span{
         <h2>Escolha seu desafio</h2>
 
         <p>
-            Dez experiências interativas para aprender matemática na prática.
+            Doze experiências interativas para aprender matemática na prática.
         </p>
 
     </div>
 
     <div class="resumo">
-        <strong>10 jogos</strong>
+        <strong>12 jogos</strong>
         <span>•</span>
         <span>Escolha, explore e divirta-se.</span>
     </div>
@@ -495,7 +487,11 @@ footer span{
 
             <div class="numero">JOGO 01</div>
 
-            <div class="icone">⚡</div>
+            <div class="jogo-imagem">
+                <img src="imagens/desafio-relampago.jpg"
+                     alt="Desafio relâmpago com operações matemáticas"
+                     loading="lazy">
+            </div>
 
             <h3>Desafio relâmpago</h3>
 
@@ -516,7 +512,11 @@ footer span{
 
             <div class="numero">JOGO 02</div>
 
-            <div class="icone">🧠</div>
+            <div class="jogo-imagem">
+                <img src="imagens/memoria-matematica.jpg"
+                     alt="Jogo de memória matemática com cartas de operações"
+                     loading="lazy">
+            </div>
 
             <h3>Memória matemática</h3>
 
@@ -537,7 +537,11 @@ footer span{
 
             <div class="numero">JOGO 03</div>
 
-            <div class="icone">🔢</div>
+            <div class="jogo-imagem">
+                <img src="imagens/sequencias-numericas.jpg"
+                     alt="Sequências numéricas e padrões matemáticos"
+                     loading="lazy">
+            </div>
 
             <h3>Sequências numéricas</h3>
 
@@ -558,7 +562,11 @@ footer span{
 
             <div class="numero">JOGO 04</div>
 
-            <div class="icone">🍕</div>
+            <div class="jogo-imagem">
+                <img src="imagens/laboratorio-fracoes.jpg"
+                     alt="Representação visual de frações"
+                     loading="lazy">
+            </div>
 
             <h3>Laboratório de frações</h3>
 
@@ -579,7 +587,11 @@ footer span{
 
             <div class="numero">JOGO 05</div>
 
-            <div class="icone">🎯</div>
+            <div class="jogo-imagem">
+                <img src="imagens/caca-primos.jpg"
+                     alt="Números primos em um tabuleiro"
+                     loading="lazy">
+            </div>
 
             <h3>Caça aos números primos</h3>
 
@@ -600,7 +612,11 @@ footer span{
 
             <div class="numero">JOGO 06</div>
 
-            <div class="icone">📍</div>
+            <div class="jogo-imagem">
+                <img src="imagens/batalha-coordenadas.jpg"
+                     alt="Plano cartesiano e coordenadas"
+                     loading="lazy">
+            </div>
 
             <h3>Batalha das coordenadas</h3>
 
@@ -621,7 +637,11 @@ footer span{
 
             <div class="numero">JOGO 07</div>
 
-            <div class="icone">⚖️</div>
+            <div class="jogo-imagem">
+                <img src="imagens/desafio-equacoes.jpg"
+                     alt="Equações matemáticas"
+                     loading="lazy">
+            </div>
 
             <h3>Desafio das equações</h3>
 
@@ -642,7 +662,11 @@ footer span{
 
             <div class="numero">JOGO 08</div>
 
-            <div class="icone">💰</div>
+            <div class="jogo-imagem">
+                <img src="imagens/missao-porcentagem.jpg"
+                     alt="Porcentagens, descontos e aumentos"
+                     loading="lazy">
+            </div>
 
             <h3>Missão porcentagem</h3>
 
@@ -663,7 +687,11 @@ footer span{
 
             <div class="numero">JOGO 09</div>
 
-            <div class="icone">🎲</div>
+            <div class="jogo-imagem">
+                <img src="imagens/laboratorio-probabilidade.jpg"
+                     alt="Probabilidade com dados e moedas"
+                     loading="lazy">
+            </div>
 
             <h3>Laboratório da probabilidade</h3>
 
@@ -684,7 +712,11 @@ footer span{
 
             <div class="numero">JOGO 10</div>
 
-            <div class="icone">📐</div>
+            <div class="jogo-imagem">
+                <img src="imagens/mestre-geometria.jpg"
+                     alt="Formas geométricas, áreas e ângulos"
+                     loading="lazy">
+            </div>
 
             <h3>Mestre da geometria</h3>
 
@@ -699,55 +731,61 @@ footer span{
 
         </article>
 
+        <!-- JOGO 11 -->
 
-<!-- JOGO 11 -->
+        <article class="jogo-card">
 
-<article class="jogo-card">
+            <div class="numero">JOGO 11</div>
 
-    <div class="numero">JOGO 11</div>
+            <div class="jogo-imagem">
+                <img src="imagens/mestre-divisibilidade.jpg"
+                     alt="Divisibilidade, múltiplos e divisores"
+                     loading="lazy">
+            </div>
 
-    <div class="icone">🔍</div>
+            <h3>Mestre da divisibilidade</h3>
 
-    <h3>Mestre da divisibilidade</h3>
+            <p>
+                Domine os critérios de divisibilidade, múltiplos,
+                divisores, MMC e MDC.
+            </p>
 
-    <p>
-        Domine os critérios de divisibilidade, múltiplos,
-        divisores, MMC e MDC.
-    </p>
+            <a class="jogar" href="jogos/mestre-divisibilidade.html">
+                Jogar agora →
+            </a>
 
-    <a class="jogar" href="jogos/mestre-divisibilidade.html">
-        Jogar agora →
-    </a>
+        </article>
 
-</article>
+        <!-- JOGO 12 -->
 
-<!-- JOGO 12 -->
+        <article class="jogo-card">
 
-<article class="jogo-card">
+            <div class="numero">JOGO 12</div>
 
-    <div class="numero">JOGO 12</div>
+            <div class="jogo-imagem">
+                <img src="imagens/corrida-tabuada.jpg"
+                     alt="Corrida contra o tempo com multiplicações"
+                     loading="lazy">
+            </div>
 
-    <div class="icone">🏃</div>
+            <h3>Corrida contra a tabuada</h3>
 
-    <h3>Corrida contra a tabuada</h3>
+            <p>
+                Resolva multiplicações rapidamente e avance
+                na corrida contra o relógio.
+            </p>
 
-    <p>
-        Resolva multiplicações rapidamente e avance
-        na corrida contra o relógio.
-    </p>
+            <a class="jogar" href="jogos/corrida-tabuada.html">
+                Jogar agora →
+            </a>
 
-    <a class="jogar" href="jogos/corrida-tabuada.html">
-        Jogar agora →
-    </a>
-
-</article>
-
+        </article>
 
     </section>
 
 </main>
 
-<!-- ===== RODAPÉ ===== -->
+<!-- RODAPÉ -->
 
 <footer>
 
