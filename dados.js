@@ -99,47 +99,7 @@ SIMULADO_BANCA({
     ]
 });
 
-/* ===== SIMULADOS FUNDATEC ===== */
-
-SIMULADO_BANCA({
-    banca: 'FUNDATEC',
-    concurso: 'Prefeitura de Getúlio Vargas - RS',
-    ano: 2026,
-    cargo: 'Auxiliar de Saúde Bucal',
-    titulo: 'FUNDATEC 2026 - Auxiliar de Saúde Bucal',
-
-    questoes: [
-        {
-            enunciado: 'A soma de um número com seus 3/4 é igual a 28. Qual é esse número?',
-            alts: [
-                '12',
-                '16',
-                '20',
-                '24'
-            ],
-            certa: 1,
-            resolucao: `
-                Seja x o número procurado.
-
-                x + 3x/4 = 28
-
-                4x/4 + 3x/4 = 28
-
-                7x/4 = 28
-
-                7x = 28 × 4
-
-                7x = 112
-
-                x = 112/7
-
-                x = 16
-
-                Resposta correta: alternativa B.
-            `
-        }
-    ]
-});
+/* ===== SIMULADOS FUNDATEC Tribunal de Justiça do Paraná - TJ-PR ===== */
 
 SIMULADO_BANCA({
     banca: 'FUNDATEC',
