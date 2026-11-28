@@ -6,6 +6,29 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Simulados | Resultamath</title>
 <link rel="stylesheet" href="estilo.css">
+
+<style>
+/* ===== SIMULADOS POR BANCA ===== */
+.grade.grade-bancas {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+/* Tablets */
+@media (max-width: 900px) {
+    .grade.grade-bancas {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Celulares */
+@media (max-width: 600px) {
+    .grade.grade-bancas {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
 </head>
 
 <body>
@@ -175,9 +198,9 @@ function inicio(){
                 concurso e cargo.
             </p>
 
-            <div class="grade">
+            <div class="grade grade-bancas">
 
-                ${PROVAS.map(p=>`
+                ${PROVAS.slice(0, 3).map(p=>`
 
                     <div class="cartao">
 
