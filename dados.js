@@ -141,6 +141,221 @@ SIMULADO_BANCA({
     ]
 });
 
+SIMULADO_BANCA({
+    banca: 'FUNDATEC',
+    concurso: 'Tribunal de Justiça do Paraná - TJ-PR',
+    ano: 2026,
+    cargo: 'Contador',
+    titulo: 'FUNDATEC 2026 - TJ-PR - Contador',
+
+    questoes: [
+        {
+            enunciado: 'Uma empresa responsável pelo fornecimento de materiais de escritório oferece uma promoção para órgãos públicos. Na compra conjunta de três caixas do mesmo produto, todas com o mesmo preço de tabela, a empresa concede desconto de 12% na segunda caixa e de 18% na terceira, mantendo o preço integral na primeira. O desconto único que, aplicado igualmente sobre o preço de tabela das três caixas, produziria o mesmo valor total pago na promoção é:',
+
+            alts: [
+                '10%.',
+                '12%.',
+                '15%.',
+                '16%.',
+                '18%.'
+            ],
+
+            certa: 0,
+
+            resolucao: `
+                Considere que cada caixa custa R$ 100,00.
+
+                Primeira caixa:
+                R$ 100,00.
+
+                Segunda caixa:
+                100 - 12% de 100
+                100 - 12 = 88.
+
+                Terceira caixa:
+                100 - 18% de 100
+                100 - 18 = 82.
+
+                Somando os valores pagos:
+
+                100 + 88 + 82 = 270.
+
+                Sem desconto, as três caixas custariam:
+
+                3 × 100 = 300.
+
+                O desconto total foi:
+
+                300 - 270 = 30.
+
+                Calculando o percentual:
+
+                30/300 × 100 = 10%.
+
+                Portanto, o desconto único equivalente é de 10%.
+
+                Resposta correta: alternativa A.
+            `
+        },
+
+        {
+            enunciado: 'Uma comissão de 4 pessoas será formada a partir de um grupo com 6 contadores e 5 economistas, devendo conter exatamente 2 contadores e 2 economistas. O número de variações de comissões possíveis é:',
+
+            alts: [
+                '150.',
+                '175.',
+                '200.',
+                '225.',
+                '250.'
+            ],
+
+            certa: 0,
+
+            resolucao: `
+                Precisamos escolher 2 contadores entre 6 e 2 economistas entre 5.
+
+                Primeiro, escolhemos os contadores:
+
+                C(6,2) = 6 × 5 / 2 × 1
+
+                C(6,2) = 15.
+
+                Agora, escolhemos os economistas:
+
+                C(5,2) = 5 × 4 / 2 × 1
+
+                C(5,2) = 10.
+
+                Como as duas escolhas precisam acontecer juntas, multiplicamos:
+
+                15 × 10 = 150.
+
+                Portanto, podem ser formadas 150 comissões diferentes.
+
+                Resposta correta: alternativa A.
+            `
+        },
+
+        {
+            enunciado: 'A receita, em milhares de reais, de determinado produto é dada por: R(x) = -2x² + 24x + 10. O valor máximo da receita ocorre quando x é igual a:',
+
+            alts: [
+                '4.',
+                '6.',
+                '8.',
+                '12.',
+                '24.'
+            ],
+
+            certa: 1,
+
+            resolucao: `
+                A função apresentada é do segundo grau:
+
+                R(x) = -2x² + 24x + 10.
+
+                Identificando os coeficientes:
+
+                a = -2
+                b = 24
+                c = 10.
+
+                Como a é negativo, a parábola possui ponto de máximo.
+
+                Para encontrar o valor de x no vértice, utilizamos:
+
+                x = -b / 2a
+
+                Substituindo:
+
+                x = -24 / (2 × -2)
+
+                x = -24 / -4
+
+                x = 6.
+
+                Portanto, o valor máximo da receita ocorre quando x = 6.
+
+                Resposta correta: alternativa B.
+            `
+        },
+
+        {
+            enunciado: 'Um prêmio de R$ 18.000,00 será dividido entre três empregados em partes diretamente proporcionais aos números 2, 3 e 4. O valor (em R$) recebido pelo empregado associado ao número 3 será:',
+
+            alts: [
+                '3.000,00.',
+                '4.000,00.',
+                '5.000,00.',
+                '6.000,00.',
+                '8.000,00.'
+            ],
+
+            certa: 3,
+
+            resolucao: `
+                As partes são diretamente proporcionais a 2, 3 e 4.
+
+                Primeiro, somamos os números da proporção:
+
+                2 + 3 + 4 = 9.
+
+                Agora, dividimos o prêmio total por 9:
+
+                18.000 / 9 = 2.000.
+
+                Cada parte da proporção corresponde a R$ 2.000,00.
+
+                O empregado associado ao número 3 receberá:
+
+                3 × 2.000 = 6.000.
+
+                Portanto, ele receberá R$ 6.000,00.
+
+                Resposta correta: alternativa D.
+            `
+        },
+
+        {
+            enunciado: 'Três rotinas de auditoria são realizadas, respectivamente, a cada 12, 18 e 30 dias. Considerando que todas foram realizadas no mesmo dia, mantendo os períodos de realização, voltarão a coincidir depois de quantos dias?',
+
+            alts: [
+                '60.',
+                '90.',
+                '120.',
+                '150.',
+                '180.'
+            ],
+
+            certa: 4,
+
+            resolucao: `
+                Como queremos descobrir quando as três rotinas voltarão a coincidir, precisamos calcular o MMC de 12, 18 e 30.
+
+                Decompondo em fatores primos:
+
+                12 = 2² × 3
+
+                18 = 2 × 3²
+
+                30 = 2 × 3 × 5
+
+                Para calcular o MMC, utilizamos os fatores com os maiores expoentes:
+
+                MMC = 2² × 3² × 5
+
+                MMC = 4 × 9 × 5
+
+                MMC = 180.
+
+                Portanto, as três rotinas voltarão a coincidir depois de 180 dias.
+
+                Resposta correta: alternativa E.
+            `
+        }
+    ]
+});
+
 
 
 
